@@ -122,6 +122,7 @@ require('lazy').setup({
         theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
+        -- added by yechiel
       },
     },
   },
@@ -131,8 +132,17 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+<<<<<<< HEAD
     main = 'ibl',
     opts = {},
+=======
+    --[[config = function()
+      require('ibl').setup {
+        char = '┊',
+        show_trailing_blankline_indent = false,
+      }
+    end,--]]
+>>>>>>> 29134f7 (fix from wsl)
   },
 
   -- "gc" to comment visual regions/lines
@@ -167,14 +177,21 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+<<<<<<< HEAD
+=======
+  -- added by me tabnine  
+>>>>>>> 29134f7 (fix from wsl)
   {
     'codota/tabnine-nvim',
     build = "./dl_binaries.sh",
   },
+<<<<<<< HEAD
   {
     'qtc-de/vve'
   },
 
+=======
+>>>>>>> 29134f7 (fix from wsl)
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -517,3 +534,19 @@ require('tabnine').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+require('tabnine').setup({
+  disable_auto_comment=true,
+  accept_keymap="<C-Right>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = {gui = "#808080", cterm = 244},
+  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+  log_file_path = nil, -- absolute path to Tabnine log file
+})
+
+-- require("tabnine.chat.init")
+
+
+-- vim.api.nvim_set_keymap("x", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
+-- vim.api.nvim_set_keymap("i", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
+--vim.api.nvim_set_keymap("n", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
