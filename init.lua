@@ -47,7 +47,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -71,7 +71,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -89,16 +89,16 @@ require('lazy').setup({
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
-        vim.keymap.set({'n', 'v'}, ']c', function()
+        vim.keymap.set({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
-        vim.keymap.set({'n', 'v'}, '[c', function()
+        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+        vim.keymap.set({ 'n', 'v' }, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
+        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
       end,
     },
   },
@@ -116,35 +116,29 @@ require('lazy').setup({
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
+    config = function()
+      package.path = package.path .. ";~/.local/share/nvim/lazy/lualine.nvim/examples"
+      require("evil_lualine")
+    end,
     opts = {
       options = {
         icons_enabled = true,
         theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
-        -- added by yechiel
       },
     },
   },
-
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-<<<<<<< HEAD
     main = 'ibl',
     opts = {},
-=======
-    --[[config = function()
-      require('ibl').setup {
-        char = '┊',
-        show_trailing_blankline_indent = false,
-      }
-    end,--]]
->>>>>>> 29134f7 (fix from wsl)
   },
 
+  -- adds line indentation marking
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -177,21 +171,15 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-<<<<<<< HEAD
-=======
-  -- added by me tabnine  
->>>>>>> 29134f7 (fix from wsl)
+  -- added by me tabnine
   {
     'codota/tabnine-nvim',
     build = "./dl_binaries.sh",
   },
-<<<<<<< HEAD
   {
     'qtc-de/vve'
   },
 
-=======
->>>>>>> 29134f7 (fix from wsl)
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -216,7 +204,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
--- Make line number relative 
+-- Make line number relative
 vim.wo.relativenumber = true
 
 
@@ -311,7 +299,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'go', 'lua', 'python','html', 'bash', 'javascript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'go', 'lua', 'python', 'html', 'bash', 'javascript', 'vimdoc', 'vim' },
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
 
@@ -437,8 +425,7 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -521,32 +508,20 @@ cmp.setup {
 }
 
 require('tabnine').setup({
-  disable_auto_comment=true,
-  accept_keymap="<C-Right>",
+  disable_auto_comment = true,
+  accept_keymap = "<C-Right>",
   dismiss_keymap = "<C-]>",
   debounce_ms = 800,
-  suggestion_color = {gui = "#808080", cterm = 244},
-  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
-  log_file_path = nil, -- absolute path to Tabnine log file
-})
--- require("tabnine.chat.init")
-
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
-require('tabnine').setup({
-  disable_auto_comment=true,
-  accept_keymap="<C-Right>",
-  dismiss_keymap = "<C-]>",
-  debounce_ms = 800,
-  suggestion_color = {gui = "#808080", cterm = 244},
-  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+  suggestion_color = { gui = "#808080", cterm = 244 },
+  exclude_filetypes = { "TelescopePrompt", "NvimTree" },
   log_file_path = nil, -- absolute path to Tabnine log file
 })
 
--- require("tabnine.chat.init")
+-- add tabnineChat command
+local chat = require("tabnine.chat")
+-- overide default chat setting
+chat.enabled = true
 
-
--- vim.api.nvim_set_keymap("x", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
--- vim.api.nvim_set_keymap("i", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
---vim.api.nvim_set_keymap("n", "<leader>q", "", { noremap = true, callback = require("tabnine.chat").open })
+vim.api.nvim_create_user_command("TabnineChat", function()
+  chat.open()
+end, {})
