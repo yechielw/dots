@@ -1,4 +1,4 @@
--- Set <space> as the leader key
+
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -78,11 +78,11 @@ require('lazy').setup({
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
+        add = { text = '' },
+        change = { text = '󰝤' },
+        delete = { text = '' },
         topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        changedelete = { text = '󰝤' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
@@ -117,21 +117,12 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     config = function()
-      package.path = package.path .. ";~/.local/share/nvim/lazy/lualine.nvim/examples"
-      require("evil_lualine")
+      require("lualine.examples.evil_lualine")
     end,
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = 'gruvbox',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
   },
   {
     -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
+    'lukas-reine/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     main = 'ibl',
@@ -175,10 +166,37 @@ require('lazy').setup({
   {
     'codota/tabnine-nvim',
     build = "./dl_binaries.sh",
+    -- main = 'tabnine',
+    config = function()
+      require('tabnine').setup({
+        accept_keymap = "<C-Right>",
+      })
+      local chat = require("tabnine.chat")
+      -- overide default chat setting
+      chat.enabled = true
+      vim.api.nvim_create_user_command("TabnineChat", function()
+      chat.open()
+      end, {})
+
+    end,
   },
+    -- config = function()
+    --  require('tabnine').setup({
+    --    accept_keymap = "<C-Right>",
+    --  })
+    -- end,
+  
   {
     'qtc-de/vve'
   },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
+    --main = 'colorizer',
+    -- opts = {},
+  }
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -506,22 +524,3 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
-require('tabnine').setup({
-  disable_auto_comment = true,
-  accept_keymap = "<C-Right>",
-  dismiss_keymap = "<C-]>",
-  debounce_ms = 800,
-  suggestion_color = { gui = "#808080", cterm = 244 },
-  exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-  log_file_path = nil, -- absolute path to Tabnine log file
-})
-
--- add tabnineChat command
-local chat = require("tabnine.chat")
--- overide default chat setting
-chat.enabled = true
-
-vim.api.nvim_create_user_command("TabnineChat", function()
-  chat.open()
-end, {})
