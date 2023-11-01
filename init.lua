@@ -1,4 +1,3 @@
-
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -122,11 +121,12 @@ require('lazy').setup({
   },
   {
     -- Add indentation guides even on blank lines
-    'lukas-reine/indent-blankline.nvim',
+    'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     main = 'ibl',
     opts = {},
+    -- enabled = false,
   },
 
   -- adds line indentation marking
@@ -166,26 +166,18 @@ require('lazy').setup({
   {
     'codota/tabnine-nvim',
     build = "./dl_binaries.sh",
-    -- main = 'tabnine',
+    main = 'tabnine',
+    opts = {
+    },
     config = function()
-      require('tabnine').setup({
+      require 'tabnine'.setup({
         accept_keymap = "<C-Right>",
       })
       local chat = require("tabnine.chat")
-      -- overide default chat setting
       chat.enabled = true
-      vim.api.nvim_create_user_command("TabnineChat", function()
-      chat.open()
-      end, {})
-
+      require("tabnine.chat.user_commands").setup()
     end,
   },
-    -- config = function()
-    --  require('tabnine').setup({
-    --    accept_keymap = "<C-Right>",
-    --  })
-    -- end,
-  
   {
     'qtc-de/vve'
   },
@@ -196,7 +188,82 @@ require('lazy').setup({
     end,
     --main = 'colorizer',
     -- opts = {},
-  }
+  },
+  -- debugging plugins
+  {
+    'mfussenegger/nvim-dap'
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    opts = {},
+  },
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    opts = {
+      options = {
+        enabled = true,
+        enabled_commands = true,
+        highlight_changed_variables = true,
+        highlight_new_as_changed = false,
+        show_stop_reason = true,
+        commented = false,
+        only_first_definition = true,
+        all_references = false,
+        clear_on_continue = false,
+        display_callback = function(variable, buf, stackframe, node, options)
+          if options.virt_text_pos == 'inline' then
+            return ' = ' .. variable.value
+          else
+            return variable.name .. ' = ' .. variable.value
+          end
+        end,
+        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        all_frames = false,
+        virt_lines = false,
+        virt_text_win_col = nil
+      },
+    },
+  },
+  {
+    'mfussenegger/nvim-dap-python',
+    main = 'dap-python',
+  },
+  {
+    'leoluz/nvim-dap-go',
+    main = 'dap-go',
+    opts = {
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+    }
+  },
+  {
+  'akinsho/bufferline.nvim',
+  version = "*",
+  dependencies = 'nvim-tree/nvim-web-devicons',
+  opts = {}
+  },
+  {
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  opts = {
+    cmdline = { view = "cmdline" },
+    -- add any options here
+    presets = {
+      command_palette = false,
+      }
+    },
+    dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    }
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -524,3 +591,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+vim.cmd "highlight Normal     ctermbg=NONE guibg=NONE"
+vim.cmd "highlight LineNr     ctermbg=NONE guibg=NONE"
+vim.cmd "highlight SignColumn ctermbg=NONE guibg=NONE"
