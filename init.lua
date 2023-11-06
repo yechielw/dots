@@ -114,10 +114,17 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
+    enabled = false,
+    opts = {
+      options = {
+      icons_enabled = true,
+      theme = 'gruvbox',
+      }
+    },
     -- See `:help lualine.txt`
-    config = function()
-      require("lualine.examples.evil_lualine")
-    end,
+  -- config = function()
+  --    require("lualine.examples.evil_lualine")
+  --  end,
   },
   {
     -- Add indentation guides even on blank lines
@@ -131,7 +138,10 @@ require('lazy').setup({
 
   -- adds line indentation marking
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -259,10 +269,13 @@ require('lazy').setup({
 
     "MunifTanjim/nui.nvim",
     -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
+    -- `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
+    -- "rcarriga/nvim-notify",
     }
+  },
+  {
+  "christoomey/vim-tmux-navigator"
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -565,7 +578,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
