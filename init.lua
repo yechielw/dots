@@ -77,11 +77,11 @@ require('lazy').setup({
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '' },
-        change = { text = '󰝤' },
-        delete = { text = '' },
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '-' },
         topdelete = { text = '‾' },
-        changedelete = { text = '󰝤' },
+        changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
@@ -114,17 +114,14 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    enabled = false,
     opts = {
-      options = {
-      icons_enabled = true,
-      theme = 'gruvbox',
-      }
-    },
-    -- See `:help lualine.txt`
-  -- config = function()
-  --    require("lualine.examples.evil_lualine")
-  --  end,
+options = {
+        icons_enabled = false,
+        theme = 'onedark',
+        component_separators = '|',
+        section_separators = '',
+      },
+    }
   },
   {
     -- Add indentation guides even on blank lines
@@ -275,7 +272,10 @@ require('lazy').setup({
     }
   },
   {
-  "christoomey/vim-tmux-navigator"
+    "christoomey/vim-tmux-navigator"
+  },
+  {
+    "ThePrimeagen/vim-be-good"
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -607,3 +607,8 @@ cmp.setup {
 vim.cmd "highlight Normal     ctermbg=NONE guibg=NONE"
 vim.cmd "highlight LineNr     ctermbg=NONE guibg=NONE"
 vim.cmd "highlight SignColumn ctermbg=NONE guibg=NONE"
+vim.cmd "highlight BufferLineFill ctermbg=NONE guibg=NONE"
+vim.cmd "nnoremap <leader>z :echo 'This mapping does something else'<CR> :desc'ssss'"
+
+-- nmap("bbbbbbbbbbbbbbbbb")
+vim.keymap.set('v', '<leader>zz', [[:set operatorfunc=vve#encode#VisualEncodeBase64<CR>g@]], { desc = "zzzzzzzzzzzzzz" })
