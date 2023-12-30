@@ -1,0 +1,176 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.004  000.004: --- NVIM STARTING ---
+000.083  000.079: event init
+000.181  000.098: early init
+000.354  000.173: locale set
+000.412  000.058: init first window
+000.683  000.271: inits 1
+000.694  000.011: window checked
+000.729  000.035: parsing arguments
+001.247  000.060  000.060: require('vim.shared')
+001.371  000.046  000.046: require('vim._meta')
+001.374  000.123  000.077: require('vim._editor')
+001.375  000.229  000.046: require('vim._init_packages')
+001.379  000.421: init lua interpreter
+003.381  002.002: expanding arguments
+003.511  000.130: inits 2
+003.935  000.424: init highlight
+003.939  000.004: waiting for UI
+004.314  000.375: done waiting for UI
+004.358  000.044: clear screen
+004.690  000.332: init default mappings & autocommands
+005.113  000.083  000.083: sourcing /usr/share/nvim/runtime/ftplugin.vim
+005.173  000.033  000.033: sourcing /usr/share/nvim/runtime/indent.vim
+005.381  000.576: sourcing vimrc file(s)
+006.712  001.302  001.302: sourcing /usr/share/nvim/runtime/filetype.lua
+006.922  000.088  000.088: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+007.008  000.224  000.136: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+007.522  000.135  000.135: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+007.562  000.011  000.011: sourcing /usr/share/nvim/runtime/plugin/health.vim
+007.897  000.161  000.161: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+007.981  000.409  000.247: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+008.204  000.210  000.210: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+008.614  000.390  000.390: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+008.812  000.167  000.167: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+008.875  000.047  000.047: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+008.920  000.017  000.017: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+009.014  000.081  000.081: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+009.123  000.073  000.073: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+009.152  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+009.308  000.144  000.144: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+012.156  002.506  002.506: sourcing /usr/share/nvim/runtime/plugin/editorconfig.lua
+013.476  001.113  001.113: sourcing /usr/share/nvim/runtime/plugin/man.lua
+014.147  000.638  000.638: sourcing /usr/share/nvim/runtime/plugin/nvim.lua
+014.187  001.327: loading rtp plugins
+014.355  000.168: loading packages
+014.619  000.263: loading after plugins
+014.641  000.023: inits 3
+018.062  003.421: reading ShaDa
+020.518  001.237  001.237: require('vim.filetype')
+021.748  001.147  001.147: require('vim.filetype.detect')
+022.805  000.009  000.009: require('vim.F')
+023.041  000.230  000.230: require('editorconfig')
+023.070  000.026  000.026: require('vim.fs')
+023.262  002.550: opening buffers
+023.279  000.017: BufEnter autocommands
+023.282  000.003: editing files in windows
+023.354  000.072: VimEnter autocommands
+023.356  000.002: UIEnter autocommands
+023.358  000.001: before starting main loop
+023.570  000.213: first screen update
+023.572  000.001: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.004  000.004: --- NVIM STARTING ---
+000.073  000.069: event init
+000.174  000.101: early init
+000.324  000.150: locale set
+000.384  000.060: init first window
+000.662  000.278: inits 1
+000.671  000.009: window checked
+000.709  000.038: parsing arguments
+001.167  000.054  000.054: require('vim.shared')
+001.283  000.049  000.049: require('vim._meta')
+001.284  000.115  000.065: require('vim._editor')
+001.285  000.210  000.040: require('vim._init_packages')
+001.288  000.370: init lua interpreter
+002.138  000.850: expanding arguments
+002.186  000.048: inits 2
+002.467  000.281: init highlight
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.005  000.005: --- NVIM STARTING ---
+000.105  000.100: event init
+000.226  000.121: early init
+000.460  000.234: locale set
+000.579  000.120: init first window
+000.926  000.346: inits 1
+000.942  000.017: window checked
+000.992  000.049: parsing arguments
+001.648  000.073  000.073: require('vim.shared')
+001.806  000.060  000.060: require('vim._meta')
+001.809  000.155  000.095: require('vim._editor')
+001.812  000.291  000.064: require('vim._init_packages')
+001.817  000.534: init lua interpreter
+002.108  000.291: expanding arguments
+002.202  000.094: inits 2
+002.499  000.297: init highlight
+002.501  000.002: waiting for UI
+002.932  000.431: done waiting for UI
+002.978  000.046: clear screen
+003.228  000.250: init default mappings & autocommands
+003.530  000.057  000.057: sourcing /usr/share/nvim/runtime/ftplugin.vim
+003.568  000.022  000.022: sourcing /usr/share/nvim/runtime/indent.vim
+003.768  000.461: sourcing vimrc file(s)
+003.950  000.158  000.158: sourcing /usr/share/nvim/runtime/filetype.lua
+004.163  000.117  000.117: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+004.276  000.275  000.158: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+005.010  000.233  000.233: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+005.051  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/health.vim
+005.569  000.213  000.213: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+005.674  000.613  000.399: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+005.872  000.184  000.184: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+006.312  000.422  000.422: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+006.592  000.241  000.241: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+006.694  000.075  000.075: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+006.761  000.027  000.027: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+006.914  000.133  000.133: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+007.046  000.104  000.104: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+007.088  000.017  000.017: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+007.308  000.201  000.201: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+007.684  000.109  000.109: sourcing /usr/share/nvim/runtime/plugin/editorconfig.lua
+007.792  000.086  000.086: sourcing /usr/share/nvim/runtime/plugin/man.lua
+007.870  000.056  000.056: sourcing /usr/share/nvim/runtime/plugin/nvim.lua
+007.888  001.174: loading rtp plugins
+008.021  000.133: loading packages
+008.290  000.269: loading after plugins
+008.308  000.018: inits 3
+011.874  003.566: reading ShaDa
+016.869  002.642  002.642: require('vim.filetype')
+018.376  001.439  001.439: require('vim.filetype.detect')
+020.924  000.013  000.013: require('vim.F')
+021.277  000.344  000.344: require('editorconfig')
+021.325  000.044  000.044: require('vim.fs')
+021.620  005.264: opening buffers
+021.647  000.027: BufEnter autocommands
+021.650  000.003: editing files in windows
+021.799  000.149: VimEnter autocommands
+021.802  000.003: UIEnter autocommands
+021.804  000.002: before starting main loop
+022.386  000.582: first screen update
+022.389  000.003: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.008  000.008: --- NVIM STARTING ---
+000.258  000.250: event init
+000.553  000.295: early init
+000.802  000.249: locale set
+000.876  000.074: init first window
+001.390  000.514: inits 1
+001.426  000.036: window checked
+001.528  000.102: parsing arguments
+002.491  000.080  000.080: require('vim.shared')
+002.653  000.062  000.062: require('vim._meta')
+002.656  000.158  000.095: require('vim._editor')
+002.658  000.315  000.077: require('vim._init_packages')
+002.662  000.820: init lua interpreter
+003.657  000.995: expanding arguments
+003.723  000.066: inits 2
+004.067  000.344: init highlight

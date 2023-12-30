@@ -3,6 +3,7 @@ return
     'codota/tabnine-nvim',
     build = "./dl_binaries.sh",
     main = 'tabnine',
+    cmd = 'Tabnine',
     opts = {
     },
     config = function()
