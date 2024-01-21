@@ -57,12 +57,19 @@ return {{
     opts = {
       automatic_installation = true,
       handlers = {},
-      ensure_installed = {},
+      ensure_installed = {
+        "debugpy",
+      },
     },
   },
   {
     'mfussenegger/nvim-dap-python',
     main = 'dap-python',
+    config = function()
+      -- uses the debugypy installation by mason
+      local debugpyPythonPath = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
+      require("dap-python").setup(debugpyPythonPath, {})
+    end,
   },
   {
     'leoluz/nvim-dap-go',

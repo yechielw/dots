@@ -53,7 +53,10 @@ return {
 
     local servers = {
       -- clangd = {},
-      gopls = {},
+      gopls = {
+        completeUniported = true,
+        usePlaceholders = true,
+      },
       pyright = {},
       -- rust_analyzer = {},
       -- tsserver = {},
