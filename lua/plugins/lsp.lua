@@ -8,9 +8,11 @@ return {
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim',
+    {
+      'j-hui/fidget.nvim',
       -- tag = 'legacy',
-      opts = {} },
+      opts = {}
+    },
 
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
@@ -64,8 +66,14 @@ return {
       lua_ls = {
 
         Lua = {
+          completion = { callSnippet = { "Replace" } },
+          workspace = {
+            checkThirdParty = false,
+            library = {
 
-          workspace = { checkThirdParty = false },
+              vim.env.VIMRUNTIME
+            }
+          },
           telemetry = { enable = false },
         },
       },

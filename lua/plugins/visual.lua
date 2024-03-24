@@ -3,7 +3,11 @@ return {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
-    opts = {},
+    opts = {
+      indent = {
+        char = '┊',
+      }
+    },
   },
   {
     'norcalli/nvim-colorizer.lua', -- #ee55aa
