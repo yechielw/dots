@@ -1,6 +1,6 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-require('lazynvim')
-require('options')
-require('keymaps')
+require("lazynvim")
+require("options")
+require("keymaps")
