@@ -11,10 +11,13 @@ return {
 
     -- Adds a number of user-friendly snippets
     "rafamadriz/friendly-snippets",
+    -- This tiny plugin adds vscode-like pictograms to neovim built-in lsp
+    "onsails/lspkind.nvim"
   },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
     require("luasnip.loaders.from_vscode").lazy_load()
     luasnip.config.setup({})
 
@@ -42,7 +45,7 @@ return {
         --
         -- <c-l> will move you to the right of each of the expansion locations.
         -- <c-h> is similar, except moving you backwards.
-        ['<C-l>'] = cmp.mapping(function()
+        ['<C-l>'] = cmp.mapping(function() 
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
@@ -58,7 +61,15 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
+        { name = "buffer" },
         { name = "codeium" },
+      },
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = 'symbol', -- show only symbol annotations
+          maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+        })
       },
     })
   end,
