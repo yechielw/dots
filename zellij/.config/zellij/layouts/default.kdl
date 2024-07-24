@@ -1,11 +1,11 @@
 layout {
-    pane split_direction="vertical" {
-        pane
-    }
-
-    pane size=1 borderless=true {
+    //pane size=1 borderless=true {
+    //    plugin location="tab-bar"
+    // }
+    pane // borderless=true
+    pane size=1 {
         plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-            hide_frame_for_single_pane "true"
+           // hide_frame_for_single_pane "true"
 
             format_left  "{mode}#[fg=#89B4FA,bg=#181825,bold] {session}#[bg=#181825] {tabs}"
             format_right "{command_kubectx}#[fg=#424554,bg=#181825]::{command_kubens}{datetime}"
@@ -18,22 +18,14 @@ layout {
             tab_normal               "#[fg=#6C7086,bg=#181825] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
             tab_active               "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
             tab_fullscreen_indicator "□ "
-            tab_sync_indicator       "  "
-            tab_floating_indicator   "󰉈 "
+            tab_sync_indicator       "<U+E225>  "
+            tab_floating_indicator   "<U+F0248> "
 
-            command_kubectx_command  "kubectx -c"
-            command_kubectx_format   "#[fg=#6C7086,bg=#181825,italic] {stdout}"
-            command_kubectx_interval "2"
-
-            command_kubens_command  "kubens -c"
-            command_kubens_format   "#[fg=#6C7086,bg=#181825]{stdout} "
-            command_kubens_interval "2"
 
             datetime          "#[fg=#9399B2,bg=#181825] {format} "
             datetime_format   "%A, %d %b %Y %H:%M"
-            datetime_timezone "Asia/jerusalem"
+            datetime_timezone "Asia/Jerusalem"
         }
     }
 }
-simplified_ui true
-pane_frames false
+
