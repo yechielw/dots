@@ -74,7 +74,4 @@ return {
     },
     build = ":TSUpdate",
   },
-  {
-    "theHamsta/tree-sitter-commonlisp",
-  },
 }
