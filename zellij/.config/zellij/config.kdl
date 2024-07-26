@@ -185,9 +185,9 @@ keybinds {
 
 plugins {
     tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
+    // status-bar { path "status-bar"; }
     strider { path "strider"; }
-    compact-bar { path "compact-bar"; }
+    // compact-bar { path "compact-bar"; }
     session-manager { path "session-manager"; }
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
@@ -195,6 +195,8 @@ plugins {
     filepicker location="zellij:strider" {
         cwd "/"
     }
+    zstatus location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
+   
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
