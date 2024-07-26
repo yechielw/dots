@@ -9,3 +9,4 @@ type bat  > /dev/null && alias cat='bat -p'
 alias history="history 0" 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias hosts="sudo.exe wsl nvim /mnt/c/Windows/System32/drivers/etc/hosts"
+alias sdi="sudo dnf install"
