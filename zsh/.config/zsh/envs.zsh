@@ -24,4 +24,4 @@ export internal='10.0.0.0/8 172.16.0.0/12 192.168.0.0/16'
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
-export PATH="/opt:$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:/opt:$HOME/.local/bin:$HOME/go/bin:$PATH"
