@@ -218,3 +218,9 @@ client.background        $base
 
 include confid.d/windows.conf
 include config~
+
+assign [class="Alacritty"] workspace 3
+assign [class="Slack"] workspace 1
+assign [class="Google-chrome"] workspace 2
+assign [class="Firefox"] workspace 5
+assign [class="BurpSuite"] workspace 6
