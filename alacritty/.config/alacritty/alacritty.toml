@@ -87,7 +87,7 @@ program = "zellij"
 args = ["a", "-c"]
 
 [window]
-decorations = "none"
+decorations = "buttonless"
 opacity = 0.96
 
 [window.padding]

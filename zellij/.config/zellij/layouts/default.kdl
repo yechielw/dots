@@ -1,49 +1,49 @@
 layout {
-    //pane size=1 {
-    //    plugin location="status-bar"
-    // }
-    //pane size=1 borderless=true {
-    //    plugin location="tab-bar"
-    // }
-    pane // borderless=true
-    pane size=1 {
-        plugin location="zjstatus" { 
-            //location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-           // hide_frame_for_single_pane "true"
+  //pane size=1 {
+  //  plugin location="status-bar"
+  // }
+  //pane size=1 borderless=true {
+  //  plugin location="tab-bar"
+  // }
+  pane // borderless=true
+  pane size=1 {
+    plugin location="zjstatus" { 
+      //location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+       // hide_frame_for_single_pane "true"
 
-            format_left  "{mode}#[bg=#181825] {tabs}"
-            format_right "#[fg=#424554,bg=#181825]::#[fg=#89B4FA,bg=#181825,bold] {session}"
-            format_space "#[bg=#181825]"
+      format_left  "{mode}#[bg=#181825] {tabs}"
+      format_right "#[fg=#424554,bg=#181825]::#[fg=#89B4FA,bg=#181825,bold] {session}"
+      format_space "#[bg=#181825]"
 
-            mode_normal          "#[bg=#89B4FA] "
-            mode_tmux            "#[bg=#ffc387] "
-            mode_default_to_mode "tmux"
+      mode_normal      "#[bg=#89B4FA] "
+      mode_tmux      "#[bg=#ffc387] "
+      mode_default_to_mode "tmux"
 
-            tab_normal               "#[fg=#6C7086,bg=#181825] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-            tab_active               "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-            tab_fullscreen_indicator "□ "
-            tab_sync_indicator       "<U+E225>  "
-            tab_floating_indicator   "<U+F0248> "
-            
+      tab_normal         "#[fg=#6C7086,bg=#181825] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
+      tab_active         "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
+      tab_fullscreen_indicator "□ "
+      tab_sync_indicator     "<U+E225>  "
+      tab_floating_indicator   "<U+F0248> "
+      
 
-            mode_normal        "#[bg=#89B4FA] {name} "
-            mode_locked        "#[bg=#89B4FA] {name} "
-            mode_resize        "#[bg=#89B4FA] {name} "
-            mode_pane          "#[bg=#89B4FA] {name} "
-            mode_tab           "#[bg=#89B4FA] {name} "
-            mode_scroll        "#[bg=#89B4FA] {name} "
-            mode_enter_search  "#[bg=#89B4FA] {name} "
-            mode_search        "#[bg=#89B4FA] {name} "
-            mode_rename_tab    "#[bg=#89B4FA] {name} "
-            mode_rename_pane   "#[bg=#89B4FA] {name} "
-            mode_session       "#[bg=#89B4FA] {name} "
-            mode_move          "#[bg=#89B4FA] {name} "
-            mode_prompt        "#[bg=#89B4FA] {name} "
-            mode_tmux          "#[bg=#ffc387] {name} "
-            
-            mode_default_to_mode "tmux"
-            
-        }
+      mode_normal    "#[bg=#89B4FA] {name} "
+      mode_locked    "#[bg=#89B4FA] {name} "
+      mode_resize    "#[bg=#89B4FA] {name} "
+      mode_pane      "#[bg=#89B4FA] {name} "
+      mode_tab       "#[bg=#89B4FA] {name} "
+      mode_scroll    "#[bg=#89B4FA] {name} "
+      mode_enter_search  "#[bg=#89B4FA] {name} "
+      mode_search    "#[bg=#89B4FA] {name} "
+      mode_rename_tab  "#[bg=#89B4FA] {name} "
+      mode_rename_pane   "#[bg=#89B4FA] {name} "
+      mode_session     "#[bg=#89B4FA] {name} "
+      mode_move      "#[bg=#89B4FA] {name} "
+      mode_prompt    "#[bg=#89B4FA] {name} "
+      mode_tmux      "#[bg=#ffc387] {name} "
+      
+      mode_default_to_mode "tmux"
+      
     }
+  }
 }
 
