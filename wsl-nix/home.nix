@@ -44,13 +44,13 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-	".config/nvim".source      = ./nvim/.config/nvim;
-	".config/zsh".source       = ./zsh/.config/zsh;
-	".zshrc".source		   = ./zsh/.zshrc;
-	".gitconfig".source	   = ./git/.gitconfig;
-	".config/tmux".source      = ./tmux/.config/tmux;
-	".config/zellij".source    = ./zellij/.config/zellij;
-	".config/alacritty".source = ./alacritty/.config/nalacritty;
+	".config/nvim".source      = ../nvim/.config/nvim;
+	".config/zsh".source       = ../zsh/.config/zsh;
+	".zshrc".source		   = ../zsh/.zshrc;
+	".gitconfig".source	   = ../git/.gitconfig;
+	".config/tmux".source      = ../tmux/.config/tmux;
+	".config/zellij".source    = ../zellij/.config/zellij;
+	".config/alacritty".source = ../alacritty/.config/alacritty;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
