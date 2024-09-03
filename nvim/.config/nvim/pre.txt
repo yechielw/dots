@@ -1,0 +1,11 @@
+neovim
+python3-neovim
+git
+wget
+gzip
+unzip
+gcc
+curl
+npm
+python3-venv
+golang
