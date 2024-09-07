@@ -22,7 +22,16 @@
     curl
     nodejs
     go
+    pipx
     bloodhound-py
+    eza  
+    bat
+    zsh
+    ripgrep
+    zoxide
+    fzf
+    pyenv
+    atuin
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
