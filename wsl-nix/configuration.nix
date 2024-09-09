@@ -45,6 +45,10 @@
   }; 
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs = {
+    zsh.enable = true;
+  };
+  users.defaultUserShell = pkgs.zsh;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
