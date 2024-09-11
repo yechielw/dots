@@ -8,7 +8,8 @@
   ];
 
   wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl.defaultUser = "yechiel";
+  wsl.wslConf.network.hostname = "wsl-nix";
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     netexec
@@ -51,8 +52,8 @@
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users = {
-      "nixos" = import ./home.nix;
+      users = {
+      "yechiel" = import ./home.nix;
     };
   };
 }
