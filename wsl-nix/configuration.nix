@@ -7,9 +7,15 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "yechiel";
-  wsl.wslConf.network.hostname = "wsl-nix";
+  wsl = {
+    enable = true;
+    defaultUser = "yechiel";
+    wslConf.network = {
+      hostname = "wsl-nix";
+      generateResolvConf = false;
+    };
+  };
+  networking.nameservers = [ "8.8.8.8" "172.24.16.1" ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     netexec
