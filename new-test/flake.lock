@@ -137,11 +137,32 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726011050,
+        "narHash": "sha256-pf5sKpBtnNnCJ4mKpCHSe/afnfvU6C44vt4nG1zy6nk=",
+        "ref": "refs/heads/master",
+        "rev": "36908129196d0a40eb6c4add997a9985f5473343",
+        "revCount": 335,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixos-cosmic": "nixos-cosmic",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "quickshell": "quickshell"
       }
     },
     "rust-overlay": {

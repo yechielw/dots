@@ -95,7 +95,6 @@
   systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
-  programs.firefox.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -136,8 +135,7 @@
        debugpy
        impacket
     ]))
-  ];
-
+  ]; 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -167,6 +165,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = {
     zsh.enable = true;
+    firefox.enable = true; # left becaus its default
+    #kitty.enable = true;    # required for the default Hyprland config
+    hyprland.enable = true; # enable Hyprland
   };
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
