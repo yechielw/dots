@@ -53,11 +53,6 @@
     system = "x86_64-linux";
   }; 
   system.stateVersion = "24.05";
-  system.activationScripts = {
-    stdio.text = ''
-      su - 'nvim --headless "+Lazy! sync" +q' yechiel
-    ''; 
-  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = { 
     zsh.enable = true;
