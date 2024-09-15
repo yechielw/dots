@@ -18,7 +18,9 @@
   networking.nameservers = [ "8.8.8.8" "172.24.16.1" ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    netexec
+    #nil # nix LSP 
+    cargo
+    netexec 
     wget
     neovim
     git
@@ -51,8 +53,13 @@
     system = "x86_64-linux";
   }; 
   system.stateVersion = "24.05";
+  system.activationScripts = {
+    stdio.text = ''
+      su - 'nvim --headless "+Lazy! sync" +q' yechiel
+    ''; 
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  programs = {
+  programs = { 
     zsh.enable = true;
   };
   users.defaultUserShell = pkgs.zsh;
