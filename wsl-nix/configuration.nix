@@ -19,6 +19,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     #nil # nix LSP 
+    #inputs.ags-flake.packages.x86_64-linux.ags
     cargo
     netexec 
     wget

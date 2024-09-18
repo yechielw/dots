@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -79,8 +79,24 @@
   };
 
   # Let Home Manager install and manage itself.
+
+  imports = [
+    inputs.ags.homeManagerModules.default
+  ];
+
+
   programs = {
     home-manager.enable = true;
     zsh.enable = true;
+
+    ags = {
+      enable = true;
+      #configDir = ../ags;
+      extraPackages = with pkgs; [
+	gtksourceview
+	webkitgtk
+	accountsservice
+      ];
+    };
   };
 }
