@@ -1,5 +1,25 @@
 { config, lib, pkgs, inputs, ... }:
+
+
+
+
+let
+  msIDBrokerHash = final: prev: {
+    microsoft-identity-broker = prev.microsoft-identity-broker.overrideAttrs (oldAttrs: {
+      src = pkgs.fetchurl {
+        url = oldAttrs.src.url;  # Keep the same URL
+        sha256 = "I4Q6ucT6ps8/QGiQTNbMXcKxq6UMcuwJ0Prcqvov56M=";  # Update with the new hash
+      };
+    });
+  };
+in
 {
+
+  # Your other NixOS configurations go here
+
+
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -45,7 +65,7 @@
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
   # Configure keymap in X11
@@ -96,10 +116,22 @@
 
   # Install firefox.
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      };
+    overlays = [ msIDBrokerHash ];
+    };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+  ];
   environment.systemPackages = with pkgs; [
     (burpsuite.override { proEdition = true; })
-    (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+    #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+    gnomeExtensions.pop-shell
+    ags
     atuin
     bat
     bloodhound-py
@@ -148,6 +180,11 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.intune.enable = true;
+  services.flatpak.enable = true;
+
+
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

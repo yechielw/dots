@@ -15,12 +15,24 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags.url = "github:Aylur/ags";
+    
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, home-manager, quickshell, ... }@inputs:
-#    let
-#      system = "x86_64-linux";
-#    in
+  outputs = { self, nixpkgs, nixos-cosmic, home-manager, ... }@inputs:
+
+  let
+    # ...
+	  system = "x86_64-linux"; # change to whatever your system should be.
+    pkgs = import nixpkgs {
+	    inherit system;
+	    overlays = [
+        inputs.hyprpanel.overlay
+	    ];
+	  };
+  in
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -40,7 +52,6 @@
         nixos-cosmic.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.default
-          #quickshell.packages.nixosModules.default
       ];
     };
   };
