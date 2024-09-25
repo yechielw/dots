@@ -5,6 +5,7 @@
     # include NixOS-WSL modules
     <nixos-wsl/modules>
     inputs.home-manager.nixosModules.default
+    ./python.nix
   ];
 
   wsl = {
@@ -17,6 +18,8 @@
   };
   networking.nameservers = [ "8.8.8.8" "172.24.16.1" ];
   nixpkgs.config.allowUnfree = true;
+  services.openssh.enable = true;
+  services.openssh.passwordAuthentication = true;
   environment.systemPackages = with pkgs; [
     #nil # nix LSP 
     #inputs.ags-flake.packages.x86_64-linux.ags
@@ -42,12 +45,6 @@
     fzf
     pyenv
     atuin
-    (python311.withPackages(ps: with ps; [
-       pynvim
-       pip
-       debugpy
-       impacket
-    ]))
   ];
 
   nixpkgs.hostPlatform = {
