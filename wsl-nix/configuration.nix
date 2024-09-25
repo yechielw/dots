@@ -19,7 +19,7 @@
   networking.nameservers = [ "8.8.8.8" "172.24.16.1" ];
   nixpkgs.config.allowUnfree = true;
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = true;
+  services.openssh.settings.PasswordAuthentication = true;
   environment.systemPackages = with pkgs; [
     #nil # nix LSP 
     #inputs.ags-flake.packages.x86_64-linux.ags
