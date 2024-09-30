@@ -29,8 +29,11 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.plymouth.enable = true;
+  boot.initrd.systemd.enable = true;
+
   # nvidia stuuf for wayland
-  boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+  boot.kernelParams = [ "nvidia_drm.fbdev=1" "quiet"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -61,7 +64,11 @@ in
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us,il";
+    xkb.options = "grp:win_space_toggle";
+};
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
@@ -69,10 +76,10 @@ in
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+    #services.xserver.xkb = {
+    #layout = "us";
+    #variant = "";
+  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,9 +130,11 @@ in
       };
     overlays = [ msIDBrokerHash ];
     };
-
+  
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+    corefonts
   ];
   environment.systemPackages = with pkgs; [
     (burpsuite.override { proEdition = true; })
@@ -137,7 +146,6 @@ in
     bloodhound-py
     caido
     citrix_workspace
-    corefonts
     curl
     eza  
     fd
