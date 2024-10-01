@@ -3,7 +3,8 @@
 {
   imports = [
     # include NixOS-WSL modules
-    <nixos-wsl/modules>
+    #<nixos-wsl/modules>
+    inputs.nixos-wsl.nixosModules.default
     inputs.home-manager.nixosModules.default
     ./python.nix
   ];
