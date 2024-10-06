@@ -46,6 +46,7 @@
     fzf
     pyenv
     atuin
+    dig
   ];
 
   nixpkgs.hostPlatform = {
