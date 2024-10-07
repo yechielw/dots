@@ -87,6 +87,10 @@ in
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.pki.certificateFiles = [
+  ../certs/netspark.pem
+];
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
