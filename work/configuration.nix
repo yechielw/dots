@@ -34,13 +34,13 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
+  #boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
 
   # nvidia stuuf for wayland
-  boot.kernelParams = [ "quiet"];
+  #boot.kernelParams = [ "quiet"];
 
-  networking.hostName = "YECHIEL-THINKPAD"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
