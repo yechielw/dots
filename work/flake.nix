@@ -39,7 +39,7 @@
       };
   in
   {
-    nixosConfigurations.YECHIEL-THINKPAD = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {
           inherit inputs;
           inherit pkgs-master;
