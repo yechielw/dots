@@ -45,6 +45,7 @@
        ".config/tmux".source      = ../../tmux/.config/tmux;
        ".config/zellij".source    = ../../zellij/.config/zellij;
        ".config/alacritty".source = ../../alacritty/.config/alacritty;
+       ".config/kitty".source     = ../../kitty;
      };
      
     sessionVariables = {
