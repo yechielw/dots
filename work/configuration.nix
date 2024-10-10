@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs,pkgs-master, inputs, ... }:
 
 
 
@@ -24,6 +24,10 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hacking.nix
+      ./work.nix
+      ./term.nix
+      ./wm.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -69,7 +73,7 @@ in
     enable = true;
     xkb.layout = "us,il";
     xkb.options = "grp:win_space_toggle";
-};
+  };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -135,46 +139,31 @@ in
       };
     overlays = [ msIDBrokerHash ];
     };
-  
+  #nixpkgs-master.config.allowUnfree = true;
+
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
     corefonts
   ];
   environment.systemPackages = with pkgs; [
-    (burpsuite.override { proEdition = true; })
-    #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
-    gnomeExtensions.pop-shell
+    (pkgs-master.burpsuite.override { proEdition = true; })
+    gnome-tweaks
     ags
-    atuin
-    bat
-    bloodhound-py
-    caido
-    citrix_workspace
     curl
-    eza  
-    fd
-    fzf
     gcc
     git
     go
     google-chrome
     gzip
     kitty
-    microsoft-edge
     neovim
-    netexec
     nodejs
     pipx
     pyenv
-    ripgrep
     thunderbird
-    unetbootin
     unzip
     wget
-    zoxide
-    zsh
-    teams-for-linux
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
@@ -196,6 +185,8 @@ in
   services.openssh.enable = true;
   services.intune.enable = true;
   services.flatpak.enable = true;
+
+  services.fprintd.enable = true;
 
 
 
@@ -224,7 +215,7 @@ in
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "yechiel" = import ./home-new.nix;
+      "yechiel" = import ./home/home.nix;
     };
   };
 

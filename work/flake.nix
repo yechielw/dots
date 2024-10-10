@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     home-manager = {
        url = "github:nix-community/home-manager";
        inputs.nixpkgs.follows = "nixpkgs";
@@ -21,21 +22,28 @@
 
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, ... }@inputs:
 
   let
     # ...
-	  system = "x86_64-linux"; # change to whatever your system should be.
+    system = "x86_64-linux"; # change to whatever your system should be.
     pkgs = import nixpkgs {
-	    inherit system;
-	    overlays = [
+      inherit system;
+      overlays = [
         inputs.hyprpanel.overlay
-	    ];
-	  };
+	];
+      };
+    pkgs-master = import nixpkgs-master {
+        inherit system;
+        config.allowUnfree = true;
+      };
   in
   {
     nixosConfigurations.YECHIEL-THINKPAD = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+          inherit inputs;
+          inherit pkgs-master;
+        };
       modules = [
         {
           nix.settings = {
