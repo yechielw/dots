@@ -132,6 +132,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1728481981,
+        "narHash": "sha256-49HBhKXVhFdiEgdWjC1tj1vJ+f512yDAaiczryBhuEs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2f1df7b7f90c76654a61a581fa7c1895c2304090",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1728328465,
@@ -223,6 +239,7 @@
         "hyprpanel": "hyprpanel",
         "nixos-cosmic": "nixos-cosmic",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-master": "nixpkgs-master",
         "quickshell": "quickshell"
       }
     },
