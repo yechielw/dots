@@ -28,6 +28,7 @@ in
       ./work.nix
       ./term.nix
       ./wm.nix
+      #./stylix.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -39,6 +40,8 @@ in
 
   # nvidia stuuf for wayland
   #boot.kernelParams = [ "quiet"];
+  #boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+  #boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -108,6 +111,7 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  services.pipewire.wireplumber.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -145,11 +149,14 @@ in
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
     corefonts
+    inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
   ];
   environment.systemPackages = with pkgs; [
     (pkgs-master.burpsuite.override { proEdition = true; })
     gnome-tweaks
-    ags
+    copyq
+    (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
+    #ags
     curl
     gcc
     git
@@ -164,6 +171,7 @@ in
     thunderbird
     unzip
     wget
+    cargo
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
@@ -208,13 +216,18 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = {
     zsh.enable = true;
+    fish.enable = true;
     firefox.enable = true; # left becaus its default
     #kitty.enable = true;    # required for the default Hyprland config
     hyprland.enable = true; # enable Hyprland
+    #    kdeconnect.enable = true;
+    java.enable = true;
+
   };
-  #users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    #backupFileExtension = "hm-bck";
     users = {
       "yechiel" = import ./home/home.nix;
     };
