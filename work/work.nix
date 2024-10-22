@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    microsoft-edge
+    (microsoft-edge.override { commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland"; } )
     citrix_workspace
   ];
 }

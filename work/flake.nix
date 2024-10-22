@@ -19,20 +19,25 @@
     ags.url = "github:Aylur/ags";
     
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    stylix.url = "github:danth/stylix";
+
+
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, ... }@inputs:
 
   let
     # ...
     system = "x86_64-linux"; # change to whatever your system should be.
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        inputs.hyprpanel.overlay
-	];
-      };
+ #    pkgs = import nixpkgs {
+ #      inherit system;
+ #      overlays = [
+ #        inputs.hyprpanel.overlay
+	# ];
+ #      };
     pkgs-master = import nixpkgs-master {
         inherit system;
         config.allowUnfree = true;
@@ -60,6 +65,7 @@
         nixos-cosmic.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.default
+          #stylix.nixosModules.stylix
       ];
     };
   };
