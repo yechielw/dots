@@ -22,12 +22,18 @@
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     stylix.url = "github:danth/stylix";
+    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
 
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, lanzaboote, ... }@inputs:
 
   let
     # ...
@@ -65,7 +71,9 @@
         nixos-cosmic.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.default
-          #stylix.nixosModules.stylix
+        #stylix.nixosModules.stylix
+        lanzaboote.nixosModules.lanzaboote
+
       ];
     };
   };

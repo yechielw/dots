@@ -30,19 +30,33 @@ in
       ./wm.nix
       #./stylix.nix
       inputs.home-manager.nixosModules.default
+
+
+      # "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
+      # "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy"
+      # "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
+
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
   #boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+  
+  #zramSwap.enable = true;
 
   # nvidia stuuf for wayland
   #boot.kernelParams = [ "quiet"];
   #boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
   #boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
 
+  boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device = "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -95,8 +109,10 @@ in
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   security.pki.certificateFiles = [
   ../certs/netspark.pem
+  ../certs/burp.pem
 ];
 
   services.pipewire = {
@@ -121,18 +137,15 @@ in
     isNormalUser = true;
     description = "Yechiel Worenklein";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
   };
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "yechiel";
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "yechiel";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  #systemd.services."getty@tty1".enable = false;
+  #systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
 
@@ -195,6 +208,30 @@ in
   services.flatpak.enable = true;
 
   services.fprintd.enable = true;
+
+  services.teamviewer.enable = true;
+
+  
+  # disabledModules = ["security/pam.nix"];
+    
+  # services = {
+  #   howdy = {
+  #     enable = true;
+  #     package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
+  #     settings = {
+  #       video.device_path = "/dev/video2";
+  #       # you may not need these
+  #       #core.no_confirmation = true;
+  #       video.dark_threshold = 100;
+  #     };
+  #   };
+  #
+  #   # in case your IR blaster does not blink, run `sudo linux-enable-ir-emitter configure`
+  #   linux-enable-ir-emitter = {
+  #     enable = true;
+  #     package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
+  #   };
+  # };
 
 
 
