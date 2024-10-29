@@ -1,4 +1,4 @@
-{ config, pkgs,inputs, ... }:
+{ config,lib, pkgs,inputs, ... }:
 
 {
 
@@ -13,8 +13,54 @@
 
 
   services.copyq.enable = true;
-  services.blueman-applet.enable = true;
+  #  services.blueman-applet.enable = true;
 
+  services.hyprpaper = {
+    enable = true;
+    settings = let 
+      nineish = pkgs.fetchurl { 
+        url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
+        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      };
+    in {
+      ipc = "on";
+      #splash = false;
+      #splash_offset = 2.0;
+
+      preload =
+        [ "/tmp/nine.png" ];
+
+      wallpaper = [
+        ", /tmp/nine.png"
+      ];
+    };
+  };
+  
+  services.hypridle = {
+    
+    enable = true;
+
+    settings = {
+      general = {
+        #before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "pidof hyprlock || hyprlock";
+      };
+
+      listener = [
+        {
+          timeout = 120;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 900;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
 
 
   programs.ags = {
