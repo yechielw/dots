@@ -7,14 +7,20 @@
     inputs.ags.homeManagerModules.default
 
   ];
+  
+  systemd.user.settings.Manager.DefaultEnvironment = {
+    WAYLAND_DISPLAY = "wayland-1";
+  };
+
   services.swaync.enable = true;
   services.avizo.enable = true; 
+  services.swayosd.enable = true;
   services.kdeconnect.enable = true;
 
 
   services.copyq.enable = true;
-  #  services.blueman-applet.enable = true;
-
+  services.blueman-applet.enable = true;
+  
   services.hyprpaper = {
     enable = true;
     settings = let 
@@ -50,7 +56,7 @@
 
       listener = [
         {
-          timeout = 120;
+          timeout = 600;
           on-timeout = "hyprlock";
         }
         {
