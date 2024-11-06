@@ -28,12 +28,14 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak"; 
+
 
 
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, lanzaboote, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, lanzaboote, nix-flatpak, ... }@inputs:
 
   let
     # ...
@@ -73,6 +75,8 @@
         home-manager.nixosModules.default
         #stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
+        nix-flatpak.nixosModules.nix-flatpak
+
 
       ];
     };

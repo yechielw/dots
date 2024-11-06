@@ -13,6 +13,7 @@
     cliphist
     wl-clipboard
     polkit_gnome
+    pwvucontrol
     kdePackages.qtwayland
     brightnessctl
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default

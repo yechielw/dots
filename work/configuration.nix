@@ -29,6 +29,7 @@ in
       ./term.nix
       ./wm.nix
       #./stylix.nix
+      ./vm.nix
       inputs.home-manager.nixosModules.default
 
 
@@ -58,6 +59,9 @@ in
 
   boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device = "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
   networking.hostName = "nixos"; # Define your hostname.
+  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  networking.search = [ "bowfin-marlin.ts.net" ];
+  
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -95,7 +99,15 @@ in
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  #services.desktopManager.cosmic.enable = true;
+  services.desktopManager.cosmic.enable = true;
+    environment.sessionVariables = {
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+    COSMIC_DATA_CONTROL_ENABLED = 1;
+  };
+  systemd.tmpfiles.rules = [
+    "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
+  ];
+
   #services.displayManager.cosmic-greeter.enable = true;
   # Configure keymap in X11
     #services.xserver.xkb = {
@@ -136,7 +148,7 @@ in
   users.users.yechiel = {
     isNormalUser = true;
     description = "Yechiel Worenklein";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
   };
 
   # Enable automatic login for the user.
@@ -166,7 +178,9 @@ in
   ];
   environment.systemPackages = with pkgs; [
     (pkgs-master.burpsuite.override { proEdition = true; })
+    dig
     gnome-tweaks
+    libmbim
     copyq
     (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
     #ags
@@ -185,6 +199,12 @@ in
     unzip
     wget
     cargo
+    dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    podman-desktop
+    docker-compose
+    podman-compose
+    distrobox
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
@@ -205,12 +225,24 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.intune.enable = true;
-  services.flatpak.enable = true;
 
   services.fprintd.enable = true;
 
   services.teamviewer.enable = true;
 
+  services.blueman.enable = true;
+  services.tailscale.enable = true;
+
+
+  services.flatpak.enable = true;
+
+  services.flatpak.packages = [
+    #{ appId = "com.brave.Browser"; origin = "flathub";  }
+    #"com.obsproject.Studio"
+    #"im.riot.Riot"
+    "com.brave.Browser"
+    "com.usebottles.bottles"
+  ];
   
   # disabledModules = ["security/pam.nix"];
     
@@ -234,7 +266,17 @@ in
   # };
 
 
-
+  systemd.services = {
+    enableModem = {
+      description = "Enable Quectel Modem on Startup";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = [ "${pkgs.libmbim}/bin/mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on" ];
+      };
+    };
+  };
 
 
   # Open ports in the firewall.
@@ -270,5 +312,19 @@ in
     };
   };
 
+  #virtualisation.libvirtd.enable = true;
+  #programs.virt-manager.enable = true;
+
+  virtualisation.containers.enable = true;
+  virtualisation.waydroid.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
 }
