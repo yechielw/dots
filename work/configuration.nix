@@ -205,6 +205,14 @@ in
     docker-compose
     podman-compose
     distrobox
+    pciutils
+    albert
+    hyprlock
+    libmbim
+    rquickshare
+    sbctl
+    trayscale
+    usbutils
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
@@ -306,7 +314,7 @@ in
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    #backupFileExtension = "hm-bck";
+    backupFileExtension = "hm-bck";
     users = {
       "yechiel" = import ./home/home.nix;
     };
