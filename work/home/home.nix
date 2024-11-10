@@ -1,5 +1,11 @@
 { config,lib, pkgs,inputs, ... }:
 
+let 
+  background = pkgs.fetchurl { 
+    url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
+    sha256 = "07zl1dlxqh9dav9pibnhr2x1llywwnyphmzcdqaby7dz5js184ly";
+  };
+in
 {
 
   imports = [ 
@@ -23,21 +29,16 @@
   
   services.hyprpaper = {
     enable = true;
-    settings = let 
-      nineish = pkgs.fetchurl { 
-        url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      };
-    in {
+    settings = {
       ipc = "on";
       #splash = false;
       #splash_offset = 2.0;
 
       preload =
-        [ "/tmp/nine.png" ];
+        [ "${background}" ];
 
       wallpaper = [
-        ", /tmp/nine.png"
+        ", ${background}"
       ];
     };
   };
@@ -79,14 +80,10 @@
         no_fade_in = false;
       };
 
+
       background = [
-        let
-          background = builtins.fetchurl { 
-            url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
-          }; 
-        in
         {
-          path = background ;
+          path = "${background}" ;
           blur_passes = 3;
           blur_size = 8;
         }
