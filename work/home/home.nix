@@ -1,4 +1,4 @@
-{ pkgs,inputs, custom-packges, ... }:
+{ pkgs,inputs, custom-packges, settings, ... }:
 
 let 
   background = pkgs.fetchurl { 
@@ -140,8 +140,8 @@ in
 
 
   home = {
-    username = "yechiel";
-    homeDirectory = "/home/yechiel";
+    username = "${settings.username}";
+    homeDirectory = "/home/${settings.username}";
      
     stateVersion = "24.05"; 
      
