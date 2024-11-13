@@ -17,35 +17,32 @@
     kdePackages.qtwayland
     brightnessctl
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-    inputs.hyprpanel.packages.${pkgs.system}.default
-    inputs.quickshell.packages.${pkgs.system}.default
+    #inputs.hyprpanel.packages.${pkgs.system}.default
     adw-gtk3
-    whitesur-gtk-theme
+    #    whitesur-gtk-theme
     waybar
     networkmanagerapplet
     blueman
-    blueberry
+    #blueberry
     ulauncher
 
 
 
-
-    #ags 
-    bun
-    dart-sass
+    #bun
+    #dart-sass
     swww
-    matugen
+    #matugen
     hyprpicker
     slurp
     grim
     satty
-    wf-recorder
+    #wf-recorder
     wl-clipboard
     wayshot
-    swappy
-    asusctl
-    supergfxctl
-    libdbusmenu-gtk3
+    #swappy
+    #asusctl
+    #supergfxctl
+    #libdbusmenu-gtk3
 
 
   ];
@@ -54,6 +51,8 @@
 
   #  services.blueman.enable = true;
   services.hypridle.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  #  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

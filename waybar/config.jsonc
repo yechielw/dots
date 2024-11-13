@@ -22,7 +22,7 @@
         //"memory",
         //"disk",
         "tray",
-        "pulseaudio/slider",
+        //"pulseaudio/slider",
         "pulseaudio",
         //"network",
         "battery",
@@ -146,7 +146,7 @@
         "max-volume": 150,
         "scroll-step": 10,
         "format": "{icon}",
-        "format-bluetooth": "{icon}",
+        "format-bluetooth": "{icon} ",
 
         "tooltip-format": "{volume}%",
         "format-muted": " ",

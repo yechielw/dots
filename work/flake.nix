@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    custom.url = "github:yechielw/nixpkgs/master";
     home-manager = {
        url = "github:nix-community/home-manager";
        inputs.nixpkgs.follows = "nixpkgs";
@@ -12,16 +13,8 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags.url = "github:Aylur/ags";
-    
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    stylix.url = "github:danth/stylix";
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
@@ -35,7 +28,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, stylix, lanzaboote, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-master, nixos-cosmic, home-manager, lanzaboote, nix-flatpak, custom, ... }@inputs:
 
   let
     # ...
@@ -50,12 +43,18 @@
         inherit system;
         config.allowUnfree = true;
       };
+    custom-packages = import custom {
+        inherit system;
+        config.allowUnfree = true;
+      };
   in
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {
           inherit inputs;
           inherit pkgs-master;
+          inherit custom-packages;
+
         };
       modules = [
         {
