@@ -1,19 +1,6 @@
 { pkgs, pkgs-master, inputs, custom-packages, ... }:
 
 
-
-
-let
-  msIDBrokerHash = final: prev: {
-    microsoft-identity-broker = prev.microsoft-identity-broker.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchurl {
-        url = oldAttrs.src.url;  # Keep the same URL
-        sha256 = "I4Q6ucT6ps8/QGiQTNbMXcKxq6UMcuwJ0Prcqvov56M=";  # Update with the new hash
-      };
-    });
-  };
-in
-
 {
 
   # Your other NixOS configurations go here
@@ -66,7 +53,16 @@ in
 
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    settings = {
+      # Disable WiFi power management
+      "connection" = {
+        "wifi.powersave" = 2;
+      };
+    };
+  };
+
 
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
@@ -104,12 +100,6 @@ in
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
   ];
 
-  #services.displayManager.cosmic-greeter.enable = true;
-  # Configure keymap in X11
-    #services.xserver.xkb = {
-    #layout = "us";
-    #variant = "";
-  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -150,7 +140,6 @@ in
       allowUnfree = true;
       allowBroken = true;
       };
-    overlays = [ msIDBrokerHash ];
     };
 
   fonts.enableDefaultPackages = true;
@@ -165,7 +154,6 @@ in
     libmbim
     copyq
     (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
-    #ags
     curl
     gcc
     git
