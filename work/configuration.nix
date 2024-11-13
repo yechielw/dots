@@ -1,4 +1,4 @@
-{ pkgs, pkgs-master, inputs, custom-packages, ... }:
+{ pkgs, pkgs-master, inputs, custom-packages, settings, ... }:
 
 
 {
@@ -45,7 +45,24 @@
   services.udev.extraRules = ''KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'';
 
   boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device = "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
-  networking.hostName = "nixos"; # Define your hostname.
+
+
+  boot.extraModprobeConfig = ''
+    options iwlwifi 11n_disable=1
+    options iwlwifi power_save=0
+    options iwlwifi bt_coex_active=0
+  '';
+
+
+
+
+
+
+
+
+
+
+  networking.hostName = settings.hostname; # Define your hostname.
   #networking.nameservers = [ "100.100.100.100" "192.168.122.1" "8.8.8.8" "1.1.1.1" ];
   networking.search = [ "bowfin-marlin.ts.net" ];
   
@@ -128,7 +145,7 @@
   services.pipewire.wireplumber.enable = true;
 
 
-  users.users.yechiel = {
+  users.users.${settings.username} = {
     isNormalUser = true;
     description = "Yechiel Worenklein";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c"];
@@ -262,10 +279,11 @@
     extraSpecialArgs = {
       inherit inputs; 
       inherit custom-packages;
+      inherit settings;
     };
     backupFileExtension = "hm-bck";
     users = {
-      "yechiel" = import ./home/home.nix;
+      "${settings.username}" = import ./home/home.nix;
     };
   };
 

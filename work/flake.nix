@@ -33,6 +33,10 @@
   let
     # ...
     system = "x86_64-linux"; # change to whatever your system should be.
+    settings = {
+      username = "yechiel";
+      hostname = "nixos";
+    };
  #    pkgs = import nixpkgs {
  #      inherit system;
  #      overlays = [
@@ -49,11 +53,12 @@
       };
   in
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
       specialArgs = {
           inherit inputs;
           inherit pkgs-master;
           inherit custom-packages;
+          inherit settings;
 
         };
       modules = [
