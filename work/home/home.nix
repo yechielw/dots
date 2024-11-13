@@ -1,4 +1,4 @@
-{ config,lib, pkgs,inputs, ... }:
+{ pkgs,inputs, custom-packges, ... }:
 
 let 
   background = pkgs.fetchurl { 
@@ -10,22 +10,23 @@ in
 
   imports = [ 
     #./hyprlnad.nix 
-    inputs.ags.homeManagerModules.default
 
   ];
   
-  systemd.user.settings.Manager.DefaultEnvironment = {
-    WAYLAND_DISPLAY = "wayland-1";
-  };
+    #systemd.user.settings.Manager.DefaultEnvironment = {
+    #WAYLAND_DISPLAY = "wayland-1";
+  #};
 
   services.swaync.enable = true;
-  services.avizo.enable = true; 
+  #services.avizo.enable = true; 
   services.swayosd.enable = true;
+  services.swayosd.topMargin = 0.75;
+
   services.kdeconnect.enable = true;
 
 
   services.copyq.enable = true;
-  services.blueman-applet.enable = true;
+  #services.blueman-applet.enable = true;
   
   services.hyprpaper = {
     enable = true;
@@ -107,14 +108,7 @@ in
     };
   };
 
-  programs.ags = {
-    enable = true;
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
-  };
+  
   programs.home-manager.enable = true;
   programs.zsh.enable = true;
   programs.nix-index.enable = true;
@@ -123,8 +117,10 @@ in
     enable = true;
     theme.name = "WhiteSur-Dark";
     theme.package = pkgs.whitesur-gtk-theme;
+    #theme.package = whitesurWithL;
 
-    font.name = "DejaVu Sans";
+    #font.name = "DejaVu Sans";
+    font.name = "SFProText Nerd Font";
     font.size = 11;
 
     cursorTheme.name = "BreezeX-RosePine-Linux";
@@ -140,8 +136,6 @@ in
   qt.platformTheme.name = "gtk";
   qt.style.name = "gtk2";
 
-  # stylix.enable = true;
-  
 
 
 
@@ -162,7 +156,6 @@ in
        ".config/alacritty".source = ../../alacritty/.config/alacritty;
        ".config/kitty".source     = ../../kitty;
        ".config/hypr/hyprland.conf".source     = ../../hypr/hyprland.conf;
-      #".config/hypr/hyprlock.conf".source     = ../../hypr/hyprlock.conf;
        ".config/hypr/scripts".source           = ../../hypr/scripts;
        ".config/waybar".source                 = ../../waybar;
      };

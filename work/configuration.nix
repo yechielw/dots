@@ -1,4 +1,4 @@
-{ config, lib, pkgs,pkgs-master, inputs, ... }:
+{ pkgs, pkgs-master, inputs, custom-packages, ... }:
 
 
 
@@ -28,7 +28,6 @@ in
       ./work.nix
       ./term.nix
       ./wm.nix
-      #./stylix.nix
       ./vm.nix
       inputs.home-manager.nixosModules.default
 
@@ -55,18 +54,16 @@ in
   # nvidia stuuf for wayland
   #boot.kernelParams = [ "quiet"];
   #boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
-  #boot.kernelModules = ["i2c-dev" "ddcci_backlight"];
+  boot.kernelModules = [ "i2c-dev" ]; #"ddcci_backlight"];
+  services.udev.extraRules = ''KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'';
 
   boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device = "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
   networking.hostName = "nixos"; # Define your hostname.
-  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  #networking.nameservers = [ "100.100.100.100" "192.168.122.1" "8.8.8.8" "1.1.1.1" ];
   networking.search = [ "bowfin-marlin.ts.net" ];
   
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -93,7 +90,6 @@ in
   services.xserver = {
     enable = true;
     xkb.layout = "us,il";
-    xkb.options = "grp:win_space_toggle";
   };
 
   # Enable the GNOME Desktop Environment.
@@ -123,8 +119,8 @@ in
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pki.certificateFiles = [
-  ../certs/netspark.pem
-  ../certs/burp.pem
+    ../certs/netspark.pem
+    ../certs/burp.pem
 ];
 
   services.pipewire = {
@@ -141,25 +137,13 @@ in
   };
   services.pipewire.wireplumber.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yechiel = {
     isNormalUser = true;
     description = "Yechiel Worenklein";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c"];
   };
 
-  # Enable automatic login for the user.
-  #services.displayManager.autoLogin.enable = true;
-  #services.displayManager.autoLogin.user = "yechiel";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  #systemd.services."getty@tty1".enable = false;
-  #systemd.services."autovt@tty1".enable = false;
-
-  # Install firefox.
 
   nixpkgs = {
     config = {
@@ -168,7 +152,6 @@ in
       };
     overlays = [ msIDBrokerHash ];
     };
-  #nixpkgs-master.config.allowUnfree = true;
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
@@ -177,9 +160,8 @@ in
     inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
   ];
   environment.systemPackages = with pkgs; [
-    (pkgs-master.burpsuite.override { proEdition = true; })
+    (custom-packages.burpsuite.override { proEdition = true; })
     dig
-    gnome-tweaks
     libmbim
     copyq
     (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
@@ -198,6 +180,7 @@ in
     thunderbird
     unzip
     wget
+    killall
     cargo
     dive # look into docker image layers
     podman-tui # status of containers in the terminal
@@ -213,6 +196,7 @@ in
     sbctl
     trayscale
     usbutils
+    ddcutil ddccontrol
     (python311.withPackages(ps: with ps; [
        pynvim
        pip
@@ -220,15 +204,7 @@ in
        impacket
     ]))
   ]; 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -245,10 +221,6 @@ in
   services.flatpak.enable = true;
 
   services.flatpak.packages = [
-    #{ appId = "com.brave.Browser"; origin = "flathub";  }
-    #"com.obsproject.Studio"
-    #"im.riot.Riot"
-    "com.brave.Browser"
     "com.usebottles.bottles"
   ];
   
@@ -286,24 +258,10 @@ in
     };
   };
 
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; #"24.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = {
     zsh.enable = true;
-    fish.enable = true;
     firefox.enable = true; # left becaus its default
     #kitty.enable = true;    # required for the default Hyprland config
     hyprland.enable = true; # enable Hyprland
@@ -313,7 +271,10 @@ in
   };
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs; 
+      inherit custom-packages;
+    };
     backupFileExtension = "hm-bck";
     users = {
       "yechiel" = import ./home/home.nix;
