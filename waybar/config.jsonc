@@ -146,24 +146,16 @@
         "max-volume": 150,
         "scroll-step": 10,
         "format": "{icon}",
-        "format-bluetooth": "{icon} ",
+        "format-bluetooth": "  ",
 
         "tooltip-format": "{volume}%",
-        "format-muted": " ",
+        "format-muted": "  ",
         "format-icons": {
-            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
-            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "phone-muted": "",
-            "portable": "",
-            "car": "",
+            "headphone": "  ",
             "default": [
-                " ",
-                " ",
-                " "
+                "  ",
+                "  ",
+                "   "
             ]
         },
         "on-click": "pwvucontrol"
