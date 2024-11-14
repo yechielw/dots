@@ -146,6 +146,15 @@ in
     stateVersion = "24.05"; 
      
     packages = [   ];
+
+
+    pointerCursor = {
+      name = "BreezeX-RosePine-Linux";
+      package = pkgs.rose-pine-cursor;
+      x11.enable = true;
+    };
+
+
     file = {
        ".config/nvim".source      = ../../nvim/.config/nvim;
        ".config/zsh".source       = ../../zsh/.config/zsh;

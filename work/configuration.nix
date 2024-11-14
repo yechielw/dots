@@ -121,8 +121,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pki.certificateFiles = [
@@ -135,6 +134,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -142,13 +143,12 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  services.pipewire.wireplumber.enable = true;
 
 
   users.users.${settings.username} = {
     isNormalUser = true;
     description = "Yechiel Worenklein";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c" "wireshark"];
   };
 
 
@@ -219,6 +219,8 @@
 
   services.teamviewer.enable = true;
 
+
+  hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.tailscale.enable = true;
 
@@ -269,7 +271,18 @@
     zsh.enable = true;
     firefox.enable = true; # left becaus its default
     #kitty.enable = true;    # required for the default Hyprland config
-    hyprland.enable = true; # enable Hyprland
+    
+
+
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
+
+
+
+
     #    kdeconnect.enable = true;
     java.enable = true;
 
