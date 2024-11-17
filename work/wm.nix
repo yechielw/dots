@@ -52,6 +52,7 @@
 
   #  services.blueman.enable = true;
   services.hypridle.enable = true;
+  services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
   #  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
