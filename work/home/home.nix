@@ -10,6 +10,7 @@ in
 
   imports = [ 
     #./hyprlnad.nix 
+    ./zsh.nix
 
   ];
   
@@ -23,7 +24,6 @@ in
   services.swayosd.topMargin = 0.75;
 
   services.kdeconnect.enable = true;
-
 
   services.copyq.enable = true;
   #services.blueman-applet.enable = true;
@@ -108,10 +108,39 @@ in
     };
   };
 
-  
+  programs.oh-my-posh = {
+    enable = true;
+    enableZshIntegration = true;
+    useTheme = "robbyrussell";
+  };
+
+ 
   programs.home-manager.enable = true;
-  programs.zsh.enable = true;
-  programs.nix-index.enable = true;
+  programs.command-not-found.enable = true;
+  # programs.nix-index.enable = true;
+  programs.zoxide = {
+    enable = true;
+  };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+
+  };
+  programs = {
+    lesspipe.enable = true;
+
+    pyenv = { 
+      enable = true;
+      enableZshIntegration = true;
+    };
+  };
 
   gtk = {
     enable = true;
@@ -157,8 +186,8 @@ in
 
     file = {
        ".config/nvim".source      = ../../nvim/.config/nvim;
-       ".config/zsh".source       = ../../zsh/.config/zsh;
-       ".zshrc".source		  = ../../zsh/.zshrc;
+      #".config/zsh".source       = ../../zsh/.config/zsh;
+      #".zshrc".source		  = ../../zsh/.zshrc;
        ".gitconfig".source	  = ../../git/.gitconfig;
        ".config/tmux".source      = ../../tmux/.config/tmux;
        ".config/zellij".source    = ../../zellij/.config/zellij;
@@ -169,8 +198,28 @@ in
        ".config/waybar".source                 = ../../waybar;
      };
      
+    sessionPath = [
+      "$HOME/.pyenv/bin"
+      "$HOME/.local/bin"
+      "$HOME/go/bin"
+    ];
+
     sessionVariables = {
       EDITOR = "nvim";
       };
+    
+
+    shellAliases = {
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
+      ls = "eza";
+      ll = "eza -la -g --icons";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
+      cat = "bat -p";
+      history = "history 0";
+    };
+
   };
 }

@@ -151,6 +151,7 @@
         "tooltip-format": "{volume}%",
         "format-muted": "  ",
         "format-icons": {
+            "alsa_output.usb-Lenovo_Lenovo_USB-C_Dock_USB_Audio_000000000000-00.analog-stereo": "  ",
             "headphone": "  ",
             "default": [
                 "  ",

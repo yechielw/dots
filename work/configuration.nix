@@ -121,7 +121,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
+
+  hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
+
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pki.certificateFiles = [
@@ -135,7 +138,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     
-    wireplumber.enable = true;
+    #wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -165,6 +168,10 @@
     corefonts
     inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
   ];
+  
+
+  environment.pathsToLink = [ "/share/zsh" ]; # needed for zsh completion declared in zsh config
+
   environment.systemPackages = with pkgs; [
     (custom-packages.burpsuite.override { proEdition = true; })
     dig
@@ -220,10 +227,11 @@
   services.teamviewer.enable = true;
 
 
-  hardware.bluetooth = {
-    enable = true;
-  };
-    services.tailscale.enable = true;
+  #  hardware.bluetooth = {
+  #  enable = true;
+  #};
+  
+  services.tailscale.enable = true;
 
 
   services.flatpak.enable = true;
@@ -274,6 +282,11 @@
     #kitty.enable = true;    # required for the default Hyprland config
     
 
+    
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
 
     hyprland = {
       enable = true;
