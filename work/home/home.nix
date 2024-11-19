@@ -116,7 +116,10 @@ in
 
  
   programs.home-manager.enable = true;
-  programs.command-not-found.enable = true;
+  programs.command-not-found.enable = false;
+  # programs.nix-index.enableZshIntegration = true; 
+  programs.nix-index.enable = true; 
+
   # programs.nix-index.enable = true;
   programs.zoxide = {
     enable = true;
