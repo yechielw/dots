@@ -56,6 +56,9 @@
   services.hypridle.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  services.logind.lidSwitch = "suspend-then-hibernate";
+  services.logind.lidSwitchDocked = "ignore";
+  services.logind.lidSwitchExternalPower = "lock";
   #  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
   systemd = {

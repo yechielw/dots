@@ -1,4 +1,4 @@
-{ pkgs,inputs, custom-packges, settings, ... }:
+{ pkgs,config,inputs, custom-packges, settings, ... }:
 
 let 
   background = pkgs.fetchurl { 
@@ -11,6 +11,8 @@ in
   imports = [ 
     #./hyprlnad.nix 
     ./zsh.nix
+    ./custom.nix
+    
 
   ];
   
@@ -108,10 +110,12 @@ in
     };
   };
 
-  programs.oh-my-posh = {
+  programs.oh-my-posh-dev = {
     enable = true;
     enableZshIntegration = true;
-    useTheme = "robbyrussell";
+    configFile = "~/.config/oh-my-posh/config.toml";
+
+    #useTheme = "robbyrussell";
   };
 
  
@@ -199,6 +203,7 @@ in
        ".config/hypr/hyprland.conf".source     = ../../hypr/hyprland.conf;
        ".config/hypr/scripts".source           = ../../hypr/scripts;
        ".config/waybar".source                 = ../../waybar;
+       ".config/oh-my-posh".source                 = ../../ohmyposh;
      };
      
     sessionPath = [
@@ -223,6 +228,9 @@ in
       cat = "bat -p";
       history = "history 0";
     };
+    #extraOptions = ''
+    #    programs.oh-my-posh.configArgument = "--config ${config.xdg.configHome}/oh-my-posh/config.toml";
 
+    #'';
   };
 }

@@ -75,7 +75,11 @@ return {
 			-- tsserver = {},
 			html = { filetypes = { "html", "twig", "hbs" } },
 			
-			nil_ls = {},
+			nil_ls = {
+				formatting = {
+            command = { "nixfmt" },
+         },
+			},
 
 			lua_ls = {
 

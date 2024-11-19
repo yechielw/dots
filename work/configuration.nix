@@ -174,6 +174,7 @@
 
   environment.systemPackages = with pkgs; [
     (custom-packages.burpsuite.override { proEdition = true; })
+    nixfmt-rfc-style
     dig
     libmbim
     copyq
@@ -232,6 +233,21 @@
   #};
   
   services.tailscale.enable = true;
+
+  
+  services.kanata = {
+
+    enable = true;
+    keyboards.my = {
+      configFile = ../katana/kanata.kbd;
+      devices = [];
+      #devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+
+
+    };
+  };
+
+
 
 
   services.flatpak.enable = true;
