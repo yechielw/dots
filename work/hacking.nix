@@ -1,4 +1,4 @@
-{pkgs,pkgs-master,inputs, ...}:
+{pkgs,pkgs-master,inputs,custom-packages, ...}:
 
 {
   programs.wireshark.enable = true;
