@@ -24,6 +24,7 @@
       # "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
 
     ];
+  wm.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
@@ -131,7 +132,7 @@
     ../certs/netspark.pem
     ../certs/burp.pem
 ];
-
+  
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -140,7 +141,7 @@
     
     #wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -173,7 +174,9 @@
   environment.pathsToLink = [ "/share/zsh" ]; # needed for zsh completion declared in zsh config
 
   environment.systemPackages = with pkgs; [
-    (custom-packages.burpsuite.override { proEdition = true; })
+    bluez-tools
+    blueberry
+    espanso-wayland
     nixfmt-rfc-style
     dig
     libmbim
@@ -202,8 +205,6 @@
     podman-compose
     distrobox
     pciutils
-    albert
-    hyprlock
     libmbim
     rquickshare
     sbctl
@@ -226,6 +227,12 @@
   services.fprintd.enable = true;
 
   services.teamviewer.enable = true;
+
+  #services.espanso = {
+  #  enable = true;
+  #  wayland = true;
+  #  package = pkgs.espanso-wayland;
+  #};
 
 
   #  hardware.bluetooth = {
@@ -294,21 +301,10 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = {
     zsh.enable = true;
-    firefox.enable = true; # left becaus its default
-    #kitty.enable = true;    # required for the default Hyprland config
     
 
     
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
 
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    };
 
 
 

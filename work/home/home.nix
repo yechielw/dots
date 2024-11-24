@@ -72,6 +72,11 @@ in
     };
   };
 
+    #services.espanso = {
+    #enable = true;
+    #package = pkgs.espanso-wayland;
+
+  #};
   programs.hyprlock = {
 
     enable = true;
@@ -140,6 +145,24 @@ in
     ];
 
   };
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 12;
+    };
+    shellIntegration = {
+      enableZshIntegration = true;
+      mode = "enabled";
+    };
+    themeFile = "rose-pine-moon";
+    settings = {
+      enable_audio_bell = false;
+      hide_window_decorations = true;
+    };
+    
+
+  };
   programs = {
     lesspipe.enable = true;
 
@@ -199,7 +222,7 @@ in
        ".config/tmux".source      = ../../tmux/.config/tmux;
        ".config/zellij".source    = ../../zellij/.config/zellij;
        ".config/alacritty".source = ../../alacritty/.config/alacritty;
-       ".config/kitty".source     = ../../kitty;
+      #".config/kitty".source     = ../../kitty;
        ".config/hypr/hyprland.conf".source     = ../../hypr/hyprland.conf;
        ".config/hypr/scripts".source           = ../../hypr/scripts;
        ".config/waybar".source                 = ../../waybar;

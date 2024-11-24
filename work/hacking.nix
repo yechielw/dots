@@ -4,6 +4,8 @@
   programs.wireshark.enable = true;
   environment.systemPackages = with pkgs; [
     
+    (custom-packages.burpsuite.override { proEdition = true; })
+    caido
     bloodhound-py
     caido
     netexec

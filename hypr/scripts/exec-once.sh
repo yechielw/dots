@@ -1,6 +1,6 @@
 #nwg-panel &
 waybar &
-nm-applet &
+nm-applet --indicator&
 copyq &
 flameshot &
 blueman-tray &
