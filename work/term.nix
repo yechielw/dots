@@ -9,5 +9,6 @@
     zoxide
     fd
     fzf
+    zellij
   ];
 }

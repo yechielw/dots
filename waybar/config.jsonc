@@ -24,6 +24,7 @@
         "tray",
         //"pulseaudio/slider",
         "pulseaudio",
+        "wireplumber",
         //"network",
         "battery",
         "custom/swaync",
@@ -82,7 +83,7 @@
         "spacing": 3
     },
     "clock": {
-        "format": "{:%a %e %b  %H:%M}",
+        "format": "{:%a, %b %e %H:%M}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",

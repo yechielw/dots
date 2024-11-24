@@ -9,8 +9,8 @@ alignment = "left"
   [[blocks.segments]]
   type = "text"
   style = "plain"
-  foreground = "p:green"
-  template = "[ "
+  foreground = "#a6e3a1"
+  template = "["
 
 
   [[blocks.segments]]
@@ -22,7 +22,7 @@ alignment = "left"
   "{{ if gt .Behind 0 }}#B388FF{{ end }}"
   ]
   style = "plain"
-  template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} "
+  template = "{{ if and (ne .Ref \"main\") (ne .Ref \"master\") }}{{ .Ref }}{{end}}{{ if .Working.Changed }}{{ .Working.String}}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}{{ .StashCount }}{{ end }} "
   type = "git"
 
     [blocks.segments.properties]
@@ -39,7 +39,7 @@ alignment = "left"
 [[blocks.segments]]
   type = "text"
   style = "plain"
-  foreground = "p:green"
+  foreground = "#a6e3a1"
   template = "{{if .Env.SSH_TTY }}{{.UserName}}@{{.HostName }}{{end}} "
 
 
@@ -67,11 +67,11 @@ alignment = "left"
   [[blocks.segments]]
   type = "text"
   style = "plain"
-  foreground = "p:green"
-  template = " ]"
+  foreground = "#a6e3a1"
+  template = "]"
   
 [[blocks.segments]]
   type = "text"
   style = "plain"
-  foreground_templates = ["{{if .Root }}#FF0000{{else}}#559955{{end}}"]
+  foreground_templates = ["{{if .Root }}#FF0000{{else}}#04a5e5{{end}}"]
   template = "{{if .Root}}#{{else}}${{end}}"
