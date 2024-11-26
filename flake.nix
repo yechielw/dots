@@ -38,12 +38,7 @@
       username = "yechiel";
       hostname = "nixos";
     };
- #    pkgs = import nixpkgs {
- #      inherit system;
- #      overlays = [
- #        inputs.hyprpanel.overlay
-	# ];
- #      };
+
     pkgs-master = import nixpkgs-master {
         inherit system;
         config.allowUnfree = true;
@@ -64,23 +59,47 @@
         };
       modules = [
         {
-          nix.settings = {
-            substituters = [
-              "https://cosmic.cachix.org/"
-              "https://hyprland.cachix.org"
-            ];
-            trusted-public-keys = [ 
-              "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-              "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-            ];
-          };
-        }
+            nixpkgs = {
+              config = {
+                allowUnfree = true;
+                allowBroken = true;
+              };
+            };
+
+            users.users.${settings.username} = {
+              isNormalUser = true;
+              description = "Yechiel Worenklein";
+              extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c" "wireshark"];
+            };
+
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs; 
+                inherit custom-packages;
+                inherit settings;
+              };
+              backupFileExtension = "hm-bck";
+              users = {
+                "${settings.username}" = import ./work/home/home.nix;
+              };
+            };
+          }
         nixos-cosmic.nixosModules.default
-        ./configuration.nix
+        ./work/configuration.nix
         home-manager.nixosModules.default
+        #inputs.home-manager.nixosModules.default
         #stylix.nixosModules.stylix
         lanzaboote.nixosModules.lanzaboote
         nix-flatpak.nixosModules.nix-flatpak
+
+
+        ./work/hardware-configuration.nix
+        ./work/hacking.nix
+        ./work/work.nix
+        ./work/term.nix
+        ./work/wm.nix
+        ./work/vm.nix
+        ./work/boot.nix
 
 
       ];

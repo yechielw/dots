@@ -83,7 +83,7 @@
         "spacing": 3
     },
     "clock": {
-        "format": "{:%a, %b %e %H:%M}",
+        "format": "{:%a, %b %e      %H:%M}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",
