@@ -4,8 +4,15 @@
     wm.enable = lib.mkEnableOption "enable window manager (hyprland)";
   };
 
-  config = lib.mkIf config.wm.enable {
-
+  config =  lib.mkIf config.wm.enable {
+    nix.settings = {
+      substituters = [
+        "https://hyprland.cachix.org"
+      ];
+      trusted-public-keys = [ 
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+    };
     programs = {
       firefox.enable = true; # left becaus its default
       sway = {
@@ -27,51 +34,36 @@
     environment.systemPackages = with pkgs; [
       swayosd
       wofi
-      #nwg-look
-      #nwg-panel
-      #nwg-drawer
       nwg-displays
       wl-clipboard
       polkit_gnome
       pwvucontrol
+      pavucontrol
       kdePackages.qtwayland
       brightnessctl
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-      #inputs.hyprpanel.packages.${pkgs.system}.default
       adw-gtk3
-      #    whitesur-gtk-theme
       waybar
       networkmanagerapplet
-      #blueman
-      #blueberry
       ulauncher
       hyprlock
-
-
       hyprpicker
       slurp
       grim
       satty
-      #wf-recorder
-      wl-clipboard
       wayshot
-      #swappy
-      #asusctl
-      #supergfxctl
-      #libdbusmenu-gtk3
-
-
     ];
 
-
-
-    #  services.blueman.enable = true;
-    services.hypridle.enable = true;
-    services.blueman.enable = true;
-    services.gnome.gnome-keyring.enable = true;
-    services.logind.lidSwitch = "suspend-then-hibernate";
-    services.logind.lidSwitchDocked = "ignore";
-    services.logind.lidSwitchExternalPower = "lock";
+    services = {
+      hypridle.enable = true;
+      blueman.enable = true;
+      gnome.gnome-keyring.enable = true;
+      logind = {
+        lidSwitch = "suspend-then-hibernate";
+        lidSwitchDocked = "ignore";
+        lidSwitchExternalPower = "lock";
+      };
+    };
     #  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
     systemd = {

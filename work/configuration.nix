@@ -1,82 +1,28 @@
 { pkgs, pkgs-master, inputs, custom-packages, settings, ... }:
 
-
 {
-
-  # Your other NixOS configurations go here
-
-
-
-
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./hacking.nix
-      ./work.nix
-      ./term.nix
-      ./wm.nix
-      ./vm.nix
-      inputs.home-manager.nixosModules.default
-
-
-      # "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
-      # "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy"
-      # "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
-
-    ];
+  # custom module with all window  manager stuff
   wm.enable = true;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  #boot.plymouth.enable = true;
-  boot.initrd.systemd.enable = true;
 
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
-  
-  #zramSwap.enable = true;
-
-  # nvidia stuuf for wayland
-  #boot.kernelParams = [ "quiet"];
-  #boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
-  boot.kernelModules = [ "i2c-dev" ]; #"ddcci_backlight"];
   services.udev.extraRules = ''KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'';
 
-  boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device = "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
-
-
-  boot.extraModprobeConfig = ''
-    options iwlwifi 11n_disable=1
-    options iwlwifi power_save=0
-    options iwlwifi bt_coex_active=0
-  '';
 
 
 
 
 
-
-
-
-
-
-  networking.hostName = settings.hostname; # Define your hostname.
-  #networking.nameservers = [ "100.100.100.100" "192.168.122.1" "8.8.8.8" "1.1.1.1" ];
-  networking.search = [ "bowfin-marlin.ts.net" ];
-  
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-
-  # Enable networking
-  networking.networkmanager = {
-    enable = true;
-    settings = {
-      # Disable WiFi power management
-      "connection" = {
-        "wifi.powersave" = 2;
+  networking = {
+    hostName = settings.hostname; # Define your hostname.
+    #nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+    search = [ "bowfin-marlin.ts.net" ];
+    networkmanager = {
+      enable = true;
+      settings = {
+        # Disable WiFi power management
+        "connection" = {
+          "wifi.powersave" = 2;
+        };
       };
     };
   };
@@ -86,18 +32,20 @@
   time.timeZone = "Asia/Jerusalem";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 
   # Enable the X11 windowing system.
@@ -110,13 +58,19 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.cosmic.enable = true;
+  nix.settings = {
+    substituters = [
+      "https://cosmic.cachix.org/"
+    ];
+    trusted-public-keys = [ 
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+    ];
+  };
+
+
     environment.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
-    COSMIC_DATA_CONTROL_ENABLED = 1;
   };
-  systemd.tmpfiles.rules = [
-    "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
-  ];
 
 
   # Enable CUPS to print documents.
@@ -126,11 +80,20 @@
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
+
+  hardware = {
+    bluetooth.enable = true;
+  };
+
+
+
+
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pki.certificateFiles = [
     ../certs/netspark.pem
     ../certs/burp.pem
+    ../certs/ca.crt
 ];
   
   services.pipewire = {
@@ -149,19 +112,8 @@
   };
 
 
-  users.users.${settings.username} = {
-    isNormalUser = true;
-    description = "Yechiel Worenklein";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "i2c" "wireshark"];
-  };
 
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowBroken = true;
-      };
-    };
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
@@ -228,18 +180,18 @@
 
   services.teamviewer.enable = true;
 
-  #services.espanso = {
-  #  enable = true;
-  #  wayland = true;
-  #  package = pkgs.espanso-wayland;
-  #};
-
-
-  #  hardware.bluetooth = {
-  #  enable = true;
-  #};
   
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+    extraSetFlags = [
+      "--operator=yechiel"
+    ];
+    extraUpFlags = [
+      "--ssh"
+
+    ];
+  };
 
   
   services.kanata = {
@@ -263,28 +215,10 @@
     "com.usebottles.bottles"
   ];
   
-  # disabledModules = ["security/pam.nix"];
-    
-  # services = {
-  #   howdy = {
-  #     enable = true;
-  #     package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
-  #     settings = {
-  #       video.device_path = "/dev/video2";
-  #       # you may not need these
-  #       #core.no_confirmation = true;
-  #       video.dark_threshold = 100;
-  #     };
-  #   };
-  #
-  #   # in case your IR blaster does not blink, run `sudo linux-enable-ir-emitter configure`
-  #   linux-enable-ir-emitter = {
-  #     enable = true;
-  #     package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
-  #   };
-  # };
 
-
+  systemd.tmpfiles.rules = [
+    "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
+  ];
   systemd.services = {
     enableModem = {
       description = "Enable Quectel Modem on Startup";
@@ -301,6 +235,12 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs = {
     zsh.enable = true;
+
+
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     
 
     
@@ -314,31 +254,10 @@
 
   };
   users.defaultUserShell = pkgs.zsh;
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs; 
-      inherit custom-packages;
-      inherit settings;
-    };
-    backupFileExtension = "hm-bck";
-    users = {
-      "${settings.username}" = import ./home/home.nix;
-    };
-  };
+  
 
   #virtualisation.libvirtd.enable = true;
   #programs.virt-manager.enable = true;
 
-  virtualisation.containers.enable = true;
-  virtualisation.waydroid.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
 
 }
