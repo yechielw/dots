@@ -78,7 +78,7 @@
                 inherit custom-packages;
                 inherit settings;
               };
-              backupFileExtension = "hm-bck";
+              backupFileExtension = "hm-bckup";
               users = {
                 "${settings.username}" = import ./work/home/home.nix;
               };

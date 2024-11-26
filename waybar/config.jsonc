@@ -10,7 +10,8 @@
     "modules-left": [
        /* "custom/os_button", */
         "hyprland/workspaces",
-        "wlr/taskbar"
+        "wlr/taskbar",
+        "hyprland/submap"
     ],
     "modules-center": [
     ],

@@ -175,6 +175,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.intune.enable = true;
+  services.fwupd.enable = true;
 
   services.fprintd.enable = true;
 
