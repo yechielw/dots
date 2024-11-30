@@ -114,14 +114,20 @@
 
 
 
+  fonts = {
+    fontDir.enable = true;
 
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
-    corefonts
-    inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
-  ];
-  
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+      corefonts
+      inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
+    ];
+    fontconfig.defaultFonts = {
+      sansSerif = ["SFProText Nerd Font"];
+      monospace = ["JetBrainsMono Nerd Font Mono"];
+    };
+  };
 
   environment.pathsToLink = [ "/share/zsh" ]; # needed for zsh completion declared in zsh config
 
