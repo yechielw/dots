@@ -37,6 +37,9 @@
           #"olivierverdier/zsh-git-prompt"
         ];
       };
+      initExtra = ''
+        zellij attach -c
+      '';
     };
   };
 

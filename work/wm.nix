@@ -59,7 +59,7 @@
       blueman.enable = true;
       gnome.gnome-keyring.enable = true;
       logind = {
-        lidSwitch = "suspend-then-hibernate";
+        #lidSwitch = "hibernate";
         lidSwitchDocked = "ignore";
         lidSwitchExternalPower = "lock";
       };
