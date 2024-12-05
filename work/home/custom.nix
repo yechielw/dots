@@ -39,10 +39,10 @@ in {
     };
 
     configFile = mkOption { 
-      type = types.nullOr types.str;
+      type = types.nullOr types.path;
       default = null;
       description = ''
-        Path to a custome config path, can be json, yaml or toml  
+        Path to a custom configuration path, can be json, yaml or toml.
       '';
     };
 

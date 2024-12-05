@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     
     (custom-packages.burpsuite.override { proEdition = true; })
+    jython
     caido
     bloodhound-py
     caido

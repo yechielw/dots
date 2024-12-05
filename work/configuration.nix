@@ -5,7 +5,13 @@
   wm.enable = true;
 
 
-  services.udev.extraRules = ''KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'';
+  services.udev.extraRules = ''
+    # allow group i2c and users with a seat use of i2c devices
+    # ACTION=="add", 
+    # KERNEL=="i2c-[0-9]*", TAG+="uaccess", GROUP="i2c", MODE="660"
+     ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="input"
+
+  '';
 
 
 
@@ -85,6 +91,8 @@
     bluetooth.enable = true;
   };
 
+  #hardware.i2c.enable = true;
+
 
 
 
@@ -122,6 +130,7 @@
       (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
       corefonts
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
+      inputs.monaco.packages.${pkgs.system}.monaco
     ];
     fontconfig.defaultFonts = {
       sansSerif = ["SFProText Nerd Font"];
@@ -168,6 +177,12 @@
     sbctl
     trayscale
     usbutils
+    cachix
+    element-desktop
+    jq jqp
+    p7zip
+    uv
+    zed-editor
     ddcutil ddccontrol
     (python311.withPackages(ps: with ps; [
        pynvim

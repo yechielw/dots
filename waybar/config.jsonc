@@ -16,6 +16,7 @@
     "modules-center": [
     ],
     "modules-right": [
+        "custom/events",
         "hyprland/language",
         "systemd-failed-units",
         //"cpu",
@@ -62,6 +63,16 @@
         "dnd-notification": " <span foreground='red'><small><sup>⬤</sup></small></span>",
         "dnd-none": "  "
       },
+        "custom/events": {
+            "format": "{}",
+            "tooltip": true,
+            "interval": 300,
+            "format-icons": {
+                "default": ""
+            },
+            "exec": "waybar-khal.py",
+            "return-type": "json"
+        },
       "return-type": "json",
       "exec-if": "which swaync-client",
       "exec": "swaync-client -swb",
