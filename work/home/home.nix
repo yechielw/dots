@@ -35,10 +35,10 @@ in
         #splash_offset = 2.0;
 
         preload =
-          [ "${background}" ];
+          [ "${background}" "/nix/store/psblmx4akb6g5jrbxw04sxnryc09iqq5-yiddix.png" ];
 
         wallpaper = [
-          ", ${background}"
+          ", /nix/store/psblmx4akb6g5jrbxw04sxnryc09iqq5-yiddix.png"
         ];
       };
     };
@@ -117,7 +117,7 @@ in
     oh-my-posh-dev = {
       enable = true;
       enableZshIntegration = true;
-      configFile = "~/.config/oh-my-posh/config.toml";
+      configFile = ../../ohmyposh/config.toml;
 
       #useTheme = "robbyrussell";
     };
@@ -155,7 +155,8 @@ in
     kitty = {
       enable = true;
       font = {
-        name = "JetBrainsMono Nerd Font";
+        #name = "JetBrainsMono Nerd Font";
+        name = "MonacoLigaturized";
         size = 12;
       };
       shellIntegration = {

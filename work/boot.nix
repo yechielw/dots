@@ -1,4 +1,4 @@
-{...}:
+{pkgs,config,...}:
 {
 
   boot = {
@@ -20,8 +20,9 @@
     #kernelParams = [ "quiet"];
     #extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
-    kernelModules = [ "i2c-dev" ]; #"ddcci_backlight"];
+    #kernelModules = [ "i2c-dev" ]; # "ddcci_backlight"];
 
+    kernelPackages = pkgs.linuxPackages_testing;
 
 
     extraModprobeConfig = ''

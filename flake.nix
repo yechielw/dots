@@ -16,6 +16,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    monaco = {
+      url = "github:yechielw/monaco-nerd-font";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
