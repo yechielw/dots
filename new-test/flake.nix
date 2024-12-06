@@ -18,6 +18,8 @@
     ags.url = "github:Aylur/ags";
     
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    lanzaboote.url = "github:nix-community/lanzaboote";
+
 
   };
 
@@ -34,7 +36,7 @@
 	  };
   in
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos-toshiba = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         {

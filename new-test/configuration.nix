@@ -23,20 +23,35 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./podman.nix
+      ./hacking.nix
       inputs.home-manager.nixosModules.default
+      inputs.lanzaboote.nixosModules.lanzaboote 
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
-  boot.initrd.systemd.enable = true;
+  boot = {
+    loader.systemd-boot.enable = false;
+    loader.efi.canTouchEfiVariables = true;
+    plymouth.enable = true;
+    initrd.systemd.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+  };
 
   # nvidia stuuf for wayland
   boot.kernelParams = [ "nvidia_drm.fbdev=1" "quiet"];
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
 
-  networking.hostName = "nixos"; # Define your hostname.
+
+  networking.hostName = "nixos-toshiba"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  networking.search = [ "bowfin-marlin.ts.net" ];
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -72,9 +87,9 @@ in
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  #services.displayManager.cosmic-greeter.enable = true;
   # Configure keymap in X11
     #services.xserver.xkb = {
     #layout = "us";
@@ -120,6 +135,8 @@ in
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "yechiel";
+  services.logind.lidSwitch = "ignore";
+
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -141,14 +158,11 @@ in
     corefonts
   ];
   environment.systemPackages = with pkgs; [
-    (burpsuite.override { proEdition = true; })
-    #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
     gnomeExtensions.pop-shell
+    cargo
     ags
     atuin
     bat
-    bloodhound-py
-    caido
     citrix_workspace
     curl
     eza  
@@ -162,13 +176,11 @@ in
     kitty
     microsoft-edge
     neovim
-    netexec
     nodejs
     pipx
     pyenv
     ripgrep
     thunderbird
-    unetbootin
     unzip
     wget
     zoxide
@@ -194,6 +206,8 @@ in
   services.openssh.enable = true;
   services.intune.enable = true;
   services.flatpak.enable = true;
+  services.tailscale.enable = true;
+  
 
 
 
@@ -216,7 +230,7 @@ in
     zsh.enable = true;
     firefox.enable = true; # left becaus its default
     #kitty.enable = true;    # required for the default Hyprland config
-    hyprland.enable = true; # enable Hyprland
+    #hyprland.enable = true; # enable Hyprland
   };
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
