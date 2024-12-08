@@ -9,7 +9,7 @@
     # allow group i2c and users with a seat use of i2c devices
     # ACTION=="add", 
     # KERNEL=="i2c-[0-9]*", TAG+="uaccess", GROUP="i2c", MODE="660"
-     ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="input"
+     ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
 
   '';
 
@@ -91,7 +91,7 @@
     bluetooth.enable = true;
   };
 
-  #hardware.i2c.enable = true;
+  hardware.i2c.enable = true;
 
 
 
@@ -143,7 +143,7 @@
   environment.systemPackages = with pkgs; [
     bluez-tools
     blueberry
-    espanso-wayland
+    #espanso-wayland
     nixfmt-rfc-style
     dig
     libmbim
@@ -151,6 +151,7 @@
     (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
     curl
     gcc
+    file
     git
     go
     google-chrome
