@@ -159,8 +159,8 @@ in
     kitty = {
       enable = true;
       font = {
-        #name = "JetBrainsMono Nerd Font";
-        name = "MonacoLigaturized";
+        name = "JetBrainsMono Nerd Font";
+        #name = "MonacoLigaturized";
         size = 12;
       };
       shellIntegration = {
