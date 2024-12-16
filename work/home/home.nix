@@ -80,6 +80,8 @@ in
   programs.zellij.enableZshIntegration = true;
   programs.zellij.enable = true;
 
+  programs.wlogout.enable = true;
+
   programs.hyprlock = {
 
     enable = true;
