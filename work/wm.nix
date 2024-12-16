@@ -33,6 +33,8 @@
 
     environment.systemPackages = with pkgs; [
       swayosd
+      gnome-themes-extra
+      gtk-engine-murrine
       wofi
       nwg-displays
       wl-clipboard
@@ -42,6 +44,8 @@
       kdePackages.qtwayland
       brightnessctl
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      inputs.quickshell.packages.${pkgs.system}.default
+      qt6.qtmultimedia
       adw-gtk3
       waybar
       networkmanagerapplet

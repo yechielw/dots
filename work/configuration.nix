@@ -5,15 +5,23 @@
   wm.enable = true;
 
 
-  services.udev.extraRules = ''
-    # allow group i2c and users with a seat use of i2c devices
-    # ACTION=="add", 
-    # KERNEL=="i2c-[0-9]*", TAG+="uaccess", GROUP="i2c", MODE="660"
-     ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
+  services.udev.packages = [ pkgs.via ];
 
+  services.udev.extraRules = ''
+    # ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
   '';
 
+  services.power-profiles-daemon.enable = false;
 
+  services.tlp = {
+    enable = true;
+    settings = {
+      #USB_AUTOSUSPEND = 0;
+      USB_EXCLUDE_BTUSB = 1;
+      USB_EXCLUDE_WWAN = 1;
+
+    };
+  };
 
 
 
@@ -24,12 +32,12 @@
     search = [ "bowfin-marlin.ts.net" ];
     networkmanager = {
       enable = true;
-      settings = {
-        # Disable WiFi power management
-        "connection" = {
-          "wifi.powersave" = 2;
-        };
-      };
+      # settings = {
+      #   # Disable WiFi power management
+      #   "connection" = {
+      #     "wifi.powersave" = 2;
+      #   };
+      # };
     };
   };
 
@@ -64,17 +72,11 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.cosmic.enable = true;
-  nix.settings = {
-    substituters = [
-      "https://cosmic.cachix.org/"
-    ];
-    trusted-public-keys = [ 
-      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-    ];
-  };
+  # nix.settings = {
+  # };
 
 
-    environment.sessionVariables = {
+  environment.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
 
@@ -92,6 +94,7 @@
   };
 
   hardware.i2c.enable = true;
+  hardware.keyboard.qmk.enable = true;
 
 
 
@@ -138,9 +141,10 @@
     };
   };
 
-  environment.pathsToLink = [ "/share/zsh" ]; # needed for zsh completion declared in zsh config
+  environment.pathsToLink = [ "/share/zsh" "/share/qti" ]; # needed for zsh completion declared in zsh config
 
   environment.systemPackages = with pkgs; [
+    qmk via
     bluez-tools
     blueberry
     #espanso-wayland
@@ -191,7 +195,7 @@
        debugpy
        impacket
     ]))
-  ]; 
+  ] ++ inputs.qti.packages.${pkgs.system}.qti-all; 
 
 
   # Enable the OpenSSH daemon.
@@ -232,12 +236,29 @@
 
 
 
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "com.usebottles.bottles"
+      "io.github.zen_browser.zen"
+    ];
+    overrides = {
+      global = {
+        # Force Wayland by default
+        Context.sockets = ["wayland" "!x11" "!fallback-x11"];
 
-  services.flatpak.packages = [
-    "com.usebottles.bottles"
-  ];
-  
+        Environment = {
+          # Fix un-themed cursor in some Wayland apps
+          XCURSOR_PATH = "$HOME/.icons";
+
+          # Force correct theme for some GTK apps
+          GTK_THEME = "WhiteSur-Dark";
+        };
+      };
+
+
+    };
+  };
 
   systemd.tmpfiles.rules = [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
@@ -255,7 +276,28 @@
   };
 
   system.stateVersion = "24.05"; #"24.05"; # Did you read the comment?
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix = {
+    settings = { 
+
+      substituters = [
+        "https://cosmic.cachix.org/"
+      ];
+      trusted-public-keys = [ 
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      ];
+
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+  };
+
   programs = {
     zsh.enable = true;
 

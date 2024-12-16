@@ -27,6 +27,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak"; 
+    #ghostty.url = "github:ghostty-org/ghostty";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    qti.url = "git+https://github.com/pterror/qti?submodules=1";
+    qti.inputs.nixpkgs.follows = "nixpkgs";
 
 
 

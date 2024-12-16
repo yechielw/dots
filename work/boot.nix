@@ -25,11 +25,11 @@
     kernelPackages = pkgs.linuxPackages_testing;
 
 
-    extraModprobeConfig = ''
-      options iwlwifi 11n_disable=1
-      options iwlwifi power_save=0
-      options iwlwifi bt_coex_active=0
-    '';
+    # extraModprobeConfig = ''
+    #   options iwlwifi 11n_disable=1
+    #   options iwlwifi power_save=0
+    #   options iwlwifi bt_coex_active=0
+    # '';
 
     };
 

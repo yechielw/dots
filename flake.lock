@@ -754,6 +754,48 @@
         "type": "github"
       }
     },
+    "qti": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722873086,
+        "narHash": "sha256-wt+NCfKSdndSYctiA8Fpg6soQPeAJfqamIdYugU9KX4=",
+        "ref": "refs/heads/master",
+        "rev": "899de3312a6c388945edb72e845869f03380012b",
+        "revCount": 53,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/pterror/qti"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/pterror/qti"
+      }
+    },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733545118,
+        "narHash": "sha256-m0VDCgH8Qar4n6RtX2CgRhxQJy64C7IUul15fI9Xayo=",
+        "ref": "refs/heads/master",
+        "rev": "3fc1c914c7946f139b22006a6c554cce9ecc1064",
+        "revCount": 438,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
         "apple-fonts": "apple-fonts",
@@ -767,6 +809,8 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-howdy": "nixpkgs-howdy",
         "nixpkgs-master": "nixpkgs-master",
+        "qti": "qti",
+        "quickshell": "quickshell",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor"
       }
     },
