@@ -144,6 +144,13 @@
   environment.pathsToLink = [ "/share/zsh" "/share/qti" ]; # needed for zsh completion declared in zsh config
 
   environment.systemPackages = with pkgs; [
+    alsa-utils
+    beeper
+    element-desktop
+    inputs.ghostty.packages.${pkgs.system}.default
+    obsidian
+    xxd
+    wirelesstools
     qmk via
     bluez-tools
     blueberry
@@ -162,6 +169,7 @@
     gzip
     kitty
     neovim
+    lua-language-server
     nodejs
     pipx
     pyenv

@@ -4,7 +4,7 @@
   programs.wireshark.enable = true;
   environment.systemPackages = with pkgs; [
     
-    (custom-packages.burpsuite.override { proEdition = true; })
+    (pkgs-master.burpsuite.override { proEdition = true; })
     jython
     caido
     bloodhound-py
