@@ -38,7 +38,7 @@ in
           [ "${background}" "/nix/store/psblmx4akb6g5jrbxw04sxnryc09iqq5-yiddix.png" ];
 
         wallpaper = [
-          ", /nix/store/psblmx4akb6g5jrbxw04sxnryc09iqq5-yiddix.png"
+          ", ${background}"
         ];
       };
     };
@@ -77,7 +77,7 @@ in
 
   };
 
-  programs.zellij.enableZshIntegration = true;
+  #  programs.zellij.enableZshIntegration = true;
   programs.zellij.enable = true;
 
   programs.wlogout.enable = true;
@@ -204,8 +204,8 @@ in
     };
 
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur";
     };
   };
 

@@ -37,6 +37,8 @@
     };
     qti.url = "git+https://github.com/pterror/qti?submodules=1";
     qti.inputs.nixpkgs.follows = "nixpkgs";
+    ghostty.url = "github:ghostty-org/ghostty";
+
 
 
 
