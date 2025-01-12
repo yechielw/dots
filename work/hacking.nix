@@ -24,6 +24,8 @@
     sqlmap
     hashcat
     jadx
+    httpx
+    amass
   ];
 
   #environment.etc."usr/share/seclists".source = "${pkgs.seclists}/share/wordlists/seclists";

@@ -18,7 +18,7 @@
 
     # nvidia stuuf for wayland
     #kernelParams = [ "quiet"];
-    kernelParams = [ "btusb.enable_autosuspend=0" ];
+    #kernelParams = [ "btusb.enable_autosuspend=0" ];
     #extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
 
     #kernelModules = [ "i2c-dev" ]; # "ddcci_backlight"];

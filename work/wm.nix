@@ -63,7 +63,7 @@
       blueman.enable = true;
       gnome.gnome-keyring.enable = true;
       logind = {
-        #lidSwitch = "hibernate";
+        lidSwitch = "hybrid-sleep";
         lidSwitchDocked = "ignore";
         lidSwitchExternalPower = "lock";
       };

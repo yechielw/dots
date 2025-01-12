@@ -11,17 +11,17 @@
     # ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
   '';
 
-  services.power-profiles-daemon.enable = false;
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      #USB_AUTOSUSPEND = 0;
-      USB_EXCLUDE_BTUSB = 1;
-      USB_EXCLUDE_WWAN = 1;
-
-    };
-  };
+  # services.power-profiles-daemon.enable = false;
+  #
+  # services.tlp = {
+  #   enable = true;
+  #   settings = {
+  #     #USB_AUTOSUSPEND = 0;
+  #     USB_EXCLUDE_BTUSB = 1;
+  #     USB_EXCLUDE_WWAN = 1;
+  #
+  #   };
+  # };
 
 
 
@@ -84,7 +84,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false;
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
@@ -130,7 +130,9 @@
 
     enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+      #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
+      nerd-fonts.jetbrains-mono
+      #nerd-fonts.cascadia-mono
       corefonts
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.monaco.packages.${pkgs.system}.monaco
@@ -249,6 +251,7 @@
     packages = [
       "com.usebottles.bottles"
       "io.github.zen_browser.zen"
+      "org.kiwix.desktop"
     ];
     overrides = {
       global = {
@@ -322,7 +325,7 @@
 
 
 
-    #    kdeconnect.enable = true;
+    kdeconnect.enable = true;
     java.enable = true;
 
   };
