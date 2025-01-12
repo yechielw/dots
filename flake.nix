@@ -122,6 +122,7 @@
         ./work/wm.nix
         ./work/vm.nix
         ./work/boot.nix
+        ./work/override.nix
       ];
     };
   };

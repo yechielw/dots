@@ -97,7 +97,7 @@ in {
 
       background = [
         {
-          path = "${background}";
+          path = "/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p";
           blur_passes = 3;
           blur_size = 8;
         }
