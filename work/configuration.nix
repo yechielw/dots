@@ -1,9 +1,17 @@
-{ pkgs, pkgs-master, inputs, custom-packages, settings, ... }:
+{
+  pkgs,
+  pkgs-master,
+  inputs,
+  custom-packages,
+  settings,
+  ...
+}:
 
 {
   # custom module with all window  manager stuff
   wm.enable = true;
 
+  services.upower.criticalPowerAction = "Hibernate";
 
   services.udev.packages = [ pkgs.via ];
 
@@ -23,13 +31,11 @@
   #   };
   # };
 
-
-
-
   networking = {
     hostName = settings.hostname; # Define your hostname.
     #nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
     search = [ "bowfin-marlin.ts.net" ];
+    firewall.allowedTCPPorts = [ 8080 ];
     networkmanager = {
       enable = true;
       # settings = {
@@ -40,7 +46,6 @@
       # };
     };
   };
-
 
   # Set your time zone.
   time.timeZone = "Asia/Jerusalem";
@@ -75,11 +80,9 @@
   # nix.settings = {
   # };
 
-
   environment.sessionVariables = {
     EDITOR = "${pkgs.neovim}/bin/nvim";
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -88,7 +91,6 @@
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
-
   hardware = {
     bluetooth.enable = true;
   };
@@ -96,23 +98,20 @@
   hardware.i2c.enable = true;
   hardware.keyboard.qmk.enable = true;
 
-
-
-
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pki.certificateFiles = [
     ../certs/netspark.pem
     ../certs/burp.pem
     ../certs/ca.crt
-];
-  
+  ];
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    
+
     #wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
@@ -122,9 +121,6 @@
     #media-session.enable = true;
   };
 
-
-
-
   fonts = {
     fontDir.enable = true;
 
@@ -132,92 +128,103 @@
     packages = with pkgs; [
       #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
       nerd-fonts.jetbrains-mono
-      #nerd-fonts.cascadia-mono
+      nerd-fonts.caskaydia-mono
       corefonts
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.monaco.packages.${pkgs.system}.monaco
     ];
     fontconfig.defaultFonts = {
-      sansSerif = ["SFProText Nerd Font"];
-      monospace = ["JetBrainsMono Nerd Font Mono"];
+      sansSerif = [ "SFProText Nerd Font" ];
+      monospace = [ "JetBrainsMono Nerd Font Mono" ];
     };
   };
 
-  environment.pathsToLink = [ "/share/zsh" "/share/qti" ]; # needed for zsh completion declared in zsh config
+  environment.pathsToLink = [
+    "/share/zsh"
+    "/share/qti"
+  ]; # needed for zsh completion declared in zsh config
 
-  environment.systemPackages = with pkgs; [
-    alsa-utils
-    beeper
-    element-desktop
-    inputs.ghostty.packages.${pkgs.system}.default
-    obsidian
-    xxd
-    wirelesstools
-    qmk via
-    bluez-tools
-    blueberry
-    #espanso-wayland
-    nixfmt-rfc-style
-    dig
-    libmbim
-    copyq
-    (flameshot.override { enableWlrSupport = true; enableMonochromeIcon = true; } )
-    curl
-    gcc
-    file
-    git
-    go
-    google-chrome
-    gzip
-    kitty
-    neovim
-    lua-language-server
-    nodejs
-    pipx
-    pyenv
-    thunderbird
-    unzip
-    wget
-    killall
-    cargo
-    dive # look into docker image layers
-    podman-tui # status of containers in the terminal
-    podman-desktop
-    docker-compose
-    podman-compose
-    distrobox
-    pciutils
-    libmbim
-    rquickshare
-    sbctl
-    trayscale
-    usbutils
-    cachix
-    element-desktop
-    jq jqp
-    p7zip
-    uv
-    zed-editor
-    ddcutil ddccontrol
-    (python311.withPackages(ps: with ps; [
-       pynvim
-       pip
-       debugpy
-       impacket
-    ]))
-  ] ++ inputs.qti.packages.${pkgs.system}.qti-all; 
-
+  environment.systemPackages =
+    with pkgs;
+    [
+      alsa-utils
+      beeper
+      element-desktop
+      inputs.ghostty.packages.${pkgs.system}.default
+      obsidian
+      xxd
+      wirelesstools
+      qmk
+      via
+      bluez-tools
+      blueberry
+      espanso-wayland
+      nixfmt-rfc-style
+      dig
+      libmbim
+      copyq
+      (flameshot.override {
+        enableWlrSupport = true;
+        enableMonochromeIcon = true;
+      })
+      curl
+      gcc
+      file
+      git
+      go
+      google-chrome
+      gzip
+      kitty
+      neovim
+      lua-language-server
+      nodejs
+      pipx
+      pyenv
+      thunderbird
+      unzip
+      wget
+      killall
+      cargo
+      dive # look into docker image layers
+      podman-tui # status of containers in the terminal
+      podman-desktop
+      docker-compose
+      podman-compose
+      distrobox
+      pciutils
+      libmbim
+      rquickshare
+      sbctl
+      trayscale
+      usbutils
+      cachix
+      element-desktop
+      jq
+      jqp
+      p7zip
+      uv
+      zed-editor
+      ddcutil
+      ddccontrol
+      (python311.withPackages (
+        ps: with ps; [
+          pynvim
+          pip
+          debugpy
+          impacket
+        ]
+      ))
+    ]
+    ++ inputs.qti.packages.${pkgs.system}.qti-all;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.intune.enable = true;
   services.fwupd.enable = true;
 
   services.fprintd.enable = true;
 
   services.teamviewer.enable = true;
 
-  
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
@@ -230,21 +237,16 @@
     ];
   };
 
-  
   services.kanata = {
 
     enable = true;
     keyboards.my = {
       configFile = ../katana/kanata.kbd;
-      devices = [];
+      devices = [ ];
       #devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
-
 
     };
   };
-
-
-
 
   services.flatpak = {
     enable = true;
@@ -256,7 +258,11 @@
     overrides = {
       global = {
         # Force Wayland by default
-        Context.sockets = ["wayland" "!x11" "!fallback-x11"];
+        Context.sockets = [
+          "wayland"
+          "!x11"
+          "!fallback-x11"
+        ];
 
         Environment = {
           # Fix un-themed cursor in some Wayland apps
@@ -267,9 +273,12 @@
         };
       };
 
-
     };
   };
+  # services.espanso = {
+  #   enable = true;
+  #   package = pkgs.espanso-wayland;
+  # };
 
   systemd.tmpfiles.rules = [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
@@ -286,19 +295,22 @@
     };
   };
 
-  system.stateVersion = "24.05"; #"24.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # "24.05"; # Did you read the comment?
 
   nix = {
-    settings = { 
+    settings = {
 
       substituters = [
         "https://cosmic.cachix.org/"
       ];
-      trusted-public-keys = [ 
+      trusted-public-keys = [
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       ];
 
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
 
@@ -312,28 +324,18 @@
   programs = {
     zsh.enable = true;
 
-
     appimage = {
       enable = true;
       binfmt = true;
     };
-    
-
-    
-
-
-
-
 
     kdeconnect.enable = true;
     java.enable = true;
 
   };
   users.defaultUserShell = pkgs.zsh;
-  
 
   #virtualisation.libvirtd.enable = true;
   #programs.virt-manager.enable = true;
-
 
 }

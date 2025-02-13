@@ -1,22 +1,22 @@
 {
   pkgs,
-  config,
   inputs,
-  custom-packges,
   settings,
-  nvf,
   ...
-}: let
+}:
+let
   background = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
     sha256 = "07zl1dlxqh9dav9pibnhr2x1llywwnyphmzcdqaby7dz5js184ly";
   };
-in {
+in
+{
   imports = [
     #./hyprlnad.nix
     ./zsh.nix
     ./custom.nix
-    ./nvf.nix
+    #    ./nvf.nix
+    inputs.walker.homeManagerModules.default
   ];
 
   services = {
@@ -37,10 +37,10 @@ in {
         #splash = false;
         #splash_offset = 2.0;
 
-        preload = ["${background}" "/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p"];
+        preload = [ "/home/yechiel/Downloads/a.jpg" ];
 
         wallpaper = [
-          ",/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p"
+          ",/home/yechiel/Downloads/a.jpg"
         ];
       };
     };
@@ -59,6 +59,11 @@ in {
           {
             timeout = 300;
             on-timeout = "hyprlock";
+          }
+          {
+            timeout = 300;
+            on-timeout = "brightnessctl -sd tpacpi::kbd_backlight set 0";
+            on-resume = "brightnessctl -rd tpacpi::kbd_backlight";
           }
           {
             timeout = 350;
@@ -88,6 +93,10 @@ in {
   programs.hyprlock = {
     enable = true;
     settings = {
+
+      auth = {
+        "fingerprint:enabled" = true;
+      };
       general = {
         disable_loading_bar = true;
         grace = 5;
@@ -97,22 +106,36 @@ in {
 
       background = [
         {
-          path = "/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p";
+          #path = "/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p";
+          path = "/home/yechiel/Pictures/Sruly.jpg";
           blur_passes = 3;
           blur_size = 8;
+        }
+      ];
+
+      label = [
+        {
+          monitor = "";
+          text = "$LAYOUT";
+          color = "rgba(200, 200, 200, 1.0)";
+          font_size = 10;
+          position = "0, -45%";
+          halign = "center";
+          valign = "center";
         }
       ];
 
       input-field = [
         {
           size = "200, 50";
-          position = "0, -80";
+          position = "0, -40%";
           monitor = "";
           dots_center = true;
           fade_on_empty = false;
           font_color = "rgb(202, 211, 245)";
           inner_color = "rgb(91, 96, 120)";
           outer_color = "rgb(24, 25, 38)";
+          capslock_color = "rgb (120, 91, 113)";
           outline_thickness = 0;
           placeholder_text = ''<span foreground="##cad3f5">Enter Password</span>'';
           shadow_passes = 2;
@@ -181,6 +204,10 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    #   walker = {
+    #     enable = true;
+    #     runAsService = true;
+    #   };
   };
 
   gtk = {
@@ -218,7 +245,7 @@ in {
 
     stateVersion = "24.05";
 
-    packages = [];
+    packages = [ ];
 
     pointerCursor = {
       name = "BreezeX-RosePine-Linux";
@@ -227,7 +254,8 @@ in {
     };
 
     file = {
-      ".config/nvim".source = ../../nvim/.config/nvim;
+      #".config/nvim".source = ../../nvim/.config/nvim;
+      ".config/nvim".source = ./nixcats;
       ".config/tmux".source = ../../tmux/.config/tmux;
       ".config/zellij".source = ../../zellij/.config/zellij;
       ".config/alacritty".source = ../../alacritty/.config/alacritty;
@@ -235,12 +263,14 @@ in {
       ".config/hypr/scripts".source = ../../hypr/scripts;
       ".config/waybar".source = ../../waybar;
       ".config/oh-my-posh".source = ../../ohmyposh;
+      ".config/ghostty".source = ../../ghostty/.config/ghostty;
     };
 
     sessionPath = [
       "$HOME/.pyenv/bin"
       "$HOME/.local/bin"
       "$HOME/go/bin"
+      "$HOME/.cargo/bin"
     ];
 
     sessionVariables = {
