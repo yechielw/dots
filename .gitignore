@@ -1,3 +1,4 @@
 tmux/.config/tmux/plugins
 .luarc.json
 #lazy-lock.json
+*~

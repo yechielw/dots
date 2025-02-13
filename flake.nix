@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    custom.url = "github:yechielw/nixpkgs/master";
+    custom.url = "github:yechielw/nixpkgs/burp-25-1";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,88 +42,107 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    walker.url = "github:yechielw/walker/patch-1";
+
+    espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
+    #myburp.url = "github:yehcielw/nixpkgs/burp-25-1";
+
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-master,
-    nixos-cosmic,
-    home-manager,
-    lanzaboote,
-    nix-flatpak,
-    custom,
-    nvf,
-    ...
-  } @ inputs: let
-    # ...
-    system = "x86_64-linux"; # change to whatever your system should be.
-    settings = {
-      username = "yechiel";
-      hostname = "nixos";
-    };
-
-    pkgs-master = import nixpkgs-master {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    custom-packages = import custom {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in {
-    nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        inherit pkgs-master;
-        inherit custom-packages;
-        inherit settings;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-master,
+      nixos-cosmic,
+      home-manager,
+      lanzaboote,
+      nix-flatpak,
+      custom,
+      nvf,
+      espanso-fix,
+      ...
+    }@inputs:
+    let
+      # ...
+      system = "x86_64-linux"; # change to whatever your system should be.
+      settings = {
+        username = "yechiel";
+        hostname = "nixos";
       };
-      modules = [
-        {
-          nixpkgs = {
-            config = {
-              allowUnfree = true;
-              allowBroken = true;
-            };
-          };
 
-          users.users.${settings.username} = {
-            isNormalUser = true;
-            description = "Yechiel Worenklein";
-            extraGroups = ["networkmanager" "wheel" "libvirtd" "kvm" "i2c" "wireshark"];
-          };
-
-          home-manager = {
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit custom-packages;
-              inherit settings;
+      pkgs-master = import nixpkgs-master {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      custom-packages = import custom {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-master;
+          inherit custom-packages;
+          inherit settings;
+        };
+        modules = [
+          {
+            nixpkgs = {
+              config = {
+                allowUnfree = true;
+                allowBroken = true;
+                android_sdk.accept_license = true;
+              };
             };
-            backupFileExtension = "hm-bckup";
-            users = {
-              "${settings.username}" = import ./work/home/home.nix;
-            };
-          };
-        }
-        nixos-cosmic.nixosModules.default
-        ./work/configuration.nix
-        home-manager.nixosModules.default
-        #inputs.home-manager.nixosModules.default
-        #stylix.nixosModules.stylix
-        lanzaboote.nixosModules.lanzaboote
-        nix-flatpak.nixosModules.nix-flatpak
-        nvf.nixosModules.default
 
-        ./work/hardware-configuration.nix
-        ./work/hacking.nix
-        ./work/work.nix
-        ./work/term.nix
-        ./work/wm.nix
-        ./work/vm.nix
-        ./work/boot.nix
-        ./work/override.nix
-      ];
+            users.users.${settings.username} = {
+              isNormalUser = true;
+              description = "Yechiel Worenklein";
+              extraGroups = [
+                "networkmanager"
+                "wheel"
+                "libvirtd"
+                "kvm"
+                "i2c"
+                "wireshark"
+                "adbusers"
+              ];
+            };
+
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit custom-packages;
+                inherit settings;
+              };
+              backupFileExtension = "hm-bckup";
+              users = {
+                "${settings.username}" = import ./work/home/home.nix;
+              };
+            };
+          }
+          nixos-cosmic.nixosModules.default
+          ./work/configuration.nix
+          home-manager.nixosModules.default
+          #inputs.home-manager.nixosModules.default
+          #stylix.nixosModules.stylix
+          lanzaboote.nixosModules.lanzaboote
+          nix-flatpak.nixosModules.nix-flatpak
+          nvf.nixosModules.default
+          espanso-fix.nixosModules.espanso-capdacoverride
+
+          ./work/hardware-configuration.nix
+          ./work/hacking.nix
+          ./work/work.nix
+          ./work/term.nix
+          ./work/wm.nix
+          ./work/vm.nix
+          ./work/boot.nix
+          ./work/override.nix
+        ];
+      };
     };
-  };
 }

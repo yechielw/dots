@@ -81,6 +81,8 @@ return {
         },
       },
 
+      phpactor = {},
+
       lua_ls = {
 	      cmd = {"/usr/bin/env lua-language-server" },
         Lua = {

@@ -1,15 +1,21 @@
-{pkgs,inputs,config,lib, ...}:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 {
   options = {
     wm.enable = lib.mkEnableOption "enable window manager (hyprland)";
   };
 
-  config =  lib.mkIf config.wm.enable {
+  config = lib.mkIf config.wm.enable {
     nix.settings = {
       substituters = [
         "https://hyprland.cachix.org"
       ];
-      trusted-public-keys = [ 
+      trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
@@ -23,11 +29,13 @@
       hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        portalPackage =
+          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       };
+      hyprlock.enable = true;
     };
-    
-    security.pam.services.gdm.enableGnomeKeyring = true;
+
+    #security.pam.services.gdm.enableGnomeKeyring = true;
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -45,6 +53,7 @@
       brightnessctl
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
       inputs.quickshell.packages.${pkgs.system}.default
+      # inputs.walker.packages.${pkgs.system}.default
       qt6.qtmultimedia
       adw-gtk3
       waybar
@@ -59,7 +68,7 @@
     ];
 
     services = {
-      hypridle.enable = true;
+      #hypridle.enable = true;
       blueman.enable = true;
       gnome.gnome-keyring.enable = true;
       logind = {
@@ -68,7 +77,8 @@
         lidSwitchExternalPower = "lock";
       };
     };
-    #  security.pam.services.gdm-password.enableGnomeKeyring = true;
+    security.pam.services.gdm-password.enableGnomeKeyring = true;
+    # security.pam.services.hyprlock = {};
 
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {

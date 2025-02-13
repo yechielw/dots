@@ -1,10 +1,17 @@
-{pkgs,pkgs-master,inputs,custom-packages, ...}:
+{
+  pkgs,
+  pkgs-master,
+  inputs,
+  custom-packages,
+  ...
+}:
 
 {
   programs.wireshark.enable = true;
+  programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
-    
-    (pkgs-master.burpsuite.override { proEdition = true; })
+
+    (custom-packages.burpsuite.override { proEdition = true; })
     jython
     caido
     bloodhound-py
@@ -26,6 +33,7 @@
     jadx
     httpx
     amass
+    (pkgs.androidenv.composeAndroidPackages { }).androidsdk
   ];
 
   #environment.etc."usr/share/seclists".source = "${pkgs.seclists}/share/wordlists/seclists";
