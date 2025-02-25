@@ -17,6 +17,7 @@
 
   services.udev.extraRules = ''
     # ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
   # services.power-profiles-daemon.enable = false;
@@ -76,7 +77,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.desktopManager.cosmic.enable = true;
+  #  services.desktopManager.cosmic.enable = true;
   # nix.settings = {
   # };
 

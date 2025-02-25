@@ -153,6 +153,7 @@
               phpactor
               codeql
               pyright
+              csharp-ls
 
             ];
             kickstart-debug = [
