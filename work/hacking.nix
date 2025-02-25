@@ -6,17 +6,21 @@
   ...
 }:
 
+let
+  buprp = pkgs.callPackage ./burpsuite/package.nix { };
+in
 {
   programs.wireshark.enable = true;
   programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
 
-    (custom-packages.burpsuite.override { proEdition = true; })
+    #(custom-packages.burpsuite.override { proEdition = true; })
+    buprp.pro
     jython
     caido
     bloodhound-py
     caido
-    netexec
+    #    netexec
     seclists
     (pkgs.wordlists.override { lists = with pkgs; [ rockyou ]; })
     feroxbuster
@@ -30,7 +34,7 @@
     netcat
     sqlmap
     hashcat
-    jadx
+    #    jadx
     httpx
     amass
     (pkgs.androidenv.composeAndroidPackages { }).androidsdk

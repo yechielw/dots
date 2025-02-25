@@ -86,7 +86,7 @@ in
   };
 
   #  programs.zellij.enableZshIntegration = true;
-  programs.zellij.enable = true;
+  #  programs.zellij.enable = true;
 
   programs.wlogout.enable = true;
 
@@ -227,10 +227,10 @@ in
       package = pkgs.rose-pine-cursor;
     };
 
-    iconTheme = {
-      package = pkgs.whitesur-icon-theme;
-      name = "WhiteSur";
-    };
+    # iconTheme = {
+    #      package = pkgs.whitesur-icon-theme;
+    # name = "WhiteSur";
+    #};
   };
 
   qt = {
