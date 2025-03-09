@@ -45,6 +45,9 @@
     walker.url = "github:yechielw/walker/patch-1";
 
     espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     #myburp.url = "github:yehcielw/nixpkgs/burp-25-1";
 
   };
@@ -61,6 +64,8 @@
       custom,
       nvf,
       espanso-fix,
+      nixos-hardware,
+      nixpkgs-howdy,
       ...
     }@inputs:
     let
@@ -133,7 +138,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           nvf.nixosModules.default
           espanso-fix.nixosModules.espanso-capdacoverride
-
+          nixos-hardware.nixosModules.lenovo-thinkpad-x13
           ./work/hardware-configuration.nix
           ./work/hacking.nix
           ./work/work.nix
@@ -142,6 +147,8 @@
           ./work/vm.nix
           ./work/boot.nix
           ./work/override.nix
+          ./work/howdy.nix
+
         ];
       };
     };
