@@ -20,18 +20,6 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
-  # services.power-profiles-daemon.enable = false;
-  #
-  # services.tlp = {
-  #   enable = true;
-  #   settings = {
-  #     #USB_AUTOSUSPEND = 0;
-  #     USB_EXCLUDE_BTUSB = 1;
-  #     USB_EXCLUDE_WWAN = 1;
-  #
-  #   };
-  # };
-
   networking = {
     hostName = settings.hostname; # Define your hostname.
     #nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
@@ -222,7 +210,7 @@
   services.openssh.enable = true;
   services.fwupd.enable = true;
 
-  services.fprintd.enable = true;
+  # services.fprintd.enable = true;
 
   services.teamviewer.enable = true;
 
@@ -301,12 +289,12 @@
   nix = {
     settings = {
 
-      substituters = [
-        "https://cosmic.cachix.org/"
-      ];
-      trusted-public-keys = [
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-      ];
+      # substituters = [
+      #   "https://cosmic.cachix.org/"
+      # ];
+      # trusted-public-keys = [
+      #   "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      # ];
 
       experimental-features = [
         "nix-command"
