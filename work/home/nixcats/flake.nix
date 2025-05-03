@@ -152,6 +152,8 @@
               stylua
               phpactor
               codeql
+              gopls
+              gofumpt
               pyright
               csharp-ls
               nodejs
@@ -207,6 +209,13 @@
               #     lua
               #   ]
               # ))
+            ];
+
+            avante = [
+              dressing-nvim
+              img-clip-nvim
+              avante-nvim
+
             ];
             kickstart-debug = [
               nvim-dap
@@ -298,6 +307,7 @@
             # (and other information to pass to lua)
             categories = {
               general = true;
+              avante = true;
               gitPlugins = true;
               customPlugins = true;
               test = true;

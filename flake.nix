@@ -13,6 +13,13 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cosmic-manager = {
+      url = "github:HeitorAugustoLN/cosmic-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
     hyprland.url = "github:hyprwm/Hyprland";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
@@ -58,6 +65,7 @@
       nixpkgs,
       nixpkgs-master,
       nixos-cosmic,
+      cosmic-manager,
       home-manager,
       lanzaboote,
       nix-flatpak,
@@ -148,7 +156,7 @@
           ./work/boot.nix
           ./work/override.nix
           ./work/howdy.nix
-
+          #./work/cosmic.nix
         ];
       };
     };

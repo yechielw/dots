@@ -1,0 +1,88 @@
+[18:23:21] [debug] Executing configure command.
+[18:23:21] [info] Stand in front of and close to the camera and make sure the room is well lit.
+[18:23:21] [info] Ensure to not use the camera during the execution.
+[18:23:21] [debug] Checking if /dev/video3 is a grayscale camera.
+[18:23:21] [debug] Checking if /dev/video2 is a grayscale camera.
+[18:23:22] [debug] /dev/video2 is a grayscale camera.
+[18:23:22] [info] Configuring the camera /dev/video2.
+[18:23:22] [debug] yaml error: bad file: etc/linux-enable-ir-emitter/pci-0000:00:14.0-usb-0:4:1.2-video-index0.ini.
+[18:23:22] [debug] No previous configuration found.
+[18:23:22] [debug] Configuration for /dev/video2 saved here: etc/linux-enable-ir-emitter/pci-0000:00:14.0-usb-0:4:1.2-video-index0.ini.
+[18:23:25] [debug] Instruction applied: unit: 13, selector: 14, control: 1 0.
+[18:23:26] [debug] The instruction does not enable the emitter.
+[18:23:26] [debug] Instruction applied: unit: 13, selector: 14, control: 2 0.
+[18:23:26] [debug] The instruction does not enable the emitter.
+[18:23:26] [debug] Instruction applied: unit: 13, selector: 14, control: 0 1.
+[18:23:27] [debug] The instruction does not enable the emitter.
+[18:23:27] [debug] Instruction applied: unit: 13, selector: 14, control: 1 1.
+[18:23:28] [debug] The instruction does not enable the emitter.
+[18:23:28] [debug] Instruction applied: unit: 13, selector: 14, control: 2 1.
+[18:23:29] [debug] The instruction does not enable the emitter.
+[18:23:29] [debug] Instruction applied: unit: 13, selector: 14, control: 0 2.
+[18:23:30] [debug] The instruction does not enable the emitter.
+[18:23:30] [debug] Instruction applied: unit: 13, selector: 14, control: 1 2.
+[18:23:31] [debug] The instruction does not enable the emitter.
+[18:23:31] [debug] Instruction applied: unit: 13, selector: 14, control: 2 2.
+[18:23:32] [debug] The instruction does not enable the emitter.
+[18:23:32] [debug] Instruction applied: unit: 13, selector: 14, control: 0 3.
+[18:23:33] [debug] The instruction does not enable the emitter.
+[18:23:33] [debug] Instruction applied: unit: 13, selector: 14, control: 2 100.
+[18:23:35] [debug] The instruction does not enable the emitter.
+[18:23:35] [debug] Reseting to the instruction: unit: 13, selector: 14, control: 0 0.
+[18:23:35] [debug] Instruction applied: unit: 14, selector: 2, control: 1 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:36] [debug] The instruction does not enable the emitter.
+[18:23:36] [debug] Instruction applied: unit: 14, selector: 2, control: 2 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:37] [debug] The instruction does not enable the emitter.
+[18:23:37] [debug] Instruction applied: unit: 14, selector: 2, control: 3 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:38] [debug] The instruction does not enable the emitter.
+[18:23:38] [debug] Instruction applied: unit: 14, selector: 2, control: 4 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:39] [debug] The instruction does not enable the emitter.
+[18:23:39] [debug] Instruction applied: unit: 14, selector: 2, control: 5 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:40] [debug] The instruction does not enable the emitter.
+[18:23:40] [debug] Instruction applied: unit: 14, selector: 2, control: 6 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:41] [debug] The instruction does not enable the emitter.
+[18:23:41] [debug] Instruction applied: unit: 14, selector: 2, control: 7 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:42] [debug] The instruction does not enable the emitter.
+[18:23:42] [debug] Instruction applied: unit: 14, selector: 2, control: 0 0 0 0 0 0 0 17 39 0 0 0 0 0 0.
+[18:23:43] [debug] The instruction does not enable the emitter.
+[18:23:43] [debug] Instruction applied: unit: 14, selector: 2, control: 1 0 0 0 0 0 0 17 39 0 0 0 0 0 0.
+[18:23:44] [debug] The instruction does not enable the emitter.
+[18:23:44] [debug] Instruction applied: unit: 14, selector: 2, control: 7 0 0 0 0 0 0 200 20 5 0 0 0 0 0.
+[18:23:45] [debug] The instruction does not enable the emitter.
+[18:23:45] [debug] Reseting to the instruction: unit: 14, selector: 2, control: 1 0 0 0 0 0 0 16 39 0 0 0 0 0 0.
+[18:23:45] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 1 0 0 0.
+[18:23:46] [debug] The instruction does not enable the emitter.
+[18:23:46] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 2 0 0 0.
+[18:23:48] [debug] The instruction does not enable the emitter.
+[18:23:48] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 3 0 0 0.
+[18:23:49] [debug] The instruction does not enable the emitter.
+[18:23:49] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 4 0 0 0.
+[18:23:50] [debug] The instruction does not enable the emitter.
+[18:23:50] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 5 0 0 0.
+[18:23:51] [debug] The instruction does not enable the emitter.
+[18:23:51] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 6 0 0 0.
+[18:23:52] [debug] The instruction does not enable the emitter.
+[18:23:52] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 7 0 0 0.
+[18:23:53] [debug] The instruction does not enable the emitter.
+[18:23:53] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 8 0 0 0.
+[18:23:54] [debug] The instruction does not enable the emitter.
+[18:23:54] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 9 0 0 0.
+[18:23:55] [debug] The instruction does not enable the emitter.
+[18:23:55] [debug] Instruction applied: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 232 3 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Reseting to the instruction: unit: 14, selector: 3, control: 16 0 0 0 0 0 0 0 0 0 0.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 1 0 0 0 0 0 0 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 0 1 0 0 0 0 0 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 1 1 0 0 0 0 0 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 0 2 0 0 0 0 0 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 1 2 0 0 0 0 0 0 0.
+[18:23:56] [debug] The instruction does not enable the emitter.
+[18:23:56] [debug] Instruction applied: unit: 14, selector: 6, control: 0 3 0 0 0 0 0 0 0.
+[18:24:00] [debug] The instruction makes emitter flash.
+[18:24:00] [debug] All emitters are configured.
+[18:24:00] [debug] Configuration for /dev/video2 saved here: etc/linux-enable-ir-emitter/pci-0000:00:14.0-usb-0:4:1.2-video-index0.
+[18:24:00] [info] The infrared camera has been successfully configured.

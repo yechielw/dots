@@ -183,7 +183,9 @@ return { -- LSP Configuration & Plugins
     -- NOTE: nixCats: there is help in nixCats for lsps at `:h nixCats.LSPs` and also `:h nixCats.luaUtils`
     local servers = {}
     -- servers.clangd = {},
-    -- servers.gopls = {},
+    servers.gopls = {
+      formatting = { gofumpt = true },
+    }
     servers.pyright = {}
     -- servers.rust_analyzer = {},
     servers.phpactor = {}

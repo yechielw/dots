@@ -1,4 +1,4 @@
-{pkgs,config,...}:
+{ pkgs, config, ... }:
 {
 
   boot = {
@@ -14,7 +14,8 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-  
+
+    kernelParams = [ "usbcore.autosuspend=-1" ];
 
     # nvidia stuuf for wayland
     #kernelParams = [ "quiet"];
@@ -25,13 +26,16 @@
 
     kernelPackages = pkgs.linuxPackages_testing;
 
-
     # extraModprobeConfig = ''
+    extraModprobeConfig = ''
+      options btusb enable_autosuspend=N
+      options iwlwifi power_save=0
+    '';
     #   options iwlwifi 11n_disable=1
     #   options iwlwifi power_save=0
     #   options iwlwifi bt_coex_active=0
     # '';
 
-    };
+  };
 
 }

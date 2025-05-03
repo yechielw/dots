@@ -15,6 +15,7 @@ in
   environment.systemPackages = with pkgs; [
 
     #(custom-packages.burpsuite.override { proEdition = true; })
+    trufflehog
     buprp.pro
     jython
     caido
@@ -28,6 +29,7 @@ in
     termshark
     wireshark
     metasploit
+    android-studio
     apktool
     frida-tools
     android-tools

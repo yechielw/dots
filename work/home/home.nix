@@ -16,6 +16,9 @@ in
     ./custom.nix
     ./wm.nix
     inputs.walker.homeManagerModules.default
+    inputs.cosmic-manager.homeManagerModules.cosmic-manager
+    #    ./cosmic.nix
+
   ];
 
   wm.enable = true;
@@ -77,6 +80,33 @@ in
       enable = true;
       enableZshIntegration = true;
     };
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      clock24 = true;
+      disableConfirmationPrompt = true;
+      historyLimit = 50000;
+      keyMode = "vi";
+      mouse = true;
+      newSession = true;
+      shortcut = "a";
+      terminal = "screen-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        ctrlw
+        resurrect
+        {
+          plugin = continuum;
+          extraConfig = "set -g @continuum-restore 'on'";
+        }
+        {
+          plugin = tmux-which-key;
+          extraConfig = "set -g @tmux-which-key-disable-autobuild 1";
+        }
+        jump
+        logging
+        extrakto
+      ];
+    };
   };
 
   gtk = {
@@ -119,7 +149,7 @@ in
 
     file = {
       ".config/nvim".source = ./nixcats;
-      ".config/tmux".source = ../../tmux/.config/tmux;
+      #".config/tmux".source = ../../tmux/.config/tmux;
       ".config/zellij".source = ../../zellij/.config/zellij;
       ".config/alacritty".source = ../../alacritty/.config/alacritty;
       ".config/hypr/hyprland.conf".source = ../../hypr/hyprland.conf;
