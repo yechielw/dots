@@ -20,11 +20,30 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
+  services.resolved = {
+    enable = false;
+    fallbackDns = [
+      "8.8.8.8"
+      "100.100.100.100"
+      "127.0.0.53"
+    ];
+  };
+
   networking = {
     hostName = settings.hostname; # Define your hostname.
-    #nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+    nameservers = [
+      #"127.0.0.53"
+      #"100.100.100.100"
+      #"8.8.8.8"
+      #"8.8.4.4"
+    ];
     search = [ "bowfin-marlin.ts.net" ];
-    firewall.allowedTCPPorts = [ 8080 ];
+    firewall = {
+      allowedTCPPorts = [
+        8080
+        46387
+      ];
+    };
     networkmanager = {
       enable = true;
       # settings = {
@@ -65,7 +84,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  #  services.desktopManager.cosmic.enable = true;
   # nix.settings = {
   # };
 
@@ -210,7 +228,7 @@
   services.openssh.enable = true;
   services.fwupd.enable = true;
 
-  # services.fprintd.enable = true;
+  services.fprintd.enable = true;
 
   services.teamviewer.enable = true;
 
@@ -219,10 +237,11 @@
     useRoutingFeatures = "both";
     extraSetFlags = [
       "--operator=yechiel"
+      "--accept-dns=false"
     ];
     extraUpFlags = [
       "--ssh"
-
+      "--advertise-exit-node"
     ];
   };
 
@@ -231,8 +250,8 @@
     enable = true;
     keyboards.my = {
       configFile = ../katana/kanata.kbd;
-      devices = [ ];
-      #devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+      #:: devices = [ ];
+      devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
 
     };
   };
@@ -289,13 +308,6 @@
   nix = {
     settings = {
 
-      # substituters = [
-      #   "https://cosmic.cachix.org/"
-      # ];
-      # trusted-public-keys = [
-      #   "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-      # ];
-
       experimental-features = [
         "nix-command"
         "flakes"
@@ -303,14 +315,55 @@
       auto-optimise-store = true;
     };
 
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
-    };
+    # gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than 14d";
+    # };
   };
 
   programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 14d --keep 10";
+      flake = "/home/${settings.username}/dots";
+    };
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      xorg.libSM
+      xorg.libICE
+      icu
+      libgcc.lib
+      e2fsprogs
+      libdrm
+      mesa
+      fontconfig
+      freetype
+      fribidi
+      libgbm
+      libGL
+      libgpg-error
+      harfbuzz
+      gcc
+      xorg.libX11
+      #libX11_xcb
+      xorg.libxcb
+      zlib
+      gvfs # Add gvfs for the missing symbols
+      glib # Add glib for GIO-related errors
+      xorg.xkbcomp
+      #xorg # Add X11 and XKB config
+      #stdenv.cc.cc
+      #zlib
+      #fuse3
+      #icu
+      #nss
+      #openssl
+      #curl
+      #expat
+      # ...
+    ];
     zsh.enable = true;
 
     appimage = {
