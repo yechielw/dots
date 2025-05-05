@@ -30,7 +30,8 @@
         //"network",
         "battery",
         "custom/swaync",
-        "clock"
+        "clock",
+        "custom/wlogout"
     ],
     "hyprland/window":{
       "format": "{title}",
@@ -63,6 +64,10 @@
         "dnd-notification": " <span foreground='red'><small><sup>⬤</sup></small></span>",
         "dnd-none": "  "
       },
+        "custom/wlogout": {
+            "format":"",
+            "exec": "wlogout",
+        },
         "custom/events": {
             "format": "{}",
             "tooltip": true,
@@ -96,7 +101,7 @@
     },
     "clock": {
         "format": "{:%a, %b %e      %H:%M}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+       // "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
