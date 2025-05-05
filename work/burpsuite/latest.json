@@ -1,20 +1,20 @@
 [
   {
-    "Md5Checksum": "c578b8febec81889ca26d26fe4b7055d",
-    "ProductEdition": "Burp Suite Professional",
-    "ProductId": "pro",
-    "ProductPlatform": "Jar",
-    "ProductPlatformLabel": "JAR",
-    "Sha256Checksum": "205c37f32a6f88636433c73462a2b942ad0bf8f8d7e7d65035655855c515dfa3",
-    "Version": "2025.3.3"
-  },
-  {
-    "Md5Checksum": "5c4dda8711632681edd1f14dd37445ba",
+    "Md5Checksum": "0064e7d03d0a873a3972da34f3ca6931",
     "ProductEdition": "Burp Suite Community Edition",
     "ProductId": "community",
     "ProductPlatform": "Jar",
     "ProductPlatformLabel": "JAR",
-    "Sha256Checksum": "9528e99c6b9acae5a170a011164a515837bda3b2b56472d6ceb06d21d3caffcf",
-    "Version": "2025.3.3"
+    "Sha256Checksum": "76bf71646f7e8f82d4b68882d45e1b14fd00b2c6d893a3f9fbdb52eafa1dccd0",
+    "Version": "2025.4.1"
+  },
+  {
+    "Md5Checksum": "35a493bcf448ed1cc2497ec0394f1b9c",
+    "ProductEdition": "Burp Suite Professional",
+    "ProductId": "pro",
+    "ProductPlatform": "Jar",
+    "ProductPlatformLabel": "JAR",
+    "Sha256Checksum": "584ac1348b2b9fa19df25216a89d0b3edd54f3a516522e0b06458dffd26801c0",
+    "Version": "2025.4.1"
   }
 ]
