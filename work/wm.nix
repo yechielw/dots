@@ -51,8 +51,8 @@
       pavucontrol
       kdePackages.qtwayland
       brightnessctl
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-      inputs.quickshell.packages.${pkgs.system}.default
+      rose-pine-hyprcursor
+      #inputs.quickshell.packages.${pkgs.system}.default
       # inputs.walker.packages.${pkgs.system}.default
       qt6.qtmultimedia
       adw-gtk3

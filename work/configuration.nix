@@ -1,8 +1,6 @@
 {
   pkgs,
-  pkgs-master,
   inputs,
-  custom-packages,
   settings,
   ...
 }:
@@ -41,6 +39,7 @@
     firewall = {
       allowedTCPPorts = [
         8080
+        4444
         46387
       ];
     };
@@ -157,7 +156,7 @@
       alsa-utils
       beeper
       element-desktop
-      inputs.ghostty.packages.${pkgs.system}.default
+      ghostty
       obsidian
       xxd
       wirelesstools

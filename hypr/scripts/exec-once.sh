@@ -5,7 +5,8 @@ copyq &
 flameshot &
 blueman-tray &
 blueman-applet &
-ulauncher --hide-window&
+#ulauncher --hide-window&
+walker --gapplication-service
 swayosd-server  &
 systemctl --user start hyprpaper &
 hypridle &

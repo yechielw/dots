@@ -16,7 +16,7 @@ in
     ./custom.nix
     ./wm.nix
     inputs.walker.homeManagerModules.default
-    inputs.cosmic-manager.homeManagerModules.cosmic-manager
+    #inputs.cosmic-manager.homeManagerModules.cosmic-manager
     #    ./cosmic.nix
 
   ];
@@ -87,25 +87,35 @@ in
       disableConfirmationPrompt = true;
       historyLimit = 50000;
       keyMode = "vi";
+      customPaneNavigationAndResize = true;
       mouse = true;
       newSession = true;
       shortcut = "a";
       terminal = "screen-256color";
       plugins = with pkgs.tmuxPlugins; [
         ctrlw
-        resurrect
+        {
+          plugin = resurrect;
+          extraConfig = "set -g @resurrect-capture-pane-contents 'on'";
+        }
         {
           plugin = continuum;
           extraConfig = "set -g @continuum-restore 'on'";
         }
         {
           plugin = tmux-which-key;
-          extraConfig = "set -g @tmux-which-key-disable-autobuild 1";
+          extraConfig = ''
+            set -g @tmux-which-key-disable-autobuild 1
+            set -g @tmux-which-key-xdg-enable 1
+          '';
         }
         jump
         logging
         extrakto
       ];
+      extraConfig = ''
+        set -g renumber-windows on
+      '';
     };
   };
 
@@ -182,4 +192,5 @@ in
       history = "history 0";
     };
   };
+  xdg.configFile.test.source = ../../ghostty/.config/ghostty/config;
 }
