@@ -29,4 +29,6 @@
       package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
     };
   };
+  security.pam.services.howdy.enable = true;
+
 }

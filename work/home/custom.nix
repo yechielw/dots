@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -7,16 +12,18 @@ let
 
   jsonFormat = pkgs.formats.json { };
 
-  configArgument = if cfg.settings != { } then
-    "--config ${config.xdg.configHome}/oh-my-posh/config.json"
-  else if cfg.useTheme != null then
-    "--config ${cfg.package}/share/oh-my-posh/themes/${cfg.useTheme}.omp.json"
-  else if cfg.configFile != null then 
-    "--config ${cfg.configFile}"
-  else 
-    "";
+  configArgument =
+    if cfg.settings != { } then
+      "--config ${config.xdg.configHome}/oh-my-posh/config.json"
+    else if cfg.useTheme != null then
+      "--config ${cfg.package}/share/oh-my-posh/themes/${cfg.useTheme}.omp.json"
+    else if cfg.configFile != null then
+      "--config ${cfg.configFile}"
+    else
+      "";
 
-in {
+in
+{
   meta.maintainers = [ maintainers.arjan-s ];
 
   options.programs.oh-my-posh-dev = {
@@ -27,8 +34,7 @@ in {
     settings = mkOption {
       type = jsonFormat.type;
       default = { };
-      example = literalExpression ''
-        builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "''${pkgs.oh-my-posh}/share/oh-my-posh/themes/space.omp.json"))'';
+      example = literalExpression ''builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "''${pkgs.oh-my-posh}/share/oh-my-posh/themes/space.omp.json"))'';
       description = ''
         Configuration written to
         {file}`$XDG_CONFIG_HOME/oh-my-posh/config.json`. See
@@ -38,7 +44,7 @@ in {
       '';
     };
 
-    configFile = mkOption { 
+    configFile = mkOption {
       type = types.nullOr types.path;
       default = null;
       description = ''
@@ -46,7 +52,7 @@ in {
       '';
     };
 
-    useTheme = mkOption { 
+    useTheme = mkOption {
       type = types.nullOr types.str;
       default = null;
       description = ''
@@ -101,7 +107,7 @@ in {
       eval "$(${cfg.package}/bin/oh-my-posh init bash ${configArgument})"
     '';
 
-    programs.zsh.initExtra = mkIf cfg.enableZshIntegration ''
+    programs.zsh.initContent = mkIf cfg.enableZshIntegration ''
       eval "$(${cfg.package}/bin/oh-my-posh init zsh ${configArgument})"
     '';
 

@@ -4,15 +4,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    custom.url = "github:yechielw/nixpkgs/burp-2025-1-2";
+    #custom.url = "github:yechielw/nixpkgs/burp-2025-1-2";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     cosmic-manager = {
       url = "github:HeitorAugustoLN/cosmic-manager";
       inputs = {
@@ -64,12 +64,12 @@
       self,
       nixpkgs,
       nixpkgs-master,
-      nixos-cosmic,
+      #nixos-cosmic,
       cosmic-manager,
       home-manager,
       lanzaboote,
       nix-flatpak,
-      custom,
+      #custom,
       nvf,
       espanso-fix,
       nixos-hardware,
@@ -88,17 +88,17 @@
         inherit system;
         config.allowUnfree = true;
       };
-      custom-packages = import custom {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      # custom-packages = import custom {
+      #   inherit system;
+      #   config.allowUnfree = true;
+      # };
     in
     {
       nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           inherit pkgs-master;
-          inherit custom-packages;
+          #inherit custom-packages;
           inherit settings;
         };
         modules = [
@@ -128,7 +128,7 @@
             home-manager = {
               extraSpecialArgs = {
                 inherit inputs;
-                inherit custom-packages;
+                #inherit custom-packages;
                 inherit settings;
               };
               backupFileExtension = "hm-bckup";
@@ -137,7 +137,7 @@
               };
             };
           }
-          nixos-cosmic.nixosModules.default
+          #nixos-cosmic.nixosModules.default
           ./work/configuration.nix
           home-manager.nixosModules.default
           #inputs.home-manager.nixosModules.default
@@ -155,7 +155,7 @@
           ./work/vm.nix
           ./work/boot.nix
           ./work/override.nix
-          ./work/howdy.nix
+          #./work/howdy.nix
           #./work/cosmic.nix
         ];
       };

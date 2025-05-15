@@ -18,7 +18,7 @@
     "modules-right": [
         "custom/events",
         "hyprland/language",
-        "systemd-failed-units",
+        //"systemd-failed-units",
         //"cpu",
         //"temperature",
         //"memory",
@@ -100,8 +100,7 @@
         "spacing": 3
     },
     "clock": {
-        "format": "{:%a, %b %e      %H:%M}",
-       // "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format": "{:%a %e %b %H:%M}",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -123,18 +122,6 @@
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
-    },
-    "network": {
-        "format-wifi": " {icon}",
-        "format-ethernet": " 󰌙 ",
-        "format-disconnected": "  " ,
-        "format-icons": [
-            "󰤯 ",
-            "󰤟 ",
-            "󰤢 ",
-            "󰤢 ",
-            "󰤨 "
-        ]
     },
     "battery": {
         "states": {
@@ -178,18 +165,5 @@
             ]
         },
         "on-click": "pwvucontrol"
-    },
-    "systemd-failed-units": {
-      "hide-on-ok": false, // Do not hide if there is zero failed units.
-      "format": "<span color='red'><b>✗ {nr_failed}</b></span>",
-      "format-ok": "✓",
-      "system": true, // Monitor failed systemwide units.
-      "user": true // Ignore failed user units.
-    },
-    "pulseaudio/slider": {
-      "min": 0,
-      "max": 100,
-      "orientation": "horizontal"
-    }
-
+    } 
 }

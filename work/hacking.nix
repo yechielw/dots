@@ -1,8 +1,5 @@
 {
   pkgs,
-  pkgs-master,
-  inputs,
-  custom-packages,
   ...
 }:
 
@@ -14,14 +11,13 @@ in
   programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
 
-    #(custom-packages.burpsuite.override { proEdition = true; })
     trufflehog
     buprp.pro
     jython
     caido
     bloodhound-py
     caido
-    #    netexec
+    netexec
     seclists
     (pkgs.wordlists.override { lists = with pkgs; [ rockyou ]; })
     feroxbuster
@@ -36,7 +32,7 @@ in
     netcat
     sqlmap
     hashcat
-    #    jadx
+    jadx
     httpx
     amass
     (pkgs.androidenv.composeAndroidPackages { }).androidsdk
