@@ -158,15 +158,6 @@ in
     };
 
     file = {
-      ".config/nvim".source = ./nixcats;
-      #".config/tmux".source = ../../tmux/.config/tmux;
-      ".config/zellij".source = ../../zellij/.config/zellij;
-      ".config/alacritty".source = ../../alacritty/.config/alacritty;
-      ".config/hypr/hyprland.conf".source = ../../hypr/hyprland.conf;
-      ".config/hypr/scripts".source = ../../hypr/scripts;
-      ".config/waybar".source = ../../waybar;
-      ".config/oh-my-posh".source = ../../ohmyposh;
-      ".config/ghostty".source = ../../ghostty/.config/ghostty;
     };
 
     sessionPath = [
@@ -192,5 +183,15 @@ in
       history = "history 0";
     };
   };
-  xdg.configFile.test.source = ../../ghostty/.config/ghostty/config;
+
+  xdg.configFile = {
+    nvim.source = ./nixcats;
+    zellij.source = ../../zellij/.config/zellij;
+    alacritty.source = ../../alacritty/.config/alacritty;
+    "hypr/hyprland.conf".source = ../../hypr/hyprland.conf;
+    "hypr/scripts".source = ../../hypr/scripts;
+    waybar.source = ../../waybar;
+    oh-my-posh.source = ../../ohmyposh;
+    ghostty.source = ../../ghostty/.config/ghostty;
+  };
 }
