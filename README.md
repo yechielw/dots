@@ -26,10 +26,33 @@ nixos-rebuild switch --flake ./dots/work
 
 ## post installation
 
-enable fingerprint login
+
+### Secure boot and TPM
+
+```bash
+sudo nix run nixpkgs#sbctl create-keys
+
+sudo nixos-rebuild switch --flake .
+sudo nix run nixpkgs#sbctl verify
+```
+Reboot to bios, enable secure boot and enable setup mode
+```bash
+sudo nix run nixpkgs#sbctl enroll-keys -- --microsoft
+```
+Reboot
+```bash
+bootctl status
+```
+Enable TPM for all lucks partitions (usually root and SWAP)
+```bash
+ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p2
+ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p3
+```
+
+### enable fingerprint login
 
 ```sh
-fprintd-enroll yechiel
+fprintd-enroll $USER
 ```
 
 enable atuin
