@@ -12,7 +12,7 @@
     # secureboot enabled systemdboot dropin repolacement
     lanzaboote = {
       enable = true;
-      pkiBundle = "/etc/secureboot";
+      pkiBundle = "/var/lib/sbctl";
     };
 
     kernelParams = [ "usbcore.autosuspend=-1" ];
