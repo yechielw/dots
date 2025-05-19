@@ -1,31 +1,39 @@
-{ pkgs,inputs, settings, ... }:
+{
+  pkgs,
+  inputs,
+  settings,
+  ...
+}:
 
-
-  {
+{
 
   programs = {
     zsh = {
-      enable = true; 
+      enable = true;
 
       enableCompletion = true;
 
       #autosuggestion = true;
 
-      history.append = true; 
+      history.append = true;
       history.expireDuplicatesFirst = true;
       history.save = 50000;
       history.size = 50000;
+      history.share = true;
 
       autosuggestion = {
         enable = true;
-        strategy = [ "history" "completion" ];
+        strategy = [
+          "history"
+          "completion"
+        ];
         highlight = "fg=#999";
       };
       historySubstringSearch = {
         enable = true;
         searchDownKey = "$terminfo[kcud1]";
-        searchUpKey   = "$terminfo[kcuu1]";
-      }; 
+        searchUpKey = "$terminfo[kcuu1]";
+      };
 
       antidote = {
         enable = true;
@@ -37,9 +45,9 @@
           #"olivierverdier/zsh-git-prompt"
         ];
       };
-      #initExtra = ''
-      #  zellij attach -c
-      #'';
+      initExtra = ''
+        [ ! -e $TMUX ] || tmux a
+      '';
     };
   };
 

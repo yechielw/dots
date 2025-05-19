@@ -132,7 +132,6 @@
 
     enableDefaultPackages = true;
     packages = with pkgs; [
-      #(nerdfonts.override { fonts = ["JetBrainsMono" "CascadiaMono"]; })
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-mono
       corefonts
