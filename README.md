@@ -1,5 +1,14 @@
 # Nixos and home-manager config
 
+![screenshot](images/screenshot.png)
+
+## Hyprland/NixOS/GNU/Linux
+- lanzaboote for TPM backed FDE with auto unlock
+- Bar: waybar
+- Notification daemon: swaync
+- Terminal: ghostty
+- Design principle: Apple
+
 ## Installation
 
 ```sh
