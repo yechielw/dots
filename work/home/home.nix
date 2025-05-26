@@ -39,7 +39,14 @@ in
       userEmail = "41305372+yechielw@users.noreply.github.com";
       difftastic.enable = true;
       difftastic.background = "dark";
-      extraConfig.init.defaultBranch = "master";
+      signing = {
+        format = "ssh";
+        key = "/home/yechiel/.ssh/id_ed25519.pub";
+      };
+      extraConfig = {
+        init.defaultBranch = "master";
+        pull.rebase = false;
+      };
     };
 
     zoxide = {
