@@ -152,6 +152,7 @@
   environment.systemPackages =
     with pkgs;
     [
+      nixd
       alsa-utils
       beeper
       element-desktop
@@ -312,6 +313,7 @@
       ];
       auto-optimise-store = true;
     };
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     # gc = {
     #   automatic = true;
