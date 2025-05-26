@@ -174,6 +174,8 @@ in
 
     sessionVariables = {
       EDITOR = "nvim";
+      NIX_AUTO_RUN = 1;
+      NIXPKGS_ALLOW_UNFREE = 1;
     };
 
     shellAliases = {
