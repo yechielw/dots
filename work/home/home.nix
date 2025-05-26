@@ -209,4 +209,5 @@ in
     oh-my-posh.source = ../../ohmyposh;
     ghostty.source = ../../ghostty/.config/ghostty;
   };
+  nixGL.vulkan.enable = true;
 }
