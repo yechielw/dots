@@ -57,6 +57,8 @@
 
     #myburp.url = "github:yehcielw/nixpkgs/burp-25-1";
 
+    mdatp.url = "github:epetousis/nix-mdatp";
+
   };
 
   outputs =
@@ -74,6 +76,7 @@
       espanso-fix,
       nixos-hardware,
       nixpkgs-howdy,
+      mdatp,
       ...
     }@inputs:
     let
@@ -147,6 +150,11 @@
           nvf.nixosModules.default
           espanso-fix.nixosModules.espanso-capdacoverride
           nixos-hardware.nixosModules.lenovo-thinkpad-x13
+          mdatp.nixosModules.mdatp
+          {
+            services.mdatp.enable = true;
+          }
+
           ./work/hardware-configuration.nix
           ./work/hacking.nix
           ./work/work.nix
