@@ -16,7 +16,7 @@
       enable = true;
       package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
       # settings = {
-      #   core = {
+      #    core = {
       #     abort_if_ssh = true;
       #   };
       #   video.dark_threshold = 90;
