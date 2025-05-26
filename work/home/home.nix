@@ -52,6 +52,7 @@ in
 
     zoxide = {
       enable = true;
+      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
