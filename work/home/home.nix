@@ -77,7 +77,12 @@ in
     lesspipe.enable = true;
 
     pyenv = {
+      enable = false;
+      enableZshIntegration = true;
+    };
+    direnv = {
       enable = true;
+      nix-direnv.enable = true;
       enableZshIntegration = true;
     };
     tmux = {
