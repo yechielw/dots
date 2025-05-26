@@ -45,7 +45,7 @@
           #"olivierverdier/zsh-git-prompt"
         ];
       };
-      initExtra = ''
+      initContent = ''
         [ ! -e $TMUX ] || tmux a
       '';
     };
