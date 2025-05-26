@@ -9,6 +9,10 @@
   # custom module with all window  manager stuff
   wm.enable = true;
 
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+  };
   services.upower.criticalPowerAction = "Hibernate";
 
   services.udev.packages = [ pkgs.via ];
@@ -152,6 +156,8 @@
   environment.systemPackages =
     with pkgs;
     [
+      clamav
+      bitwarden
       nixd
       alsa-utils
       beeper
