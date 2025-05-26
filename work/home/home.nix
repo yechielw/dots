@@ -42,6 +42,7 @@ in
       signing = {
         format = "ssh";
         key = "/home/yechiel/.ssh/id_ed25519.pub";
+        signByDefault = true;
       };
       extraConfig = {
         init.defaultBranch = "master";
