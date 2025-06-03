@@ -4,15 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    #custom.url = "github:yechielw/nixpkgs/burp-2025-1-2";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nixos-cosmic = {
-    #   url = "github:lilyinstarlight/nixos-cosmic";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     cosmic-manager = {
       url = "github:HeitorAugustoLN/cosmic-manager";
       inputs = {
@@ -23,10 +19,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    monaco = {
-      url = "github:yechielw/monaco-nerd-font";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # monaco = {
+    #   url = "github:yechielw/monaco-nerd-font";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -106,32 +102,10 @@
         };
         modules = [
           {
-            nixpkgs = {
-              config = {
-                allowUnfree = true;
-                allowBroken = true;
-                android_sdk.accept_license = true;
-              };
-            };
-
-            users.users.${settings.username} = {
-              isNormalUser = true;
-              description = "Yechiel Worenklein";
-              extraGroups = [
-                "networkmanager"
-                "wheel"
-                "libvirtd"
-                "kvm"
-                "i2c"
-                "wireshark"
-                "adbusers"
-              ];
-            };
 
             home-manager = {
               extraSpecialArgs = {
                 inherit inputs;
-                #inherit custom-packages;
                 inherit settings;
               };
               backupFileExtension = "hm-bckup";
@@ -141,10 +115,7 @@
             };
           }
           #nixos-cosmic.nixosModules.default
-          ./work/configuration.nix
           home-manager.nixosModules.default
-          #inputs.home-manager.nixosModules.default
-          #stylix.nixosModules.stylix
           lanzaboote.nixosModules.lanzaboote
           nix-flatpak.nixosModules.nix-flatpak
           nvf.nixosModules.default
@@ -155,7 +126,9 @@
             services.mdatp.enable = true;
           }
 
+          ./work/configuration.nix
           ./work/hardware-configuration.nix
+          ./work/settings.nix
           ./work/hacking.nix
           ./work/work.nix
           ./work/term.nix
