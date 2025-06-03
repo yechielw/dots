@@ -98,11 +98,20 @@
   services.printing.enable = true;
 
   # hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
-  hardware = {
-    bluetooth.enable = true;
+  hardware.firmware = [ pkgs.sof-firmware ];
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        # ControllerMode = "bredr";
+        # Enable = "Source,Sink,Media,Socket";
+        #
+      };
+    };
   };
 
   hardware.i2c.enable = true;
