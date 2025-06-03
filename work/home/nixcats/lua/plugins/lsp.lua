@@ -201,7 +201,35 @@ return { -- LSP Configuration & Plugins
 
     -- NOTE: nixCats: nixd is not available on mason.
     if require('nixCatsUtils').isNixCats then
-      servers.nixd = {}
+      -- require('lspconfig').nixd.setup {
+      --   cmd = { 'nixd' },
+      --   settings = {
+      --     nixd = {
+      --       nixpkgs = {
+      --         expr = 'import <nixpkgs> { }',
+      --       },
+      --       formatting = {
+      --         command = { 'nixfmt' },
+      --       },
+      --       options = {
+      --         nixos = {
+      --           expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.nixos.options',
+      --         },
+      --         home_manager = {
+      --           expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.nixos.config.home-manager.users.yechiel',
+      --         },
+      --       },
+      --     },
+      --   },
+      -- }
+
+      servers.nixd = {
+        options = {
+          home_manager = {
+            expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.nixos.config.home-manager.users.yechiel',
+          },
+        },
+      }
     else
       servers.rnix = {}
       servers.nil_ls = {}
