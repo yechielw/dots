@@ -260,7 +260,7 @@
 
   services.kanata = {
 
-    enable = true;
+    enable = false;
     keyboards.my = {
       configFile = ../katana/kanata.kbd;
       #:: devices = [ ];
