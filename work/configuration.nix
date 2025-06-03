@@ -149,7 +149,6 @@
       nerd-fonts.caskaydia-mono
       corefonts
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
-      inputs.monaco.packages.${pkgs.system}.monaco
     ];
     fontconfig.defaultFonts = {
       sansSerif = [ "SFProText Nerd Font" ];
