@@ -140,6 +140,13 @@ in
       package = pkgs.whitesur-gtk-theme;
     };
 
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+      # name = "WhiteSur";
+      # package = pkgs.whitesur-icon-theme;
+    };
+
     font = {
       name = "SFProText Nerd Font";
       size = 11;
