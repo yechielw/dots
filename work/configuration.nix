@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   settings,
+  pkgs-master,
   ...
 }:
 
@@ -165,7 +166,7 @@
     with pkgs;
     [
       clamav
-      bitwarden
+      pkgs-master.bitwarden
       nixd
       alsa-utils
       beeper
