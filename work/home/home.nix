@@ -23,7 +23,7 @@ in
 
   wm.enable = true;
   programs = {
-    oh-my-posh-dev = {
+    oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
       configFile = ../../ohmyposh/config.toml;
