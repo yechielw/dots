@@ -6,7 +6,7 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:yechielw/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cosmic-manager = {
