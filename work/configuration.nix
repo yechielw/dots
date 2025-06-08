@@ -86,8 +86,8 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   # nix.settings = {
   # };
 
@@ -99,7 +99,7 @@
   services.printing.enable = true;
 
   # hardware.pulseaudio.enable = false;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  services.pulseaudio.package = pkgs.pulseaudioFull;
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
@@ -159,84 +159,82 @@
 
   environment.pathsToLink = [
     "/share/zsh"
-    "/share/qti"
   ]; # needed for zsh completion declared in zsh config
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      clamav
-      pkgs-master.bitwarden
-      nixd
-      alsa-utils
-      beeper
-      element-desktop
-      ghostty
-      obsidian
-      xxd
-      wirelesstools
-      qmk
-      via
-      bluez-tools
-      blueberry
-      espanso-wayland
-      nixfmt-rfc-style
-      dig
-      libmbim
-      copyq
-      (flameshot.override {
-        enableWlrSupport = true;
-        enableMonochromeIcon = true;
-      })
-      curl
-      gcc
-      file
-      git
-      go
-      google-chrome
-      gzip
-      kitty
-      neovim
-      lua-language-server
-      nodejs
-      pipx
-      pyenv
-      thunderbird
-      unzip
-      wget
-      killall
-      cargo
-      dive # look into docker image layers
-      podman-tui # status of containers in the terminal
-      podman-desktop
-      docker-compose
-      podman-compose
-      distrobox
-      pciutils
-      libmbim
-      rquickshare
-      sbctl
-      trayscale
-      usbutils
-      cachix
-      element-desktop
-      jq
-      jqp
-      p7zip
-      uv
-      zed-editor
-      ddcutil
-      ddccontrol
-      (python311.withPackages (
-        ps: with ps; [
-          pynvim
-          pip
-          debugpy
-          impacket
-        ]
-      ))
-    ]
-    ++ inputs.qti.packages.${pkgs.system}.qti-all;
+  environment.systemPackages = with pkgs; [
+    inputs.zen-browser.packages.${pkgs.system}.default
+
+    clamav
+    pkgs-master.bitwarden
+    nixd
+    alsa-utils
+    beeper
+    element-desktop
+    ghostty
+    obsidian
+    xxd
+    wirelesstools
+    qmk
+    via
+    bluez-tools
+    blueberry
+    espanso-wayland
+    nixfmt-rfc-style
+    dig
+    libmbim
+    copyq
+    (flameshot.override {
+      enableWlrSupport = true;
+      enableMonochromeIcon = true;
+    })
+    curl
+    gcc
+    file
+    git
+    go
+    google-chrome
+    gzip
+    kitty
+    neovim
+    lua-language-server
+    nodejs
+    pipx
+    pyenv
+    thunderbird
+    unzip
+    wget
+    killall
+    cargo
+    dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    podman-desktop
+    docker-compose
+    podman-compose
+    distrobox
+    pciutils
+    libmbim
+    rquickshare
+    sbctl
+    trayscale
+    usbutils
+    cachix
+    element-desktop
+    jq
+    jqp
+    p7zip
+    uv
+    zed-editor
+    ddcutil
+    ddccontrol
+    (python311.withPackages (
+      ps: with ps; [
+        pynvim
+        pip
+        debugpy
+        impacket
+      ]
+    ))
+  ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -273,9 +271,9 @@
   services.flatpak = {
     enable = true;
     packages = [
-      "com.usebottles.bottles"
-      "io.github.zen_browser.zen"
-      "org.kiwix.desktop"
+      #"com.usebottles.bottles"
+      #"io.github.zen_browser.zen"
+      #"org.kiwix.desktop"
     ];
     overrides = {
       global = {
@@ -335,6 +333,13 @@
     #   dates = "weekly";
     #   options = "--delete-older-than 14d";
     # };
+  };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      android_sdk.accept_license = true;
+    };
   };
 
   programs = {

@@ -14,7 +14,6 @@ in
     trufflehog
     buprp.pro
     jython
-    caido
     bloodhound-py
     caido
     netexec
