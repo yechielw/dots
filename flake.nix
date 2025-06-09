@@ -33,6 +33,7 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.espanso-fix.nixosModules.espanso-capdacoverride
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
+          inputs.determinate.nixosModules.default
           inputs.howdy-module.nixosModules.default
 
           {
@@ -64,6 +65,8 @@
 
     home-manager.url = "github:yechielw/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     hyprland.url = "github:hyprwm/Hyprland";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
