@@ -29,6 +29,11 @@ in
       configFile = ../../ohmyposh/config.toml;
     };
 
+    walker = {
+      enable = true;
+      runAsService = true;
+    };
+
     home-manager.enable = true;
     command-not-found.enable = false;
     nix-index.enable = true;

@@ -19,6 +19,11 @@
       };
 
       copyq.enable = true;
+      blueman-applet.enable = true;
+      flameshot.enable = true;
+      polkit-gnome.enable = true;
+
+      trayscale.enable = true;
 
       hyprpaper = {
         enable = true;
@@ -71,6 +76,11 @@
     };
 
     programs.wlogout.enable = true;
+
+    programs.waybar = {
+      enable = true;
+      systemd.enable = true;
+    };
 
     programs.hyprlock = {
       enable = true;
