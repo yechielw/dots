@@ -50,7 +50,7 @@ in
 
     git = {
       enable = true;
-      userName = "Yechiel Worenklein";
+      userName = "${settings.description}";
       userEmail = "41305372+yechielw@users.noreply.github.com";
       difftastic.enable = true;
       difftastic.background = "dark";
