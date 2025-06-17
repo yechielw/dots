@@ -340,11 +340,10 @@
     },
     "howdy-module": {
       "locked": {
-        "lastModified": 1748827881,
-        "narHash": "sha256-yTZcu8fEcKu9sHEBoB7jcAHTs+S8yOBuYKbdL6zeNUg=",
+        "lastModified": 1749692786,
         "owner": "pineapplehunter",
         "repo": "howdy-module",
-        "rev": "01d2f4cd7127daf0720948c819fc92f8ee5bd6a3",
+        "rev": "b9f26a0cf28ac0df66d6cd5a3e7aca8dfe3594ef",
         "type": "github"
       },
       "original": {
@@ -609,6 +608,20 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprwayland-scanner",
+        "type": "github"
+      }
+    },
+    "impurity": {
+      "locked": {
+        "lastModified": 1689836741,
+        "owner": "outfoxxed",
+        "repo": "impurity.nix",
+        "rev": "bbc41b69ab5485cd55aa315d08cff865781d3913",
+        "type": "github"
+      },
+      "original": {
+        "owner": "outfoxxed",
+        "repo": "impurity.nix",
         "type": "github"
       }
     },
@@ -930,6 +943,7 @@
         "home-manager": "home-manager",
         "howdy-module": "howdy-module",
         "hyprland": "hyprland",
+        "impurity": "impurity",
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
