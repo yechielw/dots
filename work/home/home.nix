@@ -19,7 +19,6 @@ in
     inputs.walker.homeManagerModules.default
     #inputs.cosmic-manager.homeManagerModules.cosmic-manager
     #    ./cosmic.nix
-
   ];
 
   wm.enable = true;
@@ -28,6 +27,16 @@ in
       enable = true;
       enableZshIntegration = true;
       configFile = ../../ohmyposh/config.toml;
+    };
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      git = true;
+      icons = "auto";
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+      ];
     };
 
     walker = {
@@ -203,8 +212,8 @@ in
     shellAliases = {
       diff = "diff --color=auto";
       ip = "ip --color=auto";
-      ls = "eza";
-      ll = "eza -la -g --icons";
+      #ls = "eza";
+      #ll = "eza -la -g --icons";
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
