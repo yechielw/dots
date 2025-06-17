@@ -6,6 +6,7 @@
       nixpkgs,
       nixpkgs-master,
       home-manager,
+      self,
       ...
     }@inputs:
     let
@@ -18,45 +19,55 @@
       };
     in
     {
-      nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          inherit pkgs-master;
-          #inherit custom-packages
-          inherit settings;
+      nixosConfigurations = {
+        ${settings.hostname} = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            inherit pkgs-master;
+            #inherit custom-packages
+            inherit settings;
+          };
+          modules = [
+
+            #nixos-cosmic.nixosModules.default
+            home-manager.nixosModules.default
+            inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.nix-flatpak.nixosModules.nix-flatpak
+            inputs.espanso-fix.nixosModules.espanso-capdacoverride
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
+            inputs.determinate.nixosModules.default
+            #inputs.impurity.nixosModules.impurity
+            inputs.howdy-module.nixosModules.default
+
+            {
+              services.howdy.enable = true;
+              services.howdy.settings.video.dark_threshold = 80;
+              services.linux-enable-ir-emitter.enable = true;
+              impurity.configRoot = self;
+              impurity.enable = true;
+
+            }
+
+            ./work/configuration.nix
+            ./work/users.nix
+            ./work/hardware-configuration.nix
+            #./work/settings.nix
+            ./work/hacking.nix
+            ./work/work.nix
+            ./work/term.nix
+            ./work/wm.nix
+            ./work/vm.nix
+            ./work/boot.nix
+            ./work/override.nix
+            ./home.nix
+            #./work/howdy.nix
+            #./work/cosmic.nix
+            ./modules/impurity
+          ];
         };
-        modules = [
-
-          #nixos-cosmic.nixosModules.default
-          home-manager.nixosModules.default
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.espanso-fix.nixosModules.espanso-capdacoverride
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
-          inputs.determinate.nixosModules.default
-          inputs.howdy-module.nixosModules.default
-
-          {
-            services.howdy.enable = true;
-            services.howdy.settings.video.dark_threshold = 80;
-            services.linux-enable-ir-emitter.enable = true;
-          }
-
-          ./work/configuration.nix
-          ./work/users.nix
-          ./work/hardware-configuration.nix
-          #./work/settings.nix
-          ./work/hacking.nix
-          ./work/work.nix
-          ./work/term.nix
-          ./work/wm.nix
-          ./work/vm.nix
-          ./work/boot.nix
-          ./work/override.nix
-          ./home.nix
-          #./work/howdy.nix
-          #./work/cosmic.nix
-        ];
+        example-impure = self.nixosConfigurations.nixos.extendModules {
+          modules = [ { impurity.enable = true; } ];
+        };
       };
     };
   inputs = {
@@ -83,5 +94,6 @@
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    impurity.url = "github:outfoxxed/impurity.nix";
   };
 }
