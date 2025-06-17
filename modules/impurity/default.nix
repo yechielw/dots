@@ -23,7 +23,7 @@ let
     let
       impurePathEnv = builtins.getEnv "IMPURITY_PATH";
     in
-    if impurePathEnv == "" then configRoot else impurePathEnv;
+    if impurePathEnv == "" then "/home/yechiel/dots" else impurePathEnv;
 
   createImpurePath =
     path:

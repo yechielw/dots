@@ -3,6 +3,7 @@
   pkgs,
   settings,
   inputs,
+  impurity,
   ...
 }:
 {
@@ -14,6 +15,7 @@
     extraSpecialArgs = {
       inherit inputs;
       inherit settings;
+      inherit impurity;
     };
     users = {
       "${settings.username}" = import ./work/home/home.nix;

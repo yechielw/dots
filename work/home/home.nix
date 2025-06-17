@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   settings,
+  impurity,
   ...
 }:
 let
@@ -212,15 +213,20 @@ in
     };
   };
 
-  xdg.configFile = {
-    nvim.source = ./nixcats;
-    zellij.source = ../../zellij/.config/zellij;
-    alacritty.source = ../../alacritty/.config/alacritty;
-    "hypr/hyprland.conf".source = ../../hypr/hyprland.conf;
-    "hypr/scripts".source = ../../hypr/scripts;
-    waybar.source = ../../waybar;
-    oh-my-posh.source = ../../ohmyposh;
-    ghostty.source = ../../ghostty/.config/ghostty;
-  };
+  xdg.configFile =
+    let
+      link = impurity.link;
+    in
+    {
+      nvim.source = ./nixcats;
+      zellij.source = ../../zellij/.config/zellij;
+      alacritty.source = ../../alacritty/.config/alacritty;
+      #"hypr/hyprland.conf".source = impurity.link ../../hypr/hyprland.conf;
+      "hypr/hyprland.conf".source = link ../../hypr/hyprland.conf;
+      "hypr/scripts".source = ../../hypr/scripts;
+      waybar.source = ../../waybar;
+      oh-my-posh.source = ../../ohmyposh;
+      ghostty.source = ../../ghostty/.config/ghostty;
+    };
   nixGL.vulkan.enable = true;
 }
