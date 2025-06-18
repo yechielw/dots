@@ -38,6 +38,7 @@
             inputs.determinate.nixosModules.default
             #inputs.impurity.nixosModules.impurity
             inputs.howdy-module.nixosModules.default
+            inputs.burpsuite.nixosModules.default
 
             {
               services.howdy.enable = true;
@@ -95,5 +96,6 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     impurity.url = "github:outfoxxed/impurity.nix";
+    burpsuite.url = "github:yechielw/burpsuite.nix";
   };
 }
