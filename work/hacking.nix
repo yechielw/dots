@@ -4,7 +4,7 @@
 }:
 
 let
-  buprp = pkgs.callPackage ./burpsuite/package.nix { };
+  #buprp = pkgs.callPackage ./burpsuite/package.nix { };
 in
 {
   programs.wireshark.enable = true;
@@ -12,7 +12,7 @@ in
   environment.systemPackages = with pkgs; [
 
     trufflehog
-    buprp.pro
+    #buprp.pro
     jython
     bloodhound-py
     caido
