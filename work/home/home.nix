@@ -235,7 +235,7 @@ in
       "hypr/scripts".source = ../../hypr/scripts;
       waybar.source = ../../waybar;
       oh-my-posh.source = ../../ohmyposh;
-      ghostty.source = ../../ghostty/.config/ghostty;
+      ghostty.source = link ../../ghostty/.config/ghostty;
     };
   nixGL.vulkan.enable = true;
 }
