@@ -375,10 +375,10 @@
     },
     "howdy-module": {
       "locked": {
-        "lastModified": 1749692786,
+        "lastModified": 1749735563,
         "owner": "pineapplehunter",
         "repo": "howdy-module",
-        "rev": "b9f26a0cf28ac0df66d6cd5a3e7aca8dfe3594ef",
+        "rev": "479a08f350de5d54dfea51980f1c24922cea0b89",
         "type": "github"
       },
       "original": {

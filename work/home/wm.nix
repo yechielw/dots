@@ -12,6 +12,12 @@
   config = lib.mkIf config.wm.enable {
 
     services = {
+      pasystray = {
+        enable = true;
+        extraOptions = [
+          "--volume-max=150"
+        ];
+      };
       swaync.enable = true;
       swayosd = {
         enable = true;
