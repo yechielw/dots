@@ -58,6 +58,7 @@
             }
 
             ./work/configuration.nix
+            ./work/packages.nix
             ./work/users.nix
             ./work/hardware-configuration.nix
             #./work/settings.nix
