@@ -1,5 +1,8 @@
 {
   pkgs,
+  inputs,
+  master,
+  stable,
   ...
 }:
 
@@ -38,9 +41,11 @@ in
     trufflehog
     #buprp.pro
     jython
-    bloodhound-py
+    python312Packages.bloodhound-py
+    metasploit
     caido
-    netexec
+    #netexec
+    stable.netexec
     seclists
     (pkgs.wordlists.override { lists = with pkgs; [ rockyou ]; })
     feroxbuster
