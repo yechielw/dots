@@ -11,7 +11,8 @@
        /* "custom/os_button", */
         "hyprland/workspaces",
         "wlr/taskbar",
-        "hyprland/submap"
+        "hyprland/submap",
+        "custom/nix-updates"
     ],
     "modules-center": [
     ],
@@ -165,5 +166,21 @@
             ]
         },
         "on-click": "pwvucontrol"
-    } 
+    },
+    "custom/nix-updates": {
+    "exec": "~/.config/waybar/update", // <--- path to script
+    "signal": 12,
+    "on-click": "", // refresh on click
+    "on-click-right": "rm ~/.cache/nix-update-last-run", // force an update
+    "interval": 3600, // refresh every hour
+    "tooltip": true,
+    "return-type": "json",
+    "format": "{} {icon}",
+    "format-icons": {
+        "has-updates": "󰚰", // icon when updates needed
+        "updating": "", // icon when updating
+        "updated": "", // icon when all packages updated
+        "error": "" // icon when errot occurs
+    },
+}
 }

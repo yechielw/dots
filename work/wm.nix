@@ -66,6 +66,7 @@
       grim
       satty
       wayshot
+      libnotify
     ];
 
     services = {
