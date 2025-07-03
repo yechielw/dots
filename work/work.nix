@@ -7,6 +7,7 @@
     #   commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
     # })
     #    citrix_workspace
+    microsoft-edge
   ];
 
   nix.settings = {
