@@ -277,8 +277,9 @@
       clean.enable = true;
       flake = "/home/${settings.username}/dots";
     };
-    nix-ld.enable = true;
+    nix-ld.enable = false;
     nix-ld.libraries = with pkgs; [
+      libcxx
       xorg.libSM
       xorg.libICE
       icu
