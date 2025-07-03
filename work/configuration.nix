@@ -11,10 +11,11 @@
   # custom module with all window  manager stuff
   wm.enable = true;
 
-  services.clamav = {
-    daemon.enable = true;
-    updater.enable = true;
-  };
+  # services.clamav = {
+  #   daemon.enable = true;
+  #   updater.enable = true;
+  #   scanner.enable = true;
+  # };
   services.upower.criticalPowerAction = "Hibernate";
 
   services.udev.packages = [ pkgs.via ];
