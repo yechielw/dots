@@ -5,6 +5,7 @@
     {
       nixpkgs,
       nixpkgs-master,
+      nixpkgs-stable,
       home-manager,
       self,
       ...
@@ -17,12 +18,17 @@
         inherit system;
         config.allowUnfree = true;
       };
+      stable = import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       nixosConfigurations = {
         ${settings.hostname} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
+            inherit stable;
             inherit pkgs-master;
             #inherit custom-packages
             inherit settings;
@@ -73,6 +79,7 @@
     };
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
