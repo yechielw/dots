@@ -3,6 +3,7 @@
   inputs,
   settings,
   pkgs-master,
+  profilepic,
   ...
 }:
 
@@ -227,6 +228,7 @@
 
   systemd.tmpfiles.rules = [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
+    "L /var/lib/AccountsService/icons/${settings.username} - - - - ${profilepic}"
   ];
   systemd.services = {
     enableModem = {
