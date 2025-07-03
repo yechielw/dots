@@ -8,6 +8,7 @@
       nixpkgs-stable,
       home-manager,
       self,
+      profilepic,
       ...
     }@inputs:
     let
@@ -32,6 +33,7 @@
             inherit pkgs-master;
             #inherit custom-packages
             inherit settings;
+            inherit profilepic;
           };
           modules = [
 
@@ -102,7 +104,10 @@
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-    impurity.url = "github:outfoxxed/impurity.nix";
     burpsuite.url = "github:yechielw/burpsuite.nix";
+    profilepic = {
+      url = "https://github.com/yechielw.png";
+      flake = false;
+    };
   };
 }
