@@ -106,6 +106,7 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
+    ghostty.url = "github:ghostty-org/ghostty";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;

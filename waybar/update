@@ -66,11 +66,6 @@ function init_files() {
 }
 
 # ===== Helper Functions =====
-function send_notification() {
-    local title="$1"
-    local message="$2"
-    notify-send "$title" "$message" -e
-}
 
 function check_boot_resume() {
         # This function detects if the system has recently booted or resumed from hibernation/sleep
@@ -182,7 +177,6 @@ function check_for_updates() {
     # Ensure cleanup happens when script exits
     trap "rm -rf '$tempdir'" EXIT
 
-    send_notification "Checking for Updates" "Please be patient"
 
     local updates=0
     local tooltip=""
@@ -220,13 +214,10 @@ function check_for_updates() {
 
     if [ "$updates" -eq 0 ]; then
         echo "System updated" > "$LAST_RUN_TOOLTIP"
-        send_notification "Update Check Complete" "No updates available"
     elif [ "$updates" -eq 1 ]; then
         echo "$tooltip" > "$LAST_RUN_TOOLTIP"
-        send_notification "Update Check Complete" "Found 1 update"
     else
         echo "$tooltip" > "$LAST_RUN_TOOLTIP"
-        send_notification "Update Check Complete" "Found $updates updates"
     fi
 
     return 0
@@ -296,14 +287,12 @@ function main() {
               fi
           else
               # Use saved state
-              send_notification "Please Wait" "Next update is in $(calc_next_update) min."
               var_setter
           fi
       fi
     else
         updates=$(cat "$STATE_FILE")
         var_setter
-        send_notification "Update Check Failed" "Not connected to the internet"
     fi
 
     # Output JSON for Waybar
