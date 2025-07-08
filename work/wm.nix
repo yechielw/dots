@@ -12,6 +12,7 @@
 
   config = lib.mkIf config.wm.enable {
     nix.settings = {
+      trusted-users = [ "@wheel" ];
       substituters = [
         "https://hyprland.cachix.org"
       ];

@@ -173,8 +173,6 @@ adw-toolbar-style = raised
 
 gtk-wide-tabs = true
 
-gtk-adwaita = true
-
 desktop-notifications = true
 
 bold-is-bright = false

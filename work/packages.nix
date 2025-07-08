@@ -6,6 +6,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    inputs.ghostty.packages.${pkgs.system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
     clamav
     pkgs-master.bitwarden
@@ -13,7 +14,6 @@
     alsa-utils
     beeper
     element-desktop
-    ghostty
     obsidian
     xxd
     wirelesstools
