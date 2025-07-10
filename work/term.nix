@@ -1,10 +1,10 @@
-{pkgs, ...}:
+{ pkgs, cats, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     atuin
     bat
-    eza  
+    eza
     ripgrep
     zoxide
     fd

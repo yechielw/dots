@@ -125,7 +125,7 @@
   security.pki.certificateFiles = [
     ../certs/netspark.pem
     ../certs/burp.pem
-    ../certs/ca.crt
+    ../certs/ca.pem
   ];
 
   services.pipewire = {
