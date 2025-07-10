@@ -86,3 +86,7 @@
 [18:24:00] [debug] All emitters are configured.
 [18:24:00] [debug] Configuration for /dev/video2 saved here: etc/linux-enable-ir-emitter/pci-0000:00:14.0-usb-0:4:1.2-video-index0.
 [18:24:00] [info] The infrared camera has been successfully configured.
+[10:33:37] [INFO] Stand in front of and close to the camera and make sure the room is well lit.
+[10:33:37] [INFO] Ensure to not use the camera during the execution.
+[10:33:38] [INFO] Configuring the camera /dev/video2.
+[10:34:27] [INFO] The infrared camera has been successfully configured.

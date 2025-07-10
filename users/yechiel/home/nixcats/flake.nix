@@ -293,7 +293,7 @@
             # they contain a settings set defined above
             # see :help nixCats.flake.outputs.settings
             settings = {
-              wrapRc = true;
+              wrapRc = false;
               # IMPORTANT:
               # your alias may not conflict with your other packages.
               aliases = [

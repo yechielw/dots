@@ -9,6 +9,7 @@
       home-manager,
       self,
       profilepic,
+      cats,
       ...
     }@inputs:
     let
@@ -26,7 +27,7 @@
     in
     {
       nixosConfigurations = {
-        ${settings.hostname} = nixpkgs.lib.nixosSystem {
+        nixos = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit stable;
@@ -34,6 +35,7 @@
             #inherit custom-packages
             inherit settings;
             inherit profilepic;
+            inherit cats;
           };
           modules = [
 
@@ -59,7 +61,7 @@
 
             ./work/configuration.nix
             ./work/packages.nix
-            ./work/users.nix
+            #./work/users.nix
             ./work/hardware-configuration.nix
             #./work/settings.nix
             ./work/hacking.nix
@@ -69,13 +71,13 @@
             ./work/vm.nix
             ./work/boot.nix
             ./work/override.nix
-            ./home.nix
+            ./users/yechiel/home/home.nix
             #./work/howdy.nix
             #./work/cosmic.nix
             ./modules/impurity
           ];
         };
-        example-impure = self.nixosConfigurations.nixos.extendModules {
+        testing = self.nixosConfigurations.nixos.extendModules {
           modules = [ { impurity.enable = true; } ];
         };
       };
@@ -107,6 +109,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
+    cats.url = "./work/home/nixcats";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
