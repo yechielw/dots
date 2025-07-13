@@ -39,7 +39,7 @@
     google-chrome
     gzip
     kitty
-    neovim
+    #neovim
     lua-language-server
     nodejs
     pipx

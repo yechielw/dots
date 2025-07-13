@@ -14,7 +14,7 @@
     }@inputs:
     let
       #system = "x86_64-linux";
-      settings = import ./work/settings.nix;
+      settings = import ./nix/settings.nix;
       system = "${settings.system}";
       pkgs-master = import nixpkgs-master {
         inherit system;
@@ -59,21 +59,21 @@
 
             }
 
-            ./work/configuration.nix
-            ./work/packages.nix
-            #./work/users.nix
-            ./work/hardware-configuration.nix
-            #./work/settings.nix
-            ./work/hacking.nix
-            ./work/work.nix
-            ./work/term.nix
-            ./work/wm.nix
-            ./work/vm.nix
-            ./work/boot.nix
-            ./work/override.nix
+            ./nix/configuration.nix
+            ./nix/packages.nix
+            #./nix/users.nix
+            ./nix/hardware-configuration.nix
+            #./nix/settings.nix
+            ./nix/hacking.nix
+            ./nix/work.nix
+            ./nix/term.nix
+            ./nix/wm.nix
+            ./nix/vm.nix
+            ./nix/boot.nix
+            ./nix/override.nix
             ./users/yechiel/home/home.nix
-            #./work/howdy.nix
-            #./work/cosmic.nix
+            #./nix/howdy.nix
+            #./nix/cosmic.nix
             ./modules/impurity
           ];
         };
@@ -109,7 +109,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    cats.url = "./work/home/nixcats";
+    cats.url = "./nix/home/nixcats";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;

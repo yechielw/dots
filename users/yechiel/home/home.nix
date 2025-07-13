@@ -34,7 +34,7 @@
       yechiel = {
         imports = [
           ./zsh.nix
-          ./custom.nix
+          #./oh-my-posh.nix
           ./wm.nix
           inputs.walker.homeManagerModules.default
           #inputs.cosmic-manager.homeManagerModules.cosmic-manager
@@ -253,7 +253,7 @@
             "hypr/hyprland.conf".source = link ../../../hypr/hyprland.conf;
             "hypr/scripts".source = link ../../../hypr/scripts;
             waybar.source = link ../../../waybar;
-            oh-my-posh.source = link ../../../ohmyposh;
+            #oh-my-posh.source = link ../../../ohmyposh;
             ghostty.source = link ../../../ghostty/.config/ghostty;
           };
         nixGL.vulkan.enable = true;
