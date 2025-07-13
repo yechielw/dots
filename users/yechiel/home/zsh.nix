@@ -47,10 +47,8 @@
       # };
       initContent = ''
         source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-        #fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
-        #fpath+=(${pkgs.nix-zsh-completions}/share/zsh/site-functions)
-        #source ${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh
         source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         [ ! -e $TMUX ] || tmux a
       '';
     };

@@ -84,11 +84,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "path": "./work/home/nixcats",
+        "path": "./nix/home/nixcats",
         "type": "path"
       },
       "original": {
-        "path": "./work/home/nixcats",
+        "path": "./nix/home/nixcats",
         "type": "path"
       },
       "parent": []
