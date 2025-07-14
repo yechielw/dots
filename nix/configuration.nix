@@ -122,11 +122,11 @@
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  security.pki.certificateFiles = [
-    ../certs/netspark.pem
-    ../certs/burp.pem
-    ../certs/ca.pem
-  ];
+  security.pki.certificateFiles = pkgs.lib.filesystem.listFilesRecursive ../config/certs;
+
+  #   [
+  #   ../config/certs/netspark.pem
+  #   ../config/certs/burp.pem
 
   services.pipewire = {
     enable = true;
@@ -188,7 +188,7 @@
 
     enable = false;
     keyboards.my = {
-      configFile = ../katana/kanata.kbd;
+      configFile = ../config/katana/kanata.kbd;
       #:: devices = [ ];
       devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
 

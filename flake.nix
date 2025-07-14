@@ -109,7 +109,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    cats.url = "./nixcats";
+    cats.url = "./config/nixcats";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
