@@ -84,11 +84,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "path": "./nixcats",
+        "path": "./config/nixcats",
         "type": "path"
       },
       "original": {
-        "path": "./nixcats",
+        "path": "./config/nixcats",
         "type": "path"
       },
       "parent": []
@@ -837,11 +837,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1752442115,
-        "narHash": "sha256-djTI9EWXwA6hsJZrh2e3hv6z/w75npvNY/Tquomh/6I=",
+        "lastModified": 1752487168,
+        "narHash": "sha256-rrlr12+bQTwZs3q1Xa+2tmAAO3jQBHg0EM499JmujfI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e676f71b547b256b026d4210f643e4505c9ebb23",
+        "rev": "28c1c6e349d85c1b1e6e7afa68bb9decab81a483",
         "type": "github"
       },
       "original": {

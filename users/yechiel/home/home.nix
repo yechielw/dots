@@ -4,6 +4,7 @@
   settings,
   inputs,
   impurity,
+  pkgs-master,
   ...
 }:
 {
@@ -46,7 +47,7 @@
           oh-my-posh = {
             enable = true;
             enableZshIntegration = true;
-            configFile = ../../../ohmyposh/config.toml;
+            configFile = ../../../config/ohmyposh/config.toml;
           };
           eza = {
             enable = true;
@@ -219,7 +220,7 @@
           sessionPath = [
             "$HOME/.pyenv/bin"
             "$HOME/.local/bin"
-            "$HOME/go/bin"
+            "$HO../../../confign"
             "$HOME/.cargo/bin"
           ];
 
@@ -242,19 +243,27 @@
           };
         };
 
+        xdg.autostart = {
+          enable = true;
+          entries = [
+            "${pkgs-master.bitwarden}/bin/bitwarden"
+            "${pkgs-master.bitwarden}/bin/rquickshare"
+            "${pkgs-master.bitwarden}/bin/trayscale"
+          ];
+        };
         xdg.configFile =
           let
             link = impurity.link;
           in
           {
-            nvim.source = link ../../../work/home/nixcats;
-            zellij.source = link ../../../zellij/.config/zellij;
-            alacritty.source = link ../../../alacritty/.config/alacritty;
-            "hypr/hyprland.conf".source = link ../../../hypr/hyprland.conf;
-            "hypr/scripts".source = link ../../../hypr/scripts;
-            waybar.source = link ../../../waybar;
-            #oh-my-posh.source = link ../../../ohmyposh;
-            ghostty.source = link ../../../ghostty/.config/ghostty;
+            nvim.source = link ../../../config/work/home/nixcats;
+            zellij.source = link ../../../config/zellij/.config/zellij;
+            alacritty.source = link ../../../config/alacritty/.config/alacritty;
+            "hypr/hyprland.conf".source = link ../../../config/hypr/hyprland.conf;
+            "hypr/scripts".source = link ../../../config/hypr/scripts;
+            waybar.source = link ../../../config/waybar;
+            #oh-my-posh.source = link ../../../config/ohmyposh;
+            ghostty.source = link ../../../config/ghostty/.config/ghostty;
           };
         nixGL.vulkan.enable = true;
       };
