@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
 
   boot = {
@@ -6,7 +11,10 @@
       systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
-    #plymouth.enable = true;
+    plymouth.enable = true;
+    plymouth.font = "${
+      inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
+    }/share/fonts/opentype/SFProTextNerdFont-Medium.otf";
     initrd.systemd.enable = true;
 
     # secureboot enabled systemdboot dropin repolacement

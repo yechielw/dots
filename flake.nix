@@ -51,9 +51,9 @@
             inputs.burpsuite.nixosModules.default
 
             {
-              services.howdy.enable = true;
-              services.howdy.settings.video.dark_threshold = 80;
-              services.linux-enable-ir-emitter.enable = true;
+              #services.howdy.enable = true;
+              #services.howdy.settings.video.dark_threshold = 80;
+              #services.linux-enable-ir-emitter.enable = true;
               impurity.configRoot = self;
               impurity.enable = true;
 
@@ -109,7 +109,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    cats.url = "./nix/home/nixcats";
+    cats.url = "./nixcats";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;

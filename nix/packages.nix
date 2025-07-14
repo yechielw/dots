@@ -36,7 +36,12 @@
     file
     git
     go
-    google-chrome
+    (google-chrome.override {
+      commandLineArgs = ''
+        --enable-features=AllowLegacyMV2Extensions
+        --disable-features=ExtensionManifestV2DeprecationWarning,ExtensionManifestV2Disabled,ExtensionManifestV2Unsupported
+      '';
+    })
     gzip
     kitty
     #neovim
