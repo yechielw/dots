@@ -4,7 +4,7 @@
 # This script checks for NixOS updates and outputs JSON for Waybar integration
 
 # ===== Configuration =====
-UPDATE_INTERVAL=3599  # Check interval in seconds (1 hour)
+UPDATE_INTERVAL=43199  
 NIXOS_CONFIG_PATH="$HOME/dots"
 CACHE_DIR="$HOME/.cache"
 STATE_FILE="$CACHE_DIR/nix-update-state"
