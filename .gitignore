@@ -3,3 +3,5 @@ tmux/.config/tmux/plugins
 #lazy-lock.json
 *~
 result
+result-man
+*.log
