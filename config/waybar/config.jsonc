@@ -12,7 +12,7 @@
         "hyprland/workspaces",
         "wlr/taskbar",
         "hyprland/submap",
-        "custom/nix-updates"
+       // "custom/nix-updates"
     ],
     "modules-center": [
     ],
