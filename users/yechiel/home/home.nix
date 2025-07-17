@@ -249,6 +249,7 @@
             "${pkgs-master.bitwarden}/bin/bitwarden"
             "${pkgs-master.bitwarden}/bin/rquickshare"
             "${pkgs-master.bitwarden}/bin/trayscale"
+            "${pkgs-master.beeper}/bin/beeper"
           ];
         };
         xdg.configFile =
