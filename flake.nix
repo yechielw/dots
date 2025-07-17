@@ -51,9 +51,10 @@
             inputs.burpsuite.nixosModules.default
 
             {
-              #services.howdy.enable = true;
-              #services.howdy.settings.video.dark_threshold = 80;
-              #services.linux-enable-ir-emitter.enable = true;
+              services.howdy.enable = true;
+              services.howdy.settings.video.dark_threshold = 80;
+              environment.sessionVariables.OMP_NUM_THREADS = 1;
+              services.linux-enable-ir-emitter.enable = true;
               impurity.configRoot = self;
               impurity.enable = true;
 
