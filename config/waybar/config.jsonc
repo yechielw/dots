@@ -11,11 +11,10 @@
        /* "custom/os_button", */
         "hyprland/workspaces",
         "wlr/taskbar",
-        "hyprland/submap",
+        "hyprland/submap"
        // "custom/nix-updates"
     ],
-    "modules-center": [
-    ],
+    "modules-center": [ ],
     "modules-right": [
         "custom/events",
         "hyprland/language",
