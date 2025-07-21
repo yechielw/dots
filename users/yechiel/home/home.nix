@@ -256,15 +256,22 @@
           };
         };
 
-        xdg.autostart = {
-          enable = true;
-          entries = [
-            "${pkgs-master.bitwarden}/bin/bitwarden"
-            "${pkgs-master.bitwarden}/bin/rquickshare"
-            "${pkgs-master.bitwarden}/bin/trayscale"
-            "${pkgs-master.beeper}/bin/beeper"
-          ];
-        };
+        xdg.autostart =
+          let
+            e = pkgs.lib.getExe;
+          in
+          {
+            enable = true;
+            entries = [
+              # "${pkgs-master.bitwarden}/bin/rquickshare"
+              # "${pkgs-master.bitwarden}/bin/trayscale"
+              # "${pkgs-master.beeper}/bin/beeper"
+              (e pkgs-master.bitwarden)
+              (e pkgs-master.trayscale)
+              (e pkgs-master.beeper)
+              (e pkgs-master.element-desktop)
+            ];
+          };
         xdg.configFile =
           let
             link = impurity.link;
