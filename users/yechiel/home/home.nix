@@ -44,6 +44,19 @@
 
         wm.enable = true;
         programs = {
+
+          ghostty = {
+            enable = true;
+            enableZshIntegration = true;
+            package = inputs.ghostty.packages.${pkgs.system}.default;
+            settings = {
+              window-decoration = false;
+              theme = "Dark+";
+              font-size = 12;
+              cursor-invert-fg-bg = true;
+            };
+          };
+
           oh-my-posh = {
             enable = true;
             enableZshIntegration = true;
@@ -264,7 +277,7 @@
             "hypr/scripts".source = link ../../../config/hypr/scripts;
             waybar.source = link ../../../config/waybar;
             #oh-my-posh.source = link ../../../config/ohmyposh;
-            ghostty.source = link ../../../config/ghostty/.config/ghostty;
+            #ghostty.source = link ../../../config/ghostty/.config/ghostty;
           };
         nixGL.vulkan.enable = true;
       };
