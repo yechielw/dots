@@ -26,6 +26,8 @@
       };
     in
     {
+      nvim = inputs.cats.packages.${system}.default;
+
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = {
