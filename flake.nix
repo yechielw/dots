@@ -13,16 +13,16 @@
       ...
     }@inputs:
     let
-      #system = "x86_64-linux";
+      system = "x86_64-linux";
       settings = import ./nix/settings.nix;
-      system = "${settings.system}";
+      config.allowUnfree = true;
       pkgs-master = import nixpkgs-master {
         inherit system;
-        config.allowUnfree = true;
+        inherit config;
       };
       stable = import nixpkgs-stable {
         inherit system;
-        config.allowUnfree = true;
+        inherit config;
       };
     in
     {
