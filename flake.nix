@@ -91,7 +91,7 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
-    home-manager.url = "github:yechielw/home-manager";
+    home-manager.url = "github:nix-community/home-manager/pull/4976/head";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";

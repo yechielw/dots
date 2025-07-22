@@ -40,6 +40,7 @@
           inputs.walker.homeManagerModules.default
           #inputs.cosmic-manager.homeManagerModules.cosmic-manager
           #    ./cosmic.nix
+          ./custom.nix
         ];
 
         wm.enable = true;
@@ -57,7 +58,7 @@
             };
           };
 
-          oh-my-posh = {
+          oh-my-posh-dev = {
             enable = true;
             enableZshIntegration = true;
             configFile = ../../../config/ohmyposh/config.toml;
