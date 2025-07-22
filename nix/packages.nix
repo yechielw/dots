@@ -9,6 +9,7 @@
     inputs.cats.packages.${pkgs.system}.default
     #    inputs.ghostty.packages.${pkgs.system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
+    gemini-cli
     clamav
     pkgs-master.bitwarden
     nixd
@@ -36,12 +37,7 @@
     file
     git
     go
-    (google-chrome.override {
-      commandLineArgs = ''
-        --enable-features=AllowLegacyMV2Extensions
-        --disable-features=ExtensionManifestV2DeprecationWarning,ExtensionManifestV2Disabled,ExtensionManifestV2Unsupported
-      '';
-    })
+    google-chrome
     gzip
     kitty
     #neovim
