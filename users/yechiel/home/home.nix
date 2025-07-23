@@ -58,8 +58,9 @@
             };
           };
 
+          starship.enable = true;
           oh-my-posh-dev = {
-            enable = true;
+            enable = false;
             enableZshIntegration = true;
             configFile = ../../../config/ohmyposh/config.toml;
           };

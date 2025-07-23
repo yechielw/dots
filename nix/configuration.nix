@@ -52,12 +52,6 @@
     };
     networkmanager = {
       enable = true;
-      # settings = {
-      #   # Disable WiFi power management
-      #   "connection" = {
-      #     "wifi.powersave" = 2;
-      #   };
-      # };
     };
   };
 
@@ -105,16 +99,8 @@
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
-  hardware.firmware = [ pkgs.sof-firmware ];
   hardware.bluetooth = {
     enable = true;
-    settings = {
-      General = {
-        # ControllerMode = "bredr";
-        # Enable = "Source,Sink,Media,Socket";
-        #
-      };
-    };
   };
 
   hardware.i2c.enable = true;
@@ -124,18 +110,12 @@
   security.polkit.enable = true;
   security.pki.certificateFiles = pkgs.lib.filesystem.listFilesRecursive ../config/certs;
 
-  #   [
-  #   ../config/certs/netspark.pem
-  #   ../config/certs/burp.pem
-
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    #wireplumber.enable = true;
-    # If you want to use JACK applications, uncomment this
     jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
@@ -231,17 +211,6 @@
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
     "L /var/lib/AccountsService/icons/${settings.username} - - - - ${profilepic}"
   ];
-  systemd.services = {
-    enableModem = {
-      description = "Enable Quectel Modem on Startup";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = [ "${pkgs.libmbim}/bin/mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on" ];
-      };
-    };
-  };
 
   system.stateVersion = "24.05"; # "24.05"; # Did you read the comment?
 
@@ -277,42 +246,6 @@
       clean.enable = true;
       flake = "/home/${settings.username}/dots";
     };
-    nix-ld.enable = false;
-    nix-ld.libraries = with pkgs; [
-      libcxx
-      xorg.libSM
-      xorg.libICE
-      icu
-      libgcc.lib
-      e2fsprogs
-      libdrm
-      mesa
-      fontconfig
-      freetype
-      fribidi
-      libgbm
-      libGL
-      libgpg-error
-      harfbuzz
-      gcc
-      xorg.libX11
-      #libX11_xcb
-      xorg.libxcb
-      zlib
-      gvfs # Add gvfs for the missing symbols
-      glib # Add glib for GIO-related errors
-      xorg.xkbcomp
-      #xorg # Add X11 and XKB config
-      #stdenv.cc.cc
-      #zlib
-      #fuse3
-      #icu
-      #nss
-      #openssl
-      #curl
-      #expat
-      # ...
-    ];
     zsh.enable = true;
 
     appimage = {

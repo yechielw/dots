@@ -46,7 +46,6 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.espanso-fix.nixosModules.espanso-capdacoverride
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
             inputs.determinate.nixosModules.default
             #inputs.impurity.nixosModules.impurity
             inputs.howdy-module.nixosModules.default
@@ -65,7 +64,7 @@
             ./nix/configuration.nix
             ./nix/packages.nix
             #./nix/users.nix
-            ./nix/hardware-configuration.nix
+            ./nix/hosts/lenovo-thinkpad-x13.nix
             #./nix/settings.nix
             ./nix/hacking.nix
             ./nix/work.nix
@@ -75,9 +74,7 @@
             ./nix/boot.nix
             ./nix/override.nix
             ./users/yechiel/home/home.nix
-            #./nix/howdy.nix
-            #./nix/cosmic.nix
-            ./modules/impurity
+            ./nix/modules/impurity
           ];
         };
         testing = self.nixosConfigurations.nixos.extendModules {
