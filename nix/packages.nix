@@ -6,6 +6,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    inputs.raise.defaultPackage.x86_64-linux
     inputs.cats.packages.${pkgs.system}.default
     #    inputs.ghostty.packages.${pkgs.system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
