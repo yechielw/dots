@@ -110,6 +110,9 @@
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
     cats.url = "./config/nixcats";
+    raise.url = "github:knarkzel/raise";
+    raise.inputs.nixpkgs.follows = "nixpkgs";
+
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
