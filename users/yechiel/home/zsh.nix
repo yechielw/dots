@@ -11,6 +11,10 @@
     zsh = {
       enable = true;
 
+      oh-my-zsh = {
+        enable = true;
+        theme = "eastwood";
+      };
       enableCompletion = true;
 
       #autosuggestion = true;
@@ -49,7 +53,6 @@
         source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
         source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
         source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        [ ! -e $TMUX ] || tmux a
       '';
     };
   };
