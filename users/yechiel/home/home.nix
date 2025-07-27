@@ -58,7 +58,7 @@
             };
           };
 
-          starship.enable = true;
+          #starship.enable = true;
           oh-my-posh-dev = {
             enable = false;
             enableZshIntegration = true;
