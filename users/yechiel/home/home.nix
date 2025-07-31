@@ -25,7 +25,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "hm-bckup";
+    backupFileExtension = "bck";
     extraSpecialArgs = {
       inherit inputs;
       inherit settings;
@@ -35,12 +35,9 @@
       yechiel = {
         imports = [
           ./zsh.nix
-          #./oh-my-posh.nix
           ./wm.nix
           inputs.walker.homeManagerModules.default
-          #inputs.cosmic-manager.homeManagerModules.cosmic-manager
-          #    ./cosmic.nix
-          ./custom.nix
+          ./hypr.nix
         ];
 
         wm.enable = true;
@@ -59,21 +56,6 @@
           };
 
           #starship.enable = true;
-          oh-my-posh-dev = {
-            enable = false;
-            enableZshIntegration = true;
-            configFile = ../../../config/ohmyposh/config.toml;
-          };
-          eza = {
-            enable = true;
-            enableZshIntegration = true;
-            git = true;
-            icons = "auto";
-            extraOptions = [
-              "--group-directories-first"
-              "--header"
-            ];
-          };
 
           walker = {
             enable = true;
@@ -81,8 +63,6 @@
           };
 
           home-manager.enable = true;
-          command-not-found.enable = false;
-          nix-index.enable = true;
 
           git = {
             enable = true;
@@ -101,26 +81,12 @@
             };
           };
 
-          zoxide = {
-            enable = true;
-            #  enableZshIntegration = true;
-          };
-          fzf = {
-            enable = true;
-            enableZshIntegration = true;
-          };
-          atuin = {
-            enable = true;
-            enableZshIntegration = true;
-            flags = [
-              #"--disable-up-arrow"
-            ];
-          };
           kitty = {
             enable = true;
+            enableGitIntegration = true;
             font = {
               name = "JetBrainsMono Nerd Font";
-              #name = "MonacoLigaturized";
+              package = pkgs.nerd-fonts.jetbrains-mono;
               size = 12;
             };
             shellIntegration = {
@@ -134,54 +100,6 @@
             };
           };
 
-          lesspipe.enable = true;
-
-          pyenv = {
-            enable = false;
-            enableZshIntegration = true;
-          };
-          direnv = {
-            enable = true;
-            nix-direnv.enable = true;
-            enableZshIntegration = true;
-          };
-          tmux = {
-            enable = true;
-            baseIndex = 1;
-            clock24 = true;
-            disableConfirmationPrompt = true;
-            historyLimit = 50000;
-            keyMode = "vi";
-            customPaneNavigationAndResize = true;
-            mouse = true;
-            newSession = true;
-            shortcut = "a";
-            terminal = "screen-256color";
-            plugins = with pkgs.tmuxPlugins; [
-              ctrlw
-              {
-                plugin = resurrect;
-                extraConfig = "set -g @resurrect-capture-pane-contents 'on'";
-              }
-              {
-                plugin = continuum;
-                extraConfig = "set -g @continuum-restore 'on'";
-              }
-              {
-                plugin = tmux-which-key;
-                extraConfig = ''
-                  set -g @tmux-which-key-disable-autobuild 1
-                  set -g @tmux-which-key-xdg-enable 1
-                '';
-              }
-              jump
-              logging
-              extrakto
-            ];
-            extraConfig = ''
-              set -g renumber-windows on
-            '';
-          };
         };
 
         gtk = {
@@ -232,62 +150,21 @@
           file = {
           };
 
-          sessionPath = [
-            "$HOME/.pyenv/bin"
-            "$HOME/.local/bin"
-            "$HO../../../confign"
-            "$HOME/.cargo/bin"
-          ];
-
           sessionVariables = {
-            EDITOR = "nvim";
-            NIX_AUTO_RUN = 1;
             NIXPKGS_ALLOW_UNFREE = 1;
           };
 
-          shellAliases = {
-            diff = "diff --color=auto";
-            ip = "ip --color=auto";
-            #ls = "eza";
-            #ll = "eza -la -g --icons";
-            v = "nvim";
-            vi = "nvim";
-            vim = "nvim";
-            cat = "bat -p";
-            history = "history 0";
-          };
         };
 
-        xdg.autostart =
-          let
-            e = pkgs.lib.getExe;
-          in
-          {
-            enable = true;
-            entries = [
-              # "${pkgs-master.bitwarden}/bin/rquickshare"
-              # "${pkgs-master.bitwarden}/bin/trayscale"
-              # "${pkgs-master.beeper}/bin/beeper"
-              (e pkgs-master.bitwarden)
-              (e pkgs-master.trayscale)
-              (e pkgs-master.beeper)
-              (e pkgs-master.element-desktop)
-            ];
-          };
-        xdg.configFile =
-          let
-            link = impurity.link;
-          in
-          {
-            nvim.source = link ../../../config/work/home/nixcats;
-            zellij.source = link ../../../config/zellij/.config/zellij;
-            alacritty.source = link ../../../config/alacritty/.config/alacritty;
-            "hypr/hyprland.conf".source = link ../../../config/hypr/hyprland.conf;
-            "hypr/scripts".source = link ../../../config/hypr/scripts;
-            waybar.source = link ../../../config/waybar;
-            #oh-my-posh.source = link ../../../config/ohmyposh;
-            #ghostty.source = link ../../../config/ghostty/.config/ghostty;
-          };
+        xdg.autostart = {
+          enable = true;
+          entries = [
+            "${pkgs-master.rquickshare}/share/applications/rquickshare.desktop"
+            "${pkgs-master.bitwarden}/share/applications/bitwarden.desktop"
+            "${pkgs-master.beeper}/share/applications/beepertexts.desktop"
+          ];
+        };
+        xdg.configFile = { };
         nixGL.vulkan.enable = true;
       };
     };

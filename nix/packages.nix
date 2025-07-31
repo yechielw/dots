@@ -10,6 +10,7 @@
     inputs.cats.packages.${pkgs.system}.default
     #    inputs.ghostty.packages.${pkgs.system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
+    adwaita-icon-theme
     gemini-cli
     clamav
     pkgs-master.bitwarden

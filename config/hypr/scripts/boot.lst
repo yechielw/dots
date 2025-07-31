@@ -1,5 +1,0 @@
-systemctl reboot
-systemctl poweroff
-systemctl hibrnate
-systemctl suspend
-kitty kitten notify aaia

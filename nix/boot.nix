@@ -11,8 +11,8 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
-    plymouth.themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
-    plymouth.theme = "catppuccin-mocha";
+    #    plymouth.themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
+    # plymouth.theme = "catppuccin-mocha";
     initrd.systemd.enable = true;
 
     # secureboot enabled systemdboot dropin repolacement

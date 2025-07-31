@@ -29,7 +29,7 @@
       nvim = inputs.cats.packages.${system}.default;
 
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        lenovo-thinkpad-x13 = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit stable;
@@ -46,7 +46,7 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.espanso-fix.nixosModules.espanso-capdacoverride
-            inputs.determinate.nixosModules.default
+            #inputs.determinate.nixosModules.default
             #inputs.impurity.nixosModules.impurity
             inputs.howdy-module.nixosModules.default
             inputs.burpsuite.nixosModules.default
@@ -63,6 +63,8 @@
 
             ./nix/configuration.nix
             ./nix/packages.nix
+            ./nix/programs.nix
+            ./nix/services.nix
             #./nix/users.nix
             ./nix/hosts/lenovo-thinkpad-x13.nix
             #./nix/settings.nix
@@ -83,15 +85,15 @@
       };
     };
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     home-manager.url = "github:nix-community/home-manager/pull/4976/head";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     hyprland.url = "github:hyprwm/Hyprland";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";

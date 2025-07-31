@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -11,6 +12,10 @@
 
   config = lib.mkIf config.wm.enable {
 
+    # xdg.portal.configPackages = [
+    #   pkgs.xdg-desktop-portal-hyprland
+    #   pkgs.xdg-desktop-portal-gtk
+    # ];
     services = {
       pasystray = {
         enable = true;
@@ -27,7 +32,8 @@
       copyq.enable = true;
       blueman-applet.enable = true;
       flameshot.enable = true;
-      polkit-gnome.enable = true;
+      hyprpolkitagent.enable = true;
+      #polkit-gnome.enable = true;
 
       trayscale.enable = true;
 
@@ -86,6 +92,181 @@
     programs.waybar = {
       enable = true;
       systemd.enable = true;
+      settings = {
+        mainBar = {
+          layer = "bottom";
+          position = "top";
+          mod = "dock";
+          exclusive = true;
+          gtk-layer-shell = true;
+          margin-bottom = -1;
+          ssthrough = false;
+          height = 24;
+          modules-left = [
+            "hyprland/workspaces"
+            "wlr/taskbar"
+            "hyprland/submap"
+          ];
+          modules-center = [ ];
+          modules-right = [
+            "custom/events"
+            "hyprland/language"
+            "tray"
+            "pulseaudio"
+            "battery"
+            "custom/swaync"
+            "clock"
+            "custom/wlogout"
+          ];
+          "hyprland/window" = {
+            format = "{title}";
+            separate-outputs = true;
+          };
+          "hyprland/language" = {
+            format = "{}";
+            format-en = "EN";
+            format-he = "HE";
+          };
+          "hyprland/workspaces" = {
+            icon-size = 16;
+            spacing = 10;
+            on-scroll-up = "hyprctl dispatch workspace r+1";
+            on-scroll-down = "hyprctl dispatch workspace r-1";
+            show-special = true;
+          };
+          "custom/os_button" = {
+            format = "";
+            on-click = "wofi --show drun -I -W 30%";
+            tooltip = false;
+          };
+          "custom/swaync" = {
+            tooltip = false;
+            format = "{icon}";
+            format-icons = {
+              notification = " 󰅸 ";
+              none = "  ";
+              dnd-notification = " <span foreground='red'><small><sup>⬤</sup></small></span>";
+              dnd-none = "  ";
+            };
+            "custom/wlogout" = {
+              format = "";
+              exec = "wlogout";
+            };
+            "custom/events" = {
+              format = "{}";
+              tooltip = true;
+              interval = 300;
+              format-icons = {
+                default = "";
+              };
+              exec = "waybar-khal.py";
+              return-type = "json";
+            };
+            return-type = "json";
+            exec-if = "which swaync-client";
+            exec = "swaync-client -swb";
+            on-click = "sleep 0.1 && swaync-client -t -sw";
+            on-click-right = "sleep 0.1 && swaync-client -d -sw";
+            escape = true;
+          };
+          "wlr/taskbar" = {
+            format = "{icon}";
+            icon-size = 20;
+            spacing = 3;
+            on-click-middle = "close";
+            tooltip-format = "{title}";
+            ignore-list = [ ];
+            on-click = "activate";
+          };
+          tray = {
+            icon-size = 18;
+            spacing = 3;
+          };
+          clock = {
+            format = "{:%a %e %b %H:%M}";
+            calendar = {
+              mode = "year";
+              mode-mon-col = 3;
+              weeks-pos = "right";
+              on-scroll = 1;
+              on-click-right = "mode";
+              format = {
+                months = "<span color='#ffead3'><b>{}</b></span>";
+                days = "<span color='#ecc6d9'><b>{}</b></span>";
+                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+              };
+            };
+            actions = {
+              on-click-right = "mode";
+              on-click-forward = "tz_up";
+              on-click-backward = "tz_down";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
+            };
+          };
+          battery = {
+            states = {
+              good = 95;
+              warning = 30;
+              critical = 20;
+            };
+            format = "{icon} {capacity}%";
+            format-charging = " {capacity}%";
+            format-plugged = " {capacity}%";
+            format-alt = "{time} {icon}";
+            format-icons = [
+              "󰂎"
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+          };
+          pulseaudio = {
+            max-volume = 150;
+            scroll-step = 10;
+            format = "{icon}";
+            format-bluetooth = "  ";
+            tooltip-format = "{volume}%";
+            format-muted = "  ";
+            format-icons = {
+              "alsa_output.usb-Lenovo_Lenovo_USB-C_Dock_USB_Audio_000000000000-00.analog-stereo" = "  ";
+              headphone = "  ";
+              default = [
+                "  "
+                "  "
+                "   "
+              ];
+            };
+            on-click = "pwvucontrol";
+          };
+          "custom/nix-updates" = {
+            exec = "~/.config/waybar/update";
+            signal = 12;
+            on-click = "";
+            on-click-right = "rm ~/.cache/nix-update-last-run";
+            interval = 3600;
+            tooltip = true;
+            return-type = "json";
+            format = "{} {icon}";
+            format-icons = {
+              has-updates = "󰚰";
+              updating = "";
+              updated = "";
+              error = "";
+            };
+          };
+        };
+      };
+      style = builtins.readFile ../../../config/waybar/style.css;
     };
 
     programs.hyprlock = {
@@ -104,7 +285,6 @@
 
         background = [
           {
-            #path = "/run/user/1000/gvfs/google-drive:host=gmail.com,user=yechielworen/0APHyODMOZp4NUk9PVA/1vs1ck5qp3TXDt6WfkJsOeVvRVLBSVl1p";
             path = "/home/yechiel/Pictures/Sruly.jpg";
             blur_passes = 3;
             blur_size = 8;
