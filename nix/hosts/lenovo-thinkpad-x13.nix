@@ -33,5 +33,11 @@
       };
     };
   };
+  systemd.tmpfiles.rules = [
+    "d /var/lib/linux-enable-ir-emitter 0755 root root - -"
+  ];
+  environment.etc."linux-enable-ir-emitter".source = ../../config/linux-enable-ir-emitter;
+
+  networking.hostName = "lenovo-thinkpad-x13";
 
 }
