@@ -152,7 +152,7 @@
     shellAliases = {
       diff = "diff --color=auto";
       ip = "ip --color=auto";
-      cat = "bat";
+      cat = "bat -p";
       v = "nvim";
       vi = "nvim";
       vim = "nvim";

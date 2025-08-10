@@ -6,14 +6,14 @@ return {
     -- add any opts here
     -- for example
     provider = 'gemini',
-    openai = {
-      endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
-      model = 'gemini-2.5-pro-exp-03-25', -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-      temperature = 0,
-      max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-    },
+    -- openai = {
+    --   endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
+    --   model = 'gemini-2.5-pro-exp-03-25', -- your desired model (or use gpt-4o, etc.)
+    --   timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+    --   temperature = 0,
+    --   max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+    --   --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+    -- },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make',

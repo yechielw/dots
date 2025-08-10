@@ -4,10 +4,18 @@
   pkgs-master,
   ...
 }:
+let
+  nixCatsOutputs = import ../config/nixcats/default.nix inputs;
+in
 {
+  nixpkgs.overlays = [
+    nixCatsOutputs.overlays.default
+  ];
   environment.systemPackages = with pkgs; [
+    nvim
     inputs.raise.defaultPackage.x86_64-linux
-    inputs.cats.packages.${pkgs.system}.default
+    # inputs.cats.packages.${pkgs.system}.default
+    #nixCatsOutputs.packages.${pkgs.system}.default
     #    inputs.ghostty.packages.${pkgs.system}.default
     inputs.zen-browser.packages.${pkgs.system}.default
     adwaita-icon-theme

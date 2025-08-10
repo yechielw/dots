@@ -9,6 +9,12 @@
 }:
 
 {
+  services.calibre-server = {
+    enable = true;
+    port = 4040;
+    openFirewall = true;
+    user = "yechiel";
+  };
 
   services.upower.criticalPowerAction = "Hibernate";
 
@@ -93,7 +99,7 @@
   services.flatpak = {
     enable = true;
     packages = [
-      "us.zoom.Zoom"
+      # "us.zoom.Zoom"
       #"com.usebottles.bottles"
       #"io.github.zen_browser.zen"
       #"org.kiwix.desktop"

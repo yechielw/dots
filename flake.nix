@@ -9,10 +9,13 @@
       home-manager,
       self,
       profilepic,
-      cats,
+      nixCats,
       ...
     }@inputs:
     let
+      # eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
+      nvimconfig = import ./config/nixcats/default.nix inputs;
+
       system = "x86_64-linux";
       settings = import ./nix/settings.nix;
       config.allowUnfree = true;
@@ -26,7 +29,11 @@
       };
     in
     {
-      nvim = inputs.cats.packages.${system}.default;
+      # packages = eachSystem (system: {
+      #   pkgs = nixpkgs.legacyPackages.${system};
+      #   nvim = pkgs.callPackage ./config/nixcats/default.nix {};
+      # });
+      nvim = nvimconfig.packages;
 
       nixosConfigurations = {
         lenovo-thinkpad-x13 = nixpkgs.lib.nixosSystem {
@@ -34,13 +41,12 @@
             inherit inputs;
             inherit stable;
             inherit pkgs-master;
-            #inherit custom-packages
             inherit settings;
             inherit profilepic;
-            inherit cats;
+            inherit nixCats;
           };
           modules = [
-
+            # { nix = inputs.walker.nixConfig; }
             #nixos-cosmic.nixosModules.default
             home-manager.nixosModules.default
             inputs.lanzaboote.nixosModules.lanzaboote
@@ -111,10 +117,10 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    cats.url = "./config/nixcats";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
-
+    systems.url = "github:nix-systems/default";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
