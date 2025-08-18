@@ -21,6 +21,8 @@
       pkiBundle = "/var/lib/sbctl";
     };
 
-    kernelPackages = pkgs.linuxPackages_testing;
+    # kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_zen;
+
   };
 }
