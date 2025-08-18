@@ -206,6 +206,7 @@
         "ignorealpha 0.2, waybar"
       ];
       windowrulev2 = [
+        "float, class:Microsoft, xwayland:1"
         "float, class:copyq"
         "bordercolor rgba(32CD32AA) rgba(7CFC0077),floating:1"
         "float, class:backslash"
