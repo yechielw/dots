@@ -109,7 +109,7 @@
 
     espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
 
-    walker.url = "github:abenz1267/walker";
+    # walker.url = "github:abenz1267/walker";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
