@@ -15,6 +15,18 @@ let
     installPhase = ''install -Dm755 $src $out/bin/clogcat'';
 
   };
+  vm = pkgs.androidenv.emulateApp {
+    name = "empt";
+    platformVersion = "35";
+    abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
+    systemImageType = "google_apis_playstore";
+    configOptions = {
+      "hw.gpu.enabled" = "yes";
+    };
+
+    androidEmulatorFlags = "-no-snapshot-load -no-snapshot-save -accel on -gpu swiftshader_indirect -qemu -enable-kvm";
+
+  };
   freeda = pkgs.writeShellApplication {
     name = "frid";
     text = ''
@@ -36,6 +48,7 @@ in
   programs.wireshark.enable = true;
   programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
+    vm
     freeda
     clogcat
     trufflehog
