@@ -107,7 +107,7 @@ let
           nixd
           stylua
           phpactor
-          codeql
+          # codeql
           gopls
           gofumpt
           pyright
