@@ -20,7 +20,7 @@
       pasystray = {
         enable = true;
         extraOptions = [
-          "--volume-max=150"
+          "--volume-max=150 --no-notify --symbolic-icons"
         ];
       };
       swaync.enable = true;
@@ -128,11 +128,17 @@
             format-he = "HE";
           };
           "hyprland/workspaces" = {
+            format = "{icon}";
             icon-size = 16;
             spacing = 10;
             on-scroll-up = "hyprctl dispatch workspace r+1";
             on-scroll-down = "hyprctl dispatch workspace r-1";
             show-special = true;
+            workspace-taskbar = {
+              enable = true;
+              update-active-window = true;
+              format = "{icon}";
+            };
           };
           "custom/os_button" = {
             format = "";
@@ -298,6 +304,15 @@
             color = "rgba(200, 200, 200, 1.0)";
             font_size = 10;
             position = "0, -45%";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = "";
+            text = "cmd[update:1000] echo $(cat /sys/class/power_supply/BAT0/capacity)";
+            color = "rgba(255, 255, 255, 1.0)";
+            font_size = 20;
+            position = "0, 0";
             halign = "center";
             valign = "center";
           }

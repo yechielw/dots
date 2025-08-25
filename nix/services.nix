@@ -51,6 +51,7 @@
   services.pulseaudio.package = pkgs.pulseaudioFull;
 
   hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
+  hardware.graphics.enable32Bit = true;
 
   services.pipewire = {
     enable = true;
