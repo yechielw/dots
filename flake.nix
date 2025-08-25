@@ -35,6 +35,8 @@
       # });
       nvim = nvimconfig.packages;
 
+      homeManagerModules.tui = ./nix/modules/tui/hm.nix;
+
       nixosConfigurations = {
         lenovo-thinkpad-x13 = nixpkgs.lib.nixosSystem {
           specialArgs = {
