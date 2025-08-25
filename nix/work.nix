@@ -8,6 +8,11 @@
     # })
     #    citrix_workspace
     microsoft-edge
+    (azure-cli.withExtensions [
+      azure-cli.extensions.ssh
+      azure-cli.extensions.azure-devops
+    ])
+
   ];
 
   nix.settings = {

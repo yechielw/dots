@@ -4,10 +4,11 @@
 
 ## Hyprland/NixOS/GNU/Linux
 
+- Zen kernal
 - lanzaboote for TPM backed FDE with auto unlock
 - Bar: waybar
 - Notification daemon: swaync
-- Terminal: ghostty
+- Terminal: ghostty/kitty
 - Design principle: Apple
 
 ## Installation
