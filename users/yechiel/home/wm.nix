@@ -309,10 +309,10 @@
           }
           {
             monitor = "";
-            text = "cmd[update:1000] echo $(cat /sys/class/power_supply/BAT0/capacity)";
+            text = "cmd[update:1000] echo $(cat /sys/class/power_supply/BAT0/capacity)%";
             color = "rgba(255, 255, 255, 1.0)";
-            font_size = 20;
-            position = "0, 0";
+            font_size = 14;
+            position = "0, -30%";
             halign = "center";
             valign = "center";
           }

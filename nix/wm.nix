@@ -68,6 +68,10 @@
       satty
       wayshot
       libnotify
+      gtk4
+      libadwaita
+      adwaita-icon-theme
+      hicolor-icon-theme
     ];
 
     services = {

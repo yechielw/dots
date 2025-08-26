@@ -89,6 +89,8 @@
 
   environment.pathsToLink = [
     "/share/zsh"
+    "/share/icons"
+    "/share/pixmaps"
   ]; # needed for zsh completion declared in zsh config
 
   # Enable the OpenSSH daemon.
