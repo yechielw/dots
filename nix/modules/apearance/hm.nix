@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options.hm.appearance = {
     enable = lib.mkEnableOption "appearance";
   };
@@ -11,10 +17,12 @@
       };
 
       iconTheme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+        # name = "Adwaita";
+        # package = pkgs.adwaita-icon-theme;
         # name = "WhiteSur";
         # package = pkgs.whitesur-icon-theme;
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
       };
 
       font = {
