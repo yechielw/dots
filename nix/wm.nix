@@ -46,7 +46,7 @@
       gnome-themes-extra
       gtk-engine-murrine
       wofi
-      nwg-displays
+      # nwg-displays
       wl-clipboard
       polkit_gnome
       pwvucontrol
@@ -83,7 +83,8 @@
         rygel.enable = true;
       };
       #gnome.gnome-keyring.enable = true;
-      logind = {
+      # services.logind.settings.Login.HandleLidSwitchDocked
+      logind.settings.Login = {
         lidSwitch = "hybrid-sleep";
         lidSwitchDocked = "ignore";
         lidSwitchExternalPower = "lock";

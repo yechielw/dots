@@ -50,6 +50,7 @@
           modules = [
             # { nix = inputs.walker.nixConfig; }
             #nixos-cosmic.nixosModules.default
+            inputs.stylix.nixosModules.stylix
             home-manager.nixosModules.default
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.nix-flatpak.nixosModules.nix-flatpak
@@ -98,12 +99,12 @@
     #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
-    home-manager.url = "github:nix-community/home-manager/pull/4976/head";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     howdy-module.url = "github:pineapplehunter/howdy-module";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
@@ -115,14 +116,22 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
-    ghostty.url = "github:ghostty-org/ghostty";
+    # ghostty.url = "github:ghostty-org/ghostty";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
+    vicinae_.url = "github:tomromeo/vicinae-nix";
+    vicinae.url = "github:yechielw/vicinae-nix";
+
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
