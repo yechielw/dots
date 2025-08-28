@@ -24,7 +24,7 @@ in
     pkgs-master.bitwarden
     nixd
     alsa-utils
-    beeper
+    pkgs-master.beeper
     element-desktop
     obsidian
     xxd

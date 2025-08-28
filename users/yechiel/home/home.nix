@@ -34,6 +34,8 @@
     users = {
       yechiel = {
         imports = [
+          inputs.vicinae.homeManagerModules.default
+
           ./wm.nix
           # inputs.walker.homeManagerModules.default
           ./hypr.nix
@@ -50,7 +52,7 @@
           ghostty = {
             enable = true;
             enableZshIntegration = true;
-            package = inputs.ghostty.packages.${pkgs.system}.default;
+            # package = inputs.ghostty.packages.${pkgs.system}.default;
             settings = {
               window-decoration = false;
               theme = "Dark+";
