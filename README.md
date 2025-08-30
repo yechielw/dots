@@ -4,12 +4,13 @@
 
 ## Hyprland/NixOS/GNU/Linux
 
-- Zen kernal
-- lanzaboote for TPM backed FDE with auto unlock
-- Bar: waybar
-- Notification daemon: swaync
-- Terminal: ghostty/kitty
-- Design principle: Apple
+- Kernal: Zen
+- Lanzaboote: TPM backed FDE with auto unlock
+- Bar: Waybar
+- Notification daemon: Swaync
+- Terminal: Kitty
+- Launcher: Vicinae (as well as Clipboard manager and Emoji picker)
+- Design principle: Mac (Corners, Shades, Themes, Fonts)
 
 ## Installation
 
