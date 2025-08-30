@@ -217,6 +217,7 @@
         "float, class:flameshot"
         "float, class:nwg-displays"
         "float, class:org.gnome.NautilusPreviewer"
+        "float, initialTitle:Untitled - Google Chrome"
         "monitor 1, class:flameshot"
         "move 0 0, class:flameshot"
         "move onscreen cursor 1 1, class:copyq"
