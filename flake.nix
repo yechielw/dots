@@ -129,8 +129,7 @@
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
-    vicinae_.url = "github:tomromeo/vicinae-nix";
-    vicinae.url = "github:yechielw/vicinae-nix";
+    vicinae.url = "github:vicinaehq/vicinae";
 
     profilepic = {
       url = "https://github.com/yechielw.png";
