@@ -9,6 +9,9 @@
 }:
 
 {
+  services.pinchflat.enable = true;
+  services.pinchflat.selfhosted = true;
+
   services.calibre-server = {
     enable = true;
     port = 4040;
