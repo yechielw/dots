@@ -17,6 +17,7 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+      vicinae.enable = true;
       pasystray = {
         enable = true;
         extraOptions = [
