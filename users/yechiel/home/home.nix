@@ -19,6 +19,7 @@
       "i2c"
       "wireshark"
       "adbusers"
+      "docker"
     ];
   };
 
@@ -48,6 +49,14 @@
 
         wm.enable = true;
         programs = {
+
+          # vicinae = {
+          #   settings = {
+          #     popToRootOnClose = true;
+          #     window.rounding = 7;
+          #
+          #   };
+          # };
 
           ghostty = {
             enable = true;
@@ -99,7 +108,7 @@
               enableZshIntegration = true;
               mode = "enabled";
             };
-            themeFile = "rose-pine-moon";
+            themeFile = "GitHub_Dark";
             settings = {
               enable_audio_bell = false;
               hide_window_decorations = true;

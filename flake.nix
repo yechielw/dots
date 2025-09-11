@@ -13,9 +13,7 @@
       ...
     }@inputs:
     let
-      # eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
-      nvimconfig = import ./config/nixcats/default.nix inputs;
-
+      # This let block is for your system-specific NixOS configuration
       system = "x86_64-linux";
       settings = import ./nix/settings.nix;
       config.allowUnfree = true;
@@ -27,13 +25,12 @@
         inherit system;
         inherit config;
       };
+      mkPackagesFor = import ./nix/modules/nixcats.nix inputs;
+      eachSystem = nixCats.utils.eachSystem nixpkgs.lib.systems.flakeExposed;
     in
-    {
-      # packages = eachSystem (system: {
-      #   pkgs = nixpkgs.legacyPackages.${system};
-      #   nvim = pkgs.callPackage ./config/nixcats/default.nix {};
-      # });
-      nvim = nvimconfig.packages;
+    eachSystem mkPackagesFor
+
+    // {
 
       homeManagerModules.tui = ./nix/modules/tui/hm.nix;
 
@@ -45,7 +42,8 @@
             inherit pkgs-master;
             inherit settings;
             inherit profilepic;
-            inherit nixCats;
+            #inherit nixCats;
+            inherit self;
           };
           modules = [
             # { nix = inputs.walker.nixConfig; }
@@ -56,27 +54,26 @@
             inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.espanso-fix.nixosModules.espanso-capdacoverride
             #inputs.determinate.nixosModules.default
-            #inputs.impurity.nixosModules.impurity
+            ##inputs.impurity.nixosModules.impurity
             inputs.howdy-module.nixosModules.default
             inputs.burpsuite.nixosModules.default
+
+            inputs.chaotic.nixosModules.nyx-cache
+            inputs.chaotic.nixosModules.nyx-overlay
+            inputs.chaotic.nixosModules.nyx-registry
 
             {
               services.howdy.enable = true;
               services.howdy.settings.video.dark_threshold = 80;
               environment.sessionVariables.OMP_NUM_THREADS = 1;
               services.linux-enable-ir-emitter.enable = true;
-              impurity.configRoot = self;
-              impurity.enable = true;
-
             }
 
             ./nix/configuration.nix
             ./nix/packages.nix
             ./nix/programs.nix
             ./nix/services.nix
-            #./nix/users.nix
             ./nix/hosts/lenovo-thinkpad-x13.nix
-            #./nix/settings.nix
             ./nix/hacking.nix
             ./nix/work.nix
             ./nix/term.nix
@@ -85,34 +82,26 @@
             ./nix/boot.nix
             ./nix/override.nix
             ./users/yechiel/home/home.nix
-            ./nix/modules/impurity
           ];
-        };
-        testing = self.nixosConfigurations.nixos.extendModules {
-          modules = [ { impurity.enable = true; } ];
         };
       };
     };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    # hyprland.url = "github:hyprwm/Hyprland";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     howdy-module.url = "github:pineapplehunter/howdy-module";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
-
-    # walker.url = "github:abenz1267/walker";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -130,6 +119,9 @@
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     vicinae.url = "github:vicinaehq/vicinae";
+
+    himmelblau.url = "github:himmelblau-idm/himmelblau";
+    himmelblau.inputs.nixpkgs.follows = "nixpkgs";
 
     profilepic = {
       url = "https://github.com/yechielw.png";

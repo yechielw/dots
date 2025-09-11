@@ -31,6 +31,9 @@
     };
     networkmanager = {
       enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
     };
   };
 
@@ -100,6 +103,7 @@
   systemd.tmpfiles.rules = [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
     "L /var/lib/AccountsService/icons/yechiel - - - - ${profilepic}"
+    "L /home/yechiel/blabal.png - - - - ${profilepic}"
   ];
 
   system.stateVersion = "24.05"; # "24.05"; # Did you read the comment?

@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
   ];
 
   hardware.firmware = [ pkgs.sof-firmware ];
@@ -25,7 +25,10 @@
   systemd.services = {
     enableModem = {
       description = "Enable Quectel Modem on Startup";
-      after = [ "network.target" ];
+      after = [
+        "network.target"
+        "ModemManager.service"
+      ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";

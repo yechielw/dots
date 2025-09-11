@@ -51,6 +51,7 @@ in
     # vm
     freeda
     clogcat
+    nuclei
     trufflehog
     #buprp.pro
     jython
@@ -60,7 +61,12 @@ in
     #netexec
     stable.netexec
     seclists
-    (pkgs.wordlists.override { lists = with pkgs; [ rockyou ]; })
+    (pkgs.wordlists.override {
+      lists = with pkgs; [
+        rockyou
+        seclists
+      ];
+    })
     feroxbuster
     nmap
     termshark

@@ -20,6 +20,7 @@
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
+    services.udisks2.enable = true;
     programs = {
       firefox.enable = true; # left becaus its default
       sway = {
@@ -36,6 +37,7 @@
       };
       hyprlock.enable = true;
     };
+    security.pam.services.hyprlock.text = "auth include login";
 
     #security.pam.services.gdm.enableGnomeKeyring = true;
 
