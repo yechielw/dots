@@ -17,6 +17,7 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+      udiskie.enable = true;
       vicinae.enable = true;
       pasystray = {
         enable = true;

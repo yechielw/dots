@@ -2,17 +2,19 @@
   pkgs,
   inputs,
   pkgs-master,
+  self,
   ...
 }:
-let
-  nixCatsOutputs = import ../config/nixcats/default.nix inputs;
-in
+# let
+#   nixCatsOutputs = import ../config/nixcats/default.nix inputs;
+# in
 {
-  nixpkgs.overlays = [
-    nixCatsOutputs.overlays.default
-  ];
+  # nixpkgs.overlays = [
+  #   nixCatsOutputs.overlays.default
+  # ];
   environment.systemPackages = with pkgs; [
-    nvim
+    self.packages.${pkgs.system}.nvim
+    # nvim
     inputs.raise.defaultPackage.x86_64-linux
     # inputs.cats.packages.${pkgs.system}.default
     #nixCatsOutputs.packages.${pkgs.system}.default
@@ -58,6 +60,7 @@ in
     thunderbird
     unzip
     wget
+    freerdp
     killall
     cargo
     dive # look into docker image layers
@@ -81,6 +84,7 @@ in
     zed-editor
     ddcutil
     ddccontrol
+    nettools
     python312Packages.impacket
     (python3.withPackages (
       ps: with ps; [

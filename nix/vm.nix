@@ -2,6 +2,11 @@
 
 {
 
+  boot.kernelModules = [
+    "ip_tables"
+    "iptable_nat"
+  ];
+
   # Enable dconf (System Management Tool)
   programs.dconf.enable = true;
 
@@ -35,9 +40,13 @@
   virtualisation.containers.enable = true;
   virtualisation.waydroid.enable = true;
   virtualisation = {
+    docker = {
+      enable = true;
+
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
+      # dockerCompat = true;
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;

@@ -5,12 +5,30 @@
   pkgs-master,
   profilepic,
   stable,
+  config,
   ...
 }:
 
 {
+  imports = [ inputs.himmelblau.nixosModules.himmelblau ];
+  services.himmelblau = {
+    enable = true;
+    # debugFlag = true;
+    settings = {
+      domains = [ "mac.org.il" ];
+      pam_allow_groups = [ ];
+      #local_groups = [ "wheel" ];
+
+      local_groups = config.users.users.yechiel.extraGroups;
+    };
+  };
   services.pinchflat.enable = true;
   services.pinchflat.selfhosted = true;
+
+  # services.jellyfin = {
+  #   enable = true;
+  #   dataDir = config.services.pinchflat.mediaDir;
+  # };
 
   services.calibre-server = {
     enable = true;
