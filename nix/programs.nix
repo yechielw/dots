@@ -3,7 +3,6 @@
   inputs,
   settings,
   pkgs-master,
-  profilepic,
   stable,
   ...
 }:

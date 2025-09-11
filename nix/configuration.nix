@@ -3,7 +3,6 @@
   inputs,
   settings,
   pkgs-master,
-  profilepic,
   stable,
   ...
 }:
@@ -11,6 +10,7 @@
 {
   # custom module with all window  manager stuff
   wm.enable = true;
+  # imports = [ inputs.stylix.nixosModules.stylix ];
   # stylix.enable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
@@ -102,8 +102,7 @@
 
   systemd.tmpfiles.rules = [
     "L /usr/share/X11/xkb/rules/base.xml - - - - ${pkgs.xkeyboard_config}/share/X11/xkb/rules/base.xml"
-    "L /var/lib/AccountsService/icons/yechiel - - - - ${profilepic}"
-    "L /home/yechiel/blabal.png - - - - ${profilepic}"
+    "L /var/lib/AccountsService/icons/yechiel - - - - ${inputs.profilepic}"
   ];
 
   system.stateVersion = "24.05"; # "24.05"; # Did you read the comment?

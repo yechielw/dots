@@ -5,6 +5,10 @@
   ...
 }:
 {
+
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
   boot = {
     loader = {
       systemd-boot.enable = false;

@@ -1,27 +1,10 @@
 {
   pkgs,
   inputs,
-  settings,
-  pkgs-master,
-  profilepic,
-  stable,
-  config,
   ...
 }:
 
 {
-  imports = [ inputs.himmelblau.nixosModules.himmelblau ];
-  services.himmelblau = {
-    enable = true;
-    # debugFlag = true;
-    settings = {
-      domains = [ "mac.org.il" ];
-      pam_allow_groups = [ ];
-      #local_groups = [ "wheel" ];
-
-      local_groups = config.users.users.yechiel.extraGroups;
-    };
-  };
   services.pinchflat.enable = true;
   services.pinchflat.selfhosted = true;
 
@@ -92,8 +75,6 @@
   services.openssh.enable = true;
   services.fwupd.enable = true;
 
-  services.fprintd.enable = true;
-
   services.teamviewer.enable = true;
 
   services.tailscale = {
@@ -120,6 +101,9 @@
     };
   };
 
+  imports = [
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
   services.flatpak = {
     enable = true;
     packages = [
