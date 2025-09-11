@@ -8,7 +8,7 @@
       nixpkgs-stable,
       home-manager,
       self,
-      profilepic,
+      # profilepic,
       nixCats,
       ...
     }@inputs:
@@ -41,33 +41,14 @@
             inherit stable;
             inherit pkgs-master;
             inherit settings;
-            inherit profilepic;
-            #inherit nixCats;
+            # inherit profilepic;
             inherit self;
           };
           modules = [
-            # { nix = inputs.walker.nixConfig; }
-            #nixos-cosmic.nixosModules.default
-            inputs.stylix.nixosModules.stylix
-            home-manager.nixosModules.default
-            inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.espanso-fix.nixosModules.espanso-capdacoverride
-            #inputs.determinate.nixosModules.default
-            ##inputs.impurity.nixosModules.impurity
-            inputs.howdy-module.nixosModules.default
-            inputs.burpsuite.nixosModules.default
-
             inputs.chaotic.nixosModules.nyx-cache
             inputs.chaotic.nixosModules.nyx-overlay
             inputs.chaotic.nixosModules.nyx-registry
-
-            {
-              services.howdy.enable = true;
-              services.howdy.settings.video.dark_threshold = 80;
-              environment.sessionVariables.OMP_NUM_THREADS = 1;
-              services.linux-enable-ir-emitter.enable = true;
-            }
 
             ./nix/configuration.nix
             ./nix/packages.nix
@@ -81,6 +62,7 @@
             ./nix/vm.nix
             ./nix/boot.nix
             ./nix/override.nix
+            ./nix/security.nix
             ./users/yechiel/home/home.nix
           ];
         };

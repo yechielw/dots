@@ -1,19 +1,29 @@
-{ pkgs, nixpkgs-master, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 
 {
   services.intune.enable = true;
   environment.systemPackages = with pkgs; [
-    # (microsoft-edge.override {
-    #   commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-    # })
     #    citrix_workspace
     microsoft-edge
-    # (azure-cli.withExtensions [
-    #   azure-cli.extensions.ssh
-    #   azure-cli.extensions.azure-devops
-    # ])
 
   ];
+
+  imports = [ inputs.himmelblau.nixosModules.himmelblau ];
+  services.himmelblau = {
+    enable = true;
+    # debugFlag = true;
+    settings = {
+      domains = [ "mac.org.il" ];
+      pam_allow_groups = [ ];
+
+      local_groups = config.users.users.yechiel.extraGroups;
+    };
+  };
 
   nix.settings = {
     substituters = [

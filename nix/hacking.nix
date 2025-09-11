@@ -45,6 +45,9 @@ let
   };
 in
 {
+  imports = [
+    inputs.burpsuite.nixosModules.default
+  ];
   programs.wireshark.enable = true;
   programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
