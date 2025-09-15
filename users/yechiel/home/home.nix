@@ -41,16 +41,15 @@
         imports = [
           inputs.vicinae.homeManagerModules.default
 
-          ./wm.nix
-          # inputs.walker.homeManagerModules.default
-          ./hypr.nix
+          ../../../nix/modules/wm.nix
           ../../../nix/modules/apearance/hm.nix
           ../../../nix/modules/tui/hm.nix
+          ../../../nix/modules/hypr.nix
         ];
 
         hm.appearance.enable = true;
         hm.tui.enable = true;
-
+        hm.hypr.enable = true;
         wm.enable = true;
         programs = {
 
