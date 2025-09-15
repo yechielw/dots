@@ -206,17 +206,17 @@ return { -- LSP Configuration & Plugins
         settings = {
           nixd = {
             nixpkgs = {
-              expr = 'import <nixpkgs> { }',
+              expr = '(builtins.getFlake "/home/yechiel/dots").inputs.nixpkgs { }',
             },
             formatting = {
               command = { 'nixfmt' },
             },
             options = {
               nixos = {
-                expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
+                expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.lenovo-thinkpad-x13.options',
               },
               home_manager = {
-                expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."yechiel@nixos".options',
+                expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.lenovo-thinkpad-x13.options.home-manager.users.type.getSubOptions []',
               },
             },
           },
