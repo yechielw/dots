@@ -99,11 +99,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1755769658,
-        "narHash": "sha256-YaNUrqu6MEy/cn+4UeuY/BEBj8Ee9sU7s4Z+IDBgZS4=",
+        "lastModified": 1757686957,
+        "narHash": "sha256-0ZF87m1ddvXLfwHo1vQFVftVG/Znl1+xfDTBmXuFvjw=",
         "owner": "yechielw",
         "repo": "burpsuite.nix",
-        "rev": "79461eb118b66cdf7af98a5de9e2685690e15481",
+        "rev": "38e0840fd80d53249052e04a488335a5ff91bfcf",
         "type": "github"
       },
       "original": {
@@ -1195,11 +1195,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1757573072,
-        "narHash": "sha256-zmJTZk6qni3wnViCoVg6kGgPe6RRQNiIAQRM9gzuF0c=",
+        "lastModified": 1757761707,
+        "narHash": "sha256-eQFzw2ez9c2xfTf2SXaCze7TF0+DhJ0gwvpOQpOoxcE=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "aefeb1e1fda12f14e0a4e0d07982247b599cb87d",
+        "rev": "e42f1fac76b914092f34cc842c7aed778af2d1e5",
         "type": "github"
       },
       "original": {
