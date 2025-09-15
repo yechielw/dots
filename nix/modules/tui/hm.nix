@@ -58,11 +58,26 @@
         #   ];
         # };
         initContent = ''
-          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-          source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+            # source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+            
+          if [[ $options[zle] = on ]]; then
+            function atuin_init() {
+              eval "$(${pkgs.atuin}/bin/atuin init zsh --disable-up-arrow)"
+            }
+            function hss() {
+              bindkey "^P" history-substring-search-up
+              bindkey "^N" history-substring-search-down
+              bindkey '^y' autosuggest-accept
+            }
+            zvm_after_init_commands+=(atuin_init hss)
+          fi
         '';
       };
+
+      carapace.enable = true;
 
       bat.enable = true;
 
@@ -89,10 +104,10 @@
       };
       atuin = {
         enable = true;
-        enableZshIntegration = true;
-        flags = [
-          #"--disable-up-arrow"
-        ];
+        enableZshIntegration = false;
+        # flags = [
+        #   "--disable-up-arrow"
+        # ];
       };
 
       lesspipe.enable = true;
