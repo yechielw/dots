@@ -34,6 +34,19 @@
 
       homeManagerModules.tui = ./nix/modules/tui/hm.nix;
 
+      homeConfigurations.yechiel = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./nix/modules/tui/hm.nix
+          {
+            hm.tui.enable = true;
+            home.stateVersion = "25.05";
+            home.username = "test";
+            home.homeDirectory = "/tmp/home";
+          }
+        ];
+      };
+
       nixosConfigurations = {
         lenovo-thinkpad-x13 = nixpkgs.lib.nixosSystem {
           specialArgs = {
