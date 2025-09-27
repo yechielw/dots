@@ -17,6 +17,13 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+
+      #battery-notify.enable = true;
+      cbatticon = {
+        enable = true;
+
+      };
+
       udiskie.enable = true;
       vicinae.enable = true;
       pasystray = {

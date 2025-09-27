@@ -32,10 +32,10 @@
       };
     };
 
-    qt = {
-      enable = true;
-      platformTheme.name = "gtk";
-      style.name = "gtk2";
-    };
+    # qt = {
+    #   enable = true;
+    #   platformTheme.name = "gtk";
+    #   style.name = "gtk2";
+    # };
   };
 }

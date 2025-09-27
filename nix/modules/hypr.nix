@@ -12,11 +12,11 @@
   config = lib.mkIf config.hm.hypr.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      plugins = [
-        pkgs.hyprlandPlugins.hyprexpo
-        pkgs.hyprlandPlugins.hyprgrass
-        pkgs.hyprlandPlugins.hyprspace
-      ];
+      # plugins = [
+      #   # pkgs.hyprlandPlugins.hyprexpo
+      # pkgs.hyprlandPlugins.hyprgrass
+      # # pkgs.hyprlandPlugins.hyprspace
+      # ];
       settings = {
         # monitor = [
         #   "eDP-1,1920x1200@60.0,3840x120,1.0"
@@ -257,6 +257,7 @@
           "workspaces 8, class:Icasessionmgr"
           "workspaces 8, class:Wfica.*"
           "float, class:burp-StartBurp, title:.*\bfilter$"
+          "stayfocused, class:burp-StartBurp, floating:1"
         ];
 
         bindl = [
