@@ -10,6 +10,7 @@
 - Notification daemon: Swaync
 - Terminal: Kitty
 - Launcher: Vicinae (as well as Clipboard manager and Emoji picker)
+- Editor: Neovim + lazy wraped by nixcats for dependancies
 - Design principle: Mac (Corners, Shades, Themes, Fonts)
 
 ## Installation
