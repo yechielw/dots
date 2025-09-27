@@ -13,12 +13,12 @@
   #   dataDir = config.services.pinchflat.mediaDir;
   # };
 
-  services.calibre-server = {
-    enable = true;
-    port = 4040;
-    openFirewall = true;
-    user = "yechiel";
-  };
+  # services.calibre-server = {
+  #   enable = true;
+  #   port = 4040;
+  #   openFirewall = true;
+  #   user = "yechiel";
+  #};
 
   services.upower.criticalPowerAction = "Hibernate";
 

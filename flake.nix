@@ -118,6 +118,7 @@
     himmelblau.url = "github:himmelblau-idm/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";
 
+    # batt.url = "git+file:///tmp/battery-notify";
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;

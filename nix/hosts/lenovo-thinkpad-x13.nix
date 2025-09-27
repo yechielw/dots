@@ -22,25 +22,38 @@
     '';
   };
 
-  systemd.services = {
-    enableModem = {
-      description = "Enable Quectel Modem on Startup";
-      after = [
-        "network.target"
-        "ModemManager.service"
-      ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = [ "${pkgs.libmbim}/bin/mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on" ];
-      };
-    };
-  };
+  # systemd.services = {
+  #   enableModem = {
+  #     description = "Enable Quectel Modem on Startup";
+  #     after = [
+  #       "network.target"
+  #       "ModemManager.service"
+  #     ];
+  #     wantedBy = [ "multi-user.target" ];
+  #     serviceConfig = {
+  #       Type = "oneshot";
+  #       ExecStart = [ "${pkgs.libmbim}/bin/mbimcli -p -d /dev/cdc-wdm0 --quectel-set-radio-state=on" ];
+  #     };
+  #   };
+  # };
   systemd.tmpfiles.rules = [
     "d /var/lib/linux-enable-ir-emitter 0755 root root - -"
   ];
   environment.etc."linux-enable-ir-emitter".source = ../../config/linux-enable-ir-emitter;
 
-  networking.hostName = "lenovo-thinkpad-x13";
+  networking = {
+    hostName = "lenovo-thinkpad-x13";
+    modemmanager = {
+      enable = true;
+      package = pkgs.modemmanager;
+
+      fccUnlockScripts = [
+        (rec {
+          id = "2c7c:030a";
+          path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/${id}";
+        })
+      ];
+    };
+  };
 
 }

@@ -1,9 +1,4 @@
 {
-  pkgs,
-  inputs,
-  settings,
-  pkgs-master,
-  stable,
   ...
 }:
 
@@ -15,7 +10,7 @@
     nh = {
       enable = true;
       clean.enable = true;
-      flake = "/home/${settings.username}/dots";
+      flake = "/home/yechiel/dots";
     };
     zsh.enable = true;
 

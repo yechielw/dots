@@ -4,7 +4,7 @@
 
 ## Hyprland/NixOS/GNU/Linux
 
-- Kernal: Zen
+- Kernal: CachyOS
 - Lanzaboote: TPM backed FDE with auto unlock
 - Bar: Waybar
 - Notification daemon: Swaync
