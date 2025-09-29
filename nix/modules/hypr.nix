@@ -95,9 +95,9 @@
           };
         };
         gestures = {
-          workspace_swipe = true;
           workspace_swipe_touch = true;
         };
+        gesture = "3, horizontal, workspace";
 
         bindm = [
           "SUPER, mouse:272, movewindow"

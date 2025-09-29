@@ -100,16 +100,6 @@ let
         ];
       };
 
-      optionalPlugins = { };
-      # sharedLibraries = {
-      #   general = with pkgs; [ ];
-      # };
-      extraPython3Packages = {
-        test = (_: [ ]);
-      };
-      extraLuaPackages = {
-        test = [ (_: [ ]) ];
-      };
     };
 
   packageDefinitions = {
@@ -133,12 +123,6 @@ let
           kickstart-indent_line = true;
           kickstart-gitsigns = true;
           have_nerd_font = true;
-          example = {
-            youCan = "add more than just booleans";
-            toThisSet = [
-              "contents available to lua via nixCats('path.to.value')"
-            ];
-          };
         };
       };
   };
@@ -162,7 +146,6 @@ in
     defaultPackage = nixCatsBuilder defaultPackageName;
   in
   {
-    # packages only (no devShells, no modules, no overlays export)
     packages = utils.mkAllWithDefault defaultPackage;
   }
 )

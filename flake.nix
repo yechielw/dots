@@ -33,6 +33,7 @@
     // {
 
       homeManagerModules.tui = ./nix/modules/tui/hm.nix;
+      homeManagerModules.gui = ./nix/modules/wm.nix;
 
       homeConfigurations.yechiel = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
@@ -54,29 +55,10 @@
             inherit stable;
             inherit pkgs-master;
             inherit settings;
-            # inherit profilepic;
             inherit self;
           };
           modules = [
-            inputs.espanso-fix.nixosModules.espanso-capdacoverride
-            inputs.chaotic.nixosModules.nyx-cache
-            inputs.chaotic.nixosModules.nyx-overlay
-            inputs.chaotic.nixosModules.nyx-registry
-
-            ./nix/configuration.nix
-            ./nix/packages.nix
-            ./nix/programs.nix
-            ./nix/services.nix
             ./nix/hosts/lenovo-thinkpad-x13.nix
-            ./nix/hacking.nix
-            ./nix/work.nix
-            ./nix/term.nix
-            ./nix/wm.nix
-            ./nix/vm.nix
-            ./nix/boot.nix
-            ./nix/override.nix
-            ./nix/security.nix
-            ./users/yechiel/home/home.nix
           ];
         };
       };
