@@ -6,8 +6,28 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
+
+    inputs.espanso-fix.nixosModules.espanso-capdacoverride
+    inputs.chaotic.nixosModules.nyx-cache
+    inputs.chaotic.nixosModules.nyx-overlay
+    inputs.chaotic.nixosModules.nyx-registry
+
+    ./hardware-configuration.nix
+
+    ../configuration.nix
+    ../packages.nix
+    ../programs.nix
+    ../services.nix
+    ../hacking.nix
+    ../work.nix
+    ../term.nix
+    ../wm.nix
+    ../vm.nix
+    ../boot.nix
+    ../override.nix
+    ../security.nix
+    ../home/home.nix
   ];
 
   hardware.firmware = [ pkgs.sof-firmware ];
