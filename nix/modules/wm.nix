@@ -38,7 +38,6 @@
         topMargin = 0.75;
       };
 
-      copyq.enable = true;
       blueman-applet.enable = true;
       flameshot.enable = true;
       hyprpolkitagent.enable = true;

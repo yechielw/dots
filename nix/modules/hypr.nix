@@ -219,7 +219,7 @@
         ];
         windowrulev2 = [
           "float, class:Microsoft, xwayland:1"
-          "float, class:copyq"
+          # "float, class:copyq"
           "bordercolor rgba(32CD32AA) rgba(7CFC0077),floating:1"
           "float, class:backslash"
           "float, class:be.alexandervanhee.gradia"
@@ -233,8 +233,8 @@
           "monitor 1, title:flameshot"
           "move 0 0, class:flameshot"
           "move 0 0, title:flameshot"
-          "move onscreen cursor 1 1, class:copyq"
-          "noanim, class:copyq"
+          # "move onscreen cursor 1 1, class:copyq"
+          # "noanim, class:copyq"
           "noanim, class:flameshot"
           "noanim, title:flameshot"
           "noanim, class:ulauncher"
