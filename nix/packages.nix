@@ -22,24 +22,15 @@
     inputs.zen-browser.packages.${pkgs.system}.default
     adwaita-icon-theme
     gemini-cli
-    clamav
     pkgs-master.bitwarden
-    nixd
     alsa-utils
     pkgs-master.beeper
     element-desktop
-    obsidian
     xxd
     wirelesstools
-    qmk
-    via
     bluez-tools
-    blueberry
-    espanso-wayland
     nixfmt-rfc-style
     dig
-    libmbim
-    copyq
     (flameshot.override {
       enableWlrSupport = true;
       enableMonochromeIcon = true;
@@ -51,9 +42,6 @@
     go
     google-chrome
     gzip
-    kitty
-    #neovim
-    lua-language-server
     nodejs
     pipx
     pyenv
@@ -76,7 +64,6 @@
     trayscale
     usbutils
     cachix
-    element-desktop
     jq
     jqp
     p7zip
@@ -88,7 +75,6 @@
     python312Packages.impacket
     (python3.withPackages (
       ps: with ps; [
-        pynvim
         pip
         debugpy
       ]
