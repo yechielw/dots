@@ -15,7 +15,7 @@
 
   imports = [ inputs.himmelblau.nixosModules.himmelblau ];
   services.himmelblau = {
-    enable = true;
+    enable = false; # nullified due to error building
     # debugFlag = true;
     settings = {
       domains = [ "mac.org.il" ];
