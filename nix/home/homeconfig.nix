@@ -55,6 +55,7 @@
 
     kitty = {
       enable = true;
+      package = pkgs-master.kitty;
       enableGitIntegration = true;
       font = {
         name = "JetBrainsMono Nerd Font";
