@@ -44,7 +44,7 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.upower.enable = true;
   # services.desktopManager.gnome.enable = true;
 
