@@ -22,6 +22,7 @@
     };
     services.udisks2.enable = true;
     programs = {
+      dwl.enable = true;
       firefox.enable = true; # left becaus its default
       sway = {
         enable = true;
@@ -45,6 +46,7 @@
 
     environment.systemPackages = with pkgs; [
       nautilus
+      st
       swayosd
       gnome-themes-extra
       gtk-engine-murrine
