@@ -60,8 +60,7 @@ in
     python312Packages.bloodhound-py
     metasploit
     caido
-    #netexec
-    stable.netexec
+    netexec
     seclists
     (pkgs.wordlists.override {
       lists = with pkgs; [
