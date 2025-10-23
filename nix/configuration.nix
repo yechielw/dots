@@ -34,8 +34,7 @@
     };
   };
 
-  # Set your time zone.
-  time.timeZone = "Asia/Jerusalem";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n = {
