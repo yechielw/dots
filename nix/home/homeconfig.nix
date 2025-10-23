@@ -37,11 +37,10 @@
     home-manager.enable = true;
 
     git = {
+
       enable = true;
       userName = "Yechiel Worenklein";
       userEmail = "41305372+yechielw@users.noreply.github.com";
-      difftastic.enable = true;
-      difftastic.background = "dark";
       signing = {
         format = "ssh";
         key = "/home/yechiel/.ssh/id_ed25519.pub";
@@ -50,6 +49,14 @@
       extraConfig = {
         init.defaultBranch = "master";
         pull.rebase = false;
+      };
+    };
+
+    difftastic = {
+      enable = true;
+      git.enable = true;
+      options = {
+        color = "dark";
       };
     };
 
