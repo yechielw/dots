@@ -1,9 +1,6 @@
 {
   pkgs,
   inputs,
-  settings,
-  pkgs-master,
-  stable,
   ...
 }:
 
@@ -64,10 +61,6 @@
   };
 
   # Enable CUPS to print documents.
-
-  hardware.bluetooth = {
-    enable = true;
-  };
 
   hardware.i2c.enable = true;
   hardware.keyboard.qmk.enable = true;
