@@ -65,6 +65,7 @@
     };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
@@ -97,7 +98,9 @@
     systems.url = "github:nix-systems/default";
     vicinae.url = "github:vicinaehq/vicinae";
 
-    himmelblau.url = "github:himmelblau-idm/himmelblau";
+    #himmelblau.url = "github:himmelblau-idm/himmelblau";
+    himmelblau.url = "github:yechielw/himmelblau";
+    #himmelblau.url = "git+file:///home/yechiel/tools/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";
 
     # batt.url = "git+file:///tmp/battery-notify";
