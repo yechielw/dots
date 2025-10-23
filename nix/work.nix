@@ -15,11 +15,12 @@
 
   imports = [ inputs.himmelblau.nixosModules.himmelblau ];
   services.himmelblau = {
-    enable = false; # nullified due to error building
+    enable = true; # nullified due to error building
     # debugFlag = true;
     settings = {
       domains = [ "mac.org.il" ];
       pam_allow_groups = [ ];
+      join_type = "register";
 
       local_groups = config.users.users.yechiel.extraGroups;
     };
