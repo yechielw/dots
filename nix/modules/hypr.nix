@@ -129,7 +129,9 @@
           "9,monitor:eDP-1"
         ];
         bind = [
-          "SUPER, return, exec, raise -c kitty -e kitty"
+          # "SUPER, return, exec, raise -c kitty -e kitty"
+          "SUPER, O, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe pkgs.tesseract} - - | ${pkgs.wl-clipboard}/bin/wl-copy"
+          "SUPER, return, exec, raise -c com.mitchellh.ghostty -e ghostty"
           "SUPER, A, exec,  raise -c google-chrome -e google-chrome-stable"
           "SUPER, M, exec,  raise -c microsoft-edge -e microsoft-edge"
           "SUPER, Z, exec,  raise -c zen -e zen"
@@ -141,7 +143,7 @@
           "SUPER, PERIOD, exec, xdg-open vicinae://extensions/vicinae/vicinae/search-emojis"
           # "ALT, TAB, exec, xdg-open vicinae://extensions/vicinae/wm/switch-windows"
           "SUPER, F, togglefloating,"
-          "SUPER, space, exec, vicinae"
+          "SUPER, space, exec, vicinae toggle"
           "SUPER, P, pseudo, "
           "SUPER, ?, togglesplit, "
           "SUPER, left, movefocus, l"
