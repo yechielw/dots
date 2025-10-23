@@ -25,7 +25,7 @@
   services.udev.packages = [ pkgs.via ];
 
   services.udev.extraRules = ''
-    # ACTION=="add", KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users"
+    # via keyboard
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
@@ -44,7 +44,8 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.ly.enable = true;
+  systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   services.upower.enable = true;
   # services.desktopManager.gnome.enable = true;
 

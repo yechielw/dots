@@ -117,6 +117,7 @@
           ];
           modules-center = [ ];
           modules-right = [
+            "cpu"
             "custom/events"
             "hyprland/language"
             "tray"
@@ -277,6 +278,11 @@
               updated = "";
               error = "";
             };
+          };
+          cpu = {
+            interval = 10;
+            format = "{}% ";
+            max-length = 10;
           };
         };
       };
