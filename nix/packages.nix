@@ -22,7 +22,7 @@
     inputs.zen-browser.packages.${pkgs.system}.default
     adwaita-icon-theme
     gemini-cli
-    pkgs-master.bitwarden
+    inputs.nixpkgs-master.legacyPackages.${pkgs.system}.bitwarden
     alsa-utils
     pkgs-master.beeper
     element-desktop

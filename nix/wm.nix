@@ -22,6 +22,7 @@
     };
     services.udisks2.enable = true;
     # services.desktopManager.cosmic.enable = true;
+    specialisation.cosmic.configuration.services.desktopManager.cosmic.enable = true;
     programs = {
       dwl.enable = true;
       firefox.enable = true; # left becaus its default
