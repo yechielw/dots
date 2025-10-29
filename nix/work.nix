@@ -6,6 +6,10 @@
 }:
 
 {
+
+  programs.evolution.enable = true;
+  programs.evolution.plugins = [ pkgs.evolution-ews ];
+
   services.intune.enable = true;
   environment.systemPackages = with pkgs; [
     #    citrix_workspace
@@ -15,7 +19,7 @@
 
   imports = [ inputs.himmelblau.nixosModules.himmelblau ];
   services.himmelblau = {
-    enable = true; # nullified due to error building
+    enable = true;
     # debugFlag = true;
     settings = {
       domains = [ "mac.org.il" ];
