@@ -2,6 +2,8 @@
   lib,
   pkgs,
   config,
+  pkgs-master,
+  inputs,
   ...
 }:
 {
@@ -18,10 +20,15 @@
     # ];
     services = {
 
+      kdeconnect = {
+        enable = true;
+        indicator = true;
+      };
+
       #battery-notify.enable = true;
       cbatticon = {
         enable = true;
-
+        package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.system}.batticonplus;
       };
 
       udiskie.enable = true;
@@ -29,7 +36,9 @@
       pasystray = {
         enable = true;
         extraOptions = [
-          "--volume-max=150 --no-notify --symbolic-icons"
+          "--volume-max=150"
+          "--no-notify"
+          "--symbolic-icons"
         ];
       };
       swaync.enable = true;
@@ -40,6 +49,16 @@
 
       blueman-applet.enable = true;
       flameshot.enable = true;
+      flameshot.settings.General = {
+        contrastOpacity = 196;
+        drawThickness = 5;
+        saveAfterCopy = true;
+        savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
+        showDesktopNotification = false;
+        showStartupLaunchMessage = false;
+        uploadWithoutConfirmation = true;
+        useGrimAdapter = true;
+      };
       hyprpolkitagent.enable = true;
       #polkit-gnome.enable = true;
 
@@ -96,6 +115,12 @@
     };
 
     programs.wlogout.enable = true;
+
+    programs.satty = {
+      enable = true;
+      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.satty;
+      settings = builtins.fromTOML (lib.readFile ../../config/satty/config.toml);
+    };
 
     programs.waybar = {
       enable = true;
