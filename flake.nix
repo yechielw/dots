@@ -65,11 +65,10 @@
     };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:yechielw/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -83,27 +82,20 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     burpsuite.url = "github:yechielw/burpsuite.nix";
-    # ghostty.url = "github:ghostty-org/ghostty";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     vicinae.url = "github:vicinaehq/vicinae";
 
-    #himmelblau.url = "github:himmelblau-idm/himmelblau";
-    himmelblau.url = "github:yechielw/himmelblau";
-    #himmelblau.url = "git+file:///home/yechiel/tools/himmelblau";
+    himmelblau.url = "github:himmelblau-idm/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";
 
-    # batt.url = "git+file:///tmp/battery-notify";
+    nixpkgs-cbatticon2.url = "github:yechielw/nixpkgs/cbatticon-2";
+
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
