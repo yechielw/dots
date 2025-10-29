@@ -39,25 +39,27 @@
     git = {
 
       enable = true;
-      userName = "Yechiel Worenklein";
-      userEmail = "41305372+yechielw@users.noreply.github.com";
+      settings = {
+        user = {
+          name = "Yechiel Worenklein";
+          email = "41305372+yechielw@users.noreply.github.com";
+        };
+
+        init.defaultBranch = "master";
+        pull.rebase = false;
+      };
       signing = {
         format = "ssh";
         key = "/home/yechiel/.ssh/id_ed25519.pub";
         signByDefault = true;
       };
-      extraConfig = {
-        init.defaultBranch = "master";
-        pull.rebase = false;
-      };
+      # extraConfig = {
+      # };
     };
 
     difftastic = {
       enable = true;
       git.enable = true;
-      options = {
-        color = "dark";
-      };
     };
 
     kitty = {
