@@ -9,9 +9,9 @@ let
 
   luaPath = "${self + /config/nvim}";
 
-  extra_pkg_config = {
-    allowUnfree = true;
-  };
+  # extra_pkg_config = {
+  #   allowUnfree = true;
+  # };
 
   dependencyOverlays = [
     (utils.standardPluginOverlay inputs)
@@ -60,7 +60,10 @@ let
           lazydev-nvim
           fidget-nvim
           conform-nvim
-          nvim-cmp
+          # nvim-cmp
+          blink-cmp-copilot
+          blink-cmp
+          friendly-snippets
           luasnip
           cmp_luasnip
           cmp-nvim-lsp
@@ -112,7 +115,7 @@ let
         };
         categories = {
           general = true;
-          avante = true;
+          avante = false;
           gitPlugins = true;
           customPlugins = true;
           test = true;
@@ -120,7 +123,7 @@ let
           kickstart-neo-tree = true;
           kickstart-debug = true;
           kickstart-lint = true;
-          kickstart-indent_line = true;
+          kickstart-indent_line = false;
           kickstart-gitsigns = true;
           have_nerd_font = true;
         };
@@ -139,7 +142,7 @@ in
         nixpkgs
         system
         dependencyOverlays
-        extra_pkg_config
+        # extra_pkg_config
         ;
     } categoryDefinitions packageDefinitions;
 
