@@ -100,11 +100,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1760707943,
-        "narHash": "sha256-cttJP2DlvE/9RYJrn3TCsu97c0cAX6gTYvIW3N+1dJs=",
+        "lastModified": 1761665338,
+        "narHash": "sha256-gCJXw4oQz7H0TAMSmtbYa4T/5W8fc4pnExsf3OIS/6Q=",
         "owner": "yechielw",
         "repo": "burpsuite.nix",
-        "rev": "3a5ed007ceab243864a1dc0be8a8098f039fc3b0",
+        "rev": "639ff896873877aa3b3cf4304f5580b58baa9897",
         "type": "github"
       },
       "original": {
@@ -408,15 +408,15 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1761200997,
-        "narHash": "sha256-uEzhvDWPRj+N7l0OvVQ2DUydGAGdY/QyUg8qBtAVc+A=",
-        "owner": "yechielw",
+        "lastModified": 1761340589,
+        "narHash": "sha256-ioIVuwSxs3X0cYkcrysXR83e4Zq3/TwFpjJOQ+zn0MM=",
+        "owner": "himmelblau-idm",
         "repo": "himmelblau",
-        "rev": "4c97ae17af9444738d84238b221e1071bf1a56d5",
+        "rev": "b5a16c64d33eaf82f06a7ebefcb5bd4558ad159c",
         "type": "github"
       },
       "original": {
-        "owner": "yechielw",
+        "owner": "himmelblau-idm",
         "repo": "himmelblau",
         "type": "github"
       }
@@ -449,15 +449,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1761235135,
-        "narHash": "sha256-cux9xeceLIER1lBxUa1gMafkz7gg5ntcUmJBynWdBWI=",
-        "owner": "nix-community",
+        "lastModified": 1761642876,
+        "narHash": "sha256-EB0tXTuwBmNQQmx3NZVhGAXBQqaKgjcxVzRAxpdsBDc=",
+        "owner": "yechielw",
         "repo": "home-manager",
-        "rev": "0adf9ba3f567da2d53af581a857aacf671aaa547",
+        "rev": "d04bf17c9f9f997c5a35a2f32bad1cab93db7640",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "yechielw",
         "repo": "home-manager",
         "type": "github"
       }
@@ -625,6 +625,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-cbatticon2": {
+      "locked": {
+        "lastModified": 1761660652,
+        "narHash": "sha256-oNblpiwdoidO4cfYrHstkUXsOgG0kR2ywY2g4fgY3lQ=",
+        "owner": "yechielw",
+        "repo": "nixpkgs",
+        "rev": "6715f8f3f2323a70d5c79a014422f4965c29a4ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yechielw",
+        "ref": "cbatticon-2",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -884,6 +900,7 @@
         "nixCats": "nixCats",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-cbatticon2": "nixpkgs-cbatticon2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "profilepic": "profilepic",
@@ -923,11 +940,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761186948,
-        "narHash": "sha256-mylLEdzqx4M9TrwFIPc+o0dqabHvFGbNJZGRgE43Ya0=",
+        "lastModified": 1761446259,
+        "narHash": "sha256-JNNOtIIVIX+yBIsh1rq1Nxhc1LZq168vuQB5sqrZbCY=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "1d1c8a009adeb4c0561bb1feea8ec7b97749946b",
+        "rev": "95098bb4d55ebe167c082fc40705a73ef76b58e4",
         "type": "github"
       },
       "original": {
