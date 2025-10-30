@@ -113,7 +113,7 @@
     enable = true;
     entries = [
       "${pkgs-master.rquickshare}/share/applications/rquickshare.desktop"
-      "${pkgs-master.bitwarden}/share/applications/bitwarden.desktop"
+      "${pkgs-master.bitwarden-desktop}/share/applications/bitwarden.desktop"
       "${pkgs-master.beeper}/share/applications/beepertexts.desktop"
     ];
   };
