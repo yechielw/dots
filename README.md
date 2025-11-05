@@ -59,6 +59,9 @@ Enable TPM for all lucks partitions (usually root and SWAP)
 ```bash
  sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p2
  sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p3
+
+ #or
+ sudo blkid -t TYPE=crypto_LUKS | cut -d : -f1 | xargs -l sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2
 ```
 
 ### enable fingerprint login
