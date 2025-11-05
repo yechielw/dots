@@ -19,10 +19,10 @@
     ../packages.nix
     ../programs.nix
     ../services.nix
-    ../hacking.nix
+    ../modules/nixosModules/hacking.nix
     ../work.nix
     ../term.nix
-    ../wm.nix
+    ../modules/nixosModules/wm.nix
     ../vm.nix
     ../boot.nix
     ../override.nix

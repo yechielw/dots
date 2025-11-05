@@ -28,7 +28,8 @@
       #battery-notify.enable = true;
       cbatticon = {
         enable = true;
-        package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.system}.batticonplus;
+        # package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.system}.batticonplus;
+        package = pkgs-master.batticonplus;
       };
 
       udiskie.enable = true;
