@@ -94,8 +94,6 @@
     himmelblau.url = "github:himmelblau-idm/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixpkgs-cbatticon2.url = "github:yechielw/nixpkgs/cbatticon-2";
-
     profilepic = {
       url = "https://github.com/yechielw.png";
       flake = false;
