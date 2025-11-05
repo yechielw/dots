@@ -46,6 +46,9 @@ let
 
       startupPlugins = with pkgs.vimPlugins; {
         general = [
+          neogit
+          diffview-nvim
+          undotree
           vim-sleuth
           lazy-nvim
           comment-nvim
