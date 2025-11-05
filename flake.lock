@@ -32,11 +32,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1761665338,
-        "narHash": "sha256-gCJXw4oQz7H0TAMSmtbYa4T/5W8fc4pnExsf3OIS/6Q=",
+        "lastModified": 1762331338,
+        "narHash": "sha256-lCDultZmeaNbsww/HzgJbZYPrX5HqwW+L/zoj4OcPjk=",
         "owner": "yechielw",
         "repo": "burpsuite.nix",
-        "rev": "639ff896873877aa3b3cf4304f5580b58baa9897",
+        "rev": "9a93b4e6194bfbb393d164a3c61c8402c30e9f74",
         "type": "github"
       },
       "original": {
@@ -473,29 +473,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-cbatticon2": {
-      "locked": {
-        "lastModified": 1761660652,
-        "narHash": "sha256-oNblpiwdoidO4cfYrHstkUXsOgG0kR2ywY2g4fgY3lQ=",
-        "owner": "yechielw",
-        "repo": "nixpkgs",
-        "rev": "6715f8f3f2323a70d5c79a014422f4965c29a4ef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yechielw",
-        "ref": "cbatticon-2",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1761772861,
-        "narHash": "sha256-enibiddDgzkol7TTjTmW07jg5b4m5kg0JpllTSAPZ08=",
+        "lastModified": 1762077330,
+        "narHash": "sha256-Dh4vrfovNQzgs7Qf8MRtzPSNdD8UvsMiZ9x/yO2OCCA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2b7d115f287f13d4e8a6a0f203485c2347a4af41",
+        "rev": "6047d04ce505e589cc96adfb9441b81c74970699",
         "type": "github"
       },
       "original": {
@@ -602,11 +586,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1759036355,
-        "narHash": "sha256-0m27AKv6ka+q270dw48KflE0LwQYrO7Fm4/2//KCVWg=",
+        "lastModified": 1761907660,
+        "narHash": "sha256-kJ8lIZsiPOmbkJypG+B5sReDXSD1KGu2VEPNqhRa/ew=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e9f00bd893984bc8ce46c895c3bf7cac95331127",
+        "rev": "2fb006b87f04c4d3bdf08cfdbc7fab9c13d94a15",
         "type": "github"
       },
       "original": {
@@ -703,7 +687,6 @@
         "nixCats": "nixCats",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-cbatticon2": "nixpkgs-cbatticon2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "profilepic": "profilepic",
@@ -941,11 +924,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1761759538,
-        "narHash": "sha256-HUN2lrtbOX1MMCVzl3yBsMDyyoXqvQS7QFs9gJWUyaw=",
+        "lastModified": 1762076373,
+        "narHash": "sha256-rqHf7uPxoiyMf/SuJyJNzzBKhX/41hTEjYDFm67sUKQ=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "278206de88db4d336b2759582b842453bf4b3f2d",
+        "rev": "c2b6ba29deb16aa0d83cd552c19c59b0c6875d0d",
         "type": "github"
       },
       "original": {
