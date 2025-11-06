@@ -218,6 +218,10 @@
           "blur, waybar"
           "blurpopups, waybar"
           "ignorealpha 0.2, waybar"
+
+          "blur,vicinae"
+          "ignorealpha 0, vicinae"
+          "noanim, vicinae"
         ];
         windowrulev2 = [
           "float, class:Microsoft, xwayland:1"
