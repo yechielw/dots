@@ -226,7 +226,7 @@
         windowrulev2 = [
           "float, class:Microsoft, xwayland:1"
           # "float, class:copyq"
-          "bordercolor rgba(32CD32AA) rgba(7CFC0077),floating:1"
+          # "bordercolor rgba(32CD32AA) rgba(7CFC0077),floating:1"
           "float, class:backslash"
           "float, class:be.alexandervanhee.gradia"
           "float, class:blueman"
@@ -263,7 +263,7 @@
           "workspaces 8, class:Icasessionmgr"
           "workspaces 8, class:Wfica.*"
           "float, class:burp-StartBurp, title:.*\bfilter$"
-          "stayfocused, class:burp-StartBurp, floating:1"
+          # "stayfocused, class:burp-StartBurp, floating:1"
         ];
 
         bindl = [
