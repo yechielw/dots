@@ -23,14 +23,22 @@
     services.udisks2.enable = true;
     # services.desktopManager.cosmic.enable = true;
     specialisation.cosmic.configuration.services.desktopManager.cosmic.enable = true;
-    programs = {
-      dwl.enable = true;
-      firefox.enable = true; # left becaus its default
-      sway = {
-        enable = true;
-        wrapperFeatures.gtk = true;
-
+    xdg.portal.config = {
+      common = {
+        default = [
+          "gtk"
+        ];
       };
+    };
+    programs = {
+      seahorse.enable = true;
+      # dwl.enable = true;
+      firefox.enable = true; # left becaus its default
+      # sway = {
+      #   enable = true;
+      #   wrapperFeatures.gtk = true;
+      #
+      # };
       hyprland = {
         enable = true;
         withUWSM = true;
