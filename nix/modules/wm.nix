@@ -14,11 +14,26 @@
 
   config = lib.mkIf config.wm.enable {
 
+    xdg.portal = {
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      config = {
+        common = {
+          default = [
+            "gtk"
+          ];
+        };
+      };
+    };
+
     # xdg.portal.configPackages = [
     #   pkgs.xdg-desktop-portal-hyprland
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+
+      gnome-keyring.enable = true;
 
       kdeconnect = {
         enable = true;
