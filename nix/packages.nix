@@ -41,7 +41,7 @@
     file
     git
     go
-    google-chrome
+    (google-chrome.override { commandLineArgs = "--disable-features=WaylandWpColorManagerV1"; })
     gzip
     nodejs
     pipx
