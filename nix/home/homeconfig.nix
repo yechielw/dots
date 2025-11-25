@@ -24,6 +24,7 @@
         theme = "Dark+";
         font-size = 12;
         cursor-invert-fg-bg = true;
+        shell-integration-features = "ssh-terminfo,ssh-env";
       };
     };
 
