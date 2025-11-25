@@ -196,6 +196,7 @@
           ", Print, exec, flameshot gui"
           "SUPER, Escape, exec, wlogout"
           "SUPER, T, sendshortcut, CTRL, T, Burp"
+          "SUPER, TAB, exec, vicinae://extensions/vicinae/wm/switch-windows"
         ]
         ++ builtins.concatLists (
           builtins.genList (

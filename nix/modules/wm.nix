@@ -153,7 +153,7 @@
           height = 24;
           modules-left = [
             "hyprland/workspaces"
-            "wlr/taskbar"
+            # "wlr/taskbar"
             "hyprland/submap"
           ];
           modules-center = [ ];
@@ -162,8 +162,8 @@
             "custom/events"
             "hyprland/language"
             "tray"
-            "pulseaudio"
-            "battery"
+            # "pulseaudio"
+            # "battery"
             "custom/swaync"
             "clock"
             "custom/wlogout"
@@ -322,7 +322,7 @@
           };
           cpu = {
             interval = 10;
-            format = "{}% ";
+            format = "{}";
             max-length = 10;
           };
         };
