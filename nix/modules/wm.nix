@@ -75,8 +75,8 @@
         uploadWithoutConfirmation = true;
         useGrimAdapter = true;
       };
-      hyprpolkitagent.enable = true;
-      #polkit-gnome.enable = true;
+      # hyprpolkitagent.enable = true;
+      polkit-gnome.enable = true;
 
       trayscale.enable = true;
 
