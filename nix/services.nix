@@ -47,7 +47,7 @@
   services.displayManager.ly.enable = true;
   systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   services.upower.enable = true;
-  # services.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # nix.settings = {
   # };
