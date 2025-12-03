@@ -9,7 +9,7 @@
     # zoom-us.package = pkgs-master.zoom-us;
     nh = {
       enable = true;
-      clean.enable = true;
+      # clean.enable = true;
       flake = "/home/yechiel/dots";
     };
     zsh.enable = true;
