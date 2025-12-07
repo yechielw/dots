@@ -89,7 +89,7 @@
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
-    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae.url = "github:vicinaehq/vicinae?tag=releases/latest";
 
     himmelblau.url = "github:himmelblau-idm/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";
