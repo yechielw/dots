@@ -30,7 +30,7 @@
     ../home/home.nix
   ];
 
-  hardware.firmware = [ pkgs.sof-firmware ];
+  # hardware.firmware = [ pkgs.sof-firmware ];
 
   boot = {
 

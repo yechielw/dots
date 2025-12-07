@@ -23,6 +23,7 @@
     firewall = {
       allowedTCPPorts = [
         8080
+        80
         4444
         46387
       ];
