@@ -113,11 +113,11 @@
   xdg.autostart = {
     enable = true;
     entries = [
-      "${pkgs.rquickshare}/share/applications/RQuickShare.desktop"
+      #      "${pkgs.rquickshare}/share/applications/RQuickShare.desktop"
       "${pkgs.bitwarden-desktop}/share/applications/bitwarden.desktop"
       "${pkgs.beeper}/share/applications/beepertexts.desktop"
     ];
   };
   xdg.configFile = { };
-  nixGL.vulkan.enable = true;
+  # targets.genericLinux.nixGL.vulkan.enable = true;
 }

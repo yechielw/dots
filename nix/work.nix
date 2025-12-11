@@ -19,10 +19,10 @@
 
   imports = [ inputs.himmelblau.nixosModules.himmelblau ];
   services.himmelblau = {
-    enable = true;
+    enable = false;
     # debugFlag = true;
+    domains = [ "mac.org.il" ];
     settings = {
-      domains = [ "mac.org.il" ];
       pam_allow_groups = [ ];
       join_type = "register";
 
