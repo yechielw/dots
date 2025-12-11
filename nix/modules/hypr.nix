@@ -164,8 +164,8 @@
           "SUPER SHIFT, l, movewindow, d"
           "SUPER ALT, right, movecurrentworkspacetomonitor, r"
           "SUPER ALT, left, movecurrentworkspacetomonitor, l"
-          "SUPER ALT, h, movecurrentworkspacetomonitor, r"
-          "SUPER ALT, j, movecurrentworkspacetomonitor, l"
+          "SUPER ALT, h, movecurrentworkspacetomonitor, l"
+          "SUPER ALT, l, movecurrentworkspacetomonitor, r"
 
           # "SUPER, 1, workspace, 1"
           # "SUPER, 2, workspace, 2"
