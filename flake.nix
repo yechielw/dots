@@ -78,7 +78,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
+    # espanso-fix.url = "github:pitkling/nixpkgs/espanso-fix-capabilities-export";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

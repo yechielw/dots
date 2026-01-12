@@ -8,7 +8,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
 
-    inputs.espanso-fix.nixosModules.espanso-capdacoverride
+    # inputs.espanso-fix.nixosModules.espanso-capdacoverride
     inputs.chaotic.nixosModules.nyx-cache
     inputs.chaotic.nixosModules.nyx-overlay
     inputs.chaotic.nixosModules.nyx-registry

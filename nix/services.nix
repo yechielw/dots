@@ -132,8 +132,8 @@
 
     };
   };
-  # services.espanso = {
-  #   enable = true;
-  #   package = pkgs.espanso-wayland;
-  # };
+  services.espanso = {
+    enable = true;
+    package = pkgs.espanso-wayland;
+  };
 }
