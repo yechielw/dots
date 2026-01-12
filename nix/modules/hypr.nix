@@ -130,7 +130,7 @@
         ];
         bind = [
           # "SUPER, return, exec, raise -c kitty -e kitty"
-          "SUPER, O, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe pkgs.tesseract} - - | ${pkgs.wl-clipboard}/bin/wl-copy"
+          "SUPER, O, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe pkgs.tesseract} stdin stdout -l eng+heb | ${pkgs.wl-clipboard}/bin/wl-copy"
           "SUPER, return, exec, raise -c com.mitchellh.ghostty -e ghostty"
           "SUPER, A, exec,  raise -c google-chrome -e google-chrome-stable"
           "SUPER, M, exec,  raise -c microsoft-edge -e microsoft-edge"
@@ -194,7 +194,7 @@
           "SUPER, mouse_down, workspace, e+1"
           "SUPER, mouse_up, workspace, e-1"
           ", Print, exec, flameshot gui"
-          "SUPER, Escape, exec, wlogout"
+          "SUPER, Escape, exec,  ${lib.getExe pkgs.playerctl} pause  &&  ${lib.getExe pkgs.hyprlock} "
           "SUPER, T, sendshortcut, CTRL, T, Burp"
           "SUPER, TAB, exec, vicinae://extensions/vicinae/wm/switch-windows"
         ]
