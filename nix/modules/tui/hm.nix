@@ -18,6 +18,12 @@
         oh-my-zsh = {
           enable = true;
           theme = "eastwood";
+          # custom = "${pkgs.zsh-fast-syntax-highlighting}";
+          plugins = [
+            "colored-man-pages"
+            # "zsh-fast-syntax-highlighting"
+            # "zsh-vi-mode"
+          ];
         };
         enableCompletion = true;
 
