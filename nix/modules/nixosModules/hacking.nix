@@ -15,7 +15,7 @@
 
   config = lib.mkIf config.hacking.enable {
     programs.wireshark.enable = true;
-    programs.adb.enable = true;
+    # programs.adb.enable = true;
 
     # imports = [
     #   inputs.burpsuite.nixosModules.default
@@ -23,6 +23,7 @@
     environment.systemPackages = with pkgs; [
       # vm
       inputs.burpsuite.packages.${pkgs.system}.burpsuite-pro
+      android-tools
       nuclei
       trufflehog
       #buprp.pro
