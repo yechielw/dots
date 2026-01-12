@@ -74,7 +74,8 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    howdy-module.url = "github:pineapplehunter/howdy-module";
+    # howdy-module.url = "github:pineapplehunter/howdy-module";
+    howdy-module.url = "git+file:///home/yechiel/tools/howdy-module";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
