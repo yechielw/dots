@@ -13,6 +13,9 @@
   #   nixCatsOutputs.overlays.default
   # ];
   environment.systemPackages = with pkgs; [
+    amp-cli
+    terraform
+    terraform-lsp
     self.packages.${pkgs.system}.nvim
     # nvim
     inputs.raise.defaultPackage.x86_64-linux
@@ -60,7 +63,7 @@
     distrobox
     pciutils
     libmbim
-    rquickshare
+    #    rquickshare
     sbctl
     trayscale
     usbutils
@@ -69,7 +72,7 @@
     jqp
     p7zip
     uv
-    zed-editor
+    # zed-editor
     ddcutil
     ddccontrol
     nettools

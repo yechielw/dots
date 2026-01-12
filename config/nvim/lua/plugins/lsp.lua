@@ -178,6 +178,6 @@ return { -- LSP Configuration & Plugins
       },
     })
 
-    vim.lsp.enable { 'lua_ls', 'csharp_ls', 'nixd', 'pyright' }
+    vim.lsp.enable { 'lua_ls', 'csharp_ls', 'nixd', 'pyright', 'terraformls' }
   end,
 }

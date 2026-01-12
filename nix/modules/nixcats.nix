@@ -39,6 +39,7 @@ let
           pyright
           csharp-ls
           nodejs
+          # amp-cli
         ];
         kickstart-debug = [ delve ];
         kickstart-lint = [ markdownlint-cli ];
@@ -82,6 +83,7 @@ let
           vim-dotenv
           promise-async
           rose-pine
+          amp-nvim
         ];
 
         avante = [
