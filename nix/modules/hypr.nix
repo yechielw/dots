@@ -68,6 +68,7 @@
             "borderangle, 1, 8, default"
             "fade, 1, 7, default"
             "workspaces, 0, 6, default"
+            # "specialWorkspaces, 2, 3, default, slidevert"
           ];
         };
         dwindle = {
@@ -216,14 +217,16 @@
         );
 
         layerrule = [
-          "blur, waybar"
-          "blurpopups, waybar"
-          "ignorealpha 0.2, waybar"
+          "blur on, match:namespace waybar"
+          "blur_popups on, match:namespace waybar"
+          "ignore_alpha 0.2, match:namespace waybar"
 
-          "blur,vicinae"
-          "ignorealpha 0, vicinae"
-          "noanim, vicinae"
+          "blur on, match:namespace vicinae"
+          "ignore_alpha 0, match:namespace vicinae"
+          "no_anim on, match:namespace  vicinae"
         ];
+
+
         windowrulev2 = [
           "float, class:Microsoft, xwayland:1"
           # "float, class:copyq"
@@ -272,6 +275,8 @@
           ", XF86AudioPause, exec, playerctl play-pause"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
+          # ",switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable'"
+          # ",switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1,1920x1200@60.0,3840x0,1.0'"
         ];
       };
       extraConfig = ''
