@@ -18,7 +18,7 @@
     ghostty = {
       enable = true;
       enableZshIntegration = true;
-      # package = inputs.ghostty.packages.${pkgs.system}.default;
+      # package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
         window-decoration = false;
         theme = "Dark+";

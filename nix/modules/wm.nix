@@ -45,7 +45,7 @@
       #battery-notify.enable = true;
       cbatticon = {
         enable = true;
-        # package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.system}.batticonplus;
+        # package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.stdenv.hostPlatform.system}.batticonplus;
         package = pkgs-master.batticonplus;
       };
 
@@ -268,7 +268,7 @@
 
     programs.satty = {
       enable = true;
-      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.satty;
+      package = inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system}.satty;
       settings = builtins.fromTOML (lib.readFile ../../config/satty/config.toml);
     };
 

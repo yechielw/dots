@@ -70,8 +70,8 @@
       kdePackages.qtwayland
       brightnessctl
       rose-pine-hyprcursor
-      #inputs.quickshell.packages.${pkgs.system}.default
-      # inputs.walker.packages.${pkgs.system}.default
+      #inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # inputs.walker.packages.${pkgs.stdenv.hostPlatform.system}.default
       qt6.qtmultimedia
       adw-gtk3
       waybar

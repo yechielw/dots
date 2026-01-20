@@ -22,7 +22,7 @@
     # ];
     environment.systemPackages = with pkgs; [
       # vm
-      inputs.burpsuite.packages.${pkgs.system}.burpsuite-pro
+      inputs.burpsuite.packages.${pkgs.stdenv.hostPlatform.system}.burpsuite-pro
       android-tools
       nuclei
       trufflehog

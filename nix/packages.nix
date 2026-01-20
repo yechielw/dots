@@ -16,16 +16,16 @@
     amp-cli
     terraform
     terraform-lsp
-    self.packages.${pkgs.system}.nvim
+    self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     # nvim
     inputs.raise.defaultPackage.x86_64-linux
-    # inputs.cats.packages.${pkgs.system}.default
-    #nixCatsOutputs.packages.${pkgs.system}.default
-    #    inputs.ghostty.packages.${pkgs.system}.default
-    inputs.zen-browser.packages.${pkgs.system}.default
+    # inputs.cats.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #nixCatsOutputs.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
     gemini-cli
-    # inputs.nixpkgs-master.legacyPackages.${pkgs.system}.bitwarden-desktop
+    # inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system}.bitwarden-desktop
     bitwarden-desktop
     alsa-utils
     beeper
@@ -33,7 +33,7 @@
     xxd
     wirelesstools
     bluez-tools
-    nixfmt-rfc-style
+    nixfmt
     dig
     (flameshot.override {
       enableWlrSupport = true;
