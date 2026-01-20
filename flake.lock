@@ -32,11 +32,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1766147459,
-        "narHash": "sha256-STlr6E9b688JD7DsqcdZ8NMtNGUeWTlAzYEJDVj1UUE=",
+        "lastModified": 1768558673,
+        "narHash": "sha256-JnwzVmCP+mh/2DvRmyLEpGrN1v7rqE4SHLmuAG65v94=",
         "owner": "yechielw",
         "repo": "burpsuite.nix",
-        "rev": "c679cabb48bd3fbd5efb372dcd4782a8aea2da12",
+        "rev": "937839561c0c1c11f93a6050c4d674c10a5f5baa",
         "type": "github"
       },
       "original": {
@@ -259,31 +259,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1763845215,
-        "narHash": "sha256-8W4YByiS3zxwcdDR2sABm1nUCSOEXJwdY/XddRTVjWM=",
-        "owner": "yechielw",
+        "lastModified": 1768893778,
+        "narHash": "sha256-iSHEptqSun9Ryl1NgoKguJAjRHAFO3k9bQ9bB+UpCNA=",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9a5042a88caea9b729a1d3bc981069159de4fc49",
+        "rev": "895eddbee851630201154725c22e94ecd8232dbf",
         "type": "github"
       },
       "original": {
-        "owner": "yechielw",
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
     },
-    "howdy-module": {
+    "howdy-pr": {
       "locked": {
-        "lastModified": 1759912464,
-        "narHash": "sha256-rfAAqjljUPJdgCBGTZhviYsY3liFvUMsd4GbtMFm3ho=",
-        "owner": "pineapplehunter",
-        "repo": "howdy-module",
-        "rev": "a38e5a5cab38db0f20a2ca096460d15f0055acbd",
+        "lastModified": 1768739927,
+        "narHash": "sha256-cQnritnFroXjpDm/70wMBLV411Y4zow8nTRFPxlUTz8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a4e4ad588b9cbfde5c78918591cfa825f64db3e5",
         "type": "github"
       },
       "original": {
-        "owner": "pineapplehunter",
-        "repo": "howdy-module",
+        "owner": "NixOS",
+        "ref": "pull/216245/head",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -646,7 +647,7 @@
         "chaotic": "chaotic",
         "himmelblau": "himmelblau",
         "home-manager": "home-manager_2",
-        "howdy-module": "howdy-module",
+        "howdy-pr": "howdy-pr",
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",
         "nixCats": "nixCats",
@@ -889,11 +890,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1768039142,
-        "narHash": "sha256-/0CnNbAEdMgyPlaABtgwach+M9MDIHD+A2wr90jxcHU=",
+        "lastModified": 1768856963,
+        "narHash": "sha256-u5bWDuwk6oieTnvm1YjNotcYK8iJSddH5+S68+X4TSc=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "a4d6d7fa459ffe66192ff88276379246294b43c6",
+        "rev": "934bc0ad47be6dbd6498a0dac655c4613fd0ab27",
         "type": "github"
       },
       "original": {
