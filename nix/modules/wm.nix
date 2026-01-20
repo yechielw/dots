@@ -33,6 +33,8 @@
     # ];
     services = {
 
+      network-manager-applet.enable = true;
+
       gnome-keyring.enable = true;
 
       kdeconnect = {
@@ -49,6 +51,9 @@
 
       udiskie.enable = true;
       vicinae.enable = true;
+      vicinae.systemd.enable = true;
+      vicinae.systemd.autoStart = true;
+      vicinae.systemd.environment.USE_LAYER_SHELL = 1;
       pasystray = {
         enable = true;
         extraOptions = [
