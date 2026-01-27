@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    witr
     atuin
     bat
     eza
