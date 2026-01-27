@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   inputs,
   ...
 }:
@@ -24,9 +25,9 @@
       pkiBundle = "/var/lib/sbctl";
     };
 
-    # kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_testing;
     # kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    # kernelPackages = pkgs.linuxPackages_zen;
 
   };
 }

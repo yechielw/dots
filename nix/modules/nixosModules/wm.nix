@@ -23,7 +23,7 @@
     services.udisks2.enable = true;
     # services.desktopManager.cosmic.enable = true;
     #specialisation.cosmic.configuration.services.desktopManager.cosmic.enable = true;
-    specialisation.zen.configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
+    # specialisation.zen.configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
     xdg.portal.config = {
       common = {
         default = [

@@ -10,7 +10,7 @@
       self,
       # profilepic,
       nixCats,
-      howdy-pr,
+      #howdy-pr,
       ...
     }@inputs:
     let
@@ -57,7 +57,7 @@
             inherit pkgs-master;
             inherit settings;
             inherit self;
-            inherit howdy-pr;
+            #inherit howdy-pr;
           };
           modules = [
             ./nix/hosts/lenovo-thinkpad-x13.nix
@@ -76,7 +76,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    howdy-pr.url = "github:NixOS/nixpkgs?ref=pull/216245/head";
+    #howdy-pr.url = "github:NixOS/nixpkgs?ref=pull/216245/head";
 
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -92,7 +92,7 @@
     raise.url = "github:knarkzel/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
-    vicinae.url = "github:vicinaehq/vicinae?tag=releases/latest";
+    vicinae.url = "github:vicinaehq/vicinae"; #?tag=releases/latest";
 
     himmelblau.url = "github:himmelblau-idm/himmelblau";
     himmelblau.inputs.nixpkgs.follows = "nixpkgs";

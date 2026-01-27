@@ -17,18 +17,18 @@
 
   ];
 
-  imports = [ inputs.himmelblau.nixosModules.himmelblau ];
-  services.himmelblau = {
-    enable = false;
-    # debugFlag = true;
-    domains = [ "mac.org.il" ];
-    settings = {
-      pam_allow_groups = [ ];
-      join_type = "register";
-
-      local_groups = config.users.users.yechiel.extraGroups;
-    };
-  };
+  # imports = [ inputs.himmelblau.nixosModules.himmelblau ];
+  # services.himmelblau = {
+  #   enable = false;
+  #   # debugFlag = true;
+  #     domains = [ "mac.org.il" ];
+  #   settings = {
+  #     pam_allow_groups = [ ];
+  #     join_type = "register";
+  #
+  #     local_groups = config.users.users.yechiel.extraGroups;
+  #   };
+  # };
 
   nix.settings = {
     substituters = [
