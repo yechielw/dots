@@ -12,8 +12,8 @@
     gtk = {
       enable = true;
       theme = {
-        name = "WhiteSur-Dark";
-        package = pkgs.whitesur-gtk-theme;
+        name = "adw-gtk3-dark"; # "WhiteSur-Dark";
+        package = pkgs.adw-gtk3; # pkgs.whitesur-gtk-theme;
       };
 
       # iconTheme = {

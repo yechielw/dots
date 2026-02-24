@@ -23,7 +23,8 @@
         #   "DP-6,1920x1080@60.0,0x0,1.0"
         #   "DP-7,1920x1080@60.0,1920x0,1.0"
         # ];
-        source = "monitors.conf";
+        # using kanshai to handle monitors
+        # source = "monitors.conf"; 
         env = [
           "XCURSOR_SIZE,24"
           "XCURSOR_THEME,BreezeX-RosePine-Linux"
