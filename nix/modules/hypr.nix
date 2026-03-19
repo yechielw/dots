@@ -12,6 +12,7 @@
   config = lib.mkIf config.hm.hypr.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       # plugins = [
       #   # pkgs.hyprlandPlugins.hyprexpo
       # pkgs.hyprlandPlugins.hyprgrass
@@ -37,16 +38,16 @@
           gaps_in = 0;
           gaps_out = 1;
           border_size = 1;
-          "col.active_border" = "rgba(bbbbbb66)";
+          "col.active_border" = "rgb(4B4D54)";
           "col.inactive_border" = "rgba(595959aa)";
           resize_on_border = true;
           allow_tearing = false;
           layout = "dwindle";
         };
         decoration = {
-          rounding = 7;
+          rounding = 25; # was 7
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.97;
           dim_inactive = true;
           dim_strength = 0.03;
           shadow = {
@@ -135,6 +136,7 @@
           "SUPER, O, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe pkgs.tesseract} stdin stdout -l eng+heb | ${pkgs.wl-clipboard}/bin/wl-copy"
           "SUPER, return, exec, raise -c com.mitchellh.ghostty -e ghostty"
           "SUPER, A, exec,  raise -c google-chrome -e google-chrome-stable"
+          "SUPER, A, exec,  raise -c chromium-browser -e hyprctl dispatch sendshortcut CTRL, Q, class:burp-StartBurp"
           "SUPER, M, exec,  raise -c microsoft-edge -e microsoft-edge"
           "SUPER, Z, exec,  raise -c zen -e zen"
           "SUPER, B, exec,  raise -e burpsuite -c burp-StartBurp"
@@ -266,6 +268,7 @@
           "workspace 4, match:class burp-StartBurp"
           "workspace 8, match:class Icasessionmgr"
           "workspace 8, match:class Wfica.*"
+          "no_initial_focus on, match:class Wfica.*"
           "float on, match:class burp-StartBurp, match:title .*\bfilter$"
           # "stayfocused, class:burp-StartBurp, floating:1"
         ];
