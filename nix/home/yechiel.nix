@@ -4,6 +4,7 @@
   settings,
   pkgs-master,
   self,
+  icalindicator,
   ...
 }:
 
@@ -23,6 +24,7 @@
       yechiel = {
         imports = [
           inputs.vicinae.homeManagerModules.default
+          inputs.icalindicator.homeManagerModules.default
           #inputs.batt.homeManagerModules.default
 
           ../../nix/modules/wm.nix
@@ -30,6 +32,7 @@
           ../../nix/modules/tui/hm.nix
           ../../nix/modules/hypr.nix
           ./homeconfig.nix
+          ./kanshai.nix
         ];
       };
     };
