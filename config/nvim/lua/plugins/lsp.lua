@@ -12,6 +12,19 @@ return { -- LSP Configuration & Plugins
         },
       },
     },
+    {
+      'Hoffs/omnisharp-extended-lsp.nvim',
+      lazy = true,
+      ft = "cs",
+    },
+    -- {
+    --   "seblyng/roslyn.nvim",
+    --   ---@module 'roslyn.config'
+    --   ---@type RoslynNvimConfig
+    --   opts = {
+    --     -- your configuration comes here; leave empty for default settings
+    --   },
+    -- },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -178,6 +191,31 @@ return { -- LSP Configuration & Plugins
       },
     })
 
-    vim.lsp.enable { 'lua_ls', 'csharp_ls', 'nixd', 'pylsp', 'terraformls' }
+    vim.lsp.config('omnisharp', {
+      handlers = {
+        ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+        ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+        ["textDocument/references"] = require('omnisharp_extended').references_handler,
+        ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+        -- ["textDocument/definition"] = function(...)
+        --   return require("omnisharp_extended").handler(...)
+        -- end,
+      },
+      keys = {
+        {
+          "gd",
+          function()
+            require("omnisharp_extended").telescope_lsp_definitions()
+          end,
+          desc = "Goto Definition",
+        },
+      },
+      enable_roslyn_analyzers = true,
+      organize_imports_on_format = true,
+      enable_import_completion = true,
+    })
+
+    vim.lsp.enable { 'lua_ls', 'nixd', 'omnisharp', 'basedpyright', 'terraformls' }
+    -- 'csharp_ls',
   end,
 }

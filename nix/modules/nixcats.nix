@@ -37,8 +37,11 @@ let
           gopls
           gofumpt
           pyright
+          basedpyright
           csharp-ls
           nodejs
+          omnisharp-roslyn
+          roslyn
           # amp-cli
         ];
         kickstart-debug = [ delve ];
@@ -84,6 +87,8 @@ let
           promise-async
           rose-pine
           amp-nvim
+          omnisharp-extended-lsp-nvim
+          roslyn-nvim
         ];
 
         avante = [
