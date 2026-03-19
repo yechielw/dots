@@ -38,8 +38,10 @@
 
     extraModprobeConfig = ''
       options btusb enable_autosuspend=N
-      # options iwlwifi power_save=0
-      # options iwlwifi bt_coex_active=0
+      # AX211 is a Wi-Fi/Bluetooth combo device; aggressive Wi-Fi power saving
+      # tends to make Bluetooth audio less stable under load.
+      options iwlwifi power_save=0 uapsd_disable=1
+      options iwlmvm power_scheme=1
     '';
   };
 
@@ -74,15 +76,11 @@
 
     settings = {
       General = {
-        Enable = "Source,Sink,Media,Socket";
         ControllerMode = "dual";
         JustWorksRepairing = "confirm";
         Privacy = "device";
-        # Enhanced timeout and retry settings for firmware loading
         DiscoverableTimeout = 0;
         PairableTimeout = 0;
-        AutoConnectTimeout = 60;
-        # Experimental features that may help with MT7925
       };
       Policy = {
         AutoEnable = true;
