@@ -32,6 +32,8 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+      icalnotifier.enable = true;
+      tailscale-systray.enable = true;
 
       network-manager-applet.enable = true;
 
@@ -64,8 +66,8 @@
       };
       swaync.enable = true;
       swaync.settings = {
-        positionX = "right";
-        positionY = "top";
+        positionX = "left";
+        positionY = "button";
         layer = "overlay";
         control-center-layer = "top";
         layer-shell = true;
@@ -193,8 +195,6 @@
       # hyprpolkitagent.enable = true;
       polkit-gnome.enable = true;
 
-      trayscale.enable = true;
-
       hyprpaper = {
         enable = true;
         settings = {
@@ -202,10 +202,9 @@
           #splash = false;
           #splash_offset = 2.0;
 
-          preload = [ "/home/yechiel/Downloads/a.jpg" ];
 
           wallpaper = [
-            ",/home/yechiel/Downloads/a.jpg"
+            { path = "/home/yechiel/Downloads/a.jpg"; }
           ];
         };
       };
