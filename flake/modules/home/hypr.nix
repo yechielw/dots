@@ -25,7 +25,8 @@
         #   "DP-7,1920x1080@60.0,1920x0,1.0"
         # ];
         # using kanshai to handle monitors
-        # source = "monitors.conf"; 
+        # source = "monitors.conf";
+        exec-once = ["noctalia-shell"];
         env = [
           "XCURSOR_SIZE,24"
           "XCURSOR_THEME,BreezeX-RosePine-Linux"
@@ -108,12 +109,12 @@
         ];
 
         bindel = [
-          ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
-          ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
-          ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-          ",XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
-          ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
-          ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+          ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ " # swayosd-client --output-volume raise"
+          ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "# swayosd-client --output-volume lower"
+          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" # swayosd-client --output-volume mute-toggle"
+          ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle" # swayosd-client --input-volume mute-toggle"
+          ",XF86MonBrightnessUp, exec, brightnessctl set 5%+" #swayosd-client --brightness raise"
+          ",XF86MonBrightnessDown, exec, brightnessctl set 5%-" #swayosd-client --brightness lower"
         ];
         xwayland = {
           force_zero_scaling = true;
@@ -256,6 +257,7 @@
           "no_shadow on, match:class ulauncher"
           "pin on, match:class flameshot"
           "pin on, match:title flameshot"
+          "pin on, match:class gcr-prompter"
           "size 80% 80%, match:class org.gnome.NautilusPreviewer"
           "stay_focused on, match:class ulauncher"
           "stay_focused on, match:title .*kupfer.*"

@@ -12,7 +12,6 @@
     hacking.enable = lib.mkEnableOption "enable hacking tools collection";
   };
 
-
   config = lib.mkIf config.hacking.enable {
     programs.wireshark.enable = true;
     # programs.adb.enable = true;

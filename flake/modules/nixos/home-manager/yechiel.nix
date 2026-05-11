@@ -23,16 +23,11 @@
     users = {
       yechiel = {
         imports = [
-          inputs.vicinae.homeManagerModules.default
+          #inputs.vicinae.homeManagerModules.default
           inputs.icalindicator.homeManagerModules.default
           #inputs.batt.homeManagerModules.default
 
-          ../../nix/modules/wm.nix
-          ../../nix/modules/apearance/hm.nix
-          ../../nix/modules/tui/hm.nix
-          ../../nix/modules/hypr.nix
-          ./homeconfig.nix
-          ./kanshai.nix
+          (inputs.import-tree ../../home)
         ];
       };
     };

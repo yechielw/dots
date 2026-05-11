@@ -29,23 +29,18 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
-  services.resolved = {
-    enable = false;
-    fallbackDns = [
-      "8.8.8.8"
-      "100.100.100.100"
-      "127.0.0.53"
-    ];
-  };
-
   services.xserver = {
     enable = true;
     xkb.layout = "us,il";
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.ly.enable = true;
-  systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.theme = "${
+    pkgs.where-is-my-sddm-theme.override { variants = [ "qt5" ]; }
+  }/share/sddm/themes/where_is_my_sddm_theme_qt5";
+  # systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   services.upower.enable = true;
   services.desktopManager.gnome.enable = true;
 
@@ -82,7 +77,8 @@
     useRoutingFeatures = "both";
     extraSetFlags = [
       "--operator=yechiel"
-      "--accept-dns=false"
+      "--accept-dns=true"
+      "--accept-routes=true"
     ];
     extraUpFlags = [
       "--ssh"
@@ -94,7 +90,7 @@
 
     enable = true;
     keyboards.my = {
-      configFile = ../config/katana/kanata.kbd;
+      configFile = ../../../config/katana/kanata.kbd;
       #:: devices = [ ];
       devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
 

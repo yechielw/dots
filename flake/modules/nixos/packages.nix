@@ -13,12 +13,13 @@
   #   nixCatsOutputs.overlays.default
   # ];
   environment.systemPackages = with pkgs; [
+    pkgs-master.noctalia-shell
     amp-cli
     terraform
     terraform-lsp
     self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     # nvim
-    inputs.raise.defaultPackage.x86_64-linux
+    inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
     # inputs.cats.packages.${pkgs.stdenv.hostPlatform.system}.default
     #nixCatsOutputs.packages.${pkgs.stdenv.hostPlatform.system}.default
     #    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -44,7 +45,9 @@
     file
     git
     go
-    (google-chrome.override { commandLineArgs = "--disable-features=WaylandWpColorManagerV1 --password-store=basic"; })
+    (google-chrome.override {
+      commandLineArgs = "--disable-features=WaylandWpColorManagerV1 --password-store=basic";
+    })
     gzip
     nodejs
     pipx
@@ -65,7 +68,6 @@
     libmbim
     #    rquickshare
     sbctl
-    trayscale
     usbutils
     cachix
     jq

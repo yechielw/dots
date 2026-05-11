@@ -19,4 +19,7 @@
   };
 
   environment.sessionVariables.OMP_NUM_THREADS = 1;
+
+  security.run0.enableSudoAlias = true;
+  security.sudo.enable = false;
 }

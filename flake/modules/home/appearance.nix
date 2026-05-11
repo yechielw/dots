@@ -4,7 +4,8 @@
   pkgs,
   ...
 }:
-let tahoe = pkgs.stdenv.mkDerivation {
+let
+  tahoe = pkgs.stdenv.mkDerivation {
     name = "macos-tahoe-theme";
     version = "v0.6.2";
     src = pkgs.fetchFromGitHub {
@@ -39,7 +40,7 @@ let tahoe = pkgs.stdenv.mkDerivation {
       runHook postInstall
     '';
   };
-  in
+in
 {
   options.hm.appearance = {
     enable = lib.mkEnableOption "appearance";
@@ -59,6 +60,7 @@ let tahoe = pkgs.stdenv.mkDerivation {
         name = "Tahoe-Dark";
         package = tahoe;
       };
+      gtk4.theme = null;
 
       # iconTheme = {
       # name = "WhiteSur";
@@ -76,10 +78,10 @@ let tahoe = pkgs.stdenv.mkDerivation {
       };
     };
 
-    # qt = {
-    #   enable = true;
-    #   platformTheme.name = "gtk";
-    #   style.name = "gtk2";
-    # };
+    qt = {
+      enable = true;
+      platformTheme.name = "adwaita";
+      # style.name = "adwaita";
+    };
   };
 }

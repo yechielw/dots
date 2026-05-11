@@ -33,6 +33,7 @@
     # ];
     services = {
       icalnotifier.enable = true;
+      icalnotifier.package = inputs.icalindicator.packages.${pkgs.stdenv.hostPlatform.system}.default;
       tailscale-systray.enable = true;
 
       network-manager-applet.enable = true;
@@ -52,10 +53,6 @@
       };
 
       udiskie.enable = true;
-      vicinae.enable = true;
-      vicinae.systemd.enable = true;
-      vicinae.systemd.autoStart = true;
-      vicinae.systemd.environment.USE_LAYER_SHELL = 1;
       pasystray = {
         enable = true;
         extraOptions = [
@@ -64,7 +61,7 @@
           "--symbolic-icons"
         ];
       };
-      swaync.enable = true;
+      swaync.enable = false;
       swaync.settings = {
         positionX = "left";
         positionY = "button";
@@ -176,7 +173,7 @@
 
       '';
       swayosd = {
-        enable = true;
+        enable = false;
         topMargin = 0.75;
       };
 
@@ -201,7 +198,6 @@
           ipc = "on";
           #splash = false;
           #splash_offset = 2.0;
-
 
           wallpaper = [
             { path = "/home/yechiel/Downloads/a.jpg"; }
@@ -265,14 +261,21 @@
 
     programs.wlogout.enable = true;
 
+    programs.vicinae = {
+      enable = true;
+      systemd.enable = true;
+      # vicinae.systemd.autoStart = true;
+      # vicinae.systemd.environment.USE_LAYER_SHELL = 1;
+    };
+
     programs.satty = {
       enable = true;
       package = inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system}.satty;
-      settings = builtins.fromTOML (lib.readFile ../../config/satty/config.toml);
+      settings = builtins.fromTOML (lib.readFile ../../../config/satty/config.toml);
     };
 
     programs.waybar = {
-      enable = true;
+      enable = false;
       systemd.enable = true;
       settings = {
         mainBar = {
@@ -460,7 +463,7 @@
           };
         };
       };
-      style = builtins.readFile ../../config/waybar/style.css;
+      style = builtins.readFile ../../../config/waybar/style.css;
     };
 
     programs.hyprlock = {

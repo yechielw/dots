@@ -21,7 +21,6 @@
 
   imports = [
     inputs.home-manager.nixosModules.default
-    ./yechiel.nix
+    ../home-manager/yechiel.nix
   ];
-
 }

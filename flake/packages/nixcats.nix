@@ -9,19 +9,12 @@ let
 
   luaPath = "${self + /config/nvim}";
 
-  # extra_pkg_config = {
-  #   allowUnfree = true;
-  # };
-
   dependencyOverlays = [
     (utils.standardPluginOverlay inputs)
   ];
 
   categoryDefinitions =
-    {
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       lspsAndRuntimeDeps = with pkgs; {
         general = [
@@ -42,7 +35,6 @@ let
           nodejs
           omnisharp-roslyn
           roslyn
-          # amp-cli
         ];
         kickstart-debug = [ delve ];
         kickstart-lint = [ markdownlint-cli ];
@@ -67,7 +59,6 @@ let
           lazydev-nvim
           fidget-nvim
           conform-nvim
-          # nvim-cmp
           blink-cmp-copilot
           blink-cmp
           friendly-snippets
@@ -112,16 +103,14 @@ let
           plenary-nvim
         ];
       };
-
     };
 
   packageDefinitions = {
     nvim =
-      { pkgs, ... }:
+      { ... }:
       {
         settings = {
           wrapRc = true;
-          # aliases = lib.genList (i: lib.substring 0 (i + 1) "nvim") (lib.stringLength "nvim");
         };
         categories = {
           general = true;
@@ -141,24 +130,19 @@ let
   };
 
   defaultPackageName = "nvim";
-
 in
-# The only thing we export: a function called by eachSystem
-(
-  system:
-  let
-    nixCatsBuilder = utils.baseBuilder luaPath {
-      inherit
-        nixpkgs
-        system
-        dependencyOverlays
-        # extra_pkg_config
-        ;
-    } categoryDefinitions packageDefinitions;
+system:
+let
+  nixCatsBuilder = utils.baseBuilder luaPath {
+    inherit
+      nixpkgs
+      system
+      dependencyOverlays
+      ;
+  } categoryDefinitions packageDefinitions;
 
-    defaultPackage = nixCatsBuilder defaultPackageName;
-  in
-  {
-    packages = utils.mkAllWithDefault defaultPackage;
-  }
-)
+  defaultPackage = nixCatsBuilder defaultPackageName;
+in
+{
+  packages = utils.mkAllWithDefault defaultPackage;
+}

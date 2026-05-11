@@ -46,6 +46,8 @@
           email = "41305372+yechielw@users.noreply.github.com";
         };
 
+        credential.helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+
         init.defaultBranch = "master";
         pull.rebase = false;
       };

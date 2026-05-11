@@ -9,25 +9,12 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
 
     # inputs.espanso-fix.nixosModules.espanso-capdacoverride
-    inputs.chaotic.nixosModules.nyx-cache
-    inputs.chaotic.nixosModules.nyx-overlay
-    inputs.chaotic.nixosModules.nyx-registry
+    # inputs.chaotic.nixosModules.nyx-cache
+    # inputs.chaotic.nixosModules.nyx-overlay
+    # inputs.chaotic.nixosModules.nyx-registry
 
     ./hardware-configuration.nix
-
-    ../configuration.nix
-    ../packages.nix
-    ../programs.nix
-    ../services.nix
-    ../modules/nixosModules/hacking.nix
-    ../work.nix
-    ../term.nix
-    ../modules/nixosModules/wm.nix
-    ../vm.nix
-    ../boot.nix
-    ../override.nix
-    ../security.nix
-    ../home/home.nix
+    (inputs.import-tree ../../modules/nixos)
   ];
 
   # hardware.firmware = [ pkgs.sof-firmware ];
@@ -62,9 +49,7 @@
   systemd.tmpfiles.rules = [
     "d /var/lib/linux-enable-ir-emitter 0755 root root - -"
   ];
-  environment.etc."linux-enable-ir-emitter".source = ../../config/linux-enable-ir-emitter;
-
-
+  environment.etc."linux-enable-ir-emitter".source = ../../../config/linux-enable-ir-emitter;
 
   services.udev.extraRules = ''
     # AX211 Bluetooth
@@ -76,7 +61,7 @@
 
     settings = {
       General = {
-        ControllerMode = "dual";
+        ControllerMode = "bredr";
         JustWorksRepairing = "confirm";
         Privacy = "device";
         DiscoverableTimeout = 0;
@@ -89,8 +74,6 @@
       };
     };
   };
-
-
 
   networking = {
     hostName = "lenovo-thinkpad-x13";
