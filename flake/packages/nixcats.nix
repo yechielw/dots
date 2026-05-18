@@ -139,6 +139,10 @@ let
       system
       dependencyOverlays
       ;
+
+    extra_pkg_config = {
+      allowUnfree = true;
+    };
   } categoryDefinitions packageDefinitions;
 
   defaultPackage = nixCatsBuilder defaultPackageName;
