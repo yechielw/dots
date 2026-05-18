@@ -80,7 +80,7 @@ in
 
     qt = {
       enable = true;
-      platformTheme.name = "adwaita";
+      platformTheme.name = "qtct";
       # style.name = "adwaita";
     };
   };
