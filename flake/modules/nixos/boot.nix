@@ -12,21 +12,21 @@
   boot = {
     loader = {
       systemd-boot.enable = false;
-      systemd-boot.configurationLimit = 5;
+      # systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
-      limine.enable = true;
-      limine.secureBoot.enable = true;
+      # limine.enable = true;
+      # limine.secureBoot.enable = true;
     };
-    plymouth.enable = true;
+    # plymouth.enable = true;
     #    plymouth.themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
     # plymouth.theme = "catppuccin-mocha";
     initrd.systemd.enable = true;
 
     # secureboot enabled systemdboot dropin repolacement
-    # lanzaboote = {
-    #   enable = true;
-    #   pkiBundle = "/var/lib/sbctl";
-    # };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
 
     #kernelPackages = pkgs.linuxPackages_testing;
     #kernelPackages = inputs.nyx-loner.packages.${pkgs.stdenv.hostPlatform.system}.linux_cachyos-lto;

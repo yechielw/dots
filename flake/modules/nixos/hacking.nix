@@ -29,7 +29,7 @@
       jython
       python312Packages.bloodhound-py
       metasploit
-      caido
+      caido-cli
       netexec
       seclists
       (pkgs.wordlists.override {

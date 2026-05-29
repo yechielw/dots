@@ -1,9 +1,8 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
+{ pkgs
+, inputs
+, config
+, lib
+, ...
 }:
 {
   options = {
@@ -21,6 +20,20 @@
       ];
     };
     services.udisks2.enable = true;
+    systemd.user.services = {
+      "wayland-session-bindpid@" = {
+        restartIfChanged = false;
+        stopIfChanged = false;
+      };
+      "wayland-wm@" = {
+        restartIfChanged = false;
+        stopIfChanged = false;
+      };
+      "wayland-wm-env@" = {
+        restartIfChanged = false;
+        stopIfChanged = false;
+      };
+    };
     # services.desktopManager.cosmic.enable = true;
     #specialisation.cosmic.configuration.services.desktopManager.cosmic.enable = true;
     # specialisation.zen.configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;

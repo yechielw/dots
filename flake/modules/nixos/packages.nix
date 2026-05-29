@@ -50,7 +50,7 @@
     })
     gzip
     nodejs
-    pipx
+    #pipx
     pyenv
     thunderbird
     unzip

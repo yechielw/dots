@@ -35,11 +35,13 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.theme = "${
-    pkgs.where-is-my-sddm-theme.override { variants = [ "qt5" ]; }
-  }/share/sddm/themes/where_is_my_sddm_theme_qt5";
+  services.displayManager.cosmic-greeter.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # services.displayManager.sddm.theme = "${
+  #   pkgs.where-is-my-sddm-theme.override { variants = [ "qt5" ]; }
+  # }/share/sddm/themes/where_is_my_sddm_theme_qt5";
+  systemd.services.display-manager.stopIfChanged = false;
   # systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   services.upower.enable = true;
   services.desktopManager.gnome.enable = true;
@@ -99,10 +101,12 @@
 
   imports = [
     inputs.nix-flatpak.nixosModules.nix-flatpak
+    inputs.vicinae.nixosModules.default
   ];
   services.flatpak = {
     enable = true;
     packages = [
+      "io.github.maniacx.BudsLink"
       # "us.zoom.Zoom"
       #"com.usebottles.bottles"
       #"io.github.zen_browser.zen"
@@ -128,8 +132,8 @@
 
     };
   };
-  services.espanso = {
-    enable = true;
-    package = pkgs.espanso-wayland;
-  };
+  # services.espanso = {
+  #   enable = true;
+  #   package = pkgs.espanso-wayland;
+  # };
 }

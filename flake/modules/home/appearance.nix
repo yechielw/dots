@@ -1,8 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }:
 let
   tahoe = pkgs.stdenv.mkDerivation {
@@ -49,6 +48,7 @@ in
 
     home.file.".config/gtk-4.0" = {
       enable = true;
+      force = true;
       recursive = true;
       source = (tahoe + "/share/themes/Tahoe-Dark/gtk-4.0");
     };

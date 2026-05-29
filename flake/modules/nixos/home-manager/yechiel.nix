@@ -1,11 +1,10 @@
-{
-  pkgs,
-  inputs,
-  settings,
-  pkgs-master,
-  self,
-  icalindicator,
-  ...
+{ pkgs
+, inputs
+, settings
+, pkgs-master
+, self
+, icalindicator
+, ...
 }:
 
 {
@@ -23,7 +22,7 @@
     users = {
       yechiel = {
         imports = [
-          #inputs.vicinae.homeManagerModules.default
+          inputs.vicinae.homeManagerModules.default
           inputs.icalindicator.homeManagerModules.default
           #inputs.batt.homeManagerModules.default
 

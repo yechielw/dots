@@ -1,10 +1,9 @@
-{
-  lib,
-  pkgs,
-  config,
-  pkgs-master,
-  inputs,
-  ...
+{ lib
+, pkgs
+, config
+, pkgs-master
+, inputs
+, ...
 }:
 {
 
@@ -32,8 +31,8 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
-      icalnotifier.enable = true;
-      icalnotifier.package = inputs.icalindicator.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # icalnotifier.enable = true;
+      # icalnotifier.package = inputs.icalindicator.packages.${pkgs.stdenv.hostPlatform.system}.default;
       tailscale-systray.enable = true;
 
       network-manager-applet.enable = true;
@@ -61,7 +60,7 @@
           "--symbolic-icons"
         ];
       };
-      swaync.enable = false;
+      swaync.enable = true;
       swaync.settings = {
         positionX = "left";
         positionY = "button";
@@ -200,7 +199,7 @@
           #splash_offset = 2.0;
 
           wallpaper = [
-            { path = "/home/yechiel/Downloads/a.jpg"; }
+            ",/home/yechiel/dots/flake/Pictures/wp.jpg"
           ];
         };
       };
@@ -261,11 +260,62 @@
 
     programs.wlogout.enable = true;
 
-    programs.vicinae = {
+    programs.ashell = {
       enable = true;
       systemd.enable = true;
-      # vicinae.systemd.autoStart = true;
-      # vicinae.systemd.environment.USE_LAYER_SHELL = 1;
+      settings = {
+        language = "en-US";
+        region = "en-GB";
+        modules = {
+          left = [ [ "Workspaces" "WindowTitle" ] ];
+          center = [ "MediaPlayer" ];
+          right = [ "Updates" "SystemInfo" "KeyboardLayout" "Tray" [ "Tempo" "Privacy" "CustomNotifications" "Settings" ] ];
+        };
+        keyboard_layout = {
+          labels = {
+            "English (US)" = "🇺🇸";
+            Hebrew = "🇮🇱";
+          };
+        };
+        tempo = {
+          weather_location = "Current";
+          weather_indicator = "Icon";
+        };
+        appearance = {
+          font_name = "SFProDisplay Nerd Font";
+          style = "Solid";
+        };
+        updates = {
+          check_cmd = "nh os build --update| cut -d ' ' -f4-";
+          update_cmd = "ghostty --command='nh os switch; echo Done - Press enter to exit; read' &";
+          interval = 21600;
+        };
+        CustomModule = [ {
+          name = "CustomNotifications";
+          icon = "";
+          command = "swaync-client -t -sw";
+          listen_cmd = "swaync-client -swb";
+          icons."dnd.*" = "";
+          alert = ".*notification";
+        } ];
+      };
+    };
+
+    # programs.vicinae = {
+    #   enable = true;
+    #   systemd.enable = true;
+    #   # vicinae.systemd.autoStart = true;
+    #   # vicinae.systemd.environment.USE_LAYER_SHELL = 1;
+    # };
+    services.vicinae = {
+      enable = true; # default: false
+        systemd = {
+          enable = true; # default: false
+            autoStart = true; # default: false
+            environment = {
+              USE_LAYER_SHELL = 1;
+            };
+        };
     };
 
     programs.satty = {

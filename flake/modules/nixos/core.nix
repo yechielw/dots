@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
@@ -34,6 +35,11 @@
         networkmanager-openvpn
       ];
     };
+  };
+
+  systemd.services.NetworkManager = {
+    restartIfChanged = false;
+    stopIfChanged = false;
   };
 
   services.automatic-timezoned.enable = true;

@@ -26,8 +26,9 @@
         # ];
         # using kanshai to handle monitors
         # source = "monitors.conf";
-        exec-once = ["noctalia-shell"];
+        #exec-once = [ "noctalia-shell" ];
         env = [
+          "QT_QPA_PLATFORMTHEME,gnome"
           "XCURSOR_SIZE,24"
           "XCURSOR_THEME,BreezeX-RosePine-Linux"
           "HYPRCURSOR_SIZE,24"
@@ -75,7 +76,6 @@
           ];
         };
         dwindle = {
-          pseudotile = true;
           preserve_split = true;
         };
         master = {
@@ -144,13 +144,13 @@
           "SUPER, Q, killactive,"
           "SUPER shift, C, exit,"
           "SUPER, E, exec, nautilus"
-          "SUPER, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history"
-          "SUPER, PERIOD, exec, xdg-open vicinae://extensions/vicinae/vicinae/search-emojis"
+          "SUPER, V, exec, vicinae vicinae://launch/clipboard/history"
+          "SUPER, PERIOD, exec, vicinae core/search-emojis"
           # "ALT, TAB, exec, xdg-open vicinae://extensions/vicinae/wm/switch-windows"
           "SUPER, F, togglefloating,"
           "SUPER, space, exec, vicinae toggle"
           "SUPER, P, pseudo, "
-          "SUPER, ?, togglesplit, "
+          "SUPER, ?, layoutmsg, togglesplit"
           "SUPER, left, movefocus, l"
           "SUPER, right, movefocus, r"
           "SUPER, up, movefocus, u"
@@ -201,7 +201,7 @@
           ", Print, exec, flameshot gui"
           "SUPER, Escape, exec,  ${lib.getExe pkgs.playerctl} pause  &&  ${lib.getExe pkgs.hyprlock} "
           "SUPER, T, sendshortcut, CTRL, T, Burp"
-          "SUPER, TAB, exec, vicinae://extensions/vicinae/wm/switch-windows"
+          "SUPER, TAB, exec, vicinae://launch/wm/switch-windows"
         ]
         ++ builtins.concatLists (
           builtins.genList (
