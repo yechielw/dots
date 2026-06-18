@@ -36,10 +36,11 @@
   };
 
   virtualisation.containers.enable = true;
-  virtualisation.waydroid.enable = true;
+  # virtualisation.waydroid.enable = true;
   virtualisation = {
     docker = {
       enable = true;
+      enableOnBoot = false;
 
     };
     podman = {

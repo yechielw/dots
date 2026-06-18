@@ -1,10 +1,11 @@
-{ pkgs, pkgs-master, ... }:
+{
+  lib,
+  pkgs,
+  pkgs-master,
+  ...
+}:
 {
 
-  hm.appearance.enable = true;
-  hm.tui.enable = true;
-  hm.hypr.enable = true;
-  wm.enable = true;
   programs = {
 
     # vicinae = {
@@ -25,6 +26,7 @@
         font-size = 12;
         cursor-invert-fg-bg = true;
         shell-integration-features = "ssh-terminfo,ssh-env";
+        background-opacity = 0.97;
       };
     };
 
@@ -90,10 +92,10 @@
   };
 
   home = {
-    username = "yechiel";
-    homeDirectory = "/home/yechiel";
+    username = lib.mkDefault "yechiel";
+    homeDirectory = lib.mkDefault "/home/yechiel";
 
-    stateVersion = "24.05";
+    stateVersion = lib.mkDefault "24.05";
 
     packages = [ ];
 
@@ -112,14 +114,14 @@
 
   };
 
-  xdg.autostart = {
-    enable = true;
-    entries = [
-      #      "${pkgs.rquickshare}/share/applications/RQuickShare.desktop"
-      "${pkgs.bitwarden-desktop}/share/applications/bitwarden.desktop"
-      "${pkgs.beeper}/share/applications/beepertexts.desktop"
-    ];
-  };
+  # xdg.autostart = {
+  #   enable = true;
+  #   entries = [
+  #     #      "${pkgs.rquickshare}/share/applications/RQuickShare.desktop"
+  #     # "${pkgs-master.bitwarden-desktop}/share/applications/bitwarden.desktop"
+  #     # "${pkgs-master.beeper}/share/applications/beepertexts.desktop"
+  #   ];
+  # };
   xdg.configFile = { };
   # targets.genericLinux.nixGL.vulkan.enable = true;
 }

@@ -5,8 +5,8 @@
 }:
 
 {
-  services.pinchflat.enable = true;
-  services.pinchflat.selfhosted = true;
+  # services.pinchflat.enable = true;
+  # services.pinchflat.selfhosted = true;
 
   # services.jellyfin = {
   #   enable = true;
@@ -35,8 +35,13 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.cosmic-greeter.enable = true;
-  # services.displayManager.sddm.enable = true;
+  #services.displayManager.cosmic-greeter.enable = true;
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "hyprland";
+    configHome = "/home/yechiel";
+  };
+#  services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.sddm.theme = "${
   #   pkgs.where-is-my-sddm-theme.override { variants = [ "qt5" ]; }
@@ -63,6 +68,31 @@
     pulse.enable = true;
 
     jack.enable = true;
+
+    # wireplumber.extraConfig."60-prioritize-bluetooth" = {
+    #     "monitor.bluez.rules" = [
+    #       {
+    #         matches = [
+    #           { "node.name" = "~bluez_output.*"; }
+    #         ];
+    #         actions.update-props = {
+    #           "priority.session" = 3000;
+    #         };
+    #       }
+    #     ];
+
+      #   "monitor.alsa.rules" = [
+      #     {
+      #       matches = [
+      #         { "node.name" = "~alsa_output.*"; }
+      #       ];
+      #       actions.update-props = {
+      #         "priority.session" = 1000;
+      #       };
+      #     }
+      #   ];
+      # };
+    
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)

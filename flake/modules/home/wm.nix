@@ -31,6 +31,7 @@
     #   pkgs.xdg-desktop-portal-gtk
     # ];
     services = {
+      #  awww.enable = true;
       # icalnotifier.enable = true;
       # icalnotifier.package = inputs.icalindicator.packages.${pkgs.stdenv.hostPlatform.system}.default;
       tailscale-systray.enable = true;
@@ -60,7 +61,7 @@
           "--symbolic-icons"
         ];
       };
-      swaync.enable = true;
+      swaync.enable = false;
       swaync.settings = {
         positionX = "left";
         positionY = "button";
@@ -192,35 +193,35 @@
       polkit-gnome.enable = true;
 
       hyprpaper = {
-        enable = true;
+        enable = false;
         settings = {
           ipc = "on";
           #splash = false;
           #splash_offset = 2.0;
 
-          wallpaper = [
-            ",/home/yechiel/dots/flake/Pictures/wp.jpg"
-          ];
+          # wallpaper = [{
+          #   path = "/home/yechiel/Pictures/wp.jpg";
+          # }];
         };
       };
 
       hyprsunset = {
         enable = true;
-        settings = {
-          max-gamma = 150;
-
-          profile = [
-            {
-              time = "7:30";
-              identity = true;
-            }
-            {
-              time = "21:00";
-              temperature = 5000;
-              gamma = 0.8;
-            }
-          ];
-        };
+        # settings = {
+        #   max-gamma = 150;
+        #
+        #   profile = [
+        #     {
+        #       time = "7:30";
+        #       identity = true;
+        #     }
+        #     {
+        #       time = "21:00";
+        #       temperature = 5000;
+        #       gamma = 0.8;
+        #     }
+        #   ];
+        # };
       };
 
       hypridle = {
@@ -229,14 +230,14 @@
         settings = {
           general = {
             before_sleep_cmd = "loginctl lock-session";
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-            lock_cmd = "pidof hyprlock || hyprlock";
+            after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
+            lock_cmd = "dms ipc call lock lock";
           };
 
           listener = [
             {
               timeout = 300;
-              on-timeout = "hyprlock";
+              on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
             }
             {
               timeout = 300;
@@ -245,8 +246,8 @@
             }
             {
               timeout = 350;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
+              on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";                            # screen off when timeout has passed
+              on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'  && brightnessctl -r";
             }
             {
               timeout = 1800;
@@ -261,7 +262,8 @@
     programs.wlogout.enable = true;
 
     programs.ashell = {
-      enable = true;
+      enable = false;
+      package = pkgs-master.ashell;
       systemd.enable = true;
       settings = {
         language = "en-US";
@@ -269,7 +271,7 @@
         modules = {
           left = [ [ "Workspaces" "WindowTitle" ] ];
           center = [ "MediaPlayer" ];
-          right = [ "Updates" "SystemInfo" "KeyboardLayout" "Tray" [ "Tempo" "Privacy" "CustomNotifications" "Settings" ] ];
+          right = [ "Updates" "SystemInfo" "KeyboardLayout" "Tray" [ "Tempo" "Privacy" "Notifications" "Settings" ] ];
         };
         keyboard_layout = {
           labels = {
@@ -286,18 +288,23 @@
           style = "Solid";
         };
         updates = {
-          check_cmd = "nh os build --update| cut -d ' ' -f4-";
+          check_cmd = "/home/yechiel/.config/ashell/waybar-nixos-updates/update-checker | jq .tooltip -r";
           update_cmd = "ghostty --command='nh os switch; echo Done - Press enter to exit; read' &";
           interval = 21600;
         };
-        CustomModule = [ {
-          name = "CustomNotifications";
-          icon = "";
-          command = "swaync-client -t -sw";
-          listen_cmd = "swaync-client -swb";
-          icons."dnd.*" = "";
-          alert = ".*notification";
-        } ];
+        workspaces = {
+          # group_by_monitor = true;
+          visibility_mode = "MonitorSpecific";
+        };
+        osd = {
+                enabled = true;
+                timeout = 1500;
+                show_volume_percentage = true;
+                show_brightness_percentage = true;
+        };
+        animations = {
+                enabled = true;
+        };
       };
     };
 
@@ -517,7 +524,7 @@
     };
 
     programs.hyprlock = {
-      enable = true;
+      enable = false;
       settings = {
 
         auth = {

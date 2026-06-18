@@ -26,7 +26,10 @@
           inputs.icalindicator.homeManagerModules.default
           #inputs.batt.homeManagerModules.default
 
-          (inputs.import-tree ../../home)
+          ../../home/profiles/base.nix
+          ../../home/profiles/desktop.nix
+          ../../home/profiles/development.nix
+          ../../home/profiles/tui.nix
         ];
       };
     };

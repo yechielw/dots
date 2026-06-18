@@ -10,7 +10,9 @@
   programs.evolution.enable = true;
   programs.evolution.plugins = [ pkgs.evolution-ews ];
 
+  # services.citrix-secure-access.enable = true;
   services.intune.enable = true;
+
   environment.systemPackages = with pkgs; [
     #    citrix_workspace
     microsoft-edge

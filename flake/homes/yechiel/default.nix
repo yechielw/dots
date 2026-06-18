@@ -4,11 +4,16 @@
 }:
 {
   imports = [
-    (inputs.import-tree ../../modules/home)
+    inputs.vicinae.homeManagerModules.default
+    inputs.icalindicator.homeManagerModules.default
+
+    ../../modules/home/profiles/base.nix
+    ../../modules/home/profiles/desktop.nix
+    ../../modules/home/profiles/development.nix
+    ../../modules/home/profiles/tui.nix
   ];
 
-  hm.tui.enable = true;
   home.stateVersion = "25.05";
-  home.username = "test";
+  home.username = "yechiel";
   home.homeDirectory = "/tmp/home";
 }

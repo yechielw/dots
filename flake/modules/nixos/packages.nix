@@ -13,6 +13,7 @@
   #   nixCatsOutputs.overlays.default
   # ];
   environment.systemPackages = with pkgs; [
+    ocr
     pkgs-master.noctalia-shell
     amp-cli
     terraform
@@ -27,7 +28,7 @@
     adwaita-icon-theme
     gemini-cli
     # inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system}.bitwarden-desktop
-    bitwarden-desktop
+    # bitwarden-desktop
     alsa-utils
     beeper
     element-desktop
@@ -67,7 +68,9 @@
     pciutils
     libmbim
     #    rquickshare
-    sbctl
+    (sbctl.override {
+      databasePath = "/var/lib/sbctl";
+    })
     usbutils
     cachix
     jq

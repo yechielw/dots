@@ -3,7 +3,13 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  {"mbbill/undotree",
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true, css = true, css_fn = true, } },
+  },
+  {
+    "mbbill/undotree",
     keys = {
       {"<leader>u", vim.cmd.UndotreeToggle, desc = "Undotree Toggle"},
     },

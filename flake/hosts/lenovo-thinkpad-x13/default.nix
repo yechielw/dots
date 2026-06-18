@@ -14,7 +14,15 @@
     # inputs.chaotic.nixosModules.nyx-registry
 
     ./hardware-configuration.nix
-    (inputs.import-tree ../../modules/nixos)
+    ../../modules/nixos/profiles/base.nix
+    ../../modules/nixos/profiles/desktop.nix
+    ../../modules/nixos/profiles/tui.nix
+    ../../modules/nixos/profiles/development.nix
+    ../../modules/nixos/profiles/cyber.nix
+    ../../modules/nixos/profiles/virtualization.nix
+    ../../modules/nixos/profiles/work.nix
+    ../../modules/nixos/profiles/laptop.nix
+    ../../modules/nixos/citrix-secure-access
   ];
 
   # hardware.firmware = [ pkgs.sof-firmware ];

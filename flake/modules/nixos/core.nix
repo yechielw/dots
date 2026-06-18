@@ -2,13 +2,11 @@
   lib,
   pkgs,
   inputs,
+  self,
   ...
 }:
 
 {
-  # custom module with all window  manager stuff
-  wm.enable = true;
-  hacking.enable = true;
   # imports = [ inputs.stylix.nixosModules.stylix ];
   # stylix.enable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
@@ -43,6 +41,16 @@
   };
 
   services.automatic-timezoned.enable = true;
+
+  services.geoclue2 = {
+    enable = true;
+    enableWifi = true;
+    geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+    appConfig."automatic-timezoned" = {
+      isAllowed = true;
+      isSystem = true;
+    };
+  };
 
   # Select internationalisation properties.
   i18n = {
@@ -122,6 +130,8 @@
 
   };
   nixpkgs = {
+    overlays = [ self.overlays.default ];
+
     config = {
       allowUnfree = true;
       allowBroken = true;
