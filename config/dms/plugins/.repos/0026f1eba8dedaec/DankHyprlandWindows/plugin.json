@@ -1,0 +1,20 @@
+{
+    "id": "dankHyprlandWindows",
+    "name": "Hyprland Window Switcher",
+    "description": "Switch between Hyprland windows with live previews",
+    "version": "1.0.0",
+    "author": "Avenge Media",
+    "icon": "view_carousel",
+    "type": "launcher",
+    "trigger": "!",
+    "defaultViewMode": "tile",
+    "viewMode": "tile",
+    "viewModeEnforced": false,
+    "component": "./DankHyprlandWindows.qml",
+    "settings": "./DankHyprlandWindowsSettings.qml",
+    "requires_dms": ">=1.4.0",
+    "permissions": [
+        "settings_read",
+        "settings_write"
+    ]
+}

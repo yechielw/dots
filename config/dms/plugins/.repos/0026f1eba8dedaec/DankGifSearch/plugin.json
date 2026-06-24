@@ -1,0 +1,19 @@
+{
+    "id": "dankGifSearch",
+    "name": "GIF Search",
+    "description": "Search and browse GIFs powered by Klipy",
+    "version": "1.0.5",
+    "author": "Avenge Media",
+    "icon": "gif_box",
+    "type": "launcher",
+    "trigger": "gif",
+    "viewMode": "tile",
+    "viewModeEnforced": true,
+    "component": "./DankGifSearch.qml",
+    "settings": "./DankGifSearchSettings.qml",
+    "requires_dms": ">=1.4.0",
+    "permissions": [
+        "settings_read",
+        "settings_write"
+    ]
+}

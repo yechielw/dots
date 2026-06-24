@@ -1,0 +1,12 @@
+{
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "9e870716_7446_4cb2_975c_5829192ab8b5"
+  },
+  "quickCapture": {
+    "enabled": true
+  },
+  "ddcBrightness": {
+    "enabled": false
+  }
+}

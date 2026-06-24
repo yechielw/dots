@@ -1,0 +1,19 @@
+{
+    "id": "dankLauncherKeys",
+    "name": "Dank Launcher Keys",
+    "description": "Search and browse keyboard shortcuts from your compositor and applications",
+    "version": "1.0.4",
+    "license": "MIT",
+    "author": "Avenge Media",
+    "icon": "keyboard",
+    "type": "launcher",
+    "trigger": "\\",
+    "firstParty": true,
+    "component": "./DankLauncherKeys.qml",
+    "settings": "./DankLauncherKeysSettings.qml",
+    "requires_dms": ">=1.2.0",
+    "permissions": [
+        "settings_read",
+        "settings_write"
+    ]
+}

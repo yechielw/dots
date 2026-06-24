@@ -1,0 +1,3 @@
+{
+  hm.tui.enable = true;
+}

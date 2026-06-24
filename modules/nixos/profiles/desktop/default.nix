@@ -1,0 +1,3 @@
+{
+  wm.enable = true;
+}
