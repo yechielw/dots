@@ -17,6 +17,7 @@ local commands = {
 	launcher = "vicinae toggle",
 	window_switcher = "vicinae://launch/wm/switch-windows",
 	screenshot = "flameshot gui",
+	edpfix = [[hyprctl eval 'hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1, disabled = false })'; hyprctl reload]]
 }
 
 local env = {
@@ -127,8 +128,9 @@ local simple_binds = {
 	{ main_mod .. "O", exec(commands.ocr_screenshot) },
 	{ main_mod .. "return", exec(commands.terminal) },
 	{ main_mod .. "A", exec(commands.chrome) },
-	{ main_mod .. "A", exec(commands.chromium_burp) },
+	-- { main_mod .. "A", exec(commands.chromium_burp) },
 	{ main_mod .. "M", exec(commands.edge) },
+	{ main_mod .. "W", exec(commands.edpfix) },
 	{ main_mod .. "Z", exec(commands.zen) },
 	{ main_mod .. "B", exec(commands.burp) },
 	{ main_mod .. "Q", hl.dsp.window.close() },
