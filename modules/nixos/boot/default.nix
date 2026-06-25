@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }:
 {
@@ -44,5 +45,9 @@
     kernelPackages = pkgs.linuxPackages_zen;
     # kernelPackages = pkgs.linuxPackages_zen;
 
+  };
+
+  specialisation.default-kernel.configuration = {
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
   };
 }
