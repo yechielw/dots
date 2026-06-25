@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  inputs,
+  config,
   ...
 }:
 {
@@ -38,6 +38,11 @@
     # };
 
     home-manager.enable = true;
+
+    jujutsu = {
+      enable = true;
+      settings = config.programs.git.settings;
+    };
 
     git = {
 
