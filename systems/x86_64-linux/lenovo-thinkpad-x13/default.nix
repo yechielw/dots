@@ -68,9 +68,9 @@
     };
   };
 
-  # home-manager = {
-  #   backupFileExtension = "bck";
-  #   useUserPackages = true;
-  # };
+  home-manager = {
+    backupFileExtension = "bck";
+    useUserPackages = true;
+  };
 
 }
