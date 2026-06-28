@@ -74,7 +74,7 @@
 
     kitty = {
       enable = true;
-      package = pkgs.master.kitty;
+      # package = pkgs.master.kitty;
       enableGitIntegration = true;
       font = {
         name = "JetBrainsMono Nerd Font";
@@ -98,7 +98,7 @@
 
   home = {
     username = lib.mkDefault "yechiel";
-    homeDirectory = lib.mkDefault "/home/yechiel";
+    # homeDirectory = lib.mkDefault "/home/yechiel";
 
     stateVersion = lib.mkDefault "24.05";
 

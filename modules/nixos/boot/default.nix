@@ -46,8 +46,4 @@
     # kernelPackages = pkgs.linuxPackages_zen;
 
   };
-
-  specialisation.default-kernel.configuration = {
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
-  };
 }

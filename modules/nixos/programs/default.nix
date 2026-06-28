@@ -5,6 +5,21 @@
 {
 
   programs = {
+
+    ssh = {
+      extraConfig = ''
+        Host eu.nixbuild.net
+        PubkeyAcceptedKeyTypes ssh-ed25519
+        ServerAliveInterval 60
+        IdentityFile /path/to/your/private/key
+      '';
+      knownHosts = {
+        nixbuild = {
+          hostNames = [ "eu.nixbuild.net" ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+        };
+      };
+    };
     zoom-us.enable = true;
     # zoom-us.package = pkgs.master.zoom-us;
     nh = {

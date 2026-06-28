@@ -133,6 +133,32 @@
     inputs.nix-flatpak.nixosModules.nix-flatpak
     inputs.vicinae.nixosModules.default
   ];
+
+  nix = {
+
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "eu.nixbuild.net";
+        system = "x86_64-linux";
+        maxJobs = 100;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+        ];
+      }
+    ];
+    settings = {
+      substituters = [
+        "https://vicinae.cachix.org"
+        "ssh://eu.nixbuild.net"
+      ];
+      trusted-public-keys = [
+        "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        "nixbuild.net/ZIB0CP-1:ApkQd3BTT++gJj9vh8e58TDvpZOXdc76S4vkFP1zqhA="
+      ];
+    };
+  };
   services.flatpak = {
     enable = true;
     packages = [

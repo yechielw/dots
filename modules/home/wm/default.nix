@@ -330,7 +330,7 @@
     #   # vicinae.systemd.autoStart = true;
     #   # vicinae.systemd.environment.USE_LAYER_SHELL = 1;
     # };
-    services.vicinae = {
+    programs.vicinae = {
       enable = true; # default: false
       systemd = {
         enable = true; # default: false

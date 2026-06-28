@@ -71,5 +71,12 @@
       outputs-builded = channels: {
         formatter = channels.nixpkgs.nixpkgs-fmt;
       };
+      systems.hosts.lenovo-thinkpad-x13.modules = [
+        {
+          hacking.enable = true;
+          wm.enable = true;
+          virtualisation.enable = true;
+        }
+      ];
     };
 }

@@ -4,6 +4,11 @@
   ...
 }:
 {
+
+  # hacking.enable = true;
+  # wm.enable = true;
+  # virtualisation.enable = true;
+
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
     ./hardware-configuration.nix
