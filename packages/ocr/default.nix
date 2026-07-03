@@ -14,7 +14,7 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    grim -g "$(slurp)" - | tesseract stdin stdout -l ${langs} | wl-copy
+    grim -g "$(slurp)" -t ppm - | tesseract stdin stdout -l ${langs} | wl-copy
   '';
 
 }

@@ -6,11 +6,9 @@
 }:
 
 {
-  options = {
-    virtualisation.enable = lib.mkEnableOption "enable virtualisation and containers";
-  };
+  options.profiles.virtualisation.enable = lib.mkEnableOption "enable virtualisation and containers";
 
-  config = lib.mkIf config.virtualisation.enable {
+  config = lib.mkIf config.profiles.virtualisation.enable {
 
     boot.kernelModules = [
       "ip_tables"

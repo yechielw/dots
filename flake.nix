@@ -29,13 +29,13 @@
     raise.url = "github:yechielw/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     vicinae.url = "github:vicinaehq/vicinae"; # ?tag=releases/latest";
-    icalindicator.url = "github:yechielw/icalindicator";
 
     # dms.url = "github:AvengeMedia/DankMaterialShell";
     #dms.url = "github:yechielw/DankMaterialShell";
     dms.url = "git+file:///home/yechiel/tools/DankMaterialShell";
     wrappers.url = "github:lassulus/wrappers";
     bw.url = "github:BirdeeHub/nix-wrapper-modules";
+    herdr.url = "github:ogulcancelik/herdr";
 
     profilepic = {
       url = "https://github.com/yechielw.png";
@@ -45,7 +45,7 @@
 
   outputs =
     inputs:
-    inputs.snowfall-lib.mkFlake {
+    (inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
 
@@ -68,15 +68,12 @@
         android_sdk.accept_license = true;
       };
 
-      outputs-builded = channels: {
+      outputs-builder = channels: {
         formatter = channels.nixpkgs.nixpkgs-fmt;
       };
-      systems.hosts.lenovo-thinkpad-x13.modules = [
-        {
-          hacking.enable = true;
-          wm.enable = true;
-          virtualisation.enable = true;
-        }
-      ];
+
+    })
+    // {
+      my-custom-output = "hello world";
     };
 }

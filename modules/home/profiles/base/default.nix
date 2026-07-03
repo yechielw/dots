@@ -1,10 +1,11 @@
-{ lib, ... }:
+{ lib
+, config
+, ...
+}:
 {
-  home = {
-    username = lib.mkDefault "yechiel";
-    homeDirectory = lib.mkDefault "/home/yechiel";
-    stateVersion = lib.mkDefault "24.05";
-  };
+  options.profiles.base.enable = lib.mkEnableOption "base Home Manager profile";
 
-  programs.home-manager.enable = true;
+  config = lib.mkIf config.profiles.base.enable {
+    programs.home-manager.enable = true;
+  };
 }

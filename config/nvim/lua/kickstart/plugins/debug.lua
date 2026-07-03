@@ -9,7 +9,7 @@
 return {
   'mfussenegger/nvim-dap',
   -- NOTE: nixCats: return true only if category is enabled, else false
-  enabled = require('nixCatsUtils').enableForCategory("kickstart-debug"),
+  -- enabled = require('nixCatsUtils').enableForCategory("kickstart-debug"),
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',

@@ -10,10 +10,10 @@
     enable = lib.mkEnableOption "hypr";
   };
   config = lib.mkIf config.hm.hypr.enable {
-    wayland.windowManager.hyprland = {
-      enable = true;
-      configType = "lua";
-      extraLuaFiles.main.content = ../../../config/hypr/lua/hyprland.conf.lua;
+    # wayland.windowManager.hyprland = {
+    #   enable = true;
+    #   configType = "lua";
+    #   extraLuaFiles.main.content = ../../../config/hypr/lua/hyprland.conf.lua;
       # systemd.enable = false;
       # plugins = [
       #   # pkgs.hyprlandPlugins.hyprexpo
@@ -305,6 +305,6 @@
       #       #
       #       # submap = reset";
       #     '';
-    };
+    # };
   };
 }

@@ -8,10 +8,10 @@
 
 {
   options = {
-    hacking.enable = lib.mkEnableOption "enable hacking tools collection";
+    profiles.hacking.enable = lib.mkEnableOption "enable hacking tools collection";
   };
 
-  config = lib.mkIf config.hacking.enable {
+  config = lib.mkIf config.profiles.hacking.enable {
     programs.wireshark.enable = true;
     # programs.adb.enable = true;
 

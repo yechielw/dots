@@ -10,6 +10,14 @@
   };
   config = lib.mkIf config.hm.appearance.enable {
 
+    home = {
+      pointerCursor = {
+        name = "BreezeX-RosePine-Linux";
+        package = pkgs.rose-pine-cursor;
+        x11.enable = true;
+      };
+    };
+
     home.file.".config/gtk-4.0" = {
       enable = true;
       force = true;

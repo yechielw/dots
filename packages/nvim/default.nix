@@ -8,7 +8,7 @@
 (inputs.nixCats.utils.baseBuilder "${inputs.self + /config/nvim}"
   {
     system = localSystem;
-    nixpkgs = inputs.nixpkgs;
+    inherit (inputs) nixpkgs;
 
     dependencyOverlays = [
       (inputs.nixCats.utils.standardPluginOverlay inputs)
@@ -97,7 +97,7 @@
   })
   {
     nvim =
-      { ... }:
+      _:
       {
         settings.wrapRc = true;
         categories.general = true;

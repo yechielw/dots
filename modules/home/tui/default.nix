@@ -12,6 +12,38 @@
   config = lib.mkIf config.hm.tui.enable {
 
     programs = {
+      jujutsu = {
+        enable = true;
+        settings = config.programs.git.settings;
+      };
+
+      git = {
+
+        enable = true;
+        settings = {
+          user = {
+            name = "Yechiel Worenklein";
+            email = "41305372+yechielw@users.noreply.github.com";
+          };
+
+          credential.helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+
+          init.defaultBranch = "master";
+          pull.rebase = false;
+        };
+        signing = {
+          format = "ssh";
+          key = "/home/yechiel/.ssh/id_ed25519.pub";
+          signByDefault = true;
+        };
+        # extraConfig = {
+        # };
+      };
+
+      difftastic = {
+        enable = true;
+        git.enable = true;
+      };
       zsh = {
         enable = true;
 

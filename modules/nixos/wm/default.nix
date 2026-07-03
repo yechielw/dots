@@ -9,11 +9,9 @@
   imports = [
     inputs.dms.nixosModules.default
   ];
-  options = {
-    wm.enable = lib.mkEnableOption "enable window manager (hyprland)";
-  };
+  options.profiles.wm.enable = lib.mkEnableOption "enable window manager (hyprland)";
 
-  config = lib.mkIf config.wm.enable {
+  config = lib.mkIf config.profiles.wm.enable {
     nix.settings = {
       trusted-users = [ "@wheel" ];
       substituters = [

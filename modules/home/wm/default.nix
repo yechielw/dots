@@ -5,13 +5,23 @@
   inputs,
   ...
 }:
-{
 
+{
+ imports = [
+    inputs.vicinae.homeManagerModules.default
+ ];
   options = {
     wm.enable = lib.mkEnableOption "enable window manager stuff for home manager";
   };
 
   config = lib.mkIf config.wm.enable {
+
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "lua";
+      extraLuaFiles.main.content = ../../../config/hypr/lua/hyprland.conf.lua;
+      };
 
     xdg.portal = {
       extraPortals = [

@@ -1,15 +1,9 @@
 {
-  inputs,
-  lib,
-  ...
-}:
-{
-  imports = [
-    inputs.vicinae.homeManagerModules.default
-    inputs.icalindicator.homeManagerModules.default
-  ];
-
   home.stateVersion = "25.05";
-  home.username = "yechiel";
-  # home.homeDirectory = lib.mkForce "/home/yechiel";
+
+  profiles.base.enable = true;
+  profiles.personal.enable = true;
+  profiles.tui.enable = true;
+  profiles.desktop.enable = true;
+  profiles.kanshi.enable = true;
 }

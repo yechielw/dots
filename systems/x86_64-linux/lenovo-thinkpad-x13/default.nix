@@ -9,6 +9,19 @@
   # wm.enable = true;
   # virtualisation.enable = true;
 
+  profiles.boot.enable = true;
+  profiles.core.enable = true;
+  profiles.packages.enable = true;
+  profiles.programs.enable = true;
+  profiles.security.enable = true;
+  profiles.services.enable = true;
+  profiles.terminal.enable = true;
+  profiles.users.yechiel.enable = true;
+  profiles.work.enable = true;
+  profiles.hacking.enable = true;
+  profiles.wm.enable = true;
+  profiles.virtualisation.enable = true;
+
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
     ./hardware-configuration.nix
