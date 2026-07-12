@@ -1,0 +1,41 @@
+{ pkgs, ... }:
+pkgs.google-chrome.override {
+  commandLineArgs = ''
+    --disable-ipc-flooding-protection 
+    --disable-xss-auditor 
+    --disable-bundled-ppapi-flash 
+    --disable-plugins-discovery 
+    --disable-default-apps 
+    --disable-prerender-local-predictor 
+    --disable-breakpad 
+    --disable-crash-reporter 
+    --disable-prerender-local-predictor 
+    --disk-cache-size=0 
+    --disable-settings-window 
+    --disable-notifications 
+    --disable-speech-api 
+    --disable-file-system 
+    --disable-presentation-api 
+    --disable-permissions-api 
+    --disable-new-zip-unpacker 
+    --disable-media-session-api 
+    --no-experiments 
+    --no-events 
+    --no-first-run 
+    --no-default-browser-check 
+    --no-pings 
+    --no-service-autorun 
+    --media-cache-size=0 
+    --use-fake-device-for-media-stream 
+    --dbus-stub 
+    --disable-background-networking 
+    --disable-features=ChromeWhatsNewUI,HttpsUpgrades,ImageServiceObserveSyncDownloadStatus,LensOverlay,RenderDocument,SessionRestoreInfobar,TrackingProtection3pcd 
+    --proxy-server=localhost:8080
+    --proxy-bypass-list=<-loopback>  
+    --user-data-dir=$HOME/.BurpSuite/pre-wired-browser 
+    --ignore-certificate-errors 
+    --load-extension=$HOME/.BurpSuite/new-tab,$HOME/.BurpSuite/navigation-recorder,$HOME/.BurpSuite/dom-invader 
+    --class=yechielwahere
+    chrome://newtab
+  '';
+}
