@@ -166,17 +166,18 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1782033453,
-        "narHash": "sha256-H2tfspKVxtEQnXj/9dXF4ShT/fSAp/bLDshXCZ7cFYA=",
-        "ref": "refs/heads/cell",
-        "rev": "eb9132d9d9f1ea51d733c0475e02a696b10f2a1b",
-        "revCount": 3897,
-        "type": "git",
-        "url": "file:///home/yechiel/tools/DankMaterialShell"
+        "lastModified": 1783327110,
+        "narHash": "sha256-HxRpwhZzL4ppr8nTXWncjteP+kynCDRLPlIY4n+l0cI=",
+        "owner": "yechielw",
+        "repo": "DankMaterialShell",
+        "rev": "ca76b0ea5dbfb1eb882e9522c533ac1313bb2c8d",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/yechiel/tools/DankMaterialShell"
+        "owner": "yechielw",
+        "ref": "cell",
+        "repo": "DankMaterialShell",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -1336,15 +1337,16 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1782342627,
-        "narHash": "sha256-OL8CLyL5taG8DHDMqAfGE3VZIKgDBMGDUiBYxUEqiOo=",
-        "owner": "vicinaehq",
+        "lastModified": 1783430632,
+        "narHash": "sha256-dJz9qE0tHE7DJRkXHk6uq0nSMGXgVir5LA9mMkJmLyk=",
+        "owner": "yechielw",
         "repo": "vicinae",
-        "rev": "958adc4d79de91c298cabfe93509cc799d56e863",
+        "rev": "72a82f80a256fe99bf43f7ea6cb9e08bac2da68b",
         "type": "github"
       },
       "original": {
-        "owner": "vicinaehq",
+        "owner": "yechielw",
+        "ref": "chrome-integration-2",
         "repo": "vicinae",
         "type": "github"
       }
