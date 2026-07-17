@@ -150,30 +150,6 @@ return { -- LSP Configuration & Plugins
     -- servers.tsserver = {},
     --
 
-    local nixopts = '(builtins.getFlake "' .. vim.env.HOME .. '/dots").nixosConfigurations.' .. vim.fn.hostname() .. '.options'
-
-    vim.lsp.config('nixd', {
-      cmd = { 'nixd' },
-      settings = {
-        nixd = {
-          nixpkgs = {
-            expr = '(builtins.getFlake "/home/yechiel/dots").inputs.nixpkgs { }',
-          },
-          formatting = {
-            command = { 'nixfmt' },
-          },
-          options = {
-            nixos = {
-              expr = nixopts, -- '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.lenovo-thinkpad-x13.options',
-            },
-            home_manager = {
-              -- expr = '(builtins.getFlake "/home/yechiel/dots").nixosConfigurations.lenovo-thinkpad-x13.options.home-manager.users.type.getSubOptions []',
-              expr = nixopts .. '.home-manager.users.type.getSubOptions []',
-            },
-          },
-        },
-      },
-    })
 
     vim.lsp.config('lua_ls', {
       settings = {
