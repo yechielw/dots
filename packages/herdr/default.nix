@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{}
+}: {}
 # let
 #   conf = {
 #     onboarding = false;
@@ -24,7 +23,6 @@
 #   };
 # }
 #
-
 #
 # writeShellApplication {
 #   name = "herdr";
@@ -45,3 +43,4 @@
 #     } ${lib.getExe pkgs.herdr}
 #   '';
 # }
+

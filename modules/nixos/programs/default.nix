@@ -1,14 +1,12 @@
-{ config
-, lib
-, ...
-}:
-
 {
+  config,
+  lib,
+  ...
+}: {
   options.profiles.programs.enable = lib.mkEnableOption "default NixOS programs profile";
 
   config = lib.mkIf config.profiles.programs.enable {
     programs = {
-
       ssh = {
         extraConfig = ''
           Host eu.nixbuild.net
@@ -18,7 +16,7 @@
         '';
         knownHosts = {
           nixbuild = {
-            hostNames = [ "eu.nixbuild.net" ];
+            hostNames = ["eu.nixbuild.net"];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
           };
         };
@@ -38,7 +36,6 @@
 
       kdeconnect.enable = true;
       java.enable = true;
-
     };
   };
 }

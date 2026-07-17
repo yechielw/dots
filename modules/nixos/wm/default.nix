@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     inputs.dms.nixosModules.default
   ];
@@ -13,7 +12,7 @@
 
   config = lib.mkIf config.profiles.wm.enable {
     nix.settings = {
-      trusted-users = [ "@wheel" ];
+      trusted-users = ["@wheel"];
       substituters = [
         "https://hyprland.cachix.org"
       ];
@@ -49,7 +48,6 @@
 
     programs = {
       dank-material-shell = {
-
         enable = true;
 
         systemd = {
@@ -141,6 +139,5 @@
     };
     #   security.pam.services.gdm-password.enableGnomeKeyring = true;
     security.pam.services.login.enableGnomeKeyring = true;
-
   };
 }

@@ -4,9 +4,7 @@
   config,
   inputs,
   ...
-}:
-
-{
+}: {
   imports = [
     inputs.vicinae.homeManagerModules.default
   ];
@@ -15,7 +13,6 @@
   };
 
   config = lib.mkIf config.wm.enable {
-
     wayland.windowManager.hyprland = {
       enable = true;
       configType = "lua";
@@ -121,7 +118,7 @@
         };
       };
       swaync.style = ''
-                
+
         :root {
           --border-radius: 22px;
           --cc-bg: transparent;
@@ -265,7 +262,6 @@
           ];
         };
       };
-
     };
 
     programs.wlogout.enable = true;
@@ -347,7 +343,7 @@
               "WindowTitle"
             ]
           ];
-          center = [ "MediaPlayer" ];
+          center = ["MediaPlayer"];
           right = [
             "Updates"
             "SystemInfo"
@@ -437,7 +433,7 @@
             # "wlr/taskbar"
             "hyprland/submap"
           ];
-          modules-center = [ ];
+          modules-center = [];
           modules-right = [
             "cpu"
             "custom/events"
@@ -512,7 +508,7 @@
             spacing = 3;
             on-click-middle = "close";
             tooltip-format = "{title}";
-            ignore-list = [ ];
+            ignore-list = [];
             on-click = "activate";
           };
           tray = {
@@ -614,7 +610,6 @@
     programs.hyprlock = {
       enable = false;
       settings = {
-
         auth = {
           "fingerprint:enabled" = true;
         };

@@ -3,9 +3,7 @@
   inputs,
   settings,
   ...
-}:
-{
-
+}: {
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
@@ -13,13 +11,10 @@
   programs.nvf = {
     enable = true;
     settings = {
-
       vim = {
-
         options = {
           shiftwidth = 2;
           tabstop = 2;
-
         };
 
         enableLuaLoader = true; # the experimental Lua module loader to speed up the start up process
@@ -52,7 +47,6 @@
           enableFormat = true;
           enableLSP = true;
           enableTreesitter = true;
-
         };
 
         assistant.copilot = {
@@ -99,7 +93,6 @@
           transparent = true;
         };
       };
-
     };
   };
 }

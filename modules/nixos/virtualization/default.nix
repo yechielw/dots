@@ -3,13 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   options.profiles.virtualisation.enable = lib.mkEnableOption "enable virtualisation and containers";
 
   config = lib.mkIf config.profiles.virtualisation.enable {
-
     boot.kernelModules = [
       "ip_tables"
       "iptable_nat"
@@ -49,7 +46,6 @@
       docker = {
         enable = true;
         enableOnBoot = false;
-
       };
       podman = {
         enable = true;
@@ -60,6 +56,5 @@
       };
     };
     services.spice-vdagentd.enable = true;
-
   };
 }

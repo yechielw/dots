@@ -2,7 +2,6 @@
   pkgs,
   langs ? "eng+heb",
 }:
-
 pkgs.writeShellApplication {
   name = "ocr";
 
@@ -16,5 +15,4 @@ pkgs.writeShellApplication {
   text = ''
     grim -g "$(slurp)" -t ppm - | tesseract stdin stdout -l ${langs} | wl-copy
   '';
-
 }

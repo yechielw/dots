@@ -1,10 +1,10 @@
-{ pkgs
-, config
-, inputs
-, lib
-, ...
-}:
 {
+  pkgs,
+  config,
+  inputs,
+  lib,
+  ...
+}: {
   options.profiles.boot.enable = lib.mkEnableOption "boot profile";
 
   imports = [
@@ -45,7 +45,6 @@
 
       kernelPackages = pkgs.linuxPackages_cachyos;
       # kernelPackages = pkgs.linuxPackages_zen;
-
     };
   };
 }

@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    (burpsuite.override { proEdition = true; })
+    (burpsuite.override {proEdition = true;})
     bloodhound-py
     caido
     hashcat

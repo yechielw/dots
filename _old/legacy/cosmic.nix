@@ -1,8 +1,6 @@
-{ ... }:
-{
+{...}: {
   programs = {
     cosmic-ext-tweaks.enable = true;
-
   };
   wayland.desktopManager.cosmic = {
     enable = true;
@@ -21,12 +19,11 @@
 
         show_maximize = false;
         show_minimize = false;
-
       };
 
       applets = {
         app-list = {
-          settings = { };
+          settings = {};
         };
         audio.settings.show_media_controls_in_top_panel = true;
       };

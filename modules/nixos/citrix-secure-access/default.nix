@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: 2024-2025 Temple University <kleinweb@temple.edu>
 # SPDX-License-Identifier: GPL-3.0-or-later
-
 # The package on its own only produces a patched binary tree in the Nix
 # store. The `NSGClient` binary hardcodes absolute `/opt/Citrix/...`
 # paths and needs three pieces of system integration that a package
@@ -14,9 +13,7 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.services.citrix-secure-access;
 
   optTree = "${cfg.package}/opt/Citrix";
@@ -48,17 +45,18 @@ let
   mkCopy = entry: "C /opt/Citrix/NSGClient/${entry} 0644 root root - ${optTree}/NSGClient/${entry}";
   mkSymlink = entry: "L+ /opt/Citrix/NSGClient/${entry} - - - - ${optTree}/NSGClient/${entry}";
 
-  staticTreeRules = [
-    "d /opt/Citrix 0755 root root -"
-    "d /opt/Citrix/NSGClient 0755 root root -"
-    "d /opt/Citrix/NSGClient/bin 0755 root root -"
-    # The EPA (Endpoint Analysis) library is dlopen()ed by absolute path.
-    "L+ /opt/Citrix/EPA - - - - ${optTree}/EPA"
-    # bin/NSGClient must resolve to the capability wrapper so that the
-    # service-spawned instance also gets CAP_NET_RAW, not just desktop launches.
-    "L+ /opt/Citrix/NSGClient/bin/NSGClient - - - - /run/wrappers/bin/NSGClient"
-  ]
-  ++ map mkSymlink readOnlyEntries;
+  staticTreeRules =
+    [
+      "d /opt/Citrix 0755 root root -"
+      "d /opt/Citrix/NSGClient 0755 root root -"
+      "d /opt/Citrix/NSGClient/bin 0755 root root -"
+      # The EPA (Endpoint Analysis) library is dlopen()ed by absolute path.
+      "L+ /opt/Citrix/EPA - - - - ${optTree}/EPA"
+      # bin/NSGClient must resolve to the capability wrapper so that the
+      # service-spawned instance also gets CAP_NET_RAW, not just desktop launches.
+      "L+ /opt/Citrix/NSGClient/bin/NSGClient - - - - /run/wrappers/bin/NSGClient"
+    ]
+    ++ map mkSymlink readOnlyEntries;
 
   runtimeStateRules = [
     "f /opt/Citrix/NSGClient/.socketpath 0644 root root - -"
@@ -66,8 +64,7 @@ let
     "d /opt/Citrix/NSGClient/tmp 0755 root root -"
     (mkCopy "globalConfiguration.json")
   ];
-in
-{
+in {
   options.services.citrix-secure-access = {
     enable = lib.mkEnableOption "the Citrix Secure Access VPN client";
 
@@ -80,7 +77,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = [cfg.package];
 
     # NSGClient needs CAP_NET_RAW for the VPN data path. `setcap` cannot
     # be applied to a read-only store path, so we route launches through
@@ -97,8 +94,8 @@ in
     # Privileged daemon: route/nftables/DNS plumbing for the tunnel.
     systemd.services.nsgverctl = {
       description = "Citrix NSG Version Control Service";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
       # The daemon shells out to route/firewall tooling at runtime.
       path = with pkgs; [
         iproute2
@@ -115,8 +112,7 @@ in
     # The tunnel interface (`Citrix_VA`) must be left alone by NetworkManager,
     # and the client needs its dedicated routing-table id registered.
     networking.networkmanager.enable = lib.mkDefault true;
-    environment.etc."NetworkManager/conf.d/citrix_va.conf".source =
-      "${optTree}/NSGClient/citrix_va.conf";
+    environment.etc."NetworkManager/conf.d/citrix_va.conf".source = "${optTree}/NSGClient/citrix_va.conf";
     environment.etc."iproute2/rt_tables.d/rt_csa.conf".source = "${optTree}/NSGClient/rt_csa.conf";
 
     # Materialise the hardcoded /opt/Citrix tree.

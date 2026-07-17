@@ -4,9 +4,7 @@
   lib,
   config,
   ...
-}:
-
-{
+}: {
   options = {
     profiles.hacking.enable = lib.mkEnableOption "enable hacking tools collection";
   };
@@ -50,7 +48,7 @@
       jadx
       httpx
       amass
-      (pkgs.androidenv.composeAndroidPackages { }).androidsdk
+      (pkgs.androidenv.composeAndroidPackages {}).androidsdk
     ];
 
     #environment.etc."usr/share/seclists".source = "${pkgs.seclists}/share/wordlists/seclists";

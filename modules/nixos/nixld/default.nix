@@ -1,9 +1,9 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   options.profiles.nixld.enable = lib.mkEnableOption "nix-ld compatibility profile";
 
   config = lib.mkIf config.profiles.nixld.enable {

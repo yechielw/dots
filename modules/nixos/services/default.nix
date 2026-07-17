@@ -1,11 +1,10 @@
-{ pkgs
-, inputs
-, config
-, lib
-, ...
-}:
-
 {
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}: {
   options.profiles.services.enable = lib.mkEnableOption "default system services profile";
 
   imports = [
@@ -31,7 +30,7 @@
 
     services.upower.criticalPowerAction = "Hibernate";
 
-    services.udev.packages = [ pkgs.via ];
+    services.udev.packages = [pkgs.via];
 
     services.udev.extraRules = ''
       # via keyboard
@@ -82,7 +81,7 @@
         "monitor.bluez.rules" = [
           {
             matches = [
-              { "node.name" = "~bluez_output.*"; }
+              {"node.name" = "~bluez_output.*";}
             ];
             actions.update-props = {
               "priority.session" = 3000;
@@ -128,18 +127,15 @@
     };
 
     services.kanata = {
-
       enable = true;
       keyboards.my = {
         configFile = ../../../config/katana/kanata.kbd;
         #:: devices = [ ];
-        devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
-
+        devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
       };
     };
 
     nix = {
-
       # distributedBuilds = true;
       # buildMachines = [
       #   {
@@ -155,7 +151,7 @@
       settings = {
         substituters = [
           "https://vicinae.cachix.org"
-#          "ssh://eu.nixbuild.net"
+          #          "ssh://eu.nixbuild.net"
         ];
         trusted-public-keys = [
           "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
@@ -189,7 +185,6 @@
             GTK_THEME = "WhiteSur-Dark";
           };
         };
-
       };
     };
     # services.espanso = {

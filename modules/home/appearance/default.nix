@@ -3,13 +3,11 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   options.hm.appearance = {
     enable = lib.mkEnableOption "appearance";
   };
   config = lib.mkIf config.hm.appearance.enable {
-
     home = {
       pointerCursor = {
         enable = true;
@@ -23,7 +21,7 @@
       enable = true;
       force = true;
       recursive = true;
-      source = (pkgs.yechiel.tahoe + "/share/themes/MacTahoe-Dark/gtk-4.0");
+      source = pkgs.yechiel.tahoe + "/share/themes/MacTahoe-Dark/gtk-4.0";
     };
     gtk = {
       enable = true;

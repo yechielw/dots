@@ -1,8 +1,8 @@
-{ config
-, lib
-, ...
-}:
 {
+  config,
+  lib,
+  ...
+}: {
   options.profiles.kanshi.enable = lib.mkEnableOption "host-specific kanshi monitor profiles";
 
   config = lib.mkIf config.profiles.kanshi.enable {

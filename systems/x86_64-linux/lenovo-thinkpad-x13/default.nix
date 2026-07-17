@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
-
+}: {
   # hacking.enable = true;
   # wm.enable = true;
   # virtualisation.enable = true;
@@ -28,8 +26,7 @@
   ];
 
   boot = {
-
-    kernelParams = [ "usbcore.autosuspend=-1" ];
+    kernelParams = ["usbcore.autosuspend=-1"];
 
     extraModprobeConfig = ''
       options btusb enable_autosuspend=N
@@ -90,5 +87,4 @@
     backupFileExtension = "bck";
     useUserPackages = true;
   };
-
 }

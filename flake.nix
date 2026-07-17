@@ -45,8 +45,7 @@
     };
   };
 
-  outputs =
-    inputs:
+  outputs = inputs:
     (inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
@@ -73,7 +72,6 @@
       outputs-builder = channels: {
         formatter = channels.nixpkgs.nixpkgs-fmt;
       };
-
     })
     // {
       my-custom-output = "hello world";

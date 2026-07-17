@@ -1,14 +1,13 @@
-{ lib
-, pkgs
-, config
-, ...
-}:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   options.profiles.personal.enable = lib.mkEnableOption "personal Home Manager profile";
 
   config = lib.mkIf config.profiles.personal.enable {
     programs = {
-
       # vicinae = {
       #   settings = {
       #     popToRootOnClose = true;
@@ -40,7 +39,6 @@
 
       home-manager.enable = true;
 
-
       kitty = {
         enable = true;
         # package = pkgs.master.kitty;
@@ -59,21 +57,17 @@
           enable_audio_bell = false;
           hide_window_decorations = true;
           allow_remote_control = "yes";
-
         };
       };
-
     };
 
     home = {
-
       sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = 1;
       };
-
     };
 
-    xdg.configFile = { };
+    xdg.configFile = {};
     # targets.genericLinux.nixGL.vulkan.enable = true;
   };
 }

@@ -1,11 +1,10 @@
-{ pkgs
-, inputs
-, config
-, lib
-, ...
-}:
-
 {
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}: {
   options.profiles.core.enable = lib.mkEnableOption "core NixOS profile";
 
   config = lib.mkIf config.profiles.core.enable {
@@ -20,7 +19,7 @@
         #"8.8.8.8"
         #"8.8.4.4"
       ];
-      search = [ "bowfin-marlin.ts.net" ];
+      search = ["bowfin-marlin.ts.net"];
       firewall = {
         allowedTCPPorts = [
           8080
@@ -100,9 +99,9 @@
         inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.ny
       ];
       fontconfig.defaultFonts = {
-        serif = [ "New York Medium" ];
-        sansSerif = [ "SFProText Nerd Font" ];
-        monospace = [ "JetBrainsMono Nerd Font Mono" ];
+        serif = ["New York Medium"];
+        sansSerif = ["SFProText Nerd Font"];
+        monospace = ["JetBrainsMono Nerd Font Mono"];
       };
     };
 
@@ -123,15 +122,13 @@
 
     nix = {
       settings = {
-
         experimental-features = [
           "nix-command"
           "flakes"
         ];
         auto-optimise-store = true;
       };
-      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
     # nixpkgs = {
     # overlays = [ self.overlays.default ];

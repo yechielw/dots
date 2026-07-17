@@ -4,8 +4,8 @@
   localSystem ? pkgs.stdenv.hostPlatform.system,
   ...
 }:
-
-(inputs.nixCats.utils.baseBuilder "${inputs.self + /config/nvim}"
+(
+  inputs.nixCats.utils.baseBuilder "${inputs.self + /config/nvim}"
   {
     system = localSystem;
     inherit (inputs) nixpkgs;
@@ -18,7 +18,7 @@
       allowUnfree = true;
     };
   }
-  ({ pkgs, ... }: {
+  ({pkgs, ...}: {
     lspsAndRuntimeDeps.general = with pkgs; [
       universal-ctags
       ripgrep
@@ -96,12 +96,10 @@
     ];
   })
   {
-    nvim =
-      _:
-      {
-        settings.wrapRc = true;
-        categories.general = true;
-      };
+    nvim = _: {
+      settings.wrapRc = true;
+      categories.general = true;
+    };
   }
 )
-  "nvim"
+"nvim"

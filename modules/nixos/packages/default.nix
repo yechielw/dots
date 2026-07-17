@@ -1,8 +1,9 @@
-{ pkgs
-, inputs
-, config
-, lib
-, ...
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
 }:
 # let
 #   nixCatsOutputs = import ../config/nixcats/default.nix inputs;
@@ -85,10 +86,11 @@
       nettools
       python312Packages.impacket
       (python3.withPackages (
-        ps: with ps; [
-          pip
-          debugpy
-        ]
+        ps:
+          with ps; [
+            pip
+            debugpy
+          ]
       ))
     ];
   };

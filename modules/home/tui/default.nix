@@ -3,14 +3,11 @@
   lib,
   config,
   ...
-}:
-
-{
+}: {
   options.hm.tui = {
     enable = lib.mkEnableOption "tui";
   };
   config = lib.mkIf config.hm.tui.enable {
-
     programs = {
       jujutsu = {
         enable = true;
@@ -18,7 +15,6 @@
       };
 
       git = {
-
         enable = true;
         settings = {
           user = {
@@ -102,7 +98,7 @@
             # source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-            
+
           if [[ $options[zle] = on ]]; then
             function atuin_init() {
               eval "$(${pkgs.atuin}/bin/atuin init zsh --disable-up-arrow)"
@@ -195,14 +191,12 @@
           set -g renumber-windows on
         '';
       };
-
     };
 
     xdg.configFile = {
       zellij.source = ../../../config/zellij/.config/zellij;
     };
     home = {
-
       sessionVariables = {
         EDITOR = "nvim";
         NIX_AUTO_RUN = 1;

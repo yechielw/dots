@@ -11,23 +11,22 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixos-wsl,
-      ...
-    }@inputs:
-    #    let
-    #      system = "x86_64-linux";
-    #    in
-    {
-      nixosConfigurations.wsl-nix = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-wsl,
+    ...
+  } @ inputs:
+  #    let
+  #      system = "x86_64-linux";
+  #    in
+  {
+    nixosConfigurations.wsl-nix = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
     };
+  };
 }

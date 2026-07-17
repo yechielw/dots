@@ -1,16 +1,15 @@
-{ pkgs
-, inputs
-, config
-, lib
-, ...
-}:
-
 {
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}: {
   options.profiles.work.enable = lib.mkEnableOption "work profile";
 
   config = lib.mkIf config.profiles.work.enable {
     programs.evolution.enable = true;
-    programs.evolution.plugins = [ pkgs.evolution-ews ];
+    programs.evolution.plugins = [pkgs.evolution-ews];
 
     # services.citrix-secure-access.enable = true;
     services.intune.enable = true;
@@ -19,7 +18,6 @@
       #    citrix_workspace
       microsoft-edge
       master.citrix-workspace
-
     ];
 
     # imports = [ inputs.himmelblau.nixosModules.himmelblau ];

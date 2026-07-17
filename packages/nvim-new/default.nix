@@ -1,12 +1,16 @@
-{ inputs
-, pkgs
-, ...
+{
+  inputs,
+  pkgs,
+  ...
 }:
-
 inputs.bw.lib.evalPackage [
-  { inherit pkgs; }
-  ({ wlib, pkgs, ... }: {
-    imports = [ wlib.wrapperModules.neovim ];
+  {inherit pkgs;}
+  ({
+    wlib,
+    pkgs,
+    ...
+  }: {
+    imports = [wlib.wrapperModules.neovim];
 
     config = {
       binName = "nvim-new";
