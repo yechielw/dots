@@ -9,6 +9,7 @@
 
   config = lib.mkIf config.profiles.terminal.enable {
     environment.systemPackages = with pkgs; [
+      devenv
       witr
       atuin
       bat
