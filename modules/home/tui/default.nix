@@ -47,6 +47,10 @@
       zsh = {
         enable = true;
 
+        shellGlobalAliases = {
+          N = "2>/dev/null";
+        };
+
         oh-my-zsh = {
           enable = true;
           theme = "eastwood";
