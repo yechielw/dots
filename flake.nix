@@ -12,6 +12,8 @@
     stable.url = "github:nixos/nixpkgs/nixos-25.05";
     master.url = "github:nixos/nixpkgs/master";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 

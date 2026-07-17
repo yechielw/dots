@@ -9,6 +9,7 @@
 
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.chaotic.nixosModules.default
   ];
 
   config = lib.mkIf config.profiles.boot.enable {
@@ -42,9 +43,7 @@
         };
       };
 
-      #kernelPackages = pkgs.linuxPackages_testing;
-      #kernelPackages = inputs.nyx-loner.packages.${pkgs.stdenv.hostPlatform.system}.linux_cachyos-lto;
-      kernelPackages = pkgs.linuxPackages_zen;
+      kernelPackages = pkgs.linuxPackages_cachyos;
       # kernelPackages = pkgs.linuxPackages_zen;
 
     };
