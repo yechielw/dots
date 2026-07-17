@@ -2,7 +2,6 @@
   writeShellApplication,
   lib,
   pkgs,
-  wrappers,
   inputs,
   ...
 }:
