@@ -24,12 +24,13 @@
           profile.outputs = [
             {
               criteria = "eDP-1";
-              status = "disable";
+              status = "enable";
+              position = "3840,0";
+              scale = 1.0;
             }
             {
               criteria = "Lenovo Group Limited E24-28 VVQ36240";
               status = "enable";
-              # position = "2784,0";
               position = "0,0";
               scale = 1.0;
             }
@@ -37,7 +38,6 @@
               criteria = "Lenovo Group Limited E24-28 VVQ36235";
               status = "enable";
               position = "1920,0";
-              # position = "4704x0";
               scale = 1.0;
             }
           ];
@@ -47,8 +47,8 @@
           profile.outputs = [
             {
               criteria = "eDP-1";
-              # status = "disable";
               position = "1920,0";
+              scale = 1.0;
             }
             {
               criteria = "HP Inc. HP V24i 1CR1161GPX";
