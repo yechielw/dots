@@ -324,13 +324,10 @@
         "--password-store=basic"
         "--enable-features=VerticalTabs"
       ];
-      # nativeMessagingHosts = [
-      #   pkgs.yechiel.viciname-nm
-      # ];
     };
 
     programs.ashell = {
-      enable = false;
+      enable = true;
       package = pkgs.master.ashell;
       systemd.enable = true;
       settings = {
@@ -392,12 +389,6 @@
       };
     };
 
-    # programs.vicinae = {
-    #   enable = true;
-    #   systemd.enable = true;
-    #   # vicinae.systemd.autoStart = true;
-    #   # vicinae.systemd.environment.USE_LAYER_SHELL = 1;
-    # };
     programs.vicinae = {
       enable = true; # default: false
       systemd = {

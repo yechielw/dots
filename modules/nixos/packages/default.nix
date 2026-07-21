@@ -40,10 +40,6 @@
       bluez-tools
       nixfmt
       dig
-      (flameshot.override {
-        enableWlrSupport = true;
-        enableMonochromeIcon = true;
-      })
       curl
       gcc
       file

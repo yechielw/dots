@@ -30,8 +30,8 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     raise.url = "github:yechielw/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
-    # vicinae.url = "github:vicinaehq/vicinae"; # ?tag=releases/latest";
-    vicinae.url = "github:yechielw/vicinae/chrome-integration-2"; # ?tag=releases/latest";
+    vicinae.url = "github:vicinaehq/vicinae"; # ?tag=releases/latest";
+    # vicinae.url = "github:yechielw/vicinae/chrome-integration-2"; # ?tag=releases/latest";
 
     # dms.url = "github:AvengeMedia/DankMaterialShell";
     dms.url = "github:yechielw/DankMaterialShell/cell";
@@ -39,6 +39,10 @@
     wrappers.url = "github:lassulus/wrappers";
     bw.url = "github:BirdeeHub/nix-wrapper-modules";
     herdr.url = "github:ogulcancelik/herdr";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     profilepic = {
       url = "https://github.com/yechielw.png";
