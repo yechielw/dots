@@ -1,0 +1,213 @@
+{ pkgs
+, config
+, ...
+}: {
+  programs = {
+    jujutsu = {
+      enable = true;
+      settings = config.programs.git.settings;
+    };
+
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "Yechiel Worenklein";
+          email = "41305372+yechielw@users.noreply.github.com";
+        };
+
+        credential.helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+
+        init.defaultBranch = "master";
+        pull.rebase = false;
+      };
+      signing = {
+        format = "ssh";
+        key = "/home/yechiel/.ssh/id_ed25519.pub";
+        signByDefault = true;
+      };
+      # extraConfig = {
+      # };
+    };
+
+    difftastic = {
+      enable = true;
+      git.enable = true;
+    };
+    zsh = {
+      enable = true;
+
+      shellGlobalAliases = {
+        N = "2>/dev/null";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        theme = "eastwood";
+        # custom = "${pkgs.zsh-fast-syntax-highlighting}";
+        plugins = [
+          "colored-man-pages"
+          # "zsh-fast-syntax-highlighting"
+          # "zsh-vi-mode"
+        ];
+      };
+      enableCompletion = true;
+
+      #autosuggestion = true;
+
+      history.append = true;
+      history.expireDuplicatesFirst = true;
+      history.save = 50000;
+      history.size = 50000;
+      history.share = true;
+
+      autosuggestion = {
+        enable = true;
+        strategy = [
+          "history"
+          "completion"
+        ];
+        highlight = "fg=#999";
+      };
+      historySubstringSearch = {
+        enable = true;
+        # searchDownKey = "$terminfo[kcud1]";
+        # searchUpKey = "$terminfo[kcuu1]";
+        searchDownKey = "^N";
+        searchUpKey = "^P";
+      };
+
+      # antidote = {
+      #   enable = true;
+      #   plugins = [
+      #     #"zsh-users/zsh-history-substring-search"
+      #     "zdharma-continuum/fast-syntax-highlighting"
+      #     #"zsh-users/zsh-autosuggestions"
+      #     "zsh-users/zsh-completions"
+      #     #"olivierverdier/zsh-git-prompt"
+      #   ];
+      # };
+      initContent = ''
+          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+          # source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+
+        if [[ $options[zle] = on ]]; then
+          function atuin_init() {
+            eval "$(${pkgs.atuin}/bin/atuin init zsh --disable-up-arrow)"
+          }
+          function hss() {
+            bindkey "^P" history-substring-search-up
+            bindkey "^N" history-substring-search-down
+            bindkey '^y' autosuggest-accept
+          }
+          zvm_after_init_commands+=(atuin_init hss)
+        fi
+      '';
+    };
+
+    carapace.enable = true;
+
+    bat.enable = true;
+
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      git = true;
+      icons = "auto";
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+      ];
+    };
+    command-not-found.enable = false;
+    nix-index.enable = true;
+
+    zoxide = {
+      enable = true;
+      #  enableZshIntegration = true;
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    atuin = {
+      enable = true;
+      enableZshIntegration = false;
+      # flags = [
+      #   "--disable-up-arrow"
+      # ];
+    };
+
+    lesspipe.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+    };
+
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      clock24 = true;
+      disableConfirmationPrompt = true;
+      historyLimit = 50000;
+      keyMode = "vi";
+      customPaneNavigationAndResize = true;
+      mouse = true;
+      newSession = true;
+      shortcut = "a";
+      terminal = "screen-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        ctrlw
+        {
+          plugin = resurrect;
+          extraConfig = "set -g @resurrect-capture-pane-contents 'on'";
+        }
+        {
+          plugin = continuum;
+          extraConfig = "set -g @continuum-restore 'on'";
+        }
+        {
+          plugin = tmux-which-key;
+          extraConfig = ''
+            set -g @tmux-which-key-disable-autobuild 1
+            set -g @tmux-which-key-xdg-enable 1
+          '';
+        }
+        jump
+        logging
+        extrakto
+      ];
+      extraConfig = ''
+        set -g renumber-windows on
+      '';
+    };
+  };
+
+  xdg.configFile = {
+    zellij.source = ../../../../config/zellij/.config/zellij;
+  };
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+      NIX_AUTO_RUN = 1;
+    };
+    sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+    ];
+
+    shellAliases = {
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
+      cat = "bat -p";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
+      history = "history 0";
+    };
+  };
+}

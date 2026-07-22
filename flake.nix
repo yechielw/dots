@@ -51,34 +51,34 @@
   };
 
   outputs = inputs:
-    (inputs.snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
+    let
+      base = inputs.snowfall-lib.mkFlake {
+        inherit inputs;
+        src = ./.;
 
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
+        supportedSystems = [
+          "x86_64-linux"
+          "aarch64-linux"
+          "aarch64-darwin"
+        ];
 
-      snowfall = {
-        namespace = "yechiel";
-        meta = {
-          name = "dots";
-          title = "Yechiel's NixOS configuration";
+        snowfall = {
+          namespace = "yechiel";
+          meta = {
+            name = "dots";
+            title = "Yechiel's NixOS configuration";
+          };
+        };
+
+        channels-config = {
+          allowUnfree = true;
+          android_sdk.accept_license = true;
+        };
+
+        outputs-builder = channels: {
+          formatter = channels.nixpkgs.nixpkgs-fmt;
         };
       };
-
-      channels-config = {
-        allowUnfree = true;
-        android_sdk.accept_license = true;
-      };
-
-      outputs-builder = channels: {
-        formatter = channels.nixpkgs.nixpkgs-fmt;
-      };
-    })
-    // {
-      my-custom-output = "hello world";
-    };
+    in
+    base.lib.exposeAvailableModules base;
 }
