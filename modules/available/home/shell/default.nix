@@ -3,6 +3,8 @@
 , ...
 }: {
   programs = {
+    home-manager.enable = true;
+
     jujutsu = {
       enable = true;
       settings = config.programs.git.settings;

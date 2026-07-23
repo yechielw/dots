@@ -7,6 +7,57 @@
   imports = [
     inputs.vicinae.homeManagerModules.default
   ];
+
+  home = {
+    pointerCursor = {
+      enable = true;
+      name = "BreezeX-RosePine-Linux";
+      package = pkgs.rose-pine-cursor;
+      x11.enable = true;
+    };
+
+    sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
+  };
+
+  home.file.".config/gtk-4.0" = {
+    enable = true;
+    force = true;
+    recursive = true;
+    source = pkgs.yechiel.tahoe + "/share/themes/MacTahoe-Dark/gtk-4.0";
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "MacTahoe-Dark";
+      package = pkgs.yechiel.tahoe;
+    };
+    gtk4.theme = {
+      name = "MacTahoe-Dark";
+      package = pkgs.yechiel.tahoe;
+    };
+
+    # iconTheme = {
+    # name = "WhiteSur";
+    # package = pkgs.whitesur-icon-theme;
+    # };
+
+    font = {
+      name = "SFProText Nerd Font";
+      size = 11;
+    };
+
+    cursorTheme = {
+      name = "BreezeX-RosePine-Linux";
+      package = pkgs.rose-pine-cursor;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    # style.name = "adwaita";
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -31,6 +82,61 @@
   #   pkgs.xdg-desktop-portal-gtk
   # ];
   services = {
+    kanshi = {
+      enable = true;
+      settings = [
+        {
+          profile.name = "internal";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+              scale = 1.0;
+            }
+          ];
+        }
+        {
+          profile.name = "work";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+              position = "3840,0";
+              scale = 1.0;
+            }
+            {
+              criteria = "Lenovo Group Limited E24-28 VVQ36240";
+              status = "enable";
+              position = "0,0";
+              scale = 1.0;
+            }
+            {
+              criteria = "Lenovo Group Limited E24-28 VVQ36235";
+              status = "enable";
+              position = "1920,0";
+              scale = 1.0;
+            }
+          ];
+        }
+        {
+          profile.name = "home";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              position = "1920,0";
+              scale = 1.0;
+            }
+            {
+              criteria = "HP Inc. HP V24i 1CR1161GPX";
+              status = "enable";
+              position = "0,0";
+              scale = 1.0;
+            }
+          ];
+        }
+      ];
+    };
+
     #  awww.enable = true;
     # icalnotifier.enable = true;
     # icalnotifier.package = inputs.icalindicator.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -255,6 +361,40 @@
           }
         ];
       };
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      window-decoration = false;
+      theme = "Dark+";
+      font-size = 12;
+      cursor-invert-fg-bg = true;
+      shell-integration-features = "ssh-terminfo,ssh-env";
+      background-opacity = 0.97;
+    };
+  };
+
+  programs.kitty = {
+    enable = true;
+    # package = pkgs.master.kitty;
+    enableGitIntegration = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      size = 12;
+    };
+    shellIntegration = {
+      enableZshIntegration = true;
+      mode = "enabled";
+    };
+    themeFile = "GitHub_Dark";
+    settings = {
+      enable_audio_bell = false;
+      hide_window_decorations = true;
+      allow_remote_control = "yes";
     };
   };
 

@@ -1,16 +1,14 @@
-{
-  inputs,
-  pkgs,
-  ...
+{ inputs
+, pkgs
+, ...
 }:
 inputs.bw.lib.evalPackage [
-  {inherit pkgs;}
-  ({
-    wlib,
-    pkgs,
-    ...
-  }: {
-    imports = [wlib.wrapperModules.neovim];
+  { inherit pkgs; }
+  ({ wlib
+   , pkgs
+   , ...
+   }: {
+    imports = [ wlib.wrapperModules.neovim ];
 
     config = {
       binName = "nvim-new";
@@ -88,27 +86,28 @@ inputs.bw.lib.evalPackage [
         ];
       };
 
-      runtimePkgs = with pkgs; [
-        universal-ctags
-        ripgrep
-        fd
-        stdenv.cc.cc
-        nix-doc
-        lua-language-server
-        nixd
-        stylua
-        phpactor
-        gopls
-        gofumpt
-        pyright
-        basedpyright
-        csharp-ls
-        nodejs
-        omnisharp-roslyn
-        roslyn
-        delve
-        markdownlint-cli
-      ];
+      runtimePkgs =
+        (with pkgs; [
+          universal-ctags
+          ripgrep
+          fd
+          stdenv.cc.cc
+          nix-doc
+          lua-language-server
+          nixd
+          stylua
+          phpactor
+          gopls
+          gofumpt
+          pyright
+          basedpyright
+          nodejs
+          omnisharp-roslyn
+          roslyn
+          delve
+          markdownlint-cli
+        ])
+        ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.csharp-ls ];
     };
   })
 ]

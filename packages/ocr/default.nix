@@ -5,6 +5,8 @@
 pkgs.writeShellApplication {
   name = "ocr";
 
+  meta.platforms = pkgs.lib.platforms.linux;
+
   runtimeInputs = with pkgs; [
     grim
     slurp
