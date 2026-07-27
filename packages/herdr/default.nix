@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {}
+}:
+{ }
 # let
 #   conf = {
 #     onboarding = false;
@@ -43,4 +44,3 @@
 #     } ${lib.getExe pkgs.herdr}
 #   '';
 # }
-

@@ -1,4 +1,6 @@
 { pkgs, ... }:
 {
-  environment.variables = { AAAAAAAAAA = "BBBBBBBB"; };
+  environment.variables = {
+    AAAAAAAAAA = "BBBBBBBB";
+  };
 }

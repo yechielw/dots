@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   msIDBrokerHash = final: prev: {
     microsoft-identity-broker = prev.microsoft-identity-broker.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
@@ -13,7 +14,8 @@
       };
     });
   };
-in {
+in
+{
   # Your other NixOS configurations go here
 
   imports = [
@@ -52,7 +54,7 @@ in {
     "8.8.8.8"
     "1.1.1.1"
   ];
-  networking.search = ["bowfin-marlin.ts.net"];
+  networking.search = [ "bowfin-marlin.ts.net" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -152,7 +154,7 @@ in {
       allowUnfree = true;
       allowBroken = true;
     };
-    overlays = [msIDBrokerHash];
+    overlays = [ msIDBrokerHash ];
   };
 
   fonts.enableDefaultPackages = true;
@@ -194,13 +196,12 @@ in {
     zoxide
     zsh
     (python311.withPackages (
-      ps:
-        with ps; [
-          pynvim
-          pip
-          debugpy
-          impacket
-        ]
+      ps: with ps; [
+        pynvim
+        pip
+        debugpy
+        impacket
+      ]
     ))
   ];
   # Some programs need SUID wrappers, can be configured further or are
@@ -244,7 +245,7 @@ in {
   };
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "yechiel" = import ./home-new.nix;
     };

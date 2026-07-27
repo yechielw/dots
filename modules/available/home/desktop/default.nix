@@ -1,11 +1,22 @@
-{ lib
-, pkgs
-, config
-, inputs
-, ...
-}: {
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+
+let
+  lock_cmd = if config.custom.bar == "dms" then "dms ipc call lock lock" else "hyprlock";
+in
+{
   imports = [
     inputs.vicinae.homeManagerModules.default
+    ./hyprland.nix
+    ./vicinae.nix
+    ./term.nix
+    ./bar.nix
+    ./gshell.nix
   ];
 
   home = {
@@ -57,11 +68,6 @@
     enable = true;
     platformTheme.name = "qtct";
     # style.name = "adwaita";
-  };
-  wayland.windowManager.hyprland = {
-    enable = true;
-    configType = "lua";
-    extraLuaFiles.main.content = ../../../../config/hypr/lua/hyprland.conf.lua;
   };
 
   xdg.portal = {
@@ -152,132 +158,8 @@
     };
 
     #battery-notify.enable = true;
-    cbatticon = {
-      enable = true;
-      # package = inputs.nixpkgs-cbatticon2.legacyPackages.${pkgs.stdenv.hostPlatform.system}.batticonplus;
-      package = pkgs.master.batticonplus;
-    };
 
     udiskie.enable = true;
-    pasystray = {
-      enable = true;
-      extraOptions = [
-        "--volume-max=150"
-        "--no-notify"
-        "--symbolic-icons"
-      ];
-    };
-    swaync.enable = false;
-    swaync.settings = {
-      positionX = "left";
-      positionY = "button";
-      layer = "overlay";
-      control-center-layer = "top";
-      layer-shell = true;
-      cssPriority = "application";
-      control-center-margin-top = 0;
-      control-center-margin-bottom = 0;
-      control-center-margin-right = 0;
-      control-center-margin-left = 0;
-      notification-2fa-action = true;
-      notification-inline-replies = true;
-      notification-icon-size = 64;
-      notification-body-image-height = 100;
-      notification-body-image-width = 200;
-
-      widgets = [
-        "inhibitors"
-        "dnd"
-        "mpris"
-        "notifications"
-      ];
-      widget-config = {
-        notifications = {
-          vexpand = false;
-        };
-        inhibitors = {
-          text = "Inhibitors";
-          button-text = "Clear All";
-          clear-all-button = true;
-        };
-        title = {
-          text = "Notifications";
-          clear-all-button = false;
-          button-text = "Clear All";
-        };
-        dnd = {
-          text = "Do Not Disturb";
-        };
-        label = {
-          max-lines = 5;
-          text = "Label Text";
-        };
-        mpris = {
-          autohide = true;
-        };
-      };
-    };
-    swaync.style = ''
-
-        :root {
-          --border-radius: 22px;
-          --cc-bg: transparent;
-
-          --widget-background: rgba(46, 46, 46, 0.7);
-          --noti-bg-alpha: 0.6;
-
-          --padding: calc(var(--border-radius) / 2);
-        }
-
-        .control-center {
-          border-radius: 0;
-        }
-
-        .widgets > .widget,
-        .widget-mpris > carouselindicatordots,
-        .widget-mpris > box > button {
-          background: var(--widget-background);
-          border-radius: var(--border-radius);
-          padding: calc(var(--border-radius) / 2);
-          border: var(--border);
-        }
-
-        .control-center-list-placeholder {
-          padding: var(--border-radius);
-        }
-
-        .notification-group {
-          border-radius: var(--border-radius);
-          padding: 8px;
-        }
-
-        .widget.widget-mpris {
-          background: transparent;
-          border-radius: 0;
-          padding: 0;
-          border: none;
-        }
-        .widget.widget-mpris > carouselindicatordots {
-          --dots-padding: 4px;
-          padding: var(--dots-padding);
-          padding-left: var(--dots-padding);
-          padding-right: calc(6px + var(--dots-padding));
-          margin: 0;
-          margin-top: var(--padding);
-        }
-        .widget-mpris > box > button:hover {
-          background: rgba(46, 46, 46, 1);
-        }
-        .widget-mpris-player {
-          box-shadow: none;
-          border: var(--border);
-          margin: 0 var(--padding);
-        }
-        .widget-mpris-player:only-child {
-          margin: 0;
-        }
-
-      '';
     swayosd = {
       enable = false;
       topMargin = 0.75;
@@ -293,13 +175,13 @@
       showDesktopNotification = false;
       showStartupLaunchMessage = false;
       uploadWithoutConfirmation = true;
-      useGrimAdapter = true;
+      # useGrimAdapter = true;
     };
     # hyprpolkitagent.enable = true;
     polkit-gnome.enable = true;
 
     hyprpaper = {
-      enable = false;
+      enable = config.custom.bar != "dms";
       settings = {
         ipc = "on";
         #splash = false;
@@ -313,21 +195,6 @@
 
     hyprsunset = {
       enable = true;
-      # settings = {
-      #   max-gamma = 150;
-      #
-      #   profile = [
-      #     {
-      #       time = "7:30";
-      #       identity = true;
-      #     }
-      #     {
-      #       time = "21:00";
-      #       temperature = 5000;
-      #       gamma = 0.8;
-      #     }
-      #   ];
-      # };
     };
 
     hypridle = {
@@ -337,7 +204,7 @@
         general = {
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
-          lock_cmd = "dms ipc call lock lock";
+          lock_cmd = lock_cmd;
         };
 
         listener = [
@@ -361,40 +228,6 @@
           }
         ];
       };
-    };
-  };
-
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      window-decoration = false;
-      theme = "Dark+";
-      font-size = 12;
-      cursor-invert-fg-bg = true;
-      shell-integration-features = "ssh-terminfo,ssh-env";
-      background-opacity = 0.97;
-    };
-  };
-
-  programs.kitty = {
-    enable = true;
-    # package = pkgs.master.kitty;
-    enableGitIntegration = true;
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      package = pkgs.nerd-fonts.jetbrains-mono;
-      size = 12;
-    };
-    shellIntegration = {
-      enableZshIntegration = true;
-      mode = "enabled";
-    };
-    themeFile = "GitHub_Dark";
-    settings = {
-      enable_audio_bell = false;
-      hide_window_decorations = true;
-      allow_remote_control = "yes";
     };
   };
 
@@ -459,337 +292,13 @@
       "--enable-features=VerticalTabs"
     ];
   };
-
-  programs.ashell = {
-    enable = true;
-    package = pkgs.master.ashell;
-    systemd.enable = true;
-    settings = {
-      language = "en-US";
-      region = "en-GB";
-      modules = {
-        left = [
-          [
-            "Workspaces"
-            "WindowTitle"
-          ]
-        ];
-        center = [ "MediaPlayer" ];
-        right = [
-          "Updates"
-          "SystemInfo"
-          "KeyboardLayout"
-          "Tray"
-          [
-            "Tempo"
-            "Privacy"
-            "Notifications"
-            "Settings"
-          ]
-        ];
-      };
-      keyboard_layout = {
-        labels = {
-          "English (US)" = "🇺🇸";
-          Hebrew = "🇮🇱";
-        };
-      };
-      tempo = {
-        weather_location = "Current";
-        weather_indicator = "Icon";
-      };
-      appearance = {
-        font_name = "SFProDisplay Nerd Font";
-        style = "Solid";
-      };
-      updates = {
-        check_cmd = "/home/yechiel/.config/ashell/waybar-nixos-updates/update-checker | jq .tooltip -r";
-        update_cmd = "ghostty --command='nh os switch; echo Done - Press enter to exit; read' &";
-        interval = 21600;
-      };
-      workspaces = {
-        # group_by_monitor = true;
-        visibility_mode = "MonitorSpecific";
-      };
-      osd = {
-        enabled = true;
-        timeout = 1500;
-        show_volume_percentage = true;
-        show_brightness_percentage = true;
-      };
-      animations = {
-        enabled = true;
-      };
-    };
-  };
-
-  programs.vicinae = {
-    enable = true; # default: false
-    systemd = {
-      enable = true; # default: false
-      autoStart = true; # default: false
-      environment = {
-        USE_LAYER_SHELL = 1;
-      };
-    };
-  };
-
-  # programs.satty = {
-  #   enable = true;
-  #   package = inputs.nixmaster.legacyPackages.${pkgs.stdenv.hostPlatform.system}.satty;
-  #   settings = builtins.fromTOML (lib.readFile ../../../../config/satty/config.toml);
-  # };
-
-  programs.waybar = {
-    enable = false;
-    systemd.enable = true;
-    settings = {
-      mainBar = {
-        layer = "bottom";
-        position = "top";
-        mod = "dock";
-        exclusive = true;
-        gtk-layer-shell = true;
-        margin-bottom = -1;
-        ssthrough = false;
-        height = 24;
-        modules-left = [
-          "hyprland/workspaces"
-          # "wlr/taskbar"
-          "hyprland/submap"
-        ];
-        modules-center = [ ];
-        modules-right = [
-          "cpu"
-          "custom/events"
-          "hyprland/language"
-          "tray"
-          # "pulseaudio"
-          # "battery"
-          "custom/swaync"
-          "clock"
-          "custom/wlogout"
-        ];
-        "hyprland/window" = {
-          format = "{title}";
-          separate-outputs = true;
-        };
-        "hyprland/language" = {
-          format = "{}";
-          format-en = "EN";
-          format-he = "HE";
-        };
-        "hyprland/workspaces" = {
-          format = "{icon}";
-          icon-size = 16;
-          spacing = 10;
-          on-scroll-up = "hyprctl dispatch workspace r+1";
-          on-scroll-down = "hyprctl dispatch workspace r-1";
-          show-special = true;
-          workspace-taskbar = {
-            enable = true;
-            update-active-window = true;
-            format = "{icon}";
-          };
-        };
-        "custom/os_button" = {
-          format = "";
-          on-click = "wofi --show drun -I -W 30%";
-          tooltip = false;
-        };
-        "custom/swaync" = {
-          tooltip = false;
-          format = "{icon}";
-          format-icons = {
-            notification = " 󰅸 ";
-            none = "  ";
-            dnd-notification = " <span foreground='red'><small><sup>⬤</sup></small></span>";
-            dnd-none = "  ";
-          };
-          "custom/wlogout" = {
-            format = "";
-            exec = "wlogout";
-          };
-          "custom/events" = {
-            format = "{}";
-            tooltip = true;
-            interval = 300;
-            format-icons = {
-              default = "";
-            };
-            exec = "waybar-khal.py";
-            return-type = "json";
-          };
-          return-type = "json";
-          exec-if = "which swaync-client";
-          exec = "swaync-client -swb";
-          on-click = "sleep 0.1 && swaync-client -t -sw";
-          on-click-right = "sleep 0.1 && swaync-client -d -sw";
-          escape = true;
-        };
-        "wlr/taskbar" = {
-          format = "{icon}";
-          icon-size = 20;
-          spacing = 3;
-          on-click-middle = "close";
-          tooltip-format = "{title}";
-          ignore-list = [ ];
-          on-click = "activate";
-        };
-        tray = {
-          icon-size = 18;
-          spacing = 3;
-        };
-        clock = {
-          format = "{:%a %e %b %H:%M}";
-          calendar = {
-            mode = "year";
-            mode-mon-col = 3;
-            weeks-pos = "right";
-            on-scroll = 1;
-            on-click-right = "mode";
-            format = {
-              months = "<span color='#ffead3'><b>{}</b></span>";
-              days = "<span color='#ecc6d9'><b>{}</b></span>";
-              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-            };
-          };
-          actions = {
-            on-click-right = "mode";
-            on-click-forward = "tz_up";
-            on-click-backward = "tz_down";
-            on-scroll-up = "shift_up";
-            on-scroll-down = "shift_down";
-          };
-        };
-        battery = {
-          states = {
-            good = 95;
-            warning = 30;
-            critical = 20;
-          };
-          format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
-          format-alt = "{time} {icon}";
-          format-icons = [
-            "󰂎"
-            "󰁺"
-            "󰁻"
-            "󰁼"
-            "󰁽"
-            "󰁾"
-            "󰁿"
-            "󰂀"
-            "󰂁"
-            "󰂂"
-            "󰁹"
-          ];
-        };
-        pulseaudio = {
-          max-volume = 150;
-          scroll-step = 10;
-          format = "{icon}";
-          format-bluetooth = "  ";
-          tooltip-format = "{volume}%";
-          format-muted = "  ";
-          format-icons = {
-            "alsa_output.usb-Lenovo_Lenovo_USB-C_Dock_USB_Audio_000000000000-00.analog-stereo" = "  ";
-            headphone = "  ";
-            default = [
-              "  "
-              "  "
-              "   "
-            ];
-          };
-          on-click = "pwvucontrol";
-        };
-        "custom/nix-updates" = {
-          exec = "~/.config/waybar/update";
-          signal = 12;
-          on-click = "";
-          on-click-right = "rm ~/.cache/nix-update-last-run";
-          interval = 3600;
-          tooltip = true;
-          return-type = "json";
-          format = "{} {icon}";
-          format-icons = {
-            has-updates = "󰚰";
-            updating = "";
-            updated = "";
-            error = "";
-          };
-        };
-        cpu = {
-          interval = 10;
-          format = "{}";
-          max-length = 10;
-        };
-      };
-    };
-    style = builtins.readFile ../../../../config/waybar/style.css;
-  };
-
-  programs.hyprlock = {
-    enable = false;
-    settings = {
-      auth = {
-        "fingerprint:enabled" = true;
-      };
-      general = {
-        disable_loading_bar = true;
-        grace = 5;
-        hide_cursor = true;
-        no_fade_in = false;
-      };
-
-      background = [
-        {
-          path = "/home/yechiel/Pictures/Sruly.jpg";
-          blur_passes = 3;
-          blur_size = 8;
-        }
+  wayland.windowManager.hyprland.settings.bind = [
+    {
+      _args = [
+        "SUPER + escape"
+        (lib.generators.mkLuaInline "hl.dsp.exec_cmd \"${lock_cmd}\" ")
       ];
 
-      label = [
-        {
-          monitor = "";
-          text = "$LAYOUT";
-          color = "rgba(200, 200, 200, 1.0)";
-          font_size = 10;
-          position = "0, -45%";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "cmd[update:1000] echo $(cat /sys/class/power_supply/BAT0/capacity)%";
-          color = "rgba(255, 255, 255, 1.0)";
-          font_size = 14;
-          position = "0, -30%";
-          halign = "center";
-          valign = "center";
-        }
-      ];
-
-      input-field = [
-        {
-          size = "200, 50";
-          position = "0, -40%";
-          monitor = "";
-          dots_center = true;
-          fade_on_empty = false;
-          font_color = "rgb(202, 211, 245)";
-          inner_color = "rgb(91, 96, 120)";
-          outer_color = "rgb(24, 25, 38)";
-          capslock_color = "rgb (120, 91, 113)";
-          outline_thickness = 0;
-          placeholder_text = ''<span foreground="##cad3f5">Enter Password</span>'';
-          shadow_passes = 2;
-        }
-      ];
-    };
-  };
+    }
+  ];
 }

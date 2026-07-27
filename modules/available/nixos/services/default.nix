@@ -1,7 +1,9 @@
-{ pkgs
-, inputs
-, ...
-}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     inputs.nix-flatpak.nixosModules.nix-flatpak
     inputs.vicinae.nixosModules.default
@@ -43,11 +45,6 @@
     compositor.name = "hyprland";
     configHome = "/home/yechiel";
   };
-  #  services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  # services.displayManager.sddm.theme = "${
-  #   pkgs.where-is-my-sddm-theme.override { variants = [ "qt5" ]; }
-  # }/share/sddm/themes/where_is_my_sddm_theme_qt5";
   systemd.services.display-manager.stopIfChanged = false;
   # systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
   services.upower.enable = true;

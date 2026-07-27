@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   programs = {
     cosmic-ext-tweaks.enable = true;
   };
@@ -23,7 +23,7 @@
 
       applets = {
         app-list = {
-          settings = {};
+          settings = { };
         };
         audio.settings.show_media_controls_in_top_panel = true;
       };

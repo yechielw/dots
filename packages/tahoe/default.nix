@@ -20,7 +20,14 @@ stdenvNoCC.mkDerivation {
     hash = "sha256-xS/RAPAREzteA6BRL3ZGrKk8Uml6/AjZRGQGQCOCrek=";
   };
 
-  nativeBuildInputs = [sassc glib libxml2 gtk3 getent which];
+  nativeBuildInputs = [
+    sassc
+    glib
+    libxml2
+    gtk3
+    getent
+    which
+  ];
 
   dontBuild = true;
   dontFixup = true;

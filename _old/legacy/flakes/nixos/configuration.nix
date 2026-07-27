@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -122,12 +123,11 @@
     nodejs
     go
     (python311.withPackages (
-      ps:
-        with ps; [
-          pynvim
-          pip
-          debugpy
-        ]
+      ps: with ps; [
+        pynvim
+        pip
+        debugpy
+      ]
     ))
   ];
 

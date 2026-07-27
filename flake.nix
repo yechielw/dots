@@ -50,7 +50,8 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       base = inputs.snowfall-lib.mkFlake {
         inherit inputs;

@@ -3,7 +3,8 @@
   inputs,
   settings,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nvf.homeManagerModules.default
   ];

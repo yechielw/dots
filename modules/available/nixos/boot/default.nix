@@ -1,7 +1,9 @@
-{ pkgs
-, inputs
-, ...
-}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.chaotic.nixosModules.default

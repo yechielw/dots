@@ -4,7 +4,14 @@
     isNormalUser = true;
     description = "Yechiel Worenklein";
     home = "/home/yechiel";
-    extraGroups =
-      [ "wheel" "networkmanager" "i2c" "wireshark" "docker" "libvirtd" "kvm" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "i2c"
+      "wireshark"
+      "docker"
+      "libvirtd"
+      "kvm"
+    ];
   };
 }

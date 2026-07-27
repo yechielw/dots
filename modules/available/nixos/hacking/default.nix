@@ -1,9 +1,11 @@
-{ pkgs
-, inputs
-, lib
-, config
-, ...
-}: {
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
+{
   programs.wireshark.enable = true;
   # programs.adb.enable = true;
 
@@ -18,10 +20,10 @@
     trufflehog
     #buprp.pro
     jython
-    python312Packages.bloodhound-py
+    #python3Packages.bloodhound-py
     metasploit
     caido-cli
-    netexec
+    # netexec
     seclists
     (pkgs.wordlists.override {
       lists = with pkgs; [

@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # include NixOS-WSL modules
     #<nixos-wsl/modules>
@@ -69,7 +70,7 @@
   };
   users.defaultUserShell = pkgs.zsh;
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "yechiel" = import ./home.nix;
     };

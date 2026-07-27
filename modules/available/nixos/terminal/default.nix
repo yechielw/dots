@@ -1,6 +1,8 @@
-{ pkgs
-, ...
-}: {
+{
+  pkgs,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
     devenv
     witr

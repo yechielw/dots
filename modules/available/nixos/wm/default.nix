@@ -1,7 +1,9 @@
-{ pkgs
-, inputs
-, ...
-}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     inputs.dms.nixosModules.default
   ];
@@ -60,7 +62,9 @@
     seahorse.enable = true;
     # dwl.enable = true;
     firefox.enable = true; # left becaus its default
-    firefox.nativeMessagingHosts.packages = [ inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    firefox.nativeMessagingHosts.packages = [
+      inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
     # sway = {
     #   enable = true;
     #   wrapperFeatures.gtk = true;

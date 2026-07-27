@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }:
 # let
 #   nixCatsOutputs = import ../config/nixcats/default.nix inputs;
@@ -11,6 +12,8 @@
   # ];
   environment.systemPackages = with pkgs; [
     master.hello-unfree
+    master.codex
+    master.mcp-nixos
     yechiel.ocr
     master.noctalia-shell
     amp-cli
@@ -74,13 +77,12 @@
     ddcutil
     ddccontrol
     nettools
-    python312Packages.impacket
+    python3Packages.impacket
     (python3.withPackages (
-      ps:
-        with ps; [
-          pip
-          debugpy
-        ]
+      ps: with ps; [
+        pip
+        debugpy
+      ]
     ))
   ];
 }

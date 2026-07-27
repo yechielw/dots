@@ -1,7 +1,9 @@
-{ pkgs
-, config
-, ...
-}: {
+{
+  pkgs,
+  config,
+  ...
+}:
+{
   programs = {
     home-manager.enable = true;
 
@@ -190,7 +192,7 @@
   };
 
   xdg.configFile = {
-    zellij.source = ../../../../config/zellij/.config/zellij;
+    zellij.source = ./zellij;
   };
   home = {
     sessionVariables = {

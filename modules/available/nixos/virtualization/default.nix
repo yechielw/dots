@@ -1,6 +1,8 @@
-{ pkgs
-, ...
-}: {
+{
+  pkgs,
+  ...
+}:
+{
   boot.kernelModules = [
     "ip_tables"
     "iptable_nat"
