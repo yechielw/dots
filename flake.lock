@@ -1179,6 +1179,38 @@
         "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
       }
     },
+    "plugins-lze": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782136817,
+        "narHash": "sha256-7RNUVDWU13E0LGv3QVfC/Qmz/gA564FKfpv6PxYn75M=",
+        "owner": "BirdeeHub",
+        "repo": "lze",
+        "rev": "ae45b9f1fd923955a5ebc733b920e23f0c105ae1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "lze",
+        "type": "github"
+      }
+    },
+    "plugins-lzextras": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782220927,
+        "narHash": "sha256-9hoMQoor4SjQ8+2eH33YQkoEfSXc+kKjRdTRCJYxL+M=",
+        "owner": "BirdeeHub",
+        "repo": "lzextras",
+        "rev": "0dd4ed15331b6eaf4b6304d4e0db32ccb043b76e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "lzextras",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1317,6 +1349,8 @@
         "nixCats": "nixCats",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_10",
+        "plugins-lze": "plugins-lze",
+        "plugins-lzextras": "plugins-lzextras",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "profilepic": "profilepic",
         "raise": "raise",

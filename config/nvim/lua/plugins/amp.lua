@@ -1,7 +1,7 @@
-  -- Amp Plugin
+-- Amp Plugin
 return {
-  "sourcegraph/amp.nvim",
-  branch = "main",
+  'sourcegraph/amp.nvim',
+  branch = 'main',
   lazy = false,
-  opts = { auto_start = true, log_level = "info" },
+  opts = { auto_start = true, log_level = 'info' },
 }

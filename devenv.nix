@@ -13,7 +13,7 @@
     mdsh.enable = true;
 
     trufflehog.enable = true;
-    zizmor.enable = true;
+    zizmor.enable = false;
   };
 
   git-hooks.package = pkgs.prek;

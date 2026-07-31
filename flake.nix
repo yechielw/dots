@@ -38,6 +38,17 @@
     # dms.url = "git+file:///home/yechiel/tools/DankMaterialShell";
     wrappers.url = "github:lassulus/wrappers";
     bw.url = "github:BirdeeHub/nix-wrapper-modules";
+
+    plugins-lze = {
+      url = "github:BirdeeHub/lze";
+      flake = false;
+    };
+    # These 2 are already in nixpkgs, however this ensures you always fetch the most up to date version!
+    plugins-lzextras = {
+      url = "github:BirdeeHub/lzextras";
+      flake = false;
+    };
+
     herdr.url = "github:ogulcancelik/herdr";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";

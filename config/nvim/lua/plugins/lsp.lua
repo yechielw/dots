@@ -15,7 +15,7 @@ return { -- LSP Configuration & Plugins
     {
       'Hoffs/omnisharp-extended-lsp.nvim',
       lazy = true,
-      ft = "cs",
+      ft = 'cs',
     },
     -- {
     --   "seblyng/roslyn.nvim",
@@ -114,7 +114,8 @@ return { -- LSP Configuration & Plugins
         --
         -- This may be unwanted, since they displace some of your code
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          vim.keymap.set('n', '<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          vim.keymap.set('n', '<leader>th', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
           end, { buffer = event.buf, desc = '[T]oggle Inlay [H]ints' })
         end
       end,
@@ -150,7 +151,6 @@ return { -- LSP Configuration & Plugins
     -- servers.tsserver = {},
     --
 
-
     vim.lsp.config('lua_ls', {
       settings = {
         capabilities = capabilities,
@@ -169,21 +169,21 @@ return { -- LSP Configuration & Plugins
 
     vim.lsp.config('omnisharp', {
       handlers = {
-        ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
-        ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
-        ["textDocument/references"] = require('omnisharp_extended').references_handler,
-        ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+        ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
+        ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
+        ['textDocument/references'] = require('omnisharp_extended').references_handler,
+        ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
         -- ["textDocument/definition"] = function(...)
         --   return require("omnisharp_extended").handler(...)
         -- end,
       },
       keys = {
         {
-          "gd",
+          'gd',
           function()
-            require("omnisharp_extended").telescope_lsp_definitions()
+            require('omnisharp_extended').telescope_lsp_definitions()
           end,
-          desc = "Goto Definition",
+          desc = 'Goto Definition',
         },
       },
       enable_roslyn_analyzers = true,

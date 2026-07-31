@@ -4,15 +4,14 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    "norcalli/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
-    opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true, css = true, css_fn = true, } },
+    'norcalli/nvim-colorizer.lua',
+    cmd = 'ColorizerToggle',
+    opts = { ['*'] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true, css = true, css_fn = true } },
   },
   {
-    "mbbill/undotree",
+    'mbbill/undotree',
     keys = {
-      {"<leader>u", vim.cmd.UndotreeToggle, desc = "Undotree Toggle"},
+      { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Undotree Toggle' },
     },
   },
 }
-
