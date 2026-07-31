@@ -1,0 +1,38 @@
+{pkgs,lib,...}:
+{
+ systemd.user.services."set-wallpaper" = {
+    Unit = {
+      Description = "Set wallpaper via awww";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = ''
+        ${pkgs.lib.getExe pkgs.awww} img ~/Pictures/wp.jpg --transition-type none
+      '';
+
+      After = [ "awww.service" ];
+      Restart = "on-failure";
+    };
+  };
+# systemd.user.services.awww-wallpaper = {
+#     Unit = {
+#       Description = "Set awww wallpaper";
+#       After = [ "awww.service" ];
+#       Requires = [ "awww.service" ];
+#     };
+#
+#     Service = {
+#       Type = "oneshot";
+#       ExecStart = "${lib.getExec pkgs.awww} img ~/Pictures/wp.jpg";
+#     };
+#
+#     Install = {
+#       WantedBy = [ "graphical-session.target" ];
+#     };
+#   };
+}
