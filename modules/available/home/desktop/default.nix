@@ -183,12 +183,14 @@ in
       enable = config.custom.bar != "dms";
       settings = {
         ipc = "on";
-        #splash = false;
-        #splash_offset = 2.0;
-
-        # wallpaper = [{
-        #   path = "/home/yechiel/Pictures/wp.jpg";
-        # }];
+        # splash = false;
+        splash_offset = 2.0;
+        wallpaper = [
+          {
+            monitor = ",";
+            path = "/home/yechiel/Downloads/thinknix-d.png";
+          }
+        ];
       };
     };
 
