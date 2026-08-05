@@ -19,7 +19,7 @@
     nh = {
       enable = true;
       clean.enable = true;
-      flake = "/home/yechiel/dots";
+      flake = "github:yechielw/dots";
     };
     zsh.enable = true;
 
