@@ -11,6 +11,8 @@
   #   nixCatsOutputs.overlays.default
   # ];
   environment.systemPackages = with pkgs; [
+    hello
+    helix
     master.hello-unfree
     master.codex
     master.mcp-nixos
