@@ -4,18 +4,9 @@
   ...
 }:
 {
-  imports = [
-    inputs.dms.nixosModules.default
-  ];
-  nix.settings = {
-    trusted-users = [ "@wheel" ];
-    substituters = [
-      "https://hyprland.cachix.org"
-    ];
-    trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
+  # nix.settings = {
+  #   trusted-users = [ "@wheel" ];
+  # };
   services.udisks2.enable = true;
   systemd.user.services = {
     "wayland-session-bindpid@" = {
@@ -73,7 +64,7 @@
     hyprland = {
       enable = true;
       # withUWSM = true;
-      #  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
@@ -90,7 +81,6 @@
     st
     swayosd
     gnome-themes-extra
-    gtk-engine-murrine
     wofi
     # nwg-displays
     wl-clipboard

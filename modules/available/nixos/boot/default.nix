@@ -4,11 +4,6 @@
   ...
 }:
 {
-  imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.chaotic.nixosModules.default
-  ];
-
   boot = {
     loader = {
       systemd-boot.enable = false;

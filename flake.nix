@@ -1,6 +1,9 @@
 {
   description = "Nixos config flake";
 
+  nixConfig = {
+  };
+
   inputs = {
     snowfall-lib = {
       url = "github:anntnzrb/snowfall-lib";
@@ -8,9 +11,14 @@
     };
     hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/*";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    master.url = "github:nixos/nixpkgs/master";
+    beams.url = "github:kleinweb/beams";
+    beams.inputs.nixpkgs.follows = "nixpkgs";
+    beams.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    stable.url = "nixpkgs/nixos-25.05";
+    master.url = "nixpkgs/master";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
 
@@ -82,6 +90,18 @@
           };
         };
 
+        systems.modules.nixos = with inputs; [
+          determinate.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
+          vicinae.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
+          chaotic.nixosModules.default
+          dms.nixosModules.default
+        ];
+        homes.modules = with inputs; [
+          vicinae.homeManagerModules.default
+        ];
+
         channels-config = {
           allowUnfree = true;
           android_sdk.accept_license = true;
@@ -93,4 +113,5 @@
       };
     in
     base.lib.exposeAvailableModules base;
+  # outputs = inputs: import ./outputs.nix inputs;
 }

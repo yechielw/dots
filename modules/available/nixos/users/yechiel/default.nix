@@ -12,6 +12,7 @@
       "docker"
       "libvirtd"
       "kvm"
+      "incus-admin"
     ];
   };
 }

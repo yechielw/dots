@@ -41,6 +41,8 @@
     zsh = {
       enable = true;
 
+      fastSyntaxHighlighting.enable = true;
+
       shellGlobalAliases = {
         N = "2>/dev/null";
       };
@@ -77,23 +79,11 @@
         enable = true;
         # searchDownKey = "$terminfo[kcud1]";
         # searchUpKey = "$terminfo[kcuu1]";
-        searchDownKey = "^N";
-        searchUpKey = "^P";
+        searchDownKey = [ "^N" ];
+        searchUpKey = [ "^P" ];
       };
 
-      # antidote = {
-      #   enable = true;
-      #   plugins = [
-      #     #"zsh-users/zsh-history-substring-search"
-      #     "zdharma-continuum/fast-syntax-highlighting"
-      #     #"zsh-users/zsh-autosuggestions"
-      #     "zsh-users/zsh-completions"
-      #     #"olivierverdier/zsh-git-prompt"
-      #   ];
-      # };
       initContent = ''
-          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-          # source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 
@@ -135,13 +125,19 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      historyWidget.zsh.command = "";
     };
     atuin = {
       enable = true;
-      enableZshIntegration = false;
-      # flags = [
-      #   "--disable-up-arrow"
-      # ];
+      settings = {
+        enter_accept = true;
+        sync.records = true;
+        ai.enabled = false;
+      };
+      enableZshIntegration = true;
+      flags = [
+        "--disable-up-arrow"
+      ];
     };
 
     lesspipe.enable = true;
@@ -189,6 +185,7 @@
         set -g renumber-windows on
       '';
     };
+
   };
 
   xdg.configFile = {

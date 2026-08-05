@@ -11,7 +11,6 @@ let
 in
 {
   imports = [
-    inputs.vicinae.homeManagerModules.default
     ./hyprland.nix
     ./vicinae.nix
     ./term.nix

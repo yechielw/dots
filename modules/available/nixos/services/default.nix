@@ -4,25 +4,6 @@
   ...
 }:
 {
-  imports = [
-    inputs.nix-flatpak.nixosModules.nix-flatpak
-    inputs.vicinae.nixosModules.default
-  ];
-
-  # services.pinchflat.enable = true;
-  # services.pinchflat.selfhosted = true;
-
-  # services.jellyfin = {
-  #   enable = true;
-  #   dataDir = config.services.pinchflat.mediaDir;
-  # };
-
-  # services.calibre-server = {
-  #   enable = true;
-  #   port = 4040;
-  #   openFirewall = true;
-  #   user = "yechiel";
-  #};
 
   services.upower.criticalPowerAction = "Hibernate";
 
@@ -139,16 +120,6 @@
     #     ];
     #   }
     # ];
-    settings = {
-      substituters = [
-        "https://vicinae.cachix.org"
-        #          "ssh://eu.nixbuild.net"
-      ];
-      trusted-public-keys = [
-        "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-        "nixbuild.net/ZIB0CP-1:ApkQd3BTT++gJj9vh8e58TDvpZOXdc76S4vkFP1zqhA="
-      ];
-    };
   };
   services.flatpak = {
     enable = true;

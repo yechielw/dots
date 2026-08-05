@@ -4,16 +4,9 @@
   ...
 }:
 {
-  # imports = [ inputs.stylix.nixosModules.stylix ];
-  # stylix.enable = true;
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
   networking = {
     nameservers = [
-      #"127.0.0.53"
-      #"100.100.100.100"
-      #"8.8.8.8"
-      #"8.8.4.4"
     ];
     search = [ "bowfin-marlin.ts.net" ];
     firewall = {

@@ -11,6 +11,13 @@
   # Enable dconf (System Management Tool)
   programs.dconf.enable = true;
 
+  networking = {
+    nftables.enable = true;
+
+    # Allow Incus guests to reach the bridge's DHCP and DNS services.
+    firewall.trustedInterfaces = [ "incusbr0" ];
+  };
+
   # Install necessary packages
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -26,6 +33,50 @@
 
   # Manage the virtualisation services
   virtualisation = {
+    incus = {
+      enable = true;
+
+      preseed = {
+        networks = [
+          {
+            config = {
+              "ipv4.address" = "10.0.100.1/24";
+              "ipv4.nat" = "true";
+            };
+            name = "incusbr0";
+            type = "bridge";
+          }
+        ];
+        profiles = [
+          {
+            devices = {
+              eth0 = {
+                name = "eth0";
+                network = "incusbr0";
+                type = "nic";
+              };
+              root = {
+                path = "/";
+                pool = "default";
+                size = "35GiB";
+                type = "disk";
+              };
+            };
+            name = "default";
+          }
+        ];
+        storage_pools = [
+          {
+            config = {
+              source = "/var/lib/incus/storage-pools/default";
+            };
+            driver = "dir";
+            name = "default";
+          }
+        ];
+      };
+    };
+
     libvirtd = {
       enable = true;
       onBoot = "ignore";

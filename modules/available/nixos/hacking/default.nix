@@ -7,11 +7,7 @@
 }:
 {
   programs.wireshark.enable = true;
-  # programs.adb.enable = true;
 
-  # imports = [
-  #   inputs.burpsuite.nixosModules.default
-  # ];
   environment.systemPackages = with pkgs; [
     # vm
     inputs.burpsuite.packages.${pkgs.stdenv.hostPlatform.system}.default
