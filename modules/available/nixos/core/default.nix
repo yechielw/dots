@@ -72,9 +72,6 @@
     enable = true;
     keychronSupport = true;
   };
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.pki.certificateFiles = pkgs.lib.filesystem.listFilesRecursive ../../../../config/certs;
 
   fonts = {
     fontDir.enable = true;

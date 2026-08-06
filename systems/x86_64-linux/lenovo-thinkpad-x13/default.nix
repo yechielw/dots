@@ -39,7 +39,7 @@
   systemd.tmpfiles.rules = [
     "d /var/lib/linux-enable-ir-emitter 0755 root root - -"
   ];
-  environment.etc."linux-enable-ir-emitter".source = ../../../config/linux-enable-ir-emitter;
+  environment.etc."linux-enable-ir-emitter".source = ./linux-enable-ir-emitter;
 
   services.udev.extraRules = ''
     # AX211 Bluetooth

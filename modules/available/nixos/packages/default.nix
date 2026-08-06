@@ -3,13 +3,7 @@
   inputs,
   ...
 }:
-# let
-#   nixCatsOutputs = import ../config/nixcats/default.nix inputs;
-# in
 {
-  # nixpkgs.overlays = [
-  #   nixCatsOutputs.overlays.default
-  # ];
   environment.systemPackages = with pkgs; [
     hello
     helix
@@ -22,11 +16,7 @@
     terraform
     terraform-lsp
     yechiel.nvim
-    # nvim
     inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-    # inputs.cats.packages.${pkgs.stdenv.hostPlatform.system}.default
-    #nixCatsOutputs.packages.${pkgs.stdenv.hostPlatform.system}.default
-    #    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
     gemini-cli

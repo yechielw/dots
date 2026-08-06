@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   services = {
     howdy = {
@@ -14,7 +14,14 @@
 
   environment.sessionVariables.OMP_NUM_THREADS = 1;
 
-  security.run0.enable = true;
-  security.run0.enableSudoAlias = true;
-  security.sudo.enable = false;
+  security = {
+    run0.enable = true;
+    run0.enableSudoAlias = true;
+    sudo.enable = false;
+
+    rtkit.enable = true;
+    polkit.enable = true;
+
+    pki.certificateFiles = lib.filesystem.listFilesRecursive ./certs;
+  };
 }

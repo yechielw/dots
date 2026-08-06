@@ -4,7 +4,7 @@
   localSystem ? pkgs.stdenv.hostPlatform.system,
   ...
 }:
-(inputs.nixCats.utils.baseBuilder "${inputs.self + /config/nvim}"
+(inputs.nixCats.utils.baseBuilder ./nvim
   {
     system = localSystem;
     inherit (inputs) nixpkgs;

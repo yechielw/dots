@@ -100,8 +100,8 @@
 
   services.kanata = {
     enable = true;
-    keyboards.my = {
-      configFile = ../../../../config/katana/kanata.kbd;
+    keyboards.home-row = {
+      configFile = ./kanata.kbd;
       #:: devices = [ ];
       devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
     };
