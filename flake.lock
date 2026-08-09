@@ -116,11 +116,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1784804645,
-        "narHash": "sha256-y+qEBQCza3Dadf1xRnTEmY3CQSRFvERAK0xwBA4kNs4=",
+        "lastModified": 1786024201,
+        "narHash": "sha256-KlZBWZ4/lLpHkNzCxDiFSi8Xi2+rW9QsBJk0QYsVY5o=",
         "owner": "yechielw",
         "repo": "burpsuite.nix",
-        "rev": "635d3641cd5224744aa272a12daf55a4ffe57228",
+        "rev": "1c715739f51c8011d62e5cce589337f3fd70daa8",
         "type": "github"
       },
       "original": {
