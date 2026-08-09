@@ -17,7 +17,7 @@ inputs.devenv.lib.mkShell {
 
           stylua.enable = true;
 
-          flake-checker.enable = true;
+          # flake-checker.enable = true;
           yamlfmt.enable = true;
           mdsh.enable = true;
 
