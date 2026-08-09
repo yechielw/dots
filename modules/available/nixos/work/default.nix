@@ -17,6 +17,8 @@
     #    citrix_workspace
     microsoft-edge
     master.citrix-workspace
+    jfrog-cli
+    (pkgs.azure-cli.withExtensions (with azure-cli-extensions; [ azure-devops ]))
   ];
 
 }

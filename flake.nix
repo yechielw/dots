@@ -11,6 +11,11 @@
     };
     hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/*";
 
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     beams.url = "github:kleinweb/beams";
     beams.inputs.nixpkgs.follows = "nixpkgs";
     beams.inputs.pre-commit-hooks.follows = "pre-commit-hooks";

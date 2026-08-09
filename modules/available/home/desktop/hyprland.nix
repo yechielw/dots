@@ -1,4 +1,4 @@
-{ ... }: {
+{
   xdg.configFile."hypr/main".source = ./lua/main;
 
   wayland.windowManager.hyprland = {
