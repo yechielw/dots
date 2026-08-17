@@ -116,15 +116,6 @@
     };
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
-  # nixpkgs = {
-  # overlays = [ self.overlays.default ];
-
-  # config = {
-  #   allowUnfree = true;
-  #   allowBroken = true;
-  #   android_sdk.accept_license = true;
-  # };
-  # };
 
   users.defaultUserShell = pkgs.zsh;
 }
