@@ -31,9 +31,6 @@
   services.upower.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  # nix.settings = {
-  # };
-
   services.printing.enable = true;
 
   # hardware.pulseaudio.enable = false;
