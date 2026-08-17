@@ -5,11 +5,15 @@
   };
 
   inputs = {
+    flake-utils-plus.url = "github:Dines97/flake-utils-plus/aaf79700c35c2f1651843fc70fd104ce85b1171e";
+
     snowfall-lib = {
       url = "github:anntnzrb/snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
-    hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/*";
+
+    hyprland.url = "github:hyprwm/Hyprland";
 
     devenv = {
       url = "github:cachix/devenv";
