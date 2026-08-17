@@ -2,6 +2,7 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
+  installShellFiles,
 }:
 
 buildGoModule rec {
@@ -23,11 +24,30 @@ buildGoModule rec {
     "-X=github.com/checkmarx/ast-cli/internal/params.Version=${version}"
   ];
 
+  # Upstream's tests are not sandbox-safe: they use production polling delays,
+  # download the ASCA engine, and compare maps with assert.Equal.
+  doCheck = false;
+
+  nativeBuildInputs = [ installShellFiles ];
+
+  postInstall = ''
+    mv "$out/bin/cmd" "$out/bin/cx"
+
+    installShellCompletion --cmd cx \
+      --bash <("$out/bin/cx" completion bash) \
+      --zsh <("$out/bin/cx" completion zsh) \
+      --fish <("$out/bin/cx" completion fish)
+
+    mkdir -p "$out/share/powershell"
+    "$out/bin/cx" completion powershell \
+      > "$out/share/powershell/cx.Completion.ps1"
+  '';
+
   meta = {
     description = "A CLI project wrapping application security testing (AST) APIs";
     homepage = "https://github.com/Checkmarx/ast-cli";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [ ];
-    mainProgram = "ast-cli";
+    # maintainers = with lib.maintainers; [ ];
+    mainProgram = "cx";
   };
 }
