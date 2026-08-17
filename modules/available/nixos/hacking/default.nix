@@ -10,6 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     # vm
+    yechiel.ast-cli
     inputs.burpsuite.packages.${pkgs.stdenv.hostPlatform.system}.default
     android-tools
     nuclei
