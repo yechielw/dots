@@ -9,7 +9,7 @@
     helix
     master.hello-unfree
     master.codex
-    master.mcp-nixos
+    mcp-nixos
     yechiel.ocr
     master.noctalia-shell
     amp-cli
