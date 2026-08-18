@@ -255,6 +255,22 @@
         "type": "github"
       }
     },
+    "dank-qml-common": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786811496,
+        "narHash": "sha256-YfS777ef7e9xsQBA1CLmssqXQnOl7mnjL79LMrUSr08=",
+        "owner": "AvengeMedia",
+        "repo": "dank-qml-common",
+        "rev": "a63a92fe46bd267d809e9f735b2217ce20178665",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dank-qml-common",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -365,20 +381,21 @@
     },
     "dms": {
       "inputs": {
+        "dank-qml-common": "dank-qml-common",
         "flake-compat": "flake-compat_3",
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1783327110,
-        "narHash": "sha256-HxRpwhZzL4ppr8nTXWncjteP+kynCDRLPlIY4n+l0cI=",
-        "owner": "yechielw",
+        "lastModified": 1786990392,
+        "narHash": "sha256-MQSanvUG/MQN7k33W9Ug3M2ZCV9HB5fy+J9OghBv0zY=",
+        "owner": "kmf",
         "repo": "DankMaterialShell",
-        "rev": "ca76b0ea5dbfb1eb882e9522c533ac1313bb2c8d",
+        "rev": "e922cc9822d034874ba5b79e4829d62cb46a025f",
         "type": "github"
       },
       "original": {
-        "owner": "yechielw",
-        "ref": "cell",
+        "owner": "kmf",
+        "ref": "pr-2765-cellular-rebase",
         "repo": "DankMaterialShell",
         "type": "github"
       }
@@ -1597,11 +1614,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1778443072,
-        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
+        "lastModified": 1783224372,
+        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
+        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
         "type": "github"
       },
       "original": {

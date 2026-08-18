@@ -13,7 +13,7 @@
         "ashell"
         "dms"
       ];
-      default = "ashell";
+      default = "dms";
     };
   };
 }

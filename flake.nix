@@ -51,7 +51,8 @@
     # vicinae.url = "github:yechielw/vicinae/chrome-integration-2"; # ?tag=releases/latest";
 
     # dms.url = "github:AvengeMedia/DankMaterialShell";
-    dms.url = "github:yechielw/DankMaterialShell/cell";
+    # dms.url = "github:yechielw/DankMaterialShell/cell";
+    dms.url = "github:kmf/DankMaterialShell/pr-2765-cellular-rebase";
     # dms.url = "git+file:///home/yechiel/tools/DankMaterialShell";
     wrappers.url = "github:lassulus/wrappers";
     bw.url = "github:BirdeeHub/nix-wrapper-modules";
