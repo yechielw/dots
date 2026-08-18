@@ -1,8 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
-  config,
   ...
 }:
 {
@@ -11,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     # vm
     yechiel.ast-cli
+    badsecrets
     inputs.burpsuite.packages.${pkgs.stdenv.hostPlatform.system}.default
     android-tools
     nuclei

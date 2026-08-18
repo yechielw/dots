@@ -76,5 +76,35 @@
         debugpy
       ]
     ))
+    # imported from .nix-profile
+    pandoc
+    semgrep
+    xq
+    inetutils
+    sqlite
+    gnumake
+    ffuf
+    openssl
+    nix-init
+    yt-dlp
+    exiftool
+    bitwarden-cli
+    subfinder
+    wpscan
+    comma
+    vial
+    btop
+    libreoffice
+    dash
+    gh
+    awscli2
+    avalonia-ilspy
+    zip
+    dnschef
+    zathura
+    tree
+    grayjay
+    wike
+    quickshell
   ];
 }
