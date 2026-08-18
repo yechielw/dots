@@ -199,6 +199,7 @@
     sessionPath = [
       "$HOME/.local/bin"
       "$HOME/.cargo/bin"
+      "$HOME/go/bin"
     ];
 
     shellAliases = {
