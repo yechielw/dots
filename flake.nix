@@ -5,6 +5,8 @@
   };
 
   inputs = {
+
+    cx-ast.url = "github:yechielw/cx-ast.nvim";
     flake-utils-plus.url = "github:Dines97/flake-utils-plus/aaf79700c35c2f1651843fc70fd104ce85b1171e";
 
     snowfall-lib = {
@@ -25,9 +27,10 @@
     beams.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    stable.url = "nixpkgs/nixos-25.05";
-    master.url = "nixpkgs/master";
+    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    master.url = "github:nixos/nixpkgs/master";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
 
@@ -48,26 +51,13 @@
     raise.url = "github:yechielw/raise";
     raise.inputs.nixpkgs.follows = "nixpkgs";
     vicinae.url = "github:vicinaehq/vicinae"; # ?tag=releases/latest";
-    # vicinae.url = "github:yechielw/vicinae/chrome-integration-2"; # ?tag=releases/latest";
 
-    # dms.url = "github:AvengeMedia/DankMaterialShell";
+    dms.url = "github:AvengeMedia/DankMaterialShell";
     # dms.url = "github:yechielw/DankMaterialShell/cell";
-    dms.url = "github:kmf/DankMaterialShell/pr-2765-cellular-rebase";
-    # dms.url = "git+file:///home/yechiel/tools/DankMaterialShell";
     wrappers.url = "github:lassulus/wrappers";
     bw.url = "github:BirdeeHub/nix-wrapper-modules";
 
-    plugins-lze = {
-      url = "github:BirdeeHub/lze";
-      flake = false;
-    };
-    # These 2 are already in nixpkgs, however this ensures you always fetch the most up to date version!
-    plugins-lzextras = {
-      url = "github:BirdeeHub/lzextras";
-      flake = false;
-    };
-
-    herdr.url = "github:ogulcancelik/herdr";
+    # herdr.url = "github:ogulcancelik/herdr";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,50 +67,12 @@
       url = "https://github.com/yechielw.png";
       flake = false;
     };
+    lerd = {
+      url = "github:lerd-env/lerd-nixos";
+      # Build lerd against your own nixpkgs instead of the one it pins,
+      # so you don't download a second copy of nixpkgs:
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: import ./outputs.nix inputs;
-  # outputs =
-  #   inputs:
-  #   let
-  #     base = inputs.snowfall-lib.mkFlake {
-  #       inherit inputs;
-  #       src = ./.;
-  #
-  #       supportedSystems = [
-  #         "x86_64-linux"
-  #         "aarch64-linux"
-  #         "aarch64-darwin"
-  #       ];
-  #
-  #       snowfall = {
-  #         namespace = "yechiel";
-  #         meta = {
-  #           name = "dots";
-  #           title = "Yechiel's NixOS configuration";
-  #         };
-  #       };
-  #
-  #       systems.modules.nixos = with inputs; [
-  #         determinate.nixosModules.default
-  #         nix-flatpak.nixosModules.nix-flatpak
-  #         vicinae.nixosModules.default
-  #         lanzaboote.nixosModules.lanzaboote
-  #         chaotic.nixosModules.default
-  #         dms.nixosModules.default
-  #       ];
-  #       homes.modules = with inputs; [
-  #         vicinae.homeManagerModules.default
-  #       ];
-  #
-  #       channels-config = {
-  #         allowUnfree = true;
-  #         android_sdk.accept_license = true;
-  #       };
-  #
-  #       outputs-builder = channels: {
-  #         formatter = channels.nixpkgs.nixpkgs-fmt;
-  #       };
-  #     };
-  #   in
-  #   base.lib.exposeAvailableModules base;
 }

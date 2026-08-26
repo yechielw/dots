@@ -9,7 +9,9 @@ in
 pkgs.symlinkJoin {
   name = "azure-cli-wrapped";
   paths = [ az-unwrapped ];
-  nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+  nativeBuildInputs = [
+    pkgs.makeBinaryWrapper
+  ];
   postBuild = ''
           rm "$out/bin/az"
           cat > "$out/bin/az" <<'WRAPPER'
@@ -18,11 +20,11 @@ pkgs.symlinkJoin {
     # avoids libicu crash because the nixpkgs build is properly patchelf'd.
     export AZURE_BICEP_USE_BINARY_FROM_PATH=true
     case "$1" in
-        devops|repos|pipelines)
+        devops|repos|pipelines|boards)
             # Persistent, isolated config dir — see "Config dir layout" header note.
             az_devops_cfg="''${XDG_CONFIG_HOME:-$HOME/.config}/az-devops"
             mkdir -p "$az_devops_cfg"
-            AZURE_DEVOPS_EXT_PAT=$(secret-tool lookup service azure-devops type cli) \
+            AZURE_DEVOPS_EXT_PAT=$(${pkgs.lib.getExe pkgs.libsecret} lookup service azure-devops type cli) \
             AZURE_CONFIG_DIR="$az_devops_cfg" \
                 exec ${az-unwrapped}/bin/az "$@" ;;
         rest)
@@ -37,7 +39,7 @@ pkgs.symlinkJoin {
                 esac
             done
             if $is_ado; then
-                PAT=$(secret-tool lookup service azure-devops type cli)
+                PAT=$(${pkgs.lib.getExe pkgs.libsecret} lookup service azure-devops type cli)
                 AUTH=$(printf ':%s' "$PAT" | base64 -w0)
                 exec ${az-unwrapped}/bin/az rest \
                     --skip-authorization-header \

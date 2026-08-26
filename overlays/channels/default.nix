@@ -7,7 +7,8 @@
 final: prev: {
   stable = channels.stable;
   master = channels.master;
-  herdr = inputs.herdr.packages.${prev.system}.default;
+  # herdr = inputs.herdr.packages.${prev.system}.default;
+  lerd = inputs.lerd.packages.${prev.system}.default;
 
   # gdalMinimal = prev.gdalMinimal.overrideAttrs (old: {
   #   disabledTests = (old.disabledTests or [ ]) ++ [

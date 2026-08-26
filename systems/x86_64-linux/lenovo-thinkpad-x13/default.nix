@@ -22,6 +22,7 @@
     wm
     work
     lib.yechiel.nixos."users/yechiel"
+    lerd
   ];
 
   boot = {

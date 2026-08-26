@@ -24,6 +24,19 @@
   services.displayManager.dms-greeter = {
     enable = true;
     compositor.name = "hyprland";
+    compositor.customConfig = ''
+      hl.env("DMS_RUN_GREETER", "1")
+
+      hl.config({
+          misc = {
+              disable_hyprland_logo = true,
+          },
+      })
+
+      hl.on("hyprland.start", function()
+          hl.exec_cmd("sh -c \"dms; hyprctl dispatch exit\"")
+      end)
+    '';
     configHome = "/home/yechiel";
   };
   systemd.services.display-manager.stopIfChanged = false;

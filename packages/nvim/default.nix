@@ -34,6 +34,7 @@
         pyright
         basedpyright
         nodejs
+        dotnetCorePackages.sdk_10_0-bin
         omnisharp-roslyn
         roslyn
         delve
@@ -42,6 +43,7 @@
       ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.csharp-ls ];
 
     startupPlugins.general = with pkgs.vimPlugins; [
+      inputs.cx-ast.packages.${localSystem}.default
       nvim-colorizer-lua
       neogit
       diffview-nvim

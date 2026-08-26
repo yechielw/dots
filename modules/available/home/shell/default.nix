@@ -185,6 +185,21 @@
         set -g renumber-windows on
       '';
     };
+    herdr = {
+      enable = true;
+      settings = {
+        onboarding = false;
+        keys.prefix = "ctrl+s";
+        ui = {
+          sidebar_collapsed_mode = "hidden";
+          prompt_new_tab_name = false;
+        };
+        experimental = {
+          kitty_graphics = true;
+          pane_history = true;
+        };
+      };
+    };
 
   };
 
