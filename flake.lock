@@ -2209,11 +2209,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1788212181,
-        "narHash": "sha256-egOvbAGAFfrDwblt5fl73IGOdR1x6x4Dqr5J68jD+Wo=",
+        "lastModified": 1788282733,
+        "narHash": "sha256-E6PNTqMqNXjsewnYoY04Uwsgty2zWro+7qw218KipR8=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "8a882f7be84c47b5d7dbc1c500fd22763aea5a7d",
+        "rev": "df7aebf899656d575848e8487508cc0b1da5b244",
         "type": "github"
       },
       "original": {
