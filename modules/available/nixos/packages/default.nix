@@ -5,10 +5,12 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    onlyoffice-desktopeditors
     hello
     helix
     master.hello-unfree
     master.codex
+    playwright-mcp
     mcp-nixos
     yechiel.ocr
     master.noctalia-shell
