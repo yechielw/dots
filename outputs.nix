@@ -18,17 +18,19 @@ let
       };
     };
 
-    systems.modules.nixos = with inputs; [
-      determinate.nixosModules.default
-      nix-flatpak.nixosModules.nix-flatpak
-      vicinae.nixosModules.default
-      lanzaboote.nixosModules.lanzaboote
-      chaotic.nixosModules.default
-      dms.nixosModules.default
+    systems.modules.nixos = [
+      inputs.omniflake.pinned.determinate.nixosModules.default
+      inputs.omniflake.pinned.nix-flatpak.nixosModules.nix-flatpak
+      inputs.omniflake.pinned.vicinae.nixosModules.default
+      inputs.omniflake.pinned.lanzaboote.nixosModules.lanzaboote
+      inputs.omniflake.pinned.nyx.nixosModules.default
+      inputs.omniflake.pinned.dankmaterialshell.nixosModules.default
     ];
-    homes.modules = with inputs; [
-      vicinae.homeManagerModules.default
+    homes.modules = [
+      inputs.omniflake.pinned.vicinae.homeManagerModules.default
     ];
+
+    channels.master.input = inputs.omniflake.pinned.nixpkgs;
 
     channels-config = {
       allowUnfree = true;

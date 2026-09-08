@@ -19,7 +19,7 @@
     terraform-lsp
     yechiel.nvim
     inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.omniflake.flakes.zen-browser-flake-youwen5.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
     gemini-cli
     # bitwarden-desktop
@@ -105,7 +105,7 @@
     dnschef
     zathura
     tree
-    grayjay
+    # grayjay
     wike
     quickshell
   ];

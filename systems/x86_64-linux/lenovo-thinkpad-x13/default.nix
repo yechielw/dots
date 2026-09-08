@@ -6,7 +6,7 @@
 }:
 {
   imports = with lib.yechiel.nixos; [
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
+    inputs.omniflake.pinned.nixos-hardware.nixosModules.lenovo-thinkpad-x13-intel
     ./hardware-configuration.nix
     boot
     core

@@ -81,8 +81,8 @@
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-mono
       corefonts
-      inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro-nerd
-      inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.ny
+      inputs.omniflake.pinned.apple-fonts-nix.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro-nerd
+      inputs.omniflake.pinned.apple-fonts-nix.packages.${pkgs.stdenv.hostPlatform.system}.ny
     ];
     fontconfig.defaultFonts = {
       serif = [ "New York Medium" ];

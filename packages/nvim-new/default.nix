@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-inputs.bw.lib.evalPackage [
+inputs.omniflake.pinned.nix-wrapper-modules.lib.evalPackage [
   { inherit pkgs; }
   (
     {

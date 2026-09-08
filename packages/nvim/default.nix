@@ -4,13 +4,13 @@
   localSystem ? pkgs.stdenv.hostPlatform.system,
   ...
 }:
-(inputs.nixCats.utils.baseBuilder ./nvim
+(inputs.omniflake.pinned.nixcats-nvim.utils.baseBuilder ./nvim
   {
     system = localSystem;
     inherit (inputs) nixpkgs;
 
     dependencyOverlays = [
-      (inputs.nixCats.utils.standardPluginOverlay inputs)
+      (inputs.omniflake.pinned.nixcats-nvim.utils.standardPluginOverlay inputs)
     ];
 
     extra_pkg_config = {
@@ -43,7 +43,7 @@
       ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.csharp-ls ];
 
     startupPlugins.general = with pkgs.vimPlugins; [
-      inputs.cx-ast.packages.${localSystem}.default
+      inputs.omniflake.pinned.cx-ast-nvim.packages.${localSystem}.default
       nvim-colorizer-lua
       neogit
       diffview-nvim

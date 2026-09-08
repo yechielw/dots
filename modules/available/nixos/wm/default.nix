@@ -54,7 +54,7 @@
     # dwl.enable = true;
     firefox.enable = true; # left becaus its default
     firefox.nativeMessagingHosts.packages = [
-      inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.omniflake.pinned.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     # sway = {
     #   enable = true;
@@ -64,9 +64,9 @@
     hyprland = {
       enable = true;
       # withUWSM = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      package = inputs.omniflake.pinned.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        inputs.omniflake.pinned.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     hyprlock.enable = false;
   };

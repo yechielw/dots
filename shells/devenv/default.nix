@@ -3,7 +3,7 @@
   inputs,
   ...
 }:
-inputs.devenv.lib.mkShell {
+inputs.omniflake.flakes.devenv.lib.mkShell {
   inherit inputs pkgs;
   modules = [
     (

@@ -1,2 +1,2 @@
 { inputs, ... }:
-inputs.chaotic.overlays.cache-friendly
+inputs.omniflake.pinned.nyx.overlays.cache-friendly
