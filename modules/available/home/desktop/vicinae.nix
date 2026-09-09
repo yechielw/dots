@@ -1,5 +1,9 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 {
+  imports = [
+    inputs.omniflake.pinned.vicinae.homeManagerModules.default
+  ];
+
   programs.vicinae = {
     enable = true; # default: false
     systemd = {

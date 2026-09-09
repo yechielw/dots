@@ -4,6 +4,11 @@
   ...
 }:
 {
+  imports = [
+    inputs.omniflake.pinned.lanzaboote.nixosModules.lanzaboote
+    inputs.omniflake.pinned.nyx.nixosModules.default
+  ];
+
   boot = {
     loader = {
       systemd-boot.enable = false;

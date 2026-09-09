@@ -4,6 +4,9 @@
   ...
 }:
 {
+  imports = [
+    inputs.omniflake.pinned.nix-flatpak.nixosModules.nix-flatpak
+  ];
 
   services.upower.criticalPowerAction = "Hibernate";
 

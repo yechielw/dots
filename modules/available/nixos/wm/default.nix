@@ -4,6 +4,11 @@
   ...
 }:
 {
+  imports = [
+    inputs.omniflake.pinned.vicinae.nixosModules.default
+    inputs.omniflake.pinned.dankmaterialshell.nixosModules.default
+  ];
+
   # nix.settings = {
   #   trusted-users = [ "@wheel" ];
   # };

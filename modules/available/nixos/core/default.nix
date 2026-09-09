@@ -4,6 +4,9 @@
   ...
 }:
 {
+  imports = [
+    inputs.omniflake.pinned.determinate.nixosModules.default
+  ];
 
   networking = {
     nameservers = [
