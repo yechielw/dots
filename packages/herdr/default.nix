@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{ }
+_: { }
 # let
 #   conf = {
 #     onboarding = false;

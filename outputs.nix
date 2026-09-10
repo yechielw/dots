@@ -26,7 +26,7 @@ let
     };
 
     outputs-builder = channels: {
-      formatter = channels.nixpkgs.nixpkgs-fmt;
+      formatter = channels.nixpkgs.nixfmt;
     };
   };
 in
