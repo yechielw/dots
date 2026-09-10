@@ -205,7 +205,7 @@ in
         general = {
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
-          lock_cmd = lock_cmd;
+          inherit lock_cmd;
         };
 
         listener = [

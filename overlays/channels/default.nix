@@ -5,8 +5,8 @@
   ...
 }:
 final: prev: {
-  stable = channels.stable;
-  master = channels.master;
+  inherit (channels) stable;
+  inherit (channels) master;
   herdr = inputs.omniflake.pinned.herdr.packages.${prev.system}.default;
   lerd = inputs.omniflake.flakes.lerd-nixos.packages.${prev.system}.default;
 
