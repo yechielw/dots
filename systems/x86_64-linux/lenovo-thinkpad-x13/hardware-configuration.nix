@@ -11,25 +11,30 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
+      luks.devices = {
+        "luks-1c820c46-e3cc-47ce-846b-36b6e57408ff".device =
+          "/dev/disk/by-uuid/1c820c46-e3cc-47ce-846b-36b6e57408ff";
+        "luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device =
+          "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
+      };
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/10fc76c1-1b00-4760-bcc6-1449c1b76ad8";
     fsType = "ext4";
   };
-
-  boot.initrd.luks.devices."luks-1c820c46-e3cc-47ce-846b-36b6e57408ff".device =
-    "/dev/disk/by-uuid/1c820c46-e3cc-47ce-846b-36b6e57408ff";
-  boot.initrd.luks.devices."luks-1bb11aec-2423-4bf5-85cc-a16c268cc233".device =
-    "/dev/disk/by-uuid/1bb11aec-2423-4bf5-85cc-a16c268cc233";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D80C-07BB";

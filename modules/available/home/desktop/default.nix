@@ -231,66 +231,68 @@ in
     };
   };
 
-  programs.wlogout.enable = true;
+  programs = {
+    wlogout.enable = true;
 
-  programs.chromium = {
-    enable = true;
-    commandLineArgs = [
-      "--disable-ipc-flooding-protection"
-      "--disable-xss-auditor"
-      "--disable-bundled-ppapi-flash"
-      "--disable-plugins-discovery"
-      "--disable-default-apps"
-      "--disable-prerender-local-predictor"
-      "--disable-breakpad"
-      "--disable-crash-reporter"
-      "--disable-prerender-local-predictor"
-      "--disk-cache-size=0"
-      "--disable-settings-window"
-      "--disable-notifications"
-      "--disable-speech-api"
-      "--disable-file-system"
-      "--disable-presentation-api"
-      "--disable-permissions-api"
-      "--disable-new-zip-unpacker"
-      "--disable-media-session-api"
-      "--no-experiments"
-      "--no-events"
-      "--no-first-run"
-      "--no-default-browser-check"
-      "--no-pings"
-      "--no-service-autorun"
-      "--media-cache-size=0"
-      "--use-fake-device-for-media-stream"
-      "--dbus-stub"
-      "--disable-background-networking"
-      "--disable-features=ChromeWhatsNewUI,HttpsUpgrades,ImageServiceObserveSyncDownloadStatus,LensOverlay,RenderDocument,SessionRestoreInfobar,TrackingProtection3pcd"
-      "--proxy-server=localhost:8080"
-      "'--proxy-bypass-list=<-loopback>'"
-      "--user-data-dir=/home/yechiel/.BurpSuite/pre-wired-browser"
-      "--ignore-certificate-errors"
-      "--load-extension=/home/yechiel/.BurpSuite/new-tab,/home/yechiel/.BurpSuite/navigation-recorder,/home/yechiel/.BurpSuite/dom-invader"
-    ];
-    # extensions = [
-    #   {
-    #     crxPath = "/home/yechiel/.BurpSuite/new-tab";
-    #   }
-    #   {
-    #     crxPath = "/home/yechiel/.BurpSuite/navigation-recorder";
-    #   }
-    #   {
-    #     crxPath = "/home/yechiel/.BurpSuite/dom-invader";
-    #   }
-    # ];
-  };
+    chromium = {
+      enable = true;
+      commandLineArgs = [
+        "--disable-ipc-flooding-protection"
+        "--disable-xss-auditor"
+        "--disable-bundled-ppapi-flash"
+        "--disable-plugins-discovery"
+        "--disable-default-apps"
+        "--disable-prerender-local-predictor"
+        "--disable-breakpad"
+        "--disable-crash-reporter"
+        "--disable-prerender-local-predictor"
+        "--disk-cache-size=0"
+        "--disable-settings-window"
+        "--disable-notifications"
+        "--disable-speech-api"
+        "--disable-file-system"
+        "--disable-presentation-api"
+        "--disable-permissions-api"
+        "--disable-new-zip-unpacker"
+        "--disable-media-session-api"
+        "--no-experiments"
+        "--no-events"
+        "--no-first-run"
+        "--no-default-browser-check"
+        "--no-pings"
+        "--no-service-autorun"
+        "--media-cache-size=0"
+        "--use-fake-device-for-media-stream"
+        "--dbus-stub"
+        "--disable-background-networking"
+        "--disable-features=ChromeWhatsNewUI,HttpsUpgrades,ImageServiceObserveSyncDownloadStatus,LensOverlay,RenderDocument,SessionRestoreInfobar,TrackingProtection3pcd"
+        "--proxy-server=localhost:8080"
+        "'--proxy-bypass-list=<-loopback>'"
+        "--user-data-dir=/home/yechiel/.BurpSuite/pre-wired-browser"
+        "--ignore-certificate-errors"
+        "--load-extension=/home/yechiel/.BurpSuite/new-tab,/home/yechiel/.BurpSuite/navigation-recorder,/home/yechiel/.BurpSuite/dom-invader"
+      ];
+      # extensions = [
+      #   {
+      #     crxPath = "/home/yechiel/.BurpSuite/new-tab";
+      #   }
+      #   {
+      #     crxPath = "/home/yechiel/.BurpSuite/navigation-recorder";
+      #   }
+      #   {
+      #     crxPath = "/home/yechiel/.BurpSuite/dom-invader";
+      #   }
+      # ];
+    };
 
-  programs.google-chrome = {
-    enable = lib.mkDefault true;
-    commandLineArgs = [
-      "--disable-features=WaylandWpColorManagerV1"
-      "--password-store=basic"
-      "--enable-features=VerticalTabs"
-    ];
+    google-chrome = {
+      enable = lib.mkDefault true;
+      commandLineArgs = [
+        "--disable-features=WaylandWpColorManagerV1"
+        "--password-store=basic"
+        "--enable-features=VerticalTabs"
+      ];
+    };
   };
   wayland.windowManager.hyprland.settings.bind = [
     {

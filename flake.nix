@@ -10,7 +10,7 @@
     stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
 
     omniflake = {
-      url = "github:yechielw/omniflake/mine";
+      url = "github:fzakaria/omniflake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

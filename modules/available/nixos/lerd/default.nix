@@ -6,21 +6,25 @@
 
 {
   # 1. Rootless Podman — lerd runs everything in containers.
-  virtualisation.podman.enable = true;
-  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman.enable = true;
+    containers = {
+      enable = true;
 
-  # 2. Move Podman's default subnet pool off 10.x.
-  #    REQUIRED ONLY IF a route on your machine claims 10.0.0.0/8 (common with
-  #    corporate VPNs — check `ip route`). Podman's default pool lives in 10.x,
-  #    and an overlapping route makes network creation fail with
-  #    "could not find free subnet from subnet pools". Harmless to keep even
-  #    without a VPN.
-  virtualisation.containers.containersConf.settings.network.default_subnet_pools = [
-    {
-      base = "172.20.0.0/16";
-      size = 24;
-    }
-  ];
+      # 2. Move Podman's default subnet pool off 10.x.
+      #    REQUIRED ONLY IF a route on your machine claims 10.0.0.0/8 (common with
+      #    corporate VPNs — check `ip route`). Podman's default pool lives in 10.x,
+      #    and an overlapping route makes network creation fail with
+      #    "could not find free subnet from subnet pools". Harmless to keep even
+      #    without a VPN.
+      containersConf.settings.network.default_subnet_pools = [
+        {
+          base = "172.20.0.0/16";
+          size = 24;
+        }
+      ];
+    };
+  };
 
   # 3. Let rootless nginx bind 80/443. Without this, lerd asks for sudo to set
   #    the sysctl at runtime on every install; declaring it makes it permanent.

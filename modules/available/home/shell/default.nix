@@ -61,11 +61,13 @@
 
       #autosuggestion = true;
 
-      history.append = true;
-      history.expireDuplicatesFirst = true;
-      history.save = 50000;
-      history.size = 50000;
-      history.share = true;
+      history = {
+        append = true;
+        expireDuplicatesFirst = true;
+        save = 50000;
+        size = 50000;
+        share = true;
+      };
 
       autosuggestion = {
         enable = true;
