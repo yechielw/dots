@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -10,7 +9,6 @@
     # vm
     yechiel.ast-cli
     badsecrets
-    inputs.omniflake.pinned.burpsuite-nix-yechielw.packages.${pkgs.stdenv.hostPlatform.system}.default
     android-tools
     nuclei
     trufflehog

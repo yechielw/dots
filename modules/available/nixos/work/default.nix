@@ -4,8 +4,8 @@
   ...
 }:
 {
-  imports = [ inputs.beams.modules.nixos.citrix-secure-access ];
-  services.citrix-secure-access.enable = true;
+  # imports = [ inputs.beams.modules.nixos.citrix-secure-access ];
+  # services.citrix-secure-access.enable = true;
 
   programs.evolution.enable = true;
   programs.evolution.plugins = [ pkgs.evolution-ews ];

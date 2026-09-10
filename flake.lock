@@ -127,7 +127,6 @@
       "original": {
         "owner": "Dines97",
         "repo": "flake-utils-plus",
-        "rev": "aaf79700c35c2f1651843fc70fd104ce85b1171e",
         "type": "github"
       }
     },
