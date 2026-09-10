@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "desc:InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B,1920x1200@60.0,3840x120,1.25"

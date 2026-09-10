@@ -4,7 +4,7 @@
   inputs,
   ...
 }:
-final: prev: {
+_final: prev: {
   inherit (channels) stable;
   inherit (channels) master;
   herdr = inputs.omniflake.pinned.herdr.packages.${prev.system}.default;

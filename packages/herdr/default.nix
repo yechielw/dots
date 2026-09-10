@@ -1,8 +1,4 @@
 {
-  writeShellApplication,
-  lib,
-  pkgs,
-  inputs,
   ...
 }:
 { }
