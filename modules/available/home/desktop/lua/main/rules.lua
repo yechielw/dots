@@ -73,7 +73,12 @@ hl.window_rule({ name = "window-rule-030", match = { class = "kitty" }, workspac
 hl.window_rule({ name = "window-rule-031", match = { class = "google-chrome" }, workspace = "2" })
 hl.window_rule({ name = "window-rule-032", match = { class = "microsoft-edge" }, workspace = "5" })
 hl.window_rule({ name = "window-rule-033", match = { class = "burp-StartBurp" }, workspace = "4" })
-hl.window_rule({ name = "window-rule-034", match = { class = "Icasessionmgr" }, workspace = "8" })
+hl.window_rule({
+	name = "window-rule-034",
+	match = { class = "Icasessionmgr" },
+	float = true,
+	move = { "monitor_w-window_w", "monitor_h-window_h-40" },
+})
 hl.window_rule({ name = "window-rule-035", match = { class = "Wfica.*" }, workspace = "8" })
 hl.window_rule({
 	name = "window-rule-036",
