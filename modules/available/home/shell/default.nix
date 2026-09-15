@@ -195,6 +195,16 @@
         ui = {
           sidebar_collapsed_mode = "hidden";
           prompt_new_tab_name = false;
+          sidebar.agents.rows = [
+            [
+              "state_icon"
+              "terminal_title_stripped"
+            ]
+            [
+              "agent"
+              "tab"
+            ]
+          ];
         };
         experimental = {
           kitty_graphics = true;
