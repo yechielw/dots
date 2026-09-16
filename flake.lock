@@ -301,11 +301,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1789042734,
-        "narHash": "sha256-Pzt7ObhCbR1mHPPLlpLGU/0GD9HmaYN8GhcCnZkwXIg=",
+        "lastModified": 1789309292,
+        "narHash": "sha256-D1hsjxGSXG/RAAZhdJFcfxYdi1B51hCgb7M+j4Lgumk=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "965fe552d56b85cb104a4ff25977b86ec2408bee",
+        "rev": "701ea1ffbbdcc038b8049c398be6784369bb8c57",
         "type": "github"
       },
       "original": {
