@@ -16,11 +16,12 @@ git-hooks.lib.${system}.run {
     statix.enable = true;
     deadnix.enable = true;
 
-    nixfmt.enable = true;
+    treefmt = {
+      enable = true;
+      package = inputs.self.formatter.${system};
+    };
+
     shellcheck.enable = true;
-    stylua.enable = true;
-    yamlfmt.enable = true;
-    mdsh.enable = true;
     trufflehog.enable = true;
   };
 }

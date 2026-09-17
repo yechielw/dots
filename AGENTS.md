@@ -26,7 +26,8 @@ complete Darwin or aarch64 host configuration exists.
   is supplied from `inputs.omniflake.flakes.home-manager` before constructing the
   Snowfall flake.
 - `outputs.nix` calls `inputs.snowfall-lib.mkFlake`, declares the supported systems and
-  `yechiel` namespace, configures channels, and selects `nixfmt` as the flake formatter.
+  `yechiel` namespace, configures channels, and exposes the formatter and formatting
+  check built from `treefmt.nix`.
 - The `master` channel comes from `inputs.omniflake.flakes.nixpkgs`; the `stable`
   channel comes from the root `stable` input. Both are exposed through the channels
   overlay.
@@ -127,15 +128,17 @@ Current examples include Home Manager, the master Nixpkgs channel, and Git hooks
 
 ## Formatting and Git hooks
 
-The flake formatter is `nixfmt`. Format only the touched Nix files when possible:
+The flake formatter is the `treefmt-nix` wrapper configured in `treefmt.nix`. It runs
+`nixfmt`, `stylua`, `yamlfmt`, and `mdsh`. Format only the touched files when possible:
 
 ```console
 nix fmt -- path/to/file.nix another/file.nix
 ```
 
 The authoritative hook definition is `checks/git-hooks/default.nix`. It uses
-`cachix/git-hooks.nix` from Omniflake with `prek` and currently enables `statix`,
-`deadnix`, `nixfmt`, `shellcheck`, `stylua`, `yamlfmt`, `mdsh`, and `trufflehog`.
+`cachix/git-hooks.nix` from Omniflake with `prek` and currently enables the treefmt
+wrapper, `statix`, `deadnix`, `shellcheck`, and `trufflehog`. Keep formatter selection
+in `treefmt.nix` instead of duplicating individual formatter hooks here.
 
 The default shell in `shells/default/default.nix` consumes the check's
 `enabledPackages` and `shellHook`, so the hook list must not be duplicated in the shell.
@@ -153,10 +156,10 @@ the working tree:
 nix build --no-link .#checks.x86_64-linux.git-hooks
 ```
 
-`prek`, formatters, and `mdsh` can rewrite files when run directly. Record the working
-tree state first, then inspect every resulting change. Keep Markdown examples as normal
-fenced blocks; add `mdsh` command markers only when generated output is intentional.
-Do not edit the ignored `.pre-commit-config.yaml`; the shell hook owns it as a generated
+`prek` and treefmt can rewrite files when run directly. Record the working tree state
+first, then inspect every resulting change. Keep Markdown examples as normal fenced
+blocks; add `mdsh` command markers only when generated output is intentional. Do not
+edit the ignored `.pre-commit-config.yaml`; the shell hook owns it as a generated
 symlink. If a stale regular file from the old Devenv setup blocks installation, move it
 aside and re-enter the default shell. Alejandra is not a configured repository check.
 
