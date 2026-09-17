@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #nwg-panel &
 #waybar &
 #nm-applet --indicator&
@@ -14,4 +16,3 @@
 #trayscale --hide-window&
 rquickshare&
 #sh -c '$(nix path-info nixpkgs\#polkit_gnome)/libexec/polkit-gnome-authentication-agent-1'&
-

@@ -39,6 +39,7 @@ REBUILD_FLAG="$CACHE_DIR/nix-update-rebuild-flag"
 # This is required to force waybar module to render while we wait for nixos rebuild
 # and also this is enhances UI/UX side
 UPDATING_FLAG="$CACHE_DIR/nix-update-updating-flag"
+UPDATE_TEMP_DIR=""
 
 
 # ===== Initialize Files =====
@@ -71,8 +72,10 @@ function check_boot_resume() {
         # This function detects if the system has recently booted or resumed from hibernation/sleep
         # Returns 0 (true) if we're in the grace period, 1 (false) otherwise
 
-        local current_time=$(date +%s)
-        local uptime_seconds=$(cat /proc/uptime | awk '{print int($1)}')
+        local current_time
+        local uptime_seconds
+        current_time=$(date +%s)
+        uptime_seconds=$(awk '{print int($1)}' /proc/uptime)
         local last_boot_time=$((current_time - uptime_seconds))
 
         # Check if this is first run after boot
@@ -88,21 +91,25 @@ function check_boot_resume() {
         # Try to detect resume using systemd logs
         if command -v journalctl >/dev/null 2>&1; then
             # Get timestamp of last resume/wakeup event from systemd journal
-            local resume_log=$(journalctl -b -u systemd-suspend.service -u systemd-hibernate.service -n 1 -o short-unix 2>/dev/null)
+            local resume_log
+            resume_log=$(journalctl -b -u systemd-suspend.service -u systemd-hibernate.service -n 1 -o short-unix 2>/dev/null)
             if [ -n "$resume_log" ]; then
                 # Extract just the numeric timestamp from the beginning of the line
-                local timestamp=$(echo "$resume_log" | sed -E 's/^([0-9]+).*/\1/')
+                local timestamp
+                timestamp=$(echo "$resume_log" | sed -E 's/^([0-9]+).*/\1/')
                 if [ -n "$timestamp" ] && [[ "$timestamp" =~ ^[0-9]+$ ]]; then
                     last_resume=$timestamp
                 fi
             fi
 
             # If no direct service logs, try looking for resume messages in kernel logs
-            if [ $last_resume -eq 0 ]; then
-                local wake_log=$(journalctl -b -k -g "PM: resumed" -n 1 -o short-unix 2>/dev/null)
+            if [ "$last_resume" -eq 0 ]; then
+                local wake_log
+                wake_log=$(journalctl -b -k -g "PM: resumed" -n 1 -o short-unix 2>/dev/null)
                 if [ -n "$wake_log" ]; then
                     # Extract just the numeric timestamp from the beginning of the line
-                    local timestamp=$(echo "$wake_log" | sed -E 's/^([0-9]+).*/\1/')
+                    local timestamp
+                    timestamp=$(echo "$wake_log" | sed -E 's/^([0-9]+).*/\1/')
                     if [ -n "$timestamp" ] && [[ "$timestamp" =~ ^[0-9]+$ ]]; then
                         last_resume=$timestamp
                     fi
@@ -111,7 +118,7 @@ function check_boot_resume() {
         fi
 
         # Check if we can find resume info in NixOS-specific locations
-        if [ $last_resume -eq 0 ] && [ -d "/run/systemd/system" ]; then
+        if [ "$last_resume" -eq 0 ] && [ -d "/run/systemd/system" ]; then
             # Check systemd sleep state
             if [ -f "/run/systemd/suspend/active" ] || [ -f "/run/systemd/hibernate/active" ]; then
                 last_resume=$current_time  # Just woke up
@@ -119,14 +126,15 @@ function check_boot_resume() {
         fi
 
         # If we detected a resume and it's recent, we're in grace period
-        if [ $last_resume -gt 0 ] && [ $((current_time - last_resume)) -lt "$GRACE_PERIOD" ]; then
+        if [ "$last_resume" -gt 0 ] && [ $((current_time - last_resume)) -lt "$GRACE_PERIOD" ]; then
             echo "$current_time" > "$BOOT_MARKER_FILE"
             return 0
         fi
 
         # Check if we have a saved boot marker and we're still in grace period
         if [ -f "$BOOT_MARKER_FILE" ]; then
-            local marker_time=$(cat "$BOOT_MARKER_FILE")
+            local marker_time
+            marker_time=$(cat "$BOOT_MARKER_FILE")
             if [[ "$marker_time" =~ ^[0-9]+$ ]] && [ $((current_time - marker_time)) -lt "$GRACE_PERIOD" ]; then
                 return 0  # Still in grace period from marker
             fi
@@ -154,11 +162,19 @@ function sys_updated() {
 }
 
 function calc_next_update() {
-    local last_run=$(cat "$LAST_RUN_FILE")
-    local current_time=$(date +%s)
+    local last_run
+    local current_time
+    last_run=$(cat "$LAST_RUN_FILE")
+    current_time=$(date +%s)
     local next_update=$((UPDATE_INTERVAL - (current_time - last_run)))
     local next_update_min=$((next_update / 60))
     echo "$next_update_min"
+}
+
+function cleanup() {
+    if [ -n "$UPDATE_TEMP_DIR" ]; then
+        rm -rf -- "$UPDATE_TEMP_DIR"
+    fi
 }
 
 function var_setter() {
@@ -173,9 +189,11 @@ function var_setter() {
 
 # ===== Update Check Logic =====
 function check_for_updates() {
-    local tempdir=$(mktemp -d)
+    local tempdir
+    tempdir=$(mktemp -d)
+    UPDATE_TEMP_DIR="$tempdir"
     # Ensure cleanup happens when script exits
-    trap "rm -rf '$tempdir'" EXIT
+    trap cleanup EXIT
 
 
     local updates=0
@@ -186,9 +204,8 @@ function check_for_updates() {
         cd "$NIXOS_CONFIG_PATH" || return 1
         nix flake update
 
-        nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel
-        if [ "$?" -eq 0 ]; then
-            updates=$(nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)
+        if nix build ".#nixosConfigurations.$(hostname).config.system.build.toplevel"; then
+            updates=$(nvd diff /run/current-system ./result | grep -c -e '\[U')
             tooltip=$(nvd diff /run/current-system ./result | grep -e '\[U' | awk '{ for (i=3; i<NF; i++) printf $i " "; if (NF >= 3) print $NF; }' ORS='\\n')
         else
             return 1
@@ -199,9 +216,8 @@ function check_for_updates() {
         cd "$tempdir" || return 1
         nix flake update
 
-        nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel
-        if [ "$?" -eq 0 ]; then
-            updates=$(nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)
+        if nix build ".#nixosConfigurations.$(hostname).config.system.build.toplevel"; then
+            updates=$(nvd diff /run/current-system ./result | grep -c -e '\[U')
             tooltip=$(nvd diff /run/current-system ./result | grep -e '\[U' | awk '{ for (i=3; i<NF; i++) printf $i " "; if (NF >= 3) print $NF; }' ORS='\\n')
         else
             return 1
@@ -210,7 +226,7 @@ function check_for_updates() {
 
     # Save results
     echo "$updates" > "$STATE_FILE"
-    echo "$(date +%s)" > "$LAST_RUN_FILE"
+    date +%s > "$LAST_RUN_FILE"
 
     if [ "$updates" -eq 0 ]; then
         echo "System updated" > "$LAST_RUN_TOOLTIP"
@@ -251,20 +267,22 @@ function main() {
           tooltip="System updated"
           echo "$updates" > "$STATE_FILE"
           echo "$tooltip" > "$LAST_RUN_TOOLTIP"
-          if [ -f $UPDATE_FLAG ]; then
+          if [ -f "$UPDATE_FLAG" ]; then
             rm "$UPDATE_FLAG"
           fi
           rm "$REBUILD_FLAG"
       else
           # Read state from files
           updates=$(cat "$STATE_FILE")
-          local last_run=$(cat "$LAST_RUN_FILE")
-          local current_time=$(date +%s)
+          local last_run
+          local current_time
+          last_run=$(cat "$LAST_RUN_FILE")
+          current_time=$(date +%s)
 
           # Decide whether to show saved state or perform new check
           if [ $((current_time - last_run)) -gt "$UPDATE_INTERVAL" ]; then
               # Separating updating and updated phase
-              if [ -f $UPDATING_FLAG ]; then
+              if [ -f "$UPDATING_FLAG" ]; then
                   # Time to check for updates
                   if check_for_updates; then
                       updates=$(cat "$STATE_FILE")
@@ -275,12 +293,12 @@ function main() {
                       alt="error"
                       tooltip="Update check failed"
                   fi
-                  rm $UPDATING_FLAG
+                  rm "$UPDATING_FLAG"
               else
                   updates=$(cat "$STATE_FILE")
                   alt="updating"
                   tooltip="Performing an update"
-                  touch $UPDATING_FLAG
+                  touch "$UPDATING_FLAG"
                   # Rerun same script just to show updating status and
                   # run update process in separate thread
                   pkill -x -RTMIN+12 .waybar-wrapped
