@@ -22,10 +22,10 @@
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
-    raise = {
-      url = "github:yechielw/raise";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # raise = {
+    #   url = "github:yechielw/raise";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     profilepic = {
       url = "https://github.com/yechielw.png";

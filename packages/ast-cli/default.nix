@@ -7,16 +7,16 @@
 
 buildGoModule rec {
   pname = "ast-cli";
-  version = "2.3.60";
+  version = "2.3.65";
 
   src = fetchFromGitHub {
     owner = "Checkmarx";
     repo = "ast-cli";
     rev = version;
-    hash = "sha256-yLoruMiN86pb4iLYHShvL/4GL9QuTO5L27ddTgHYnLs=";
+    hash = "sha256-uFWHjZvrEKIq8hVwCgOZg+0be9RsPNZyvT0hX6lwbE4=";
   };
 
-  vendorHash = "sha256-geNlVMo99ynuknKqY/eh0w0jFpRSArk1NFiwKt6vMDM=";
+  vendorHash = "sha256-B3fMoLzC7MIEwe3i+o4sQj7gGWiDM7UtRxiiUJFnP90=";
 
   ldflags = [
     "-s"

@@ -18,10 +18,10 @@
     terraform
     terraform-lsp
     yechiel.nvim
-    inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+    inputs.omniflake.flakes.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
     inputs.omniflake.flakes.zen-browser-flake-youwen5.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
-    gemini-cli
+    antigravity-cli
     # bitwarden-desktop
     alsa-utils
     beeper
