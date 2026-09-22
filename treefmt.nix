@@ -6,6 +6,10 @@
     nixfmt.enable = true;
     stylua.enable = true;
     yamlfmt.enable = true;
+    statix.enable = true;
+    deadnix.enable = true;
+    shellcheck.enable = true;
+
   };
 
   # mdsh accepts only one --inputs value, so adapt treefmt's batched arguments.

@@ -25,9 +25,15 @@ let
       android_sdk.accept_license = true;
     };
 
-    outputs-builder = channels: {
-      formatter = channels.nixpkgs.nixfmt;
-    };
+    outputs-builder =
+      channels:
+      let
+        treefmt = inputs.omniflake.flakes.treefmt-nix.lib.evalModule channels.nixpkgs ./treefmt.nix;
+      in
+      {
+        formatter = treefmt.config.build.wrapper;
+        checks.treefmt = treefmt.config.build.check inputs.self;
+      };
   };
 in
 base.lib.exposeAvailableModules base
