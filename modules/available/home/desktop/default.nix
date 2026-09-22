@@ -93,7 +93,7 @@ in
           profile.name = "internal";
           profile.outputs = [
             {
-              criteria = "eDP-1";
+              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
               status = "enable";
               scale = 1.0;
             }
@@ -103,7 +103,7 @@ in
           profile.name = "work";
           profile.outputs = [
             {
-              criteria = "eDP-1";
+              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
               status = "enable";
               position = "3840,0";
               scale = 1.0;
@@ -126,7 +126,7 @@ in
           profile.name = "home";
           profile.outputs = [
             {
-              criteria = "eDP-1";
+              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
               position = "1920,0";
               scale = 1.0;
             }
