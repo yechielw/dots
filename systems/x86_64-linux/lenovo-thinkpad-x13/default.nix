@@ -52,7 +52,7 @@
 
     settings = {
       General = {
-        ControllerMode = "bredr";
+        ControllerMode = "dual";
         JustWorksRepairing = "confirm";
         Privacy = "device";
         DiscoverableTimeout = 0;
