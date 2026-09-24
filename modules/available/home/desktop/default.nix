@@ -75,6 +75,7 @@ in
     config = {
       common = {
         default = [
+          "hyprland"
           "gtk"
         ];
       };
@@ -93,7 +94,7 @@ in
           profile.name = "internal";
           profile.outputs = [
             {
-              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
+              criteria = "InfoVision Optoelectronics (Kunshan) *";
               status = "enable";
               scale = 1.0;
             }
@@ -103,7 +104,7 @@ in
           profile.name = "work";
           profile.outputs = [
             {
-              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
+              criteria = "InfoVision Optoelectronics (Kunshan) *";
               status = "enable";
               position = "3840,0";
               scale = 1.0;
@@ -126,7 +127,7 @@ in
           profile.name = "home";
           profile.outputs = [
             {
-              criteria = "InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x854B";
+              criteria = "InfoVision Optoelectronics (Kunshan) *";
               position = "1920,0";
               scale = 1.0;
             }
