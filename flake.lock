@@ -198,11 +198,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1788179007,
-        "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
+        "lastModified": 1790046670,
+        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
+        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
         "type": "github"
       },
       "original": {
@@ -238,11 +238,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1789401118,
-        "narHash": "sha256-IE8Xuo52029hwNMoVhff7/iQluijgv6T+R1fva61pyQ=",
+        "lastModified": 1790080550,
+        "narHash": "sha256-ZZt8ZfbM3RtFUmc7wA2vRogHj2cEFTKZOQ3LLOLd2dM=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "9fd9c6519ce889c1ec6b6f0d7e4e6714e0e07b57",
+        "rev": "1dc981b21a031265e19d5c66266bd6446ec60644",
         "type": "github"
       },
       "original": {
@@ -286,12 +286,33 @@
         "url": "https://github.com/yechielw.png"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789967089,
+        "narHash": "sha256-872tMDDYdjR983q7v2yDlnKOEBSPp5FXDdWF2q87gik=",
+        "owner": "quickshell-mirror",
+        "repo": "quickshell",
+        "rev": "fae96f1a5b7f53de9b7e40e5b53c0b7a2e97b1d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quickshell-mirror",
+        "repo": "quickshell",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils-plus": "flake-utils-plus",
         "nixpkgs": "nixpkgs",
         "omniflake": "omniflake",
         "profilepic": "profilepic",
+        "quickshell": "quickshell",
         "snowfall-lib": "snowfall-lib",
         "stable": "stable"
       }
@@ -326,12 +347,12 @@
     },
     "stable": {
       "locked": {
-        "lastModified": 1787962033,
-        "narHash": "sha256-u6z9VTZA4Kf3RkHQo9sQI7NI4Ei/uiU9vrMqOiwWP1Y=",
-        "rev": "c5c4a43b0e8056328ec4529f735cabdb8f1942bb",
-        "revCount": 1012930,
+        "lastModified": 1789998861,
+        "narHash": "sha256-62XMQD4WLdMAfdT0/8gJmPH2dKeTw908ryNloAplTr8=",
+        "rev": "1e8bc658fc985ef27ccd66d107d767b32bb7ef98",
+        "revCount": 1014693,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2605.1012930%2Brev-c5c4a43b0e8056328ec4529f735cabdb8f1942bb/01a053c0-7061-7382-b001-102e9148a5b5/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2605.1014693%2Brev-1e8bc658fc985ef27ccd66d107d767b32bb7ef98/01a0c7a2-6fe9-7593-a737-57d401953983/source.tar.gz"
       },
       "original": {
         "type": "tarball",
