@@ -9,6 +9,8 @@
 
     stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
 
+    # temp bug patches
+
     omniflake = {
       url = "github:fzakaria/omniflake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +24,12 @@
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
-    # raise = {
-    #   url = "github:yechielw/raise";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # end of temp bug fixes
 
     profilepic = {
       url = "https://github.com/yechielw.png";
