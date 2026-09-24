@@ -43,7 +43,6 @@
     nodejs
     #pipx
     pyenv
-    thunderbird
     unzip
     wget
     freerdp
