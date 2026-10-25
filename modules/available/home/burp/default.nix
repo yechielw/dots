@@ -9,6 +9,8 @@
     inputs.omniflake.flakes.burpsuite-nix.homeManagerModules.default
   ];
 
+  systemd.user.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
+
   programs.burp = {
     enable = true;
     proEdition = true;

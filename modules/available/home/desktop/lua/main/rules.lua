@@ -83,6 +83,7 @@ hl.window_rule({
 })
 hl.window_rule({ name = "kitty-workspace-1", match = { class = "kitty" }, workspace = "1" })
 hl.window_rule({ name = "google-chrome-workspace-2", match = { class = "google-chrome" }, workspace = "2" })
+hl.window_rule({ name = "chromium-workspace-5", match = { class = "chromium-browser" }, workspace = "5" })
 hl.window_rule({ name = "microsoft-edge-workspace-5", match = { class = "microsoft-edge" }, workspace = "5" })
 hl.window_rule({ name = "burp-suite-workspace-4", match = { class = "burp-StartBurp" }, workspace = "4" })
 hl.window_rule({
@@ -100,5 +101,17 @@ hl.window_rule({
 hl.window_rule({
 	name = "burp-filter-dialog-float",
 	match = { class = "burp-StartBurp", title = ".*bfilter$" },
+	float = true,
+})
+
+hl.window_rule({
+	name = "burp-startup-float",
+	match = { class = "burp-StartBurp", title = ".*[(]Early Adopter[)] - licensed to.*" },
+	float = true,
+})
+
+hl.window_rule({
+	name = "burp-settings-float",
+	match = { class = "burp-StartBurp", title = "^Settings$" },
 	float = true,
 })
