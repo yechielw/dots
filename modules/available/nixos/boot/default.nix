@@ -12,7 +12,6 @@
   boot = {
     loader = {
       systemd-boot.enable = false;
-      systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
     };
     # plymouth.enable = true;
@@ -23,6 +22,7 @@
     # Secure Boot-enabled systemd-boot replacement.
     lanzaboote = {
       enable = true;
+      configurationLimit = 4;
       pkiBundle = "/var/lib/sbctl";
       autoGenerateKeys.enable = true;
       autoEnrollKeys = {
