@@ -15,7 +15,8 @@
   environment.systemPackages = with pkgs; [
     #    citrix_workspace
     microsoft-edge
-    master.citrix-workspace
+    #master.citrix-workspace
+    yechiel.citrix-auto-download
     jfrog-cli
     yechiel.az
   ];

@@ -9,6 +9,7 @@
     hello
     helix
     master.hello-unfree
+    master.chatgpt
     master.codex
     playwright-mcp
     mcp-nixos
@@ -22,7 +23,7 @@
     inputs.omniflake.flakes.zen-browser-flake-youwen5.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
     antigravity-cli
-    # bitwarden-desktop
+    master.bitwarden-desktop
     alsa-utils
     beeper
     element-desktop
@@ -89,7 +90,7 @@
     nix-init
     yt-dlp
     exiftool
-    bitwarden-cli
+    master.bitwarden-cli
     subfinder
     wpscan
     comma
@@ -106,6 +107,5 @@
     tree
     # grayjay
     wike
-    quickshell
   ];
 }

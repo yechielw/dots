@@ -66,6 +66,6 @@
   environment.systemPackages = with pkgs; [
     php84
     php84Packages.composer
-    inputs.omniflake.flakes.lerd-nixos.packages.x86_64-linux.default
+    inputs.omniflake.flakes.lerd-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
