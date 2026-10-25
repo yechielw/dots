@@ -1,5 +1,24 @@
 {
   "nodes": {
+    "cpak": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1790612265,
+        "narHash": "sha256-CZHysZPvgkVRn0urG/RM76fI9F8qpdkl5b2QmZKUiM0=",
+        "owner": "Containerpak",
+        "repo": "cpak",
+        "rev": "117e58046741784b03a45593f0c5f564f2c22de7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Containerpak",
+        "ref": "v2",
+        "repo": "cpak",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -198,15 +217,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1790046670,
-        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
-        "owner": "nixos",
+        "lastModified": 1788179007,
+        "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -227,6 +246,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1790046670,
+        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "omniflake": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -238,11 +273,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1790080550,
-        "narHash": "sha256-ZZt8ZfbM3RtFUmc7wA2vRogHj2cEFTKZOQ3LLOLd2dM=",
+        "lastModified": 1790607865,
+        "narHash": "sha256-dsZYCgF66f8Jd3CBGkwNIF98DSwASOO78nHQFuDmFyU=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "1dc981b21a031265e19d5c66266bd6446ec60644",
+        "rev": "a3b51c871e6bf43c0b83ef9847e3e98826ac3067",
         "type": "github"
       },
       "original": {
@@ -286,33 +321,13 @@
         "url": "https://github.com/yechielw.png"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789967089,
-        "narHash": "sha256-872tMDDYdjR983q7v2yDlnKOEBSPp5FXDdWF2q87gik=",
-        "owner": "quickshell-mirror",
-        "repo": "quickshell",
-        "rev": "fae96f1a5b7f53de9b7e40e5b53c0b7a2e97b1d7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quickshell-mirror",
-        "repo": "quickshell",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
+        "cpak": "cpak",
         "flake-utils-plus": "flake-utils-plus",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "omniflake": "omniflake",
         "profilepic": "profilepic",
-        "quickshell": "quickshell",
         "snowfall-lib": "snowfall-lib",
         "stable": "stable"
       }

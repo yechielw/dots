@@ -7,12 +7,16 @@
   imports = [
     inputs.omniflake.pinned.vicinae.nixosModules.default
     inputs.omniflake.pinned.dankmaterialshell.nixosModules.default
+    inputs.cpak.nixosModules.default
   ];
 
   # nix.settings = {
   #   trusted-users = [ "@wheel" ];
   # };
-  services.udisks2.enable = true;
+  services = {
+    udisks2.enable = true;
+    cpak.enable = true;
+  };
   systemd.user.services = {
     "wayland-session-bindpid@" = {
       restartIfChanged = false;
@@ -26,6 +30,20 @@
       restartIfChanged = false;
       stopIfChanged = false;
     };
+    #   xdg-desktop-portal-hyprland = {
+    #     after = [ "pipewire.service" ];
+    #     partOf = [ "pipewire.service" ];
+    #     wants = [ "pipewire.service" ];
+    #   };
+    #   chromium-audio-reconnect = {
+    #     description = "Reconnect Chromium audio after PipeWire restarts";
+    #     after = [ "pipewire-pulse.service" ];
+    #     wantedBy = [ "pipewire-pulse.service" ];
+    #     script = ''
+    #       ${pkgs.procps}/bin/pkill -TERM -f -- "utility-sub-type=audio[.]mojom[.]AudioService" || true
+    #     '';
+    #     serviceConfig.Type = "oneshot";
+    #   };
   };
   # services.desktopManager.cosmic.enable = true;
   #specialisation.cosmic.configuration.services.desktopManager.cosmic.enable = true;
@@ -42,7 +60,8 @@
   programs = {
     dank-material-shell = {
       enable = true;
-      quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      quickshell.package =
+        inputs.omniflake.flakes.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
       systemd = {
         enable = true; # Systemd service for auto-start

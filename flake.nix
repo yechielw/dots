@@ -24,10 +24,7 @@
       inputs.flake-utils-plus.follows = "flake-utils-plus";
     };
 
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    cpak.url = "github:Containerpak/cpak/v2";
 
     # end of temp bug fixes
 
