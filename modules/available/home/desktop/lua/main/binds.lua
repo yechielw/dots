@@ -1,5 +1,6 @@
 hl.bind("SUPER + O", hl.dsp.exec_cmd("ocr"))
-hl.bind("SUPER + return", hl.dsp.exec_cmd("raise -c com.mitchellh.ghostty -e ghostty"))
+-- hl.bind("SUPER + return", hl.dsp.exec_cmd("raise -c com.mitchellh.ghostty -e ghostty"))
+hl.bind("SUPER + return", hl.dsp.exec_cmd("raise -c gorex -e gorex"))
 hl.bind("SUPER + A", hl.dsp.exec_cmd("raise -c google-chrome -e google-chrome-stable"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("raise -c chromium-browser -e chromium"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("raise -c microsoft-edge -e microsoft-edge"))
