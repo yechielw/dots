@@ -17,7 +17,6 @@
     # plymouth.enable = true;
     #    plymouth.themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
     # plymouth.theme = "catppuccin-mocha";
-    initrd.systemd.enable = true;
 
     # Secure Boot-enabled systemd-boot replacement.
     lanzaboote = {
