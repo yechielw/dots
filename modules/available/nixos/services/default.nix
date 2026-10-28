@@ -50,7 +50,7 @@
 
     # Enable the GNOME Desktop Environment.
     # displayManager.cosmic-greeter.enable = true;
-    displayManager.dms-greeter = {
+    displayManager.dux-greeter = {
       enable = true;
       compositor.name = "hyprland";
       compositor.customConfig = ''
