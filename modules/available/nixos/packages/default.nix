@@ -12,15 +12,14 @@
     master.chatgpt
     master.codex
     playwright-mcp
-    mcp-nixos
+    stable.mcp-nixos
     yechiel.ocr
-    master.noctalia-shell
     amp-cli
     terraform
     terraform-lsp
     yechiel.nvim
     inputs.omniflake.flakes.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-    inputs.omniflake.flakes.zen-browser-flake-youwen5.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.omniflake.flakes.zen-browser-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme
     antigravity-cli
     master.bitwarden-desktop
@@ -80,7 +79,7 @@
     ))
     # imported from .nix-profile
     pandoc
-    semgrep
+    stable.semgrep
     xq
     inetutils
     sqlite
