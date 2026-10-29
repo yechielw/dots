@@ -71,9 +71,12 @@
   # Enable CUPS to print documents.
 
   hardware.i2c.enable = true;
-  hardware.keyboard.qmk = {
-    enable = true;
-    keychronSupport = true;
+  hardware.keyboard = {
+    qmk = {
+      enable = true;
+      keychronSupport = true;
+    };
+    zsa.enable = true;
   };
 
   fonts = {
