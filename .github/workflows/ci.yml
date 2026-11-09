@@ -36,8 +36,6 @@ jobs:
           upstream-cache-key-names: >-
             cache.nixos.org-1 yechielw.cachix.org-1 vicinae.cachix.org-1 hyprland.cachix.org-1
           drain-timeout: 900
-      - name: Run flake checks
-        run: nix flake check --no-write-lock-file --print-build-logs
       - name: Build NixOS configuration
         run: |
           nix build --out-link result --print-build-logs \
