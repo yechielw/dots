@@ -11,15 +11,12 @@
     containers = {
       enable = true;
 
-      # 2. Move Podman's default subnet pool off 10.x.
-      #    REQUIRED ONLY IF a route on your machine claims 10.0.0.0/8 (common with
-      #    corporate VPNs — check `ip route`). Podman's default pool lives in 10.x,
-      #    and an overlapping route makes network creation fail with
-      #    "could not find free subnet from subnet pools". Harmless to keep even
-      #    without a VPN.
+      # 2. Keep rootless Podman networks away from corporate 10.x routes and
+      #    the current 172.20.16.0/20 Wi-Fi network. Use a separate pool from
+      #    Docker so newly created container networks do not collide.
       containersConf.settings.network.default_subnet_pools = [
         {
-          base = "172.20.0.0/16";
+          base = "192.168.192.0/19";
           size = 24;
         }
       ];

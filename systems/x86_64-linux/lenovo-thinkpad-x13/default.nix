@@ -83,6 +83,16 @@
     };
   };
 
+  # Keep newly created Docker bridges away from the current Wi-Fi subnet
+  # (172.20.16.0/20) and the corporate gateway (172.23.99.27).
+  # Existing Docker networks must be recreated separately to take effect.
+  virtualisation.docker.daemon.settings."default-address-pools" = [
+    {
+      base = "192.168.224.0/19";
+      size = 24;
+    }
+  ];
+
   home-manager = {
     backupFileExtension = "bck";
     useUserPackages = true;
