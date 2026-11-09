@@ -29,7 +29,7 @@ jobs:
           useDaemon: false
           pathsToPush: result
       - name: Configure Hestia cache
-        uses: Mic92/hestia@b21a1aaf8c3d5c2e430c9ba278c0f78abd46a320 # v3.0.0
+        uses: Mic92/hestia@dfed9ced335d28978ba74e513939a10db1f71025 # v3.1.0
         with:
           version: v3.0.0
           upstream-cache-filter: true
