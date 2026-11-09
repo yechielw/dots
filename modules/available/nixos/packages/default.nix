@@ -9,8 +9,8 @@
     hello
     helix
     master.hello-unfree
-    master.chatgpt
-    master.codex
+    chatgpt
+    codex
     playwright-mcp
     stable.mcp-nixos
     yechiel.ocr
@@ -93,7 +93,7 @@
     subfinder
     wpscan
     comma
-    vial
+    master.vial
     btop
     libreoffice
     dash
