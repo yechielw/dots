@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+permissions:
+  actions: read
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: Build NixOS configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install Nix
+        uses: NixOS/nix-installer-action@62c1943b776c509394b550f3f983adc14e9212d6 # main
+        with:
+          installer-version: 2.35.2
+      - name: Configure Cachix
+        uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71 # v17
+        with:
+          name: yechielw
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          useDaemon: false
+          pathsToPush: result
+      - name: Configure Hestia cache
+        uses: Mic92/hestia@b21a1aaf8c3d5c2e430c9ba278c0f78abd46a320 # v3.0.0
+        with:
+          version: v3.0.0
+          upstream-cache-filter: true
+          upstream-cache-key-names: >-
+            cache.nixos.org-1 yechielw.cachix.org-1 vicinae.cachix.org-1 hyprland.cachix.org-1
+          drain-timeout: 900
+      - name: Run flake checks
+        run: nix flake check --no-write-lock-file --print-build-logs
+      - name: Build NixOS configuration
+        run: |
+          nix build --out-link result --print-build-logs \
+            .#nixosConfigurations.lenovo-thinkpad-x13.config.system.build.toplevel

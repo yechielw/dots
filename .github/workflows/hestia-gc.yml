@@ -1,0 +1,41 @@
+name: Hestia cache GC
+on:
+  schedule:
+    - cron: "23 3 * * *"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Plan the cleanup without changing the cache
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: hestia-gc
+  cancel-in-progress: false
+jobs:
+  gc:
+    name: Garbage-collect Hestia cache
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install Nix
+        uses: NixOS/nix-installer-action@62c1943b776c509394b550f3f983adc14e9212d6 # main
+        with:
+          installer-version: 2.35.2
+      - name: Install Hestia
+        uses: Mic92/hestia@b21a1aaf8c3d5c2e430c9ba278c0f78abd46a320 # v3.0.0
+        with:
+          version: v3.0.0
+      - name: Garbage-collect cache
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          "$HESTIA_BIN" gc \
+            ${{ inputs.dry-run && '--dry-run' || '' }}
