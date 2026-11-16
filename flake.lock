@@ -273,11 +273,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1794096723,
-        "narHash": "sha256-aQWmY0vfbPmQq+wKVTRMWKObfS9taPuz8ihjxlqdh08=",
+        "lastModified": 1794592693,
+        "narHash": "sha256-ANlj2+hfizy1Ala6/pc6dX04HF5ODsqQJCR9g6PEtys=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "a39e16f595d2d9cf475001e97e550239f6335bbe",
+        "rev": "445b2ad1a79d905d40a75b49e659adad82605c19",
         "type": "github"
       },
       "original": {
