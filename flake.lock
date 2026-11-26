@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1794032875,
-        "narHash": "sha256-ppz4Fzx960vvrK01HzeTL8Lv9yQ9cYhx8KwCYHAprlY=",
+        "lastModified": 1795408974,
+        "narHash": "sha256-dahophJljhjRiXjFShsN8bCrzfAa3C6P081wtb7XP4w=",
         "owner": "Containerpak",
         "repo": "cpak",
-        "rev": "9d028e2d255b52934f332a60f2720960ae0e8922",
+        "rev": "5f7200f68a2e0a31508acaab79bf4e1a6f8e0069",
         "type": "github"
       },
       "original": {
